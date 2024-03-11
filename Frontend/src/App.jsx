@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const App = () => {
-  const [data, setData] = useState({})
-  axios.get("/api/user/")
-    .then((res) => setData(res.data))
+  // const [data, setData] = useState({})
+  // axios.get("/api/user/")
+  //   .then((res) => setData(res.data))
+  
   return (
     <div>
       Internshala
