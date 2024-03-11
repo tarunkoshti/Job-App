@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import Signup from './Components/Signup'
+import { Outlet } from 'react-router-dom'
+
 
 const App = () => {
 
   return (
     <div>
-      {/* Internshala */}
-      <Signup />
+      <Outlet />
     </div>
   )
 }
