@@ -1,10 +1,93 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { asyncLogin } from '../store/Actions/userActions'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import Input from '../Components/Input';
+import Button from '../Components/Button';
 
 const Login = () => {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector((state) => state.userReducer)
+
+
+  const { register, handleSubmit } = useForm();
+
+  const login = (data) => {
+    dispatch(asyncLogin(data))
+  }
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/")
+    }
+  }, [isAuth, navigate])
+
+  const style = {
+    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04)'
+  }
+
   return (
-    <div>
-      Login
+    <div className="flex items-center justify-center p-8">
+      <div style={style} className={`mx-auto w-full max-w-lg bg-white rounded-xl p-10 `}>
+        <div className="mb-2 flex justify-center">
+          <span className="inline-block w-full max-w-[100px]">
+            {/* <Logo width="100%" /> */}
+          </span>
+        </div>
+
+        <h2 className="text-center text-2xl font-bold leading-tight text-[#1F4959]">Login to know more</h2>
+
+        <form onSubmit={handleSubmit(login)}
+          className='mt-8'
+        >
+          <div className='space-y-5'>
+            <Input
+              label="Email"
+              placeholder="John@example.com"
+              type="email"
+              {...register("email", {
+                required: true,
+                // validate: {
+                //     matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                //         "Email address must be a valid address",
+                // }
+              })}
+            />
+            <Input
+              label="Password"
+              type="password"
+              placeholder="Must be atleat 6 character"
+              {...register("password", {
+                required: true
+              })}
+            />
+
+            <Link to="/forget-password"
+              className='text-blue-700 text-right font-semibold text-sm inline-block'
+            >Forget Password?</Link>
+
+            <Button
+              type='submit'
+              bgColor='bg-[#1F4959]'
+              className='w-full font-semibold'
+            >Login</Button>
+
+            <span className='text-center inline-block w-full'>New to Internshala? Register
+              (
+              <Link to="/student/signup" className='text-blue-700 font-semibold'>Student</Link>
+              /
+              <Link to="/employee/signup" className='text-blue-700 font-semibold'>Company</Link>
+              )
+            </span>
+
+          </div>
+        </form>
+      </div>
     </div>
+
   )
 }
 

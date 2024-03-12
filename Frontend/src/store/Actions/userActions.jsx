@@ -18,3 +18,12 @@ export const asyncSignup = (userData) => async (dispatch, getState) => {
         console.log(error.message)
     }
 }
+
+export const asyncLogin = (userData) => async (dispatch, getState) => {
+    try {
+        await axios.post('/api/user/student/signin', userData)
+        dispatch(currentUser())
+    } catch (error) {
+        console.log(error.message)
+    }
+}

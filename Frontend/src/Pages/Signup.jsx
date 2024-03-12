@@ -1,29 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../Components/Button'
 import Input from '../Components/Input'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { asyncSignup } from '../store/Actions/userActions'
 
 
 const Signup = () => {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const { isAuth } = useSelector((state) => state.userReducer)
 
     const { register, handleSubmit } = useForm();
 
     const create = (data) => {
         dispatch(asyncSignup(data))
-        navigate("/login")
     }
+
+    useEffect(() => {
+        if (isAuth) {
+            navigate("/login")
+        }
+    }, [isAuth, navigate])
 
     const style = {
         boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04)'
     }
-
-
 
     return (
         <div className="flex items-center justify-center p-8">
