@@ -1,5 +1,5 @@
 const { catchAsyncErrors } = require("../middlewares/catchAsyncErrors");
-const student = require("../models/studentModel");
+// const student = require("../models/studentModel");
 const Student = require("../models/studentModel");
 const Internship = require("../models/internshipModel");
 const Job = require("../models/jobModel");
