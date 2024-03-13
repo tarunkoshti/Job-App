@@ -8,6 +8,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Signup from './Pages/Signup.jsx'
 import Login from './Pages/Login.jsx'
 import Home from './Pages/Home.jsx'
+import Student from './Components/Student.jsx'
+import Employee from './Components/Employee.jsx'
+import StudentHome from './Pages/Student/StudentHome.jsx'
+import EmployeeHome from './Pages/Employee/EmployeeHome.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,12 +23,40 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/student/login",
-        element: <Login />,
+        path: "/student",
+        element: <Student />,
+        children: [
+          {
+            path: "",
+            element: <StudentHome />,
+          },
+          {
+            path: "login",
+            element: <Login userType="student" />,
+          },
+          {
+            path: "signup",
+            element: <Signup userType="student" />,
+          },
+        ]
       },
       {
-        path: "/student/signup",
-        element: <Signup />,
+        path: "/employee",
+        element: <Employee />,
+        children: [
+          {
+            path: "",
+            element: <EmployeeHome />,
+          },
+          {
+            path: "login",
+            element: <Login userType="employee" />,
+          },
+          {
+            path: "signup",
+            element: <Signup userType="employee" />,
+          },
+        ]
       },
     ]
   }

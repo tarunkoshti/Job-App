@@ -8,7 +8,7 @@ const { isAuthenticated } = require("../middlewares/auth");
 router.get("/", homepage)
 
 //POST /current
-router.post("/current", isAuthenticated, currnetEmploye)
+router.get("/current", isAuthenticated, currnetEmploye)
 
 //POST /signup
 router.post("/signup", employesignup)

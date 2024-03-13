@@ -1,29 +1,35 @@
 import React, { useEffect } from 'react'
-import { asyncLogin } from '../store/Actions/userActions'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import Input from '../Components/Input';
 import Button from '../Components/Button';
+import { asyncLogin as studentLogin } from '../store/Actions/userActions'
+import { asyncLogin as employeeLogin } from '../store/Actions/employeeActions';
 
-const Login = () => {
+const Login = ({ userType }) => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuth } = useSelector((state) => state.userReducer)
+  const { isAuth: isStudentAuth } = useSelector((state) => state.userReducer)
+  const { isAuth: isEmployeeAuth } = useSelector((state) => state.employeeReducer)
 
 
   const { register, handleSubmit } = useForm();
 
   const login = (data) => {
-    dispatch(asyncLogin(data))
+    if (userType === "student") {
+      dispatch(studentLogin(data))
+    } else if (userType === "employee") {
+      dispatch(employeeLogin(data))
+    }
   }
 
   useEffect(() => {
-    if (isAuth) {
-      navigate("/")
+    if (isStudentAuth || isEmployeeAuth) {
+      navigate(`/${userType}`)
     }
-  }, [isAuth, navigate])
+  }, [isStudentAuth, isEmployeeAuth, navigate])
 
   const style = {
     boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04)'
@@ -32,7 +38,13 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center p-8">
       <div style={style} className={`mx-auto w-full max-w-lg bg-white rounded-xl p-10 `}>
-        <div className="mb-2 flex justify-center">
+
+        <div className='w-full flex justify-around font-semibold text-xl'>
+          <Link to={`/student/login`} className={userType === "student" ? "bg-[#1F4959] text-white w-1/2 text-center py-2 rounded-lg" : "bg-white text-[#1F4959] w-1/2 text-center py-2 rounded-lg"}>Student</Link>
+          <Link to={`/employee/login`} className={userType === "student" ? "bg-white text-[#1F4959] w-1/2 text-center py-2 rounded-lg" : "bg-[#1F4959] text-white w-1/2 text-center py-2 rounded-lg"}>Employee</Link>
+        </div>
+
+        <div className="mt-5 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
             {/* <Logo width="100%" /> */}
           </span>
@@ -41,7 +53,7 @@ const Login = () => {
         <h2 className="text-center text-2xl font-bold leading-tight text-[#1F4959]">Login to know more</h2>
 
         <form onSubmit={handleSubmit(login)}
-          className='mt-8'
+          className='mt-5'
         >
           <div className='space-y-5'>
             <Input
