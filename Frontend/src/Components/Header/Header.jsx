@@ -52,17 +52,17 @@ const Header = () => {
     ]
 
     const LogoutHandler = () => {
-        if(isStudentAuth) {
+        if (isStudentAuth) {
             dispatch(studentLogout())
             navigate("/")
-        }else if(isEmployeeAuth){
+        } else if (isEmployeeAuth) {
             dispatch(employeeLogout())
             navigate("/")
         }
     }
 
     return (
-        <header className='w-full px-20 py-6 border-2 mb-5 bg-[#1F2937] text-[#ffffffc9] font-semibold shadow-lg'>
+        <header className='w-full px-20 py-5 mb-5 bg-white text-[#1F2937] font-semibold shadow-lg'>
             <nav className='w-full flex justify-start items-center'>
                 <div className='w-1/3'>
                     <NavLink to={authStatus ? (isStudentAuth ? "/student" : "/employee") : ""}>
@@ -74,7 +74,7 @@ const Header = () => {
                     {middleItems.map((item) => (
                         <li key={item.name}>
                             <NavLink to={authStatus ? (isStudentAuth ? `/student${item.path}` : `/employee${item.path}`) : `${item.path}`}
-                                className='px-4 py-2 rounded-lg bg-transparent text-[#ffffffc9] hover:bg-[#fbf5f514] active:bg-[#10151cc2] text-white'
+                                className='text-[#1F2937]'
                             // style={(e) => {
                             //     return {
                             //         backgroundColor: e.isActive ? "#10151cc2" : "",
@@ -89,22 +89,33 @@ const Header = () => {
                     ))}
                 </ul>
 
-                <ul className='w-1/3 flex justify-end gap-8 items-center'>
-                    {rightItems.map((item) =>
-                        item.active ? (
-                            <li key={item.name}>
-                                <NavLink to={item.path} className='px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-opacity-70'>
-                                    {item.name}
-                                </NavLink>
-                            </li>
-                        ) : null)}
-                </ul>
+                {
+                    !authStatus && (
+                        <ul className='w-1/3 flex justify-end gap-8 items-center'>
+                            {rightItems.map((item) =>
+                                item.active ? (
+                                    <li key={item.name}>
+                                        <NavLink to={item.path} className={`px-4 py-2 rounded-lg  border-2 border-[#1F2937] text-[#1F2937] ${item.name === "Signup" ? "bg-[#1F2937] text-white" : ""}`}>
+                                            {item.name}
+                                        </NavLink>
+                                    </li>
+                                ) : null)}
+                        </ul>
+                    )
+                }
                 {
                     authStatus && (
-                        <NavLink className='px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-opacity-70'
-                        onClick={LogoutHandler}>
-                            Logout
-                        </NavLink>
+                        <div className='w-1/3 flex justify-end gap-8 items-center'>
+
+                            <div className='h-12 w-12 border-2 rounded-full'>
+                            </div>
+
+                            <NavLink className='px-4 py-2 rounded-lg bg-[#1F2937] text-white'
+                                onClick={LogoutHandler}>
+                                Logout
+                            </NavLink>
+
+                        </div>
                     )
                 }
             </nav>
