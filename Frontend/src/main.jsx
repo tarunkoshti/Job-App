@@ -12,6 +12,8 @@ import Student from './Components/Student.jsx'
 import Employee from './Components/Employee.jsx'
 import StudentHome from './Pages/Student/StudentHome.jsx'
 import EmployeeHome from './Pages/Employee/EmployeeHome.jsx'
+import AllInternship from './Pages/Internship/AllInternship.jsx'
+import AllJob from './Pages/Job/AllJob.jsx'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
             path: "signup",
             element: <Signup userType="student" />,
           },
+          {
+            path: "internships",
+            element: <AllInternship />
+          },
+          {
+            path: "jobs",
+            element: <AllJob />
+          },
         ]
       },
       {
@@ -56,8 +66,24 @@ const router = createBrowserRouter([
             path: "signup",
             element: <Signup userType="employee" />,
           },
+          {
+            path: "internships",
+            element: <AllInternship />
+          },
+          {
+            path: "jobs",
+            element: <AllJob />
+          },
         ]
       },
+      {
+        path: "/internships",
+        element: <AllInternship />
+      },
+      {
+        path: "/jobs",
+        element: <AllJob />
+      }
     ]
   }
 ])

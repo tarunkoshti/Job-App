@@ -27,3 +27,11 @@ export const asyncLogin = (employeeData) => async (dispatch, getState) => {
         console.log(error.message)
     }
 }
+export const asyncLogout = () => async (dispatch, getState) => {
+    try {
+        await axios.get('/api/employe/signout')
+        dispatch(logout())
+    } catch (error) {
+        console.log(error.message)
+    }
+}

@@ -35,12 +35,12 @@ const Signup = ({ userType }) => {
     }
 
     return (
-        <div className="flex items-center justify-center p-8">
+        <div className="flex items-center justify-center">
             <div style={style} className={`mx-auto w-full max-w-lg bg-white rounded-xl p-10 `}>
 
                 <div className='w-full flex justify-around font-semibold text-xl'>
-                    <Link to={`/student/signup`} className={userType === "student" ? "bg-[#1F4959] text-white w-1/2 text-center py-2 rounded-lg" : "bg-white text-[#1F4959] w-1/2 text-center py-2 rounded-lg"}>Student</Link>
-                    <Link to={`/employee/signup`} className={userType === "student" ? "bg-white text-[#1F4959] w-1/2 text-center py-2 rounded-lg" : "bg-[#1F4959] text-white w-1/2 text-center py-2 rounded-lg"}>Employee</Link>
+                    <Link to={`/student/signup`} className={userType === "student" ? "bg-[#1F2937] text-white w-1/2 text-center py-2 rounded-lg" : "bg-white text-[#1F2937] w-1/2 text-center py-2 rounded-lg"}>Student</Link>
+                    <Link to={`/employee/signup`} className={userType === "student" ? "bg-white text-[#1F2937] w-1/2 text-center py-2 rounded-lg" : "bg-[#1F2937] text-white w-1/2 text-center py-2 rounded-lg"}>Employee</Link>
                 </div>
 
                 <div className="mt-5 flex justify-center">
@@ -48,7 +48,7 @@ const Signup = ({ userType }) => {
                         {/* <Logo width="100%" /> */}
                     </span>
                 </div>
-                <h2 className="text-center text-2xl font-bold leading-tight text-[#1F4959]">Sign-up and apply for free</h2>
+                <h2 className="text-center text-2xl font-bold leading-tight text-[#1F2937]">Sign-up and apply for free</h2>
 
                 <form onSubmit={handleSubmit(create)}
                     className='mt-5'
@@ -96,7 +96,7 @@ const Signup = ({ userType }) => {
 
                         <Button
                             type='submit'
-                            bgColor='bg-[#1F4959]'
+                            bgColor='bg-[#1F2937]'
                             className='w-full font-semibold'
                         >Signup</Button>
 
