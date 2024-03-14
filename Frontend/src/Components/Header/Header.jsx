@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { asyncLogout as studentLogout } from '../../store/Actions/userActions'
@@ -14,6 +14,13 @@ const Header = () => {
     const employe = useSelector((state) => state.employeeReducer.employeeData?.employe)
     const authStatus = isStudentAuth || isEmployeeAuth
     // console.log(authStatus, isStudentAuth, isEmployeeAuth)
+
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+    const toggleProfile = () => {
+        setIsProfileOpen(prevState => !prevState);
+    };
+
 
     const middleItems = [
         {
@@ -109,19 +116,32 @@ const Header = () => {
                     authStatus && (
                         <div className='w-1/3 flex justify-end gap-8 items-center'>
 
-                            <div className='h-10 w-10 border-2 rounded-full flex items-center justify-center cursor-pointer'>
+                            <div className='h-10 w-10 border-2 rounded-full flex items-center justify-center cursor-pointer relative'
+                                onClick={toggleProfile}>
                                 {student ? `${student.firstname.charAt(0).toUpperCase()}` : `${employe.firstname.charAt(0).toUpperCase()}`}
+
+                                {/*  profile options */}
+                                {isProfileOpen && (
+                                    <div className="absolute top-16 right-0 bg-white p-4 rounded-lg shadow-lg">
+                                        one <br />
+                                        two <br />
+                                        three <br />
+                                        four <br />
+                                        five <br />
+                                    </div>
+                                )}
                             </div>
 
-                            <NavLink className='px-4 py-2 rounded-lg bg-[#1F2937] text-white'
+                            {/* <NavLink className='px-4 py-2 rounded-lg bg-[#1F2937] text-white'
                                 onClick={LogoutHandler}>
                                 Logout
-                            </NavLink>
+                            </NavLink> */}
 
                         </div>
                     )
                 }
             </nav>
+
         </header>
     )
 }
