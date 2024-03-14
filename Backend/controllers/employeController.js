@@ -153,6 +153,14 @@ exports.readsingleinternship = catchAsyncErrors(async function (req, res, next) 
     })
 });
 
+exports.readallinternship = catchAsyncErrors(async function (req, res, next) {
+    const internships = await Internship.find().exec();
+    res.status(200).json({
+        success: true,
+        internships
+    })
+});
+
 // ---- JOBS -----
 
 exports.createjob = catchAsyncErrors(async function (req, res, next) {
@@ -181,6 +189,14 @@ exports.readsinglejob = catchAsyncErrors(async function (req, res, next) {
     res.status(200).json({
         success: true,
         job
+    })
+});
+
+exports.readalljob = catchAsyncErrors(async function (req, res, next) {
+    const jobs = await Job.find().exec();
+    res.status(200).json({
+        success: true,
+        jobs
     })
 });
 
