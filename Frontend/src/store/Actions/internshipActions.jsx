@@ -3,8 +3,9 @@ import { readAllInternship, readSingleInternship, createInternship } from "../Re
 
 export const fetchInternships = () => async (dispatch, getState) => {
     try {
-        const response = await axios.get("/api/employe/internship/read/all");
-        dispatch(readAllInternship(response.data.internships));
+        const { data } = await axios.get("/api/employe/internship/read/all")
+        const { internships } = data
+        dispatch(readAllInternship({ internships }));
     } catch (error) {
         console.log(error);
     }
@@ -12,8 +13,9 @@ export const fetchInternships = () => async (dispatch, getState) => {
 
 export const internshipDetail = (id) => async (dispatch, getState) => {
     try {
-        const response = await axios.post(`/api/employe/internship/read/${id}`);
-        dispatch(readSingleInternship(response.data.internships));
+        const { data } = await axios.post(`/api/employe/internship/read/${id}`)
+        const { internship } = data
+        dispatch(readSingleInternship({ internship }));
     } catch (error) {
         console.log(error);
     }
@@ -21,8 +23,9 @@ export const internshipDetail = (id) => async (dispatch, getState) => {
 
 // export const createInternship = (internshipData) => async (dispatch, getState) => {
 //     try {
-//         const response = await axios.post(`/api/employe/internship/create`, internshipData);
-//         dispatch(createInternship(response.data.internship));
+//         const { data } = await axios.post(`/api/employe/internship/create`, internshipData)
+//         const { internship } = data
+//         dispatch(createInternship({ internship }));
 //     } catch (error) {
 //         console.log(error);
 //     }

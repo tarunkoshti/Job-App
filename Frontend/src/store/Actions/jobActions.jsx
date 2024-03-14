@@ -3,8 +3,9 @@ import { readAllJob, readSingleJob, createJob } from "../Reducers/jobSlice";
 
 export const fetchJobs = () => async (dispatch, getState) => {
     try {
-        const response = await axios.get("/api/employe/job/read/all");
-        dispatch(readAllJob(response.data.jobs));
+        const { data } = await axios.get("/api/employe/job/read/all")
+        const { jobs } = data
+        dispatch(readAllJob({ jobs }));
     } catch (error) {
         console.log(error);
     }
@@ -12,8 +13,9 @@ export const fetchJobs = () => async (dispatch, getState) => {
 
 export const jobDetail = (id) => async (dispatch, getState) => {
     try {
-        const response = await axios.post(`/api/employe/job/read/${id}`);
-        dispatch(readSingleJob(response.data.jobs));
+        const { data } = await axios.post(`/api/employe/job/read/${id}`)
+        const { job } = data
+        dispatch(readSingleJob({ job }));
     } catch (error) {
         console.log(error);
     }
@@ -21,8 +23,9 @@ export const jobDetail = (id) => async (dispatch, getState) => {
 
 // export const createjob = (jobData) => async (dispatch, getState) => {
 //     try {
-//         const response = await axios.post(`/api/employe/job/create`, jobData);
-//         dispatch(createJob(response.data.job));
+//         const { data } = await axios.post(`/api/employe/job/create`, jobData)
+//         const { job } = data
+//         dispatch(createJob({ job }));
 //     } catch (error) {
 //         console.log(error);
 //     }
