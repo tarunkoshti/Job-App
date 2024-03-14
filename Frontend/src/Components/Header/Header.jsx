@@ -10,6 +10,8 @@ const Header = () => {
     const dispatch = useDispatch()
     const { isAuth: isStudentAuth } = useSelector((state) => state.userReducer)
     const { isAuth: isEmployeeAuth } = useSelector((state) => state.employeeReducer)
+    const student = useSelector((state) => state.userReducer.userData?.student)
+    const employe = useSelector((state) => state.employeeReducer.employeeData?.employe)
     const authStatus = isStudentAuth || isEmployeeAuth
     // console.log(authStatus, isStudentAuth, isEmployeeAuth)
 
@@ -62,7 +64,7 @@ const Header = () => {
     }
 
     return (
-        <header className='w-full px-20 py-5 mb-5 bg-white text-[#1F2937] font-semibold shadow-lg'>
+        <header className='w-full px-20 py-5 mb-5 bg-white text-[#1F2937] font-semibold shadow-lg rounded-bl-2xl rounded-br-2xl'>
             <nav className='w-full flex justify-start items-center'>
                 <div className='w-1/3'>
                     <NavLink to={authStatus ? (isStudentAuth ? "/student" : "/employee") : ""}>
@@ -107,7 +109,8 @@ const Header = () => {
                     authStatus && (
                         <div className='w-1/3 flex justify-end gap-8 items-center'>
 
-                            <div className='h-12 w-12 border-2 rounded-full'>
+                            <div className='h-10 w-10 border-2 rounded-full flex items-center justify-center cursor-pointer'>
+                                {student ? `${student.firstname.charAt(0).toUpperCase()}` : `${employe.firstname.charAt(0).toUpperCase()}`}
                             </div>
 
                             <NavLink className='px-4 py-2 rounded-lg bg-[#1F2937] text-white'
