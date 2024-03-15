@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { asyncLogout as studentLogout } from '../../store/Actions/userActions'
 import { asyncLogout as employeeLogout } from '../../store/Actions/employeeActions'
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { AiOutlineEdit } from "react-icons/ai";
 
 const Header = () => {
 
+    const fileInputRef = useRef(null)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { isAuth: isStudentAuth } = useSelector((state) => state.userReducer)
@@ -21,11 +23,11 @@ const Header = () => {
     const [dropdown, setDropdown] = useState(false)
 
     const toggleProfile = () => {
-        setIsProfileOpen(prevState => !prevState);
+        setIsProfileOpen(!isProfileOpen);
     };
 
     const Dropdown = () => {
-        setDropdown(prevState => !prevState)
+        setDropdown(!dropdown)
     }
 
     const middleItems = [
@@ -69,12 +71,28 @@ const Header = () => {
     const LogoutHandler = () => {
         if (isStudentAuth) {
             dispatch(studentLogout())
+            setIsProfileOpen(false)
+            setDropdown(false)
             navigate("/")
         } else if (isEmployeeAuth) {
             dispatch(employeeLogout())
+            setIsProfileOpen(false)
+            setDropdown(false)
             navigate("/")
         }
     }
+
+    const handleProfileImageChange = (e) => {
+        const imageFile = e.target.files[0];
+        if (imageFile) {
+            if(student){
+                const id = student._id
+            }
+            else{
+                const id = employe._id
+            }
+        }
+    };
 
     return (
         <header className='w-full px-20 py-5 mb-5 bg-white text-[#1F2937] font-semibold shadow-lg rounded-bl-2xl rounded-br-2xl'>
@@ -124,7 +142,9 @@ const Header = () => {
 
                             <div className='h-10 w-10 border-2 rounded-full flex items-center justify-center cursor-pointer'
                                 onClick={toggleProfile}>
-                                {user.firstname.charAt(0).toUpperCase()}
+
+                                {/* {user.firstname.charAt(0).toUpperCase()} */}
+                                <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
                             </div>
 
                             {/* <NavLink className='px-4 py-2 rounded-lg bg-[#1F2937] text-white'
@@ -140,14 +160,25 @@ const Header = () => {
             </nav>
 
             {/*  profile options */}
-            {isProfileOpen && (
+            {authStatus && isProfileOpen ? (
                 <div className="w-full max-w-72 absolute top-18 right-20 bg-white p-4 rounded-lg shadow-lg">
 
                     <div className='w-full flex flex-col items-center border-b py-2 mb-4'>
-                        <div className='h-12 w-12 rounded-full border-2'>
+                        <div className='h-12 w-12 rounded-full border-2 relative'>
                             <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
+                            <AiOutlineEdit size={26}
+                                className='absolute bottom-0 -right-8 rounded-full p-1 cursor-pointer'
+                                onClick={() => fileInputRef.current.click()} />
+
+                            {/* // hidden input */}
+
+                            <input ref={fileInputRef} type="file" accept="image/*"
+                                className='hidden'
+                                handleProfileImageChange
+                            />
+
                         </div>
-                        <h6 className='capitalize font-semibold'>{user.firstname} {user.lastname}</h6>
+                        <h6 className='capitalize font-semibold text-sm'>{user.firstname} {user.lastname}</h6>
                         <span className='font-normal text-sm'>{user.email}</span>
                     </div>
                     <div className='w-full flex flex-col gap-3 font-normal px-2'>
@@ -181,8 +212,8 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-            )}
-
+            ) : ""
+            }
         </header>
     )
 }
