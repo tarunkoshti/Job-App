@@ -10,7 +10,7 @@ const Home = () => {
           <h1 className="text-center text-[#1F2937] text-4xl md:text-6xl font-bold leading-tight md:pl-12">Unleash Your Potential: <br /> Find Your Dream Job Today</h1>
           <h4 className="text-center text-[#1F2937] text-2xl font-semibold md:text-3xl">Navigate Your Career Path with Precision and Ease.</h4>
           <p className="pl-4 md:pl-10 text-[#1F2937] leading-normal mt-5 text-base md:text-lg text-center tracking-wide">Discover endless opportunities and unlock your career Potential <br /> with <span className="font-semibold">Job-Seekers- An amazing job search platform</span></p>
-          <img className="w-[410px] mt-5 pl-12 md:w-full h-auto pr-12 md:ml-0 md:max-w-[410px]" src="https://www.jobseeker.com/logo-black-text.svg" alt="" />
+          <img className="w-[600px] mt-5 pl-12 md:w-full h-auto pr-12 md:ml-0 md:max-w-[510px]" src="logo1.jpg" alt="" />
         </div>
       </div>
 

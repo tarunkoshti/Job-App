@@ -16,7 +16,7 @@ const Footer = () => {
 
         <div className="py-8 mt-10 bg-zinc-100">
             <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-8 lg:px-32">
-                <img className="w-24 md:w-32" src="https://www.jobseeker.com/logo-black-text.svg" alt="Footer" />
+                <img className="w-24 md:w-32" src="logo1.jpg" alt="Footer" />
                 <div className="flex items-center gap-5 mt-4 md:mt-0">
                     <FaInstagram className="text-2xl md:text-3xl" />
                     <FaFacebook className="text-2xl md:text-3xl" />
