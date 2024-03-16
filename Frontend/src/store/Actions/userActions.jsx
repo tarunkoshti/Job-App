@@ -1,6 +1,6 @@
 import axios from "axios";
 import { login, logout } from "../Reducers/userSlice";
-
+import { readHisOwnInternship } from "../Reducers/internshipSlice";
 export const currentUser = () => async (dispatch, getState) => {
     try {
         const { data: userData } = await axios.get('/api/user/student')
@@ -42,6 +42,16 @@ export const asyncUploadProfileImage = (id,imageFile) => async (dispatch, getSta
         await axios.post(`/api/user/student/avatar/${id}`, imageFile)
         console.log("two")
         dispatch(currentUser())
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+export const allapplyinternship = (id) => async (dispatch, getState) => {
+    try {
+       const {data}= await axios.post('/api/user/student/internship/read', id)
+       console.log(data)
+        dispatch(readHisOwnInternship({data}))
     } catch (error) {
         console.log(error.message)
     }

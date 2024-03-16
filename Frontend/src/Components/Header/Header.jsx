@@ -187,14 +187,14 @@ const Header = () => {
 
                         {student ? <div className='w-full flex flex-col gap-3'>
                             <Link to="/student" className='hover:text-blue-600'>Home</Link>
-                            <Link to="/application" className='hover:text-blue-600'>My Application</Link>
-                            <Link to="/bookmark" className='hover:text-blue-600'>My Bookmarks</Link>
-                            <Link to="/edit/resume" className='hover:text-blue-600'>Edit Resume</Link>
-                            <Link to="/edit/preference" className='hover:text-blue-600'>Edit Preferences</Link>
+                            <Link to="/student/application" className='hover:text-blue-600'>My Application</Link>
+                            <Link to="/student/bookmark" className='hover:text-blue-600'>My Bookmarks</Link>
+                            <Link to="/student/edit/resume" className='hover:text-blue-600'>Edit Resume</Link>
+                            <Link to="/student/edit/preference" className='hover:text-blue-600'>Edit Preferences</Link>
                         </div>
                             : <div className='w-full flex flex-col gap-3'>
                                 <Link to="/employee" className='hover:text-blue-600'>Home</Link>
-                                <Link to="/application" className='hover:text-blue-600'>My Application</Link>
+                                <Link to="/employee/application" className='hover:text-blue-600'>My Application</Link>
                             </div>}
 
                         <div className='w-full'>
