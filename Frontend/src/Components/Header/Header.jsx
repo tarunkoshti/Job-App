@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { asyncLogout as studentLogout } from '../../store/Actions/userActions'
+import { asyncUploadProfileImage, asyncLogout as studentLogout } from '../../store/Actions/userActions'
 import { asyncLogout as employeeLogout } from '../../store/Actions/employeeActions'
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
@@ -84,11 +84,13 @@ const Header = () => {
 
     const handleProfileImageChange = (e) => {
         const imageFile = e.target.files[0];
+        console.log(imageFile)
         if (imageFile) {
-            if(student){
+            if (student) {
                 const id = student._id
+                dispatch(asyncUploadProfileImage(id, imageFile))
             }
-            else{
+            else {
                 const id = employe._id
             }
         }
@@ -174,7 +176,7 @@ const Header = () => {
 
                             <input ref={fileInputRef} type="file" accept="image/*"
                                 className='hidden'
-                                handleProfileImageChange
+                                onChange={handleProfileImageChange}
                             />
 
                         </div>
