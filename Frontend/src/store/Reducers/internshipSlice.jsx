@@ -12,7 +12,7 @@ const internshipSlice = createSlice({
 
         },
         readHisOwnInternship: (state, action) => {
-
+            state.internshipData = action.payload.data;
         },
         readSingleInternship: (state, action) => {
 
