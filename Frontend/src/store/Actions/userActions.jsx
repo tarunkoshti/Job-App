@@ -36,3 +36,13 @@ export const asyncLogout = () => async (dispatch, getState) => {
         console.log(error.message)
     }
 }
+export const asyncUploadProfileImage = (id,imageFile) => async (dispatch, getState) => {
+    try {
+        console.log("one")
+        await axios.post(`/api/user/student/avatar/${id}`, imageFile)
+        console.log("two")
+        dispatch(currentUser())
+    } catch (error) {
+        console.log(error.message)
+    }
+}
