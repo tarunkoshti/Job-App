@@ -9,7 +9,7 @@ const internshipSlice = createSlice({
     initialState,
     reducers: {
         readAllInternship: (state, action) => {
-
+            state.internshipData = action.payload.internships
         },
         readHisOwnInternship: (state, action) => {
 

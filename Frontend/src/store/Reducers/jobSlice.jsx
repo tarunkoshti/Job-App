@@ -9,7 +9,7 @@ const jobSlice = createSlice({
     initialState,
     reducers: {
         readAllJob: (state, action) => {
-
+            state.jobData = action.payload.jobs
         },
         readHisOwnJob: (state, action) => {
 

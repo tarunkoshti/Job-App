@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import JobCard from '../../Components/JobCard';
+import { fetchJobs } from '../../store/Actions/jobActions';
+import InternshipCard from '../../Components/InternshipCard';
+import { fetchInternships } from '../../store/Actions/internshipActions';
+
+
+
 
 const StudentHome = () => {
+  
+const dispatch = useDispatch();
+    const jobs = useSelector((state) => state.jobReducer.jobData); 
+    const internships = useSelector((state) => state.internshipReducer.internshipData)
+
+
+    useEffect(() => {
+      dispatch(fetchJobs());
+    }, [dispatch]);
+
+    useEffect(() => {
+      dispatch(fetchInternships());
+    }, [dispatch]);
+
+
   return (
     <>
-      <div className='w-full bg-zinc-300 py-2'>
+      <div className='w-full  py-2'>
 
         <div className='mt-10 px-4 md:px-10 lg:px-20 xl:px-32 flex flex-col items-center justify-center'>
           <h1 className='text-4xl md:text-6xl text-center font-medium leading-tight md:leading-snug'>
@@ -38,6 +61,8 @@ const StudentHome = () => {
           </div>
 
         </div>
+
+        {/* Company-scorllbar */}
 
         <div className='h-[40vh] md:h-[50vh] w-full mt-10 md:mt-16 border-t-2 border-black overflow-hidden'>
           <div className='h-[20vh] w-full'>
@@ -92,6 +117,44 @@ const StudentHome = () => {
           </div>
         </div>
 
+       {/* <JobCard /> */}
+
+       <div className=' w-full overflow-hidden'>
+
+          <div className='py-3 mb-8'>
+            <h1 className='text-4xl text-center font-semibold'>Explore all Job Locations</h1>
+          </div>
+
+          <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+              {
+                jobs &&
+                  (jobs.map((job) => (
+                    <JobCard job={job}/> 
+                  )))
+              }
+          </div>
+
+       </div>
+
+      {/* Internship-Card */}
+
+      <div className=' w-full overflow-hidden'>
+
+          <div className='py-3 mb-8'>
+            <h1 className='text-4xl text-center font-semibold'>Explore all Internship Opportunity</h1>
+          </div>
+
+          <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+              {
+                internships &&
+                  (internships.map((internship) => (
+                    <InternshipCard internship ={internship}/> 
+                  )))
+              }
+          </div>
+
+       </div>
+      
       </div>
     </>
   );

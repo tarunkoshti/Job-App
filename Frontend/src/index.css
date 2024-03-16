@@ -6,3 +6,7 @@
 {
     display: none;
 }
+
+#job::-webkit-scrollbar {
+    display: none;
+}
