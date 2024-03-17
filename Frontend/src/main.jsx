@@ -15,11 +15,9 @@ import EmployeeHome from './Pages/Employee/EmployeeHome.jsx'
 import AllInternship from './Pages/Internship/AllInternship.jsx'
 import AllJob from './Pages/Job/AllJob.jsx'
 import Application from './Pages/Student/Application.jsx'
-<<<<<<< HEAD
 import Singlejob from './Pages/Student/Singlejob.jsx'
-=======
 import AuthLayout from './Components/AuthLayout.jsx'
->>>>>>> origin/two
+
 const router = createBrowserRouter([
   {
     path: "/",
