@@ -73,7 +73,12 @@ const router = createBrowserRouter([
           },
           {
             path: "job/read/:id",
-            element: <Singlejob />
+            element: (
+              <AuthLayout authentication={true}>
+               <Singlejob />
+              </AuthLayout>
+            ),
+             
           },
           {
             path: "application",
