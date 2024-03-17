@@ -15,7 +15,11 @@ import EmployeeHome from './Pages/Employee/EmployeeHome.jsx'
 import AllInternship from './Pages/Internship/AllInternship.jsx'
 import AllJob from './Pages/Job/AllJob.jsx'
 import Application from './Pages/Student/Application.jsx'
+<<<<<<< HEAD
 import Singlejob from './Pages/Student/Singlejob.jsx'
+=======
+import AuthLayout from './Components/AuthLayout.jsx'
+>>>>>>> origin/two
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,23 +35,43 @@ const router = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <StudentHome />,
+            element: (
+              <AuthLayout authentication={true}>
+                <StudentHome />
+              </AuthLayout>
+            ),
           },
           {
             path: "login",
-            element: <Login userType="student" />,
+            element: (
+              <AuthLayout authentication={false}>
+                <Login userType="student" />
+              </AuthLayout>
+            ),
           },
           {
             path: "signup",
-            element: <Signup userType="student" />,
+            element: (
+              <AuthLayout authentication={false}>
+                <Signup userType="student" />
+              </AuthLayout>
+            ),
           },
           {
             path: "internships",
-            element: <AllInternship />
+            element: (
+              <AuthLayout authentication={true}>
+                <AllInternship />
+              </AuthLayout>
+            ),
           },
           {
             path: "jobs",
-            element: <AllJob />
+            element: (
+              <AuthLayout authentication={true}>
+                <AllJob />
+              </AuthLayout>
+            ),
           },
           {
             path: "job/read/:id",
@@ -55,7 +79,11 @@ const router = createBrowserRouter([
           },
           {
             path: "application",
-            element: <Application />
+            element: (
+              <AuthLayout authentication={true}>
+                <Application />
+              </AuthLayout>
+            ),
           },
         ]
       },
@@ -65,33 +93,61 @@ const router = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <EmployeeHome />,
+            element: (
+              <AuthLayout authentication={true}>
+                <EmployeeHome />
+              </AuthLayout>
+            ),
           },
           {
             path: "login",
-            element: <Login userType="employee" />,
+            element: (
+              <AuthLayout authentication={false}>
+                <Login userType="employee" />
+              </AuthLayout>
+            ),
           },
           {
             path: "signup",
-            element: <Signup userType="employee" />,
+            element: (
+              <AuthLayout authentication={false}>
+                <Signup userType="employee" />
+              </AuthLayout>
+            ),
           },
           {
             path: "internships",
-            element: <AllInternship />
+            element: (
+              <AuthLayout authentication={true}>
+                element: <AllInternship />
+              </AuthLayout>
+            ),
           },
           {
             path: "jobs",
-            element: <AllJob />
+            element: (
+              <AuthLayout authentication={true}>
+                element: <AllJob />
+              </AuthLayout>
+            ),
           },
         ]
       },
       {
         path: "/internships",
-        element: <AllInternship />
+        element: (
+          <AuthLayout authentication={false}>
+            <AllInternship />
+          </AuthLayout>
+        )
       },
       {
         path: "/jobs",
-        element: <AllJob />
+        element: (
+          <AuthLayout authentication={false}>
+            <AllJob />
+          </AuthLayout>
+        ) 
       }
     ]
   }
