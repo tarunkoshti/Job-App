@@ -38,3 +38,20 @@ export const asyncLogout = () => async (dispatch, getState) => {
         console.log(error.message)
     }
 }
+
+export const asyncSendMail = (formData) => async (dispatch, getState) => {
+    try {
+        await axios.post('/api/employe/send-mail', formData)
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+export const asyncForgrtPassword = (id, formData) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/employe/forget-link/${id}`, formData)
+        console.log(data)
+    } catch (error) {
+        console.log(error.message)
+    }
+}

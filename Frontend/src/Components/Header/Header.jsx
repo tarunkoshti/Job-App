@@ -207,7 +207,7 @@ const Header = () => {
                             {dropdown && (
                                 <div className='w-5/6 ml-auto flex flex-col gap-3'>
                                     <Link to={""} className='hover:text-blue-600'>Change Password</Link>
-                                    <Link to={""} className='hover:text-blue-600'>Forget Password</Link>
+                                    <Link to={isStudentAuth ? "/student/forget-password" : "/employee/forget-password"} className='hover:text-blue-600'>Forget Password</Link>
                                     <Link onClick={LogoutHandler} className='hover:text-blue-600'>Logout</Link>
                                 </div>
                             )}

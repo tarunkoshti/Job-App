@@ -77,7 +77,7 @@ const Login = ({ userType }) => {
               })}
             />
 
-            <Link to="/forget-password"
+            <Link to="/student/forget-password"
               className='text-blue-700 text-right font-semibold text-sm inline-block'
             >Forget Password?</Link>
 

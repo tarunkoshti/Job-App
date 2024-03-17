@@ -17,6 +17,8 @@ import AllJob from './Pages/Job/AllJob.jsx'
 import Application from './Pages/Student/Application.jsx'
 import Singlejob from './Pages/Student/Singlejob.jsx'
 import AuthLayout from './Components/AuthLayout.jsx'
+import Forget from './Pages/Forget.jsx'
+import ForgetLink from './Pages/ForgetLink.jsx'
 
 const router = createBrowserRouter([
   {
@@ -75,10 +77,10 @@ const router = createBrowserRouter([
             path: "job/read/:id",
             element: (
               <AuthLayout authentication={true}>
-               <Singlejob />
+                <Singlejob />
               </AuthLayout>
             ),
-             
+
           },
           {
             path: "application",
@@ -88,6 +90,16 @@ const router = createBrowserRouter([
               </AuthLayout>
             ),
           },
+          {
+            path: "forget-password",
+            element: (
+              <Forget userType="student" />
+            )
+          },
+          {
+            path: "forget-link/:id",
+            element: <ForgetLink />
+          }
         ]
       },
       {
@@ -134,6 +146,16 @@ const router = createBrowserRouter([
               </AuthLayout>
             ),
           },
+          {
+            path: "forget-password",
+            element: (
+              <Forget userType="employee" />
+            )
+          },
+          {
+            path: "forget-link/:id",
+            element: <ForgetLink />
+          }
         ]
       },
       {
@@ -150,8 +172,8 @@ const router = createBrowserRouter([
           <AuthLayout authentication={false}>
             <AllJob />
           </AuthLayout>
-        ) 
-      }
+        )
+      },
     ]
   }
 ])
