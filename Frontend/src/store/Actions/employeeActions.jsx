@@ -4,9 +4,12 @@ import { login, logout } from "../Reducers/employeeSlice";
 export const currentUser = () => async (dispatch, getState) => {
     try {
         const { data: employeeData } = await axios.get('/api/employe/current')
-        dispatch(login({ employeeData }))
+        console.log()
+        if (employeeData.employe) {
+            dispatch(login({ employeeData }))
+        }
     } catch (error) {
-        console.log(error.message)
+        // console.log(error.message)
     }
 }
 

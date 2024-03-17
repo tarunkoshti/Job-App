@@ -4,9 +4,11 @@ import { readHisOwnInternship } from "../Reducers/internshipSlice";
 export const currentUser = () => async (dispatch, getState) => {
     try {
         const { data: userData } = await axios.get('/api/user/student')
-        dispatch(login({ userData }))
+        if (userData.student) {
+            dispatch(login({ userData }))
+        }
     } catch (error) {
-        console.log(error.message)
+        // console.log(error.message)
     }
 }
 
@@ -36,7 +38,7 @@ export const asyncLogout = () => async (dispatch, getState) => {
         console.log(error.message)
     }
 }
-export const asyncUploadProfileImage = (id,imageFile) => async (dispatch, getState) => {
+export const asyncUploadProfileImage = (id, imageFile) => async (dispatch, getState) => {
     try {
         console.log("one")
         await axios.post(`/api/user/student/avatar/${id}`, imageFile)
@@ -49,9 +51,9 @@ export const asyncUploadProfileImage = (id,imageFile) => async (dispatch, getSta
 
 export const allapplyinternship = (id) => async (dispatch, getState) => {
     try {
-       const {data}= await axios.post('/api/user/student/internship/read', id)
-       console.log(data)
-        dispatch(readHisOwnInternship({data}))
+        const { data } = await axios.post('/api/user/student/internship/read', id)
+        console.log(data)
+        dispatch(readHisOwnInternship({ data }))
     } catch (error) {
         console.log(error.message)
     }
