@@ -5,6 +5,7 @@ import { SiOnlyoffice } from "react-icons/si";
 import { FaMoneyBill } from "react-icons/fa";
 import { IoMan } from "react-icons/io5";
 import { IoChevronForward } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 
 const JobCard = ({job}) => {
@@ -48,7 +49,8 @@ const JobCard = ({job}) => {
                 
                 <div className=' w-full py-5  px-4 flex items-center justify-between'>
                     <span className=' text-sm font-semibold py-1 px-2 bg-white rounded-xl'>Job</span>
-                    <span className='flex text-md items-center gap-1 cursor-pointer text-[#1F2937] font-semibold'>View Details <IoChevronForward size="18" /></span>
+                    <Link to={`/student/job/read/${job._id}`}>
+                    <span className='flex text-md items-center gap-1 cursor-pointer text-[#1F2937] font-semibold'>View Details <IoChevronForward size="18" /></span></Link>
                 </div>
                 </div>
             </div>

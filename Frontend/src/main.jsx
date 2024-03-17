@@ -15,6 +15,7 @@ import EmployeeHome from './Pages/Employee/EmployeeHome.jsx'
 import AllInternship from './Pages/Internship/AllInternship.jsx'
 import AllJob from './Pages/Job/AllJob.jsx'
 import Application from './Pages/Student/Application.jsx'
+import Singlejob from './Pages/Student/Singlejob.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
           {
             path: "jobs",
             element: <AllJob />
+          },
+          {
+            path: "job/read/:id",
+            element: <Singlejob />
           },
           {
             path: "application",

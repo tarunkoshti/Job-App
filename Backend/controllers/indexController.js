@@ -156,6 +156,14 @@ exports.applyjob = catchAsyncErrors(async function (req, res, next) {
     res.json({ student, job })
 });
 
+exports.readsinglejob = catchAsyncErrors(async function (req, res, next) {
+    const job = await Job.findById(req.params.jobid).exec();
+    res.status(200).json({
+        success: true,
+        job
+    })
+});
+
 
 // Apply read all internship
 

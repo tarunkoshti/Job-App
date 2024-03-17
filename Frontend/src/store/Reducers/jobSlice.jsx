@@ -15,7 +15,7 @@ const jobSlice = createSlice({
 
         },
         readSingleJob: (state, action) => {
-
+            state.jobData = action.payload.job;
         },
         createJob: (state, action) => {
 
