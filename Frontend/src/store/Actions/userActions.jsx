@@ -53,6 +53,14 @@ export const asyncForgrtPassword = (id, formData) => async (dispatch, getState) 
     } catch (error) {
         console.log(error.message)
     }
+
+}
+export const asyncResetPassword = (id, formData) => async (dispatch, getState) => {
+    try {
+        await axios.post(`/api/user/student/reset-password/${id}`, formData)
+    } catch (error) {
+        console.log(error.message)
+    }
 }
 
 export const asyncUploadProfileImage = (id, imageFile) => async (dispatch, getState) => {

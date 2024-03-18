@@ -37,10 +37,12 @@ const Forget = ({ userType }) => {
 
         <div style={style} className={`mx-auto w-full max-w-md bg-white rounded-xl p-10 `}>
 
-            <div className='w-full flex justify-around font-semibold text-xl'>
-                <Link to={`/student/forget-password`} className={userType === "student" ? "bg-[#1F2937] text-white w-1/2 text-center py-2 rounded-lg" : "bg-white text-[#1F2937] w-1/2 text-center py-2 rounded-lg"}>Student</Link>
-                <Link to={`/employee/forget-password`} className={userType === "student" ? "bg-white text-[#1F2937] w-1/2 text-center py-2 rounded-lg" : "bg-[#1F2937] text-white w-1/2 text-center py-2 rounded-lg"}>Employee</Link>
-            </div>
+            {
+                !(sId || eId) && <div className='w-full flex justify-around font-semibold text-xl'>
+                    <Link to={`/student/forget-password`} className={userType === "student" ? "bg-[#1F2937] text-white w-1/2 text-center py-2 rounded-lg" : "bg-white text-[#1F2937] w-1/2 text-center py-2 rounded-lg"}>Student</Link>
+                    <Link to={`/employee/forget-password`} className={userType === "student" ? "bg-white text-[#1F2937] w-1/2 text-center py-2 rounded-lg" : "bg-[#1F2937] text-white w-1/2 text-center py-2 rounded-lg"}>Employee</Link>
+                </div>
+            }
 
             <form onSubmit={handleSubmit(submit)}
                 className='mt-5'

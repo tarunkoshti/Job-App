@@ -19,6 +19,7 @@ import Singlejob from './Pages/Student/Singlejob.jsx'
 import AuthLayout from './Components/AuthLayout.jsx'
 import Forget from './Pages/Forget.jsx'
 import ForgetLink from './Pages/ForgetLink.jsx'
+import Reset from './Pages/Reset.jsx'
 
 const router = createBrowserRouter([
   {
@@ -99,7 +100,15 @@ const router = createBrowserRouter([
           {
             path: "forget-link/:id",
             element: <ForgetLink />
-          }
+          },
+          {
+            path: "reset-password",
+            element: (
+              <AuthLayout authentication={true}>
+                <Reset userType="student" />
+              </AuthLayout>
+            )
+          },
         ]
       },
       {
@@ -155,7 +164,15 @@ const router = createBrowserRouter([
           {
             path: "forget-link/:id",
             element: <ForgetLink />
-          }
+          },
+          {
+            path: "reset-password",
+            element: (
+              <AuthLayout authentication={true}>
+                <Reset userType="employee" />
+              </AuthLayout>
+            )
+          },
         ]
       },
       {

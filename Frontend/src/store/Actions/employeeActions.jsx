@@ -49,7 +49,15 @@ export const asyncSendMail = (formData) => async (dispatch, getState) => {
 
 export const asyncForgrtPassword = (id, formData) => async (dispatch, getState) => {
     try {
-        const { data } = await axios.post(`/api/employe/forget-link/${id}`, formData)
+        await axios.post(`/api/employe/forget-link/${id}`, formData)
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+export const asyncResetPassword = (id, formData) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/employe/reset-password/${id}`, formData)
         console.log(data)
     } catch (error) {
         console.log(error.message)
