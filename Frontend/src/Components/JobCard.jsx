@@ -37,7 +37,7 @@ const JobCard = ({job}) => {
 
             <div className='flex items-center gap-2 ml-10 mt-1'>
                 <FaMoneyBill size={15}/>
-                <h4 className='font-semibold'>₹ {job.salary} /- Month</h4>
+                <h4 className='font-semibold'>₹ {job.salary} /- Year</h4>
             </div>
 
             <div className='flex items-center gap-2 ml-10 mt-1'>

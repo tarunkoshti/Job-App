@@ -24,7 +24,13 @@ const jobModel = new mongoose.Schema({
     assements: String,
     company: String,
     location: String,
-    experience: String
+    experience: String,
+    start: String,
+    responsibilities: String,
+    qualifications: String,
+    workconditions: String,
+    applicants: String,
+    companyDetail: String
 
 },
     { timestamps: true }
