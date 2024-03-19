@@ -20,6 +20,8 @@ import AuthLayout from './Components/AuthLayout.jsx'
 import Forget from './Pages/Forget.jsx'
 import ForgetLink from './Pages/ForgetLink.jsx'
 import Reset from './Pages/Reset.jsx'
+import CreateInternship from './Pages/Internship/CreateInternship.jsx'
+import CreateJob from './Pages/Job/CreateJob.jsx'
 
 const router = createBrowserRouter([
   {
@@ -143,7 +145,7 @@ const router = createBrowserRouter([
             path: "internships",
             element: (
               <AuthLayout authentication={true}>
-                element: <AllInternship />
+                <CreateInternship />
               </AuthLayout>
             ),
           },
@@ -151,7 +153,7 @@ const router = createBrowserRouter([
             path: "jobs",
             element: (
               <AuthLayout authentication={true}>
-                element: <AllJob />
+                <CreateJob />
               </AuthLayout>
             ),
           },

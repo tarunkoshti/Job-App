@@ -21,12 +21,22 @@ export const internshipDetail = (id) => async (dispatch, getState) => {
     }
 }
 
-// export const createInternship = (internshipData) => async (dispatch, getState) => {
-//     try {
-//         const { data } = await axios.post(`/api/employe/internship/create`, internshipData)
-//         const { internship } = data
-//         dispatch(createInternship({ internship }));
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+export const asyncCreateInternship = (internshipData) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/employe/internship/create`, internshipData)
+        const { internship } = data
+        // dispatch(createInternship({ internship }));
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const asyncCreateJob = (internshipData) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/employe/job/create`, internshipData)
+        const { job } = data
+        // dispatch(createJob({ job }));
+    } catch (error) {
+        console.log(error);
+    }
+}
