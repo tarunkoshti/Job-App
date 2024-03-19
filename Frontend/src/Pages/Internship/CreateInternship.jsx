@@ -4,8 +4,8 @@ import Input from '../../Components/Input'
 import Button from '../../Components/Button'
 import Select from '../../Components/Select'
 import { useDispatch } from 'react-redux'
-import { asyncCreateInternship } from '../../store/Actions/employeeActions'
 import { useNavigate } from 'react-router-dom'
+import { asyncCreateInternship } from '../../store/Actions/internshipActions'
 
 const CreateInternship = () => {
 
