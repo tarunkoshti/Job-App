@@ -31,12 +31,3 @@ export const asyncCreateInternship = (internshipData) => async (dispatch, getSta
     }
 }
 
-export const asyncCreateJob = (internshipData) => async (dispatch, getState) => {
-    try {
-        const { data } = await axios.post(`/api/employe/job/create`, internshipData)
-        const { job } = data
-        // dispatch(createJob({ job }));
-    } catch (error) {
-        console.log(error);
-    }
-}

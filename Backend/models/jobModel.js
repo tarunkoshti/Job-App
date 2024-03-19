@@ -10,7 +10,7 @@ const jobModel = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "employe"
     },
-    title: String,
+    profile: String,
     skills: String,
     jobtype: {
         type: String,
@@ -29,7 +29,7 @@ const jobModel = new mongoose.Schema({
     responsibilities: String,
     qualifications: String,
     workconditions: String,
-    applicants: String,
+    applicants: Number,
     companyDetail: String
 
 },
