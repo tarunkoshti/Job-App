@@ -1,6 +1,7 @@
 import axios from "axios";
 import { login, logout } from "../Reducers/userSlice";
 import { readHisOwnInternship } from "../Reducers/internshipSlice";
+import { readHisOwnJob } from "../Reducers/jobSlice";
 export const currentUser = () => async (dispatch, getState) => {
     try {
         const { data: userData } = await axios.get('/api/user/student')
@@ -54,6 +55,16 @@ export const allapplyinternship = (id) => async (dispatch, getState) => {
         const { data } = await axios.post('/api/user/student/internship/read', id)
         console.log(data)
         dispatch(readHisOwnInternship({ data }))
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+export const allapplyjob = (id) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post('/api/user/student/job/read', id)
+        console.log(data)
+        dispatch(readHisOwnJob({ data }))
     } catch (error) {
         console.log(error.message)
     }
