@@ -86,6 +86,7 @@ export const allapplyinternship = (id) => async (dispatch, getState) => {
 }
 
 
+
 export const allapplyjob = (id) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post('/api/user/student/job/read', id)
@@ -95,12 +96,14 @@ export const allapplyjob = (id) => async (dispatch, getState) => {
         console.log(error.message)
     }
 }
-export const applyjob = (id) => async (dispatch, getState ) => {
-    try{
-        const {data} = await axios.post(`/api/user/student/apply/job/${id}`)
+
+export const applyjob = (id) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/user/student/apply/job/${id}`)
         console.log(data)
-        dispatch(currentUser({ data }));
-    }catch(error){
+        // dispatch(currentUser({ data }));
+    } catch (error) {
+        console.log(error)
 
     }
 }
