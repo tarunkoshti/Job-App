@@ -23,8 +23,8 @@ router.post("/student/send-mail", studentsendmail)
 
 // /student/forget-link/659ecf41d48275518f826873
 
-//GET /student/forget-link/:studentid
-router.get("/student/forget-link/:id", studentforgetlink)
+//post /student/forget-link/:studentid
+router.post("/student/forget-link/:id", studentforgetlink)
 
 //POST /student/reset-password/:studentid
 router.post("/student/reset-password/:id", isAuthenticated, studentresetpassword)

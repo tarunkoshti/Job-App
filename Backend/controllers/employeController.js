@@ -54,7 +54,8 @@ exports.employesendmail = catchAsyncErrors(async function (req, res, next) {
 
     if (!employe) return next(new ErrorHandler("User not found with this email address", 404));
 
-    const url = `${req.protocol}://${req.get("host")}/employe/forget-link/${employe._id}`
+    // const url = `${req.protocol}://${req.get("host")}/employe/forget-link/${employe._id}`
+    const url = `${req.protocol}://${req.body.currentHost}/employee/forget-link/${employe._id}`
 
     sendmail(req, res, next, url);
     employe.resetPasswordToken = "1";
