@@ -17,6 +17,11 @@ import AllJob from './Pages/Job/AllJob.jsx'
 import Application from './Pages/Student/Application.jsx'
 import Singlejob from './Pages/Student/Singlejob.jsx'
 import AuthLayout from './Components/AuthLayout.jsx'
+import Forget from './Pages/Forget.jsx'
+import ForgetLink from './Pages/ForgetLink.jsx'
+import Reset from './Pages/Reset.jsx'
+import CreateInternship from './Pages/Internship/CreateInternship.jsx'
+import CreateJob from './Pages/Job/CreateJob.jsx'
 
 const router = createBrowserRouter([
   {
@@ -75,10 +80,10 @@ const router = createBrowserRouter([
             path: "job/read/:id",
             element: (
               <AuthLayout authentication={true}>
-               <Singlejob />
+                <Singlejob />
               </AuthLayout>
             ),
-             
+
           },
           {
             path: "application",
@@ -87,6 +92,24 @@ const router = createBrowserRouter([
                 <Application />
               </AuthLayout>
             ),
+          },
+          {
+            path: "forget-password",
+            element: (
+              <Forget userType="student" />
+            )
+          },
+          {
+            path: "forget-link/:id",
+            element: <ForgetLink />
+          },
+          {
+            path: "reset-password",
+            element: (
+              <AuthLayout authentication={true}>
+                <Reset userType="student" />
+              </AuthLayout>
+            )
           },
         ]
       },
@@ -122,7 +145,7 @@ const router = createBrowserRouter([
             path: "internships",
             element: (
               <AuthLayout authentication={true}>
-                element: <AllInternship />
+                <CreateInternship />
               </AuthLayout>
             ),
           },
@@ -130,9 +153,27 @@ const router = createBrowserRouter([
             path: "jobs",
             element: (
               <AuthLayout authentication={true}>
-                element: <AllJob />
+                <CreateJob />
               </AuthLayout>
             ),
+          },
+          {
+            path: "forget-password",
+            element: (
+              <Forget userType="employee" />
+            )
+          },
+          {
+            path: "forget-link/:id",
+            element: <ForgetLink />
+          },
+          {
+            path: "reset-password",
+            element: (
+              <AuthLayout authentication={true}>
+                <Reset userType="employee" />
+              </AuthLayout>
+            )
           },
         ]
       },
@@ -150,8 +191,8 @@ const router = createBrowserRouter([
           <AuthLayout authentication={false}>
             <AllJob />
           </AuthLayout>
-        ) 
-      }
+        )
+      },
     ]
   }
 ])

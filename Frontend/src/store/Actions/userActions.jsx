@@ -39,6 +39,31 @@ export const asyncLogout = () => async (dispatch, getState) => {
         console.log(error.message)
     }
 }
+
+export const asyncSendMail = (formData) => async (dispatch, getState) => {
+    try {
+        await axios.post('/api/user/student/send-mail', formData)
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+export const asyncForgrtPassword = (id, formData) => async (dispatch, getState) => {
+    try {
+        await axios.post(`/api/user/student/forget-link/${id}`, formData)
+    } catch (error) {
+        console.log(error.message)
+    }
+
+}
+export const asyncResetPassword = (id, formData) => async (dispatch, getState) => {
+    try {
+        await axios.post(`/api/user/student/reset-password/${id}`, formData)
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
 export const asyncUploadProfileImage = (id, imageFile) => async (dispatch, getState) => {
     try {
         console.log("one")
@@ -60,6 +85,7 @@ export const allapplyinternship = (id) => async (dispatch, getState) => {
     }
 }
 
+
 export const allapplyjob = (id) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post('/api/user/student/job/read', id)
@@ -67,5 +93,14 @@ export const allapplyjob = (id) => async (dispatch, getState) => {
         dispatch(readHisOwnJob({ data }))
     } catch (error) {
         console.log(error.message)
+    }
+}
+export const applyjob = (id) => async (dispatch, getState ) => {
+    try{
+        const {data} = await axios.post(`/api/user/student/apply/job/${id}`)
+        console.log(data)
+        dispatch(currentUser({ data }));
+    }catch(error){
+
     }
 }
