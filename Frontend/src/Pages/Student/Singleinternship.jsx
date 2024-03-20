@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { jobDetail } from '../../store/Actions/jobActions';
+import { internshipDetail } from '../../store/Actions/internshipActions';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { IoLocationSharp } from "react-icons/io5";
@@ -13,36 +13,33 @@ import { SiOnlyoffice } from "react-icons/si";
 import { IoCalendarNumber } from "react-icons/io5";
 import { MdMessage } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
-import { applyjob } from '../../store/Actions/userActions';
+import { applyinternship } from '../../store/Actions/userActions';
 
+const Singleinternship = () => {
 
-const Singlejob = () => {
-
-    const {id} = useParams()
+  const {id} = useParams()
     // console.log(id)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const job = useSelector((state) => state.jobReducer.jobData); 
+    const internship = useSelector((state) => state.internshipReducer.internshipData)
+    console.log(internship)
+    
 
 
     const applyHandler = async () => {
-       await dispatch(applyjob(id));
+       await dispatch(applyinternship(id));
     //    navigate("/student")
        
     }
     
 
     useEffect(() => {
-      dispatch(jobDetail(id));
+      dispatch(internshipDetail(id));
     }, [dispatch]);
 
-
-
   return (
-    
-
-        <div class="w-full flex flex-col items-center">
-            <h1 class="text-center text-4xl font-semibold mt-6">{job.title} Job</h1>
+     <div class="w-full flex flex-col items-center">
+            <h1 class="text-center text-4xl font-semibold mt-6">{internship.profile} internship</h1>
             <div class="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 rounded-lg">
 
         <div class="border-b-2 border-zinc-200">
@@ -51,20 +48,20 @@ const Singlejob = () => {
                 <h6 class="text-xs">Actively hiring</h6>
             </div>
 
-            {/* <!-- job-title --> */}
+            {/* <!-- internship-profile --> */}
             <div class="mt-3">
-                <h1 class="text-lg ml-10 font-semibold">{job.title}</h1>
+                <h1 class="text-lg ml-10 font-semibold">{internship.profile}</h1>
             </div>
 
             {/* <!-- company-name --> */}
             <div class="mt-1">
-                <h1 class="text-md ml-10 font-semibold text-zinc-600">{job.company}Amazon</h1>
+                <h1 class="text-md ml-10 font-semibold text-zinc-600">{internship.company}Amazon</h1>
             </div>
 
             {/* <!-- location --> */}
             <div class="flex items-center ml-9 gap-1 mt-6">
                 <IoLocationSharp size={15}/>
-                <h1 class="text-md font-semibold">{job.location}Bhopal</h1>
+                <h1 class="text-md font-semibold">{internship.location}Bhopal</h1>
             </div>
 
             {/* <!-- start, salary, experience, and opening number --> */}
@@ -74,28 +71,28 @@ const Singlejob = () => {
                             <FaRegCirclePlay class="w-6 h-6 sm:w-8 sm:h-8" />
                             <h1 class="text-sm sm:text-base tracking-wider font-semibold">START DATE</h1>
                         </div>
-                        <h1 class="font-normal">{job.start}Immediately</h1>
+                        <h1 class="font-normal">{internship.start}Immediately</h1>
                     </div>
                     <div class="flex flex-col gap-1">
                         <div class="flex items-center gap-2">
                             <FaMoneyBill class="w-6 h-6 sm:w-8 sm:h-8" /> 
                             <h1 class="text-sm sm:text-base tracking-wider font-semibold">CTC (ANNUAL)</h1>
                         </div>
-                        <h1 class="font-normal">₹ {job.salary} /- Year</h1>
+                        <h1 class="font-normal">₹ {internship.stipend.amount} /- Month</h1>
                     </div>
                     <div class="flex flex-col gap-1">
                         <div class="flex items-center gap-2">
                             <IoBagCheck class="w-6 h-6 sm:w-8 sm:h-8" />
-                            <h1 class="text-sm sm:text-base tracking-wider font-semibold">EXPERIENCE</h1>
+                            <h1 class="text-sm sm:text-base tracking-wider font-semibold uppercase">Duration</h1>
                         </div>
-                        <h1 class="ml-2 font-normal">{job.experience}0 - 1 Year</h1>
+                        <h1 class="ml-2 font-normal">{internship.duration}</h1>
                     </div>
                     <div class="flex flex-col items-start gap-1">
                         <div class="flex items-center gap-2">
                             <SiOnlyoffice class="w-6 h-6 sm:w-8 sm:h-8" /> 
-                            <h1 class="text-sm sm:text-base tracking-wider font-semibold">JOB TYPE</h1>
+                            <h1 class="text-sm sm:text-base tracking-wider font-semibold uppercase">internship TYPE</h1>
                         </div>
-                        <h1 class="ml-2 font-normal">{job.jobtype}</h1>
+                        <h1 class="ml-2 font-normal">{internship.internshiptype}</h1>
                     </div>
                 </div>
 
@@ -106,7 +103,7 @@ const Singlejob = () => {
                     <h6 class="text-xs">Posted 3 weeks ago</h6>
                 </div>
                 <div class=" px-4 py-1 bg-[#1F2937] text-white rounded-md ml-5 mt-4">
-                    <h6 class="text-xs">Job</h6>
+                    <h6 class="text-xs">internship</h6>
                 </div>
                 <div class=" px-4 py-1 bg-[#1F2937] text-white rounded-md ml-5 mt-4">
                     <h6 class="text-xs">Part time</h6>
@@ -116,15 +113,15 @@ const Singlejob = () => {
             {/* <!-- Applicants --> */}
             <div class="flex items-center gap-2 mt-8 ml-10 mb-8">
                 <IoMdPeople size={30}/>
-                <h1 class="font-medium">{job.applicants} 1000+ applicants</h1>
+                <h1 class="font-medium">{internship.applicants} 1000+ applicants</h1>
             </div>
         </div>
 
         {/* <!-- description --> */}
         <div class="ml-10 mt-5">
             <div>
-                <h1 class="font-semibold">About the job</h1>
-                <h3 class="ml-2">{job.description}</h3>
+                <h1 class="font-semibold">About the internship</h1>
+                <h3 class="ml-2">{internship.description}</h3>
             </div>
             <div class="mt-2">
                 <h1>Key responsibilities :</h1>
@@ -138,7 +135,7 @@ const Singlejob = () => {
             </div>
             <div class="mt-4">
                 <h1>Qualifications:</h1>
-                <p class="ml-3 mt-2">{job.qualifications}
+                <p class="ml-3 mt-2">{internship.qualifications}
                     <p>1. Solid understanding of JavaScript, HTML, CSS, and related web technologies</p>
                     <p>2. Experience working with the MERN (MongoDB, Express.js, React.js, Node.js) stack</p>
                     <p>3. Familiarity with front-end frameworks such as React or Angular</p>
@@ -149,7 +146,7 @@ const Singlejob = () => {
             </div>
             <div class="mt-4">
                 <h1>Compensation and working conditions:</h1>
-                <p class="ml-3 mt-2">{job.workconditions}
+                <p class="ml-3 mt-2">{internship.workconditions}
                     <p>1. Salary: 2-4 LPA (based on experience and skills)</p>
                     <p>2. Commitment: 8 hours per day, Monday to Saturday</p>
                     <p>3. Probation period: 4 months</p>
@@ -160,43 +157,49 @@ const Singlejob = () => {
         {/* <!-- skills --> */}
         <div class="ml-10 mt-5">
             <h1 class="font-semibold text-lg">Skill(s) required :</h1>
-            <h1 class="font-normal ml-4 mt-2 ">{job.skills}, Node.js,  Express.js,  MongoDB,  React.js,  GSAP</h1>
+            <h1 class="font-normal ml-4 mt-2 ">{internship.skills}, Node.js,  Express.js,  MongoDB,  React.js,  GSAP</h1>
         </div>
 
         {/* <!-- Salary --> */}
         <div class="ml-10 mt-5">
-            <h1 class="font-semibold text-lg">Salary</h1>
-            <h3 class="ml-4">Annual CTC: ₹ {job.salary} /year</h3>
+            <h1 class="font-semibold text-lg">Stipend</h1>
+            <h3 class="ml-4 capitalize">Stipend: {internship.stipend.status} </h3>
+        </div>
+
+        {/* <!-- Staring Date --> */}
+        <div class="ml-10 mt-5">
+            <h1 class="font-semibold text-lg">Duration Date</h1>
+            <h3 class="ml-4 ">{internship.from}  to  {internship.to}</h3>
         </div>
 
         {/* <!-- Openings --> */}
         <div class="ml-10 mt-5">
             <h1 class="font-semibold text-lg">Number of openings :</h1>
-            <h3 class="ml-4 mt-1">{job.openings}</h3>
+            <h3 class="ml-4 mt-1">{internship.openings}</h3>
         </div>
 
         {/* <!-- Preferences --> */}
         <div class="ml-10 mt-5">
             <h1 class="font-semibold text-lg">Preferences :</h1>
-            <h3 class="ml-4 mt-1">{job.preferences}</h3>
+            <h3 class="ml-4 mt-1">{internship.preferences}</h3>
         </div>
 
         {/* <!-- Perks --> */}
         <div class="ml-10 mt-5">
             <h1 class="font-semibold text-lg">Perks :</h1>
-            <h3 class="ml-4 mt-1">{job.perks}</h3>
+            <h3 class="ml-4 mt-1">{internship.perks}</h3>
         </div>
 
         {/* <!-- Assessments --> */}
-        <div class="ml-10 mt-5">
+        {/* <div class="ml-10 mt-5">
             <h1 class="font-semibold text-lg">Assessments :</h1>
-            <h3 class="ml-4 mt-1">{job.assessments}</h3>
-        </div>
+            <h3 class="ml-4 mt-1">{internship.assessments}</h3>
+        </div> */}
 
         {/* <!-- companyDetail --> */}
         <div class="ml-10 mt-5">
-            <h1 class="font-semibold text-lg">About {job.company}</h1>
-            <h3 class="ml-4 mt-1 w-full px-4">At {job.companyDetail}, we're not just another digital agency, we're your dedicated allies in the dynamic world of marketing, community management, and website development. Our mission is simple - to provide our clients, ranging from small influencers and startups to industry-leading enterprises, with an unparalleled ease-of-work experience.</h3>
+            <h1 class="font-semibold text-lg">About {internship.company}</h1>
+            <h3 class="ml-4 mt-1 w-full px-4">At {internship.companyDetail}, we're not just another digital agency, we're your dedicated allies in the dynamic world of marketing, community management, and website development. Our mission is simple - to provide our clients, ranging from small influencers and startups to industry-leading enterprises, with an unparalleled ease-of-work experience.</h3>
         </div>
 
         
@@ -209,11 +212,11 @@ const Singlejob = () => {
                 </div>
                 <div class="flex items-center gap-2 ml-4 md:ml-10">
                     <MdMessage class="w-6 h-6 md:w-8 md:h-8" />
-                    <h3 class="text-sm md:text-base">20 opportunities posted</h3>
+                    <h3 class="text-sm md:text-base">28 opportunities posted</h3>
                 </div>
                 <div class="flex items-center gap-2 ml-4 md:ml-10">
                     <RiContactsFill class="w-6 h-6 md:w-8 md:h-8" />
-                    <h3 class="text-sm md:text-base">1 candidate hired</h3>
+                    <h3 class="text-sm md:text-base">105 candidate hired</h3>
                 </div>
             </div>
         </div>
@@ -225,8 +228,7 @@ const Singlejob = () => {
     </div>
         </div>
 
-
   )
 }
 
-export default Singlejob
+export default Singleinternship

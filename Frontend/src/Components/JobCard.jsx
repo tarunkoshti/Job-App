@@ -16,7 +16,7 @@ const JobCard = ({job}) => {
 
             <div key={job._id} className='w-72 bg-zinc-100 shrink-0 rounded-lg mb-5 '>
             
-            <div className='flex items-center py-1 px-2 w-1/3 bg-white gap-2 ml-4 mt-5 rounded-xl'>
+            <div className='flex items-center py-1 px-2 w-1/3 bg-[#1F2937] text-white gap-2 ml-4 mt-5 rounded-xl'>
                 <FaLocationDot size={18}/>
                 <h3 className='text-sm font-semibold'>{job.location}Bhopal</h3>
             </div>
@@ -48,7 +48,7 @@ const JobCard = ({job}) => {
             <div className='mt-8 border-t-2 border-black'>
                 
                 <div className=' w-full py-5  px-4 flex items-center justify-between'>
-                    <span className=' text-sm font-semibold py-1 px-2 bg-white rounded-xl'>Job</span>
+                    <span className=' text-sm font-semibold py-1 px-2 bg-[#1F2937] text-white rounded-xl'>Job</span>
                     <Link to={`/student/job/read/${job._id}`}>
                     <span className='flex text-md items-center gap-1 cursor-pointer text-[#1F2937] font-semibold'>View Details <IoChevronForward size="18" /></span></Link>
                 </div>

@@ -17,6 +17,8 @@ import AllJob from './Pages/Job/AllJob.jsx'
 import Application from './Pages/Student/Application.jsx'
 import Singlejob from './Pages/Student/Singlejob.jsx'
 import AuthLayout from './Components/AuthLayout.jsx'
+import Singleinternship from './Pages/Student/Singleinternship.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -76,6 +78,15 @@ const router = createBrowserRouter([
             element: (
               <AuthLayout authentication={true}>
                <Singlejob />
+              </AuthLayout>
+            ),
+             
+          },
+          {
+            path: "internship/singleintership/:id",
+            element: (
+              <AuthLayout authentication={true}>
+               <Singleinternship />
               </AuthLayout>
             ),
              

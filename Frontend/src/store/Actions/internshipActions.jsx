@@ -13,7 +13,7 @@ export const fetchInternships = () => async (dispatch, getState) => {
 
 export const internshipDetail = (id) => async (dispatch, getState) => {
     try {
-        const { data } = await axios.post(`/api/employe/internship/read/${id}`)
+        const { data } = await axios.post(`/api/user/student/internship/singleintership/${id}`)
         const { internship } = data
         dispatch(readSingleInternship({ internship }));
     } catch (error) {
