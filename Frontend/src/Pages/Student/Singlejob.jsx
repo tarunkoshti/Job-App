@@ -121,10 +121,42 @@ const Singlejob = () => {
                 </div>
 
 
-             <div class="flex items-center gap-1 mt-6">
-                <div class="flex items-center gap-2 px-4 py-1 bg-[#1F2937] text-white rounded-md ml-10 mt-4">
-                    <RxCountdownTimer size={16}/>
-                    <h6 class="text-xs">Posted 3 weeks ago</h6>
+                {/* <!-- description --> */}
+                <div class="ml-10 mt-5">
+                    <div>
+                        <h1 class="font-semibold">About the job</h1>
+                        <h3 class="ml-2">{job.description}</h3>
+                    </div>
+                    <div class="mt-2">
+                        <h1>Key responsibilities :</h1>
+                        <p class="ml-3 mt-2">{job.responsibilities}
+                            {/* <p>1. Conduct demo classes as per the PlanetSpark content and methodology</p>
+                            <p>2. Ensure an amazing demo experience for the child and parent</p>
+                            <p>3. Conduct regular classes (post enrolment) using an in-house curriculum</p>
+                            <p>4. Ensure timely feedback to the child</p>
+                            <p>5. Adhere to the schedule for the demo as well as regular classes</p> */}
+                        </p>
+                    </div>
+                    <div class="mt-4">
+                        <h1>Qualifications:</h1>
+                        <p class="ml-3 mt-2">{job.qualifications}
+                            {/* <p>1. Solid understanding of JavaScript, HTML, CSS, and related web technologies</p>
+                            <p>2. Experience working with the MERN (MongoDB, Express.js, React.js, Node.js) stack</p>
+                            <p>3. Familiarity with front-end frameworks such as React or Angular</p>
+                            <p>4. Strong problem-solving and analytical skills</p>
+                            <p>5. Ability to work independently and as part of a team</p>
+                            <p>6. Excellent communication and collaboration skills</p> */}
+                        </p>
+                    </div>
+                    <div class="mt-4">
+                        <h1>Compensation and working conditions:</h1>
+                        <p class="ml-3 mt-2">{job.workconditions}
+                            {/* <p>1. Salary: 2-4 LPA (based on experience and skills)</p>
+                            <p>2. Commitment: 8 hours per day, Monday to Saturday</p>
+                            <p>3. Probation period: 4 months</p> */}
+                        </p>
+                    </div>
+
                 </div>
 
                 {/* <!-- skills --> */}
@@ -198,14 +230,9 @@ const Singlejob = () => {
         </div>
 
 
-        <div class="flex justify-center items-center mt-8 py-8">
-            <button onClick={applyHandler} class="px-8 py-2 bg-[#1F2937] text-white font-semibold rounded-lg">Apply Now</button>
-        </div>
-    </div>
-        
 
+    )
 
-  )
 }
 
 export default Singlejob
