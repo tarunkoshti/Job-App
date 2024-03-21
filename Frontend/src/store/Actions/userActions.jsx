@@ -107,3 +107,13 @@ export const applyjob = (id) => async (dispatch, getState) => {
 
     }
 }
+
+export const applyinternship = (id) => async (dispatch, getState) => {
+    try {
+        const {data} = await axios.post(`/api/user/student/apply/internship/${id}`)
+        console.log(data)
+        dispatch(currentUser({data}))
+    } catch (error) {
+        console.log(error)
+    }
+}

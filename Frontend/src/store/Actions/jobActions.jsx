@@ -13,7 +13,7 @@ export const fetchJobs = () => async (dispatch, getState) => {
 
 export const jobDetail = (id) => async (dispatch, getState) => {
     try {
-        const { data } = await axios.get(`/api/user/student/job/read/${id}`)
+        const { data } = await axios.post(`/api/user/student/job/read/${id}`)
         
         // console.log(data)
         const { job } = data

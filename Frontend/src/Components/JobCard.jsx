@@ -16,9 +16,11 @@ const JobCard = ({ job }) => {
 
             <div key={job._id} className='w-72 bg-zinc-100 shrink-0 rounded-lg mb-5 '>
 
+
                 <div className='flex items-center py-1 px-2 w-1/3 bg-white gap-2 ml-4 mt-5 rounded-xl'>
                     <FaLocationDot size={18} />
                     <h3 className='text-sm font-semibold'>{job.location}</h3>
+
                 </div>
 
                 <div className='flex items-center gap-2 mt-5 px-6'>
