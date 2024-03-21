@@ -31,7 +31,13 @@ const internshipModel = new mongoose.Schema({
     perks: String,
     assements: String,
     location: String,
-    company: String
+    company: String,
+    applicants: String,
+    description: String,
+    qualifications: String,
+    workconditions: String,
+    openings: String,
+    companyDetail: String
 
 },
     { timestamps: true }

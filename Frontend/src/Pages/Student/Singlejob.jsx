@@ -120,6 +120,7 @@ const Singlejob = () => {
                     </div>
                 </div>
 
+
                 {/* <!-- description --> */}
                 <div class="ml-10 mt-5">
                     <div>
@@ -155,6 +156,7 @@ const Singlejob = () => {
                             <p>3. Probation period: 4 months</p> */}
                         </p>
                     </div>
+
                 </div>
 
                 {/* <!-- skills --> */}
@@ -228,7 +230,9 @@ const Singlejob = () => {
         </div>
 
 
+
     )
+
 }
 
 export default Singlejob

@@ -141,6 +141,15 @@ exports.applyinternship = catchAsyncErrors(async function (req, res, next) {
     res.json({ student, internship })
 });
 
+exports.singleinternship = catchAsyncErrors(async function (req, res, next) {
+    const internship = await Internship.findById(req.params.internshipid).exec();
+    res.status(200).json({
+        success: true,
+        internship
+    })
+});
+
+
 // ---- Apply Job ----
 
 exports.applyjob = catchAsyncErrors(async function (req, res, next) {

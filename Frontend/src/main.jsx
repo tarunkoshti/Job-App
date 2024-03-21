@@ -17,11 +17,13 @@ import AllJob from './Pages/Job/AllJob.jsx'
 import Application from './Pages/Student/Application.jsx'
 import Singlejob from './Pages/Student/Singlejob.jsx'
 import AuthLayout from './Components/AuthLayout.jsx'
+import Singleinternship from './Pages/Student/Singleinternship.jsx'
 import Forget from './Pages/Forget.jsx'
 import ForgetLink from './Pages/ForgetLink.jsx'
 import Reset from './Pages/Reset.jsx'
 import CreateInternship from './Pages/Internship/CreateInternship.jsx'
 import CreateJob from './Pages/Job/CreateJob.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -84,6 +86,15 @@ const router = createBrowserRouter([
               </AuthLayout>
             ),
 
+          },
+          {
+            path: "internship/singleintership/:id",
+            element: (
+              <AuthLayout authentication={true}>
+               <Singleinternship />
+              </AuthLayout>
+            ),
+             
           },
           {
             path: "application",

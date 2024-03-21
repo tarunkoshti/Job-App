@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { homepage, studentsignup, studentsignin, studentsignout, currnetUser, studentsendmail, studentforgetlink, studentresetpassword, studentupdate, studentavatar, applyinternship, applyjob,readinternship,readsinglejob,  } = require("../controllers/indexController");
+const { homepage, studentsignup, studentsignin, studentsignout, currnetUser, studentsendmail, studentforgetlink, studentresetpassword, studentupdate, studentavatar, applyinternship, singleinternship, applyjob,readinternship,readsinglejob,  } = require("../controllers/indexController");
 const { isAuthenticated } = require("../middlewares/auth");
 
 //GET /
@@ -40,6 +40,9 @@ router.post("/student/avatar/:id", isAuthenticated, studentavatar)
 //POST /student/apply/internship/:internshipid
 router.post("/student/apply/internship/:internshipid", isAuthenticated, applyinternship)
 
+//POST /student/internship/singleintership:internshipid
+router.post("/student/internship/singleintership/:internshipid", isAuthenticated, singleinternship)
+
 
 // ---- Apply Job ----
 
@@ -47,7 +50,7 @@ router.post("/student/apply/internship/:internshipid", isAuthenticated, applyint
 router.post("/student/apply/job/:jobid", isAuthenticated, applyjob)
 
 // post /student/job/read/jobid
-router.get("/student/job/read/:jobid", isAuthenticated, readsinglejob)
+router.post("/student/job/read/:jobid", isAuthenticated, readsinglejob)
 
 
 // post //student // read /all /internship
