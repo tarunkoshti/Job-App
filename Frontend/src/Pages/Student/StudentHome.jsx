@@ -13,14 +13,19 @@ const StudentHome = () => {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobReducer.jobData);
   const internships = useSelector((state) => state.internshipReducer.internshipData)
-
-
+  
   useEffect(() => {
-    dispatch(fetchJobs());
+   
+    try {
+      dispatch(fetchJobs());
+    } catch (error) {
+      console.log(error)
+    }
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchInternships());
+    console.log("hii")
   }, [dispatch]);
 
 
