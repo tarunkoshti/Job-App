@@ -15,7 +15,7 @@ const internshipSlice = createSlice({
             state.internshipData = action.payload.data;
         },
         readSingleInternship: (state, action) => {
-
+            state.internshipData = action.payload.internship;
         },
         createInternship: (state, action) => {
 
