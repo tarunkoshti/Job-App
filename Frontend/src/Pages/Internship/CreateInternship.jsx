@@ -23,12 +23,12 @@ const CreateInternship = () => {
        <>
             <div className="w-full flex flex-col items-center py-5 gap-5 bg-zinc-100">
     <h1 className="text-2xl font-semibold">Post Internship</h1>
-    <div className="mt-2 bg-yellow-300 w-full md:w-1/2 py-10 px-8 border-2 border-black rounded-xl">
+    <div className="mt-2  w-full md:w-1/2 py-10 px-8 border-2 border-zinc-200 rounded-xl">
         <form onSubmit={handleSubmit(create)} className="">
             {/* Section-1-div */}
-            <div className="bg-red-500 p-3 rounded-lg">
+            <div className=" p-3 rounded-lg">
                 <h1 className="px-5 py-3 font-semibold">Internship Details</h1>
-                <div className="w-full bg-blue-600 flex flex-col items-center py-8 border-2 border-black rounded-lg">
+                <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
                     {/* Profile-div */}
                     <div className="w-full md:max-w-lg mt-1">
                         <Input
@@ -122,9 +122,9 @@ const CreateInternship = () => {
                 </div>
             </div>
             {/* Section-2-div */}
-            <div className="bg-green-400 mt-6 p-3 rounded-lg">
+            <div className=" mt-6 p-3 rounded-lg">
                 <h1 className="px-5 py-2 font-semibold">Stipend & perks</h1>
-                <div className="w-full bg-pink-500 flex flex-col items-center py-8 border-2 border-black rounded-lg">
+                <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
                     {/* Stipend */}
                     <div className="w-full md:max-w-lg mt-1">
                         <Input
@@ -155,9 +155,9 @@ const CreateInternship = () => {
                 </div>
             </div>
             {/* Section-3-div */}
-            <div className="bg-purple-400 mt-5 p-3 rounded-lg">
+            <div className=" mt-5 p-3 rounded-lg">
                 <h1 className="px-5 py-2 font-semibold">Company, Location, and Description</h1>
-                <div className="w-full mt-2 bg-orange-500 flex flex-col items-center py-8 border-2 border-black rounded-lg">
+                <div className="w-full mt-2  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
                     {/* Company */}
                     <div className="w-full md:max-w-lg mt-1">
                         <Input
@@ -194,15 +194,7 @@ const CreateInternship = () => {
                             {...register("applicants")}
                         />
                     </div>
-                    {/* Description */}
-                    {/* <div className="w-full md:max-w-lg mt-1">
-                        <Input
-                            label="Description"
-                            placeholder="e.g. Ensure an amazing demo experience for the child and parent..."
-                            type="text"
-                            {...register("description")}
-                        />
-                    </div> */}
+
                     {/* Description */}
                     <div className="w-full md:max-w-lg mt-1">
                         <Input
@@ -214,15 +206,6 @@ const CreateInternship = () => {
                     </div>
 
                     {/* Qualifications */}
-                    {/* <div className="w-full md:max-w-lg mt-1">
-                        <Input
-                            label="Qualifications"
-                            placeholder="e.g. Solid understanding of JavaScript, HTML, CSS, and related web technologies..."
-                            type="text"
-                            {...register("qualifications")}
-                        />
-                    </div> */}
-                    {/* Qualifications */}
                     <div className="w-full md:max-w-lg mt-1">
                         <Input
                             label="Qualifications"
@@ -232,16 +215,6 @@ const CreateInternship = () => {
                         />
                     </div>
 
-
-                    {/* Work conditions */}
-                    {/* <div className="w-full md:max-w-lg mt-1">
-                        <Input
-                            label="Work Conditions"
-                            placeholder="e.g. Salary: 2-4 LPA ("
-                             type="text"
-                            {...register("workconditions")}
-                        />
-                    </div> */}
                     {/* Work conditions */}
                     <div className="w-full md:max-w-lg mt-1">
                         <Input
@@ -252,15 +225,6 @@ const CreateInternship = () => {
                         />
                     </div>
 
-                    {/* Company Detail */}
-                    {/* <div className="w-full md:max-w-lg mt-1">
-                        <Input
-                            label="Company Detail"
-                            placeholder="e.g. We're not just another digital agency, we're your dedicated dynamic world ...."
-                            type="text"
-                            {...register("companyDetail")}
-                        />
-                    </div> */}
                     {/* Company Detail */}
                     <div className="w-full md:max-w-lg mt-1">
                         <Input
@@ -274,9 +238,9 @@ const CreateInternship = () => {
                 </div>
             </div>
             {/* Section-4-div */}
-            <div className="bg-[#e11d48] mt-6 p-3 rounded-lg">
+            <div className=" mt-6 p-3 rounded-lg">
                 <h1 className="px-5 py-2 font-semibold">Alternate Mobile Number for this listing</h1>
-                <div className="w-full bg-[#5b21b6] flex flex-col items-center py-8 border-2 border-black rounded-lg">
+                <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
                     {/* Contact */}
                     <div className="w-full md:max-w-lg mt-1">
                         <Input
