@@ -15,7 +15,7 @@ export const jobDetail = (id) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/user/student/job/read/${id}`)
         
-        console.log(data)
+        // console.log(data)
         const { job } = data
         dispatch(readSingleJob({ job }));
     } catch (error) {
@@ -23,12 +23,13 @@ export const jobDetail = (id) => async (dispatch, getState) => {
     }
 }
 
-// export const createjob = (jobData) => async (dispatch, getState) => {
-//     try {
-//         const { data } = await axios.post(`/api/employe/job/create`, jobData)
-//         const { job } = data
-//         dispatch(createJob({ job }));
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+export const asyncCreateJob = (internshipData) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/employe/job/create`, internshipData)
+        const { job } = data
+        // console.log(job)
+        // dispatch(createJob({ job }));
+    } catch (error) {
+        console.log(error);
+    }
+}
