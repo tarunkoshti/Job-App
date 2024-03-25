@@ -85,8 +85,6 @@ export const allapplyinternship = (id) => async (dispatch, getState) => {
     }
 }
 
-
-
 export const allapplyjob = (id) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post('/api/user/student/job/read', id)
