@@ -185,7 +185,15 @@ exports.readinternship = catchAsyncErrors(async function (req, res, next) {
     })
 });
 
+// Apply read all job
 
+exports.readjob = catchAsyncErrors(async function (req, res, next) {
+    const { jobs } = await Student.findById(req.id).populate("jobs").exec();
+    res.status(200).json({
+        success: true,
+        jobs
+    })
+});
 
 // exports.readsingleinternship = catchAsyncErrors(async function (req, res, next) {
 //     const internship = await Internship.findById(req.params.id).exec();

@@ -68,14 +68,14 @@ const Header = () => {
         // }
     ]
 
-    const LogoutHandler = () => {
+    const LogoutHandler = async () => {
         if (isStudentAuth) {
-            dispatch(studentLogout())
+            await dispatch(studentLogout())
             setIsProfileOpen(false)
             setDropdown(false)
             navigate("/")
         } else if (isEmployeeAuth) {
-            dispatch(employeeLogout())
+            await dispatch(employeeLogout())
             setIsProfileOpen(false)
             setDropdown(false)
             navigate("/")
@@ -101,7 +101,7 @@ const Header = () => {
             <nav className='w-full flex justify-start items-center relative'>
                 <div className='w-1/3'>
                     <NavLink to={authStatus ? (isStudentAuth ? "/student" : "/employee") : ""}>
-                         < img className='h-12' src="logo.jpg" alt="./logo.jpg" />
+                        < img className='h-12' src="logo.jpg" alt="./logo.jpg" />
                     </NavLink>
                 </div>
 
