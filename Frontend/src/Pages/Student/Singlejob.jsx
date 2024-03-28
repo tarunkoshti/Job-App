@@ -22,26 +22,25 @@ const Singlejob = () => {
     // console.log(id)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const job = useSelector((state) => state.jobReducer.jobData);
-
+    const jobs = useSelector((state) => state.jobReducer.jobData);
+    const job = jobs?.filter(job => job._id === id)
 
     const applyHandler = async () => {
         await dispatch(applyjob(id));
-        // navigate("/student")
-
+        navigate("/student")
     }
 
 
-    useEffect(() => {
-        dispatch(jobDetail(id));
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(jobDetail(id));
+    // }, [dispatch]);
 
 
 
     return (
 
 
-        <div class="w-full flex flex-col items-center">
+        job && <div class="w-full flex flex-col items-center">
             <h1 class="text-center text-4xl font-semibold mt-6">{job.profile} Job</h1>
             <div class="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 rounded-lg">
 

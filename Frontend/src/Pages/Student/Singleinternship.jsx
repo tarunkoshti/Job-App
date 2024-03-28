@@ -21,24 +21,26 @@ const Singleinternship = () => {
     // console.log(id)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const internship = useSelector((state) => state.internshipReducer.internshipData)
-    console.log(internship)
+    const internships = useSelector((state) => state.internshipReducer.internshipData)
+    const internship = internships?.filter(internship => internship._id === id)
+
 
 
 
     const applyHandler = async () => {
         await dispatch(applyinternship(id));
-        //    navigate("/student")
+           navigate("/student")
 
     }
 
 
-    useEffect(() => {
-        dispatch(internshipDetail(id));
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(internshipDetail(id));
+    // }, [dispatch]);
 
     return (
-        <div class="w-full flex flex-col items-center">
+       
+        internship && <div class="w-full flex flex-col items-center">
             <h1 class="text-center text-4xl font-semibold mt-6">{internship.profile} internship</h1>
             <div class="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 rounded-lg">
 
