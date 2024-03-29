@@ -54,7 +54,7 @@ const Application = () => {
                   <h1 className='w-1/5'>{intern.internshiptype}</h1>
                   <h1 className='w-1/5'>{intern.students.length}</h1>
                   
-                  <Link to="/some-route" className='w-1/5'><MdOutlineLibraryBooks /></Link>
+                  <Link className='w-1/5' to={`/student/internship/singleintership/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
                   {/* Ensure proper usage of Link component */}
                 </div>
               ))}
@@ -83,7 +83,8 @@ const Application = () => {
                   <h1 className='w-1/5'>{job.internshiptype}</h1>
                   <h1 className='w-1/5'>{job.students.length}</h1>
                   
-                  <Link to="/some-route" className='w-1/5'><MdOutlineLibraryBooks /></Link>
+                
+                  <Link className='w-1/5' to={`/student/job/read/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
                   {/* Ensure proper usage of Link component */}
                 </div>
               ))}
