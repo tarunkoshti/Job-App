@@ -7,24 +7,29 @@ import { MdOutlineLibraryBooks } from "react-icons/md";
 const Application = () => {
 
   const dispatch = useDispatch()
-  const appliedinternships = useSelector((state) => state.internshipReducer.internshipData?.internships);
 
-  const appliedjobs = useSelector((state) => state.jobReducer.jobData?.jobs)
+  const internshipId = useSelector((state) => state.userReducer.userData?.student.appliedinternships)
+  const jobId = useSelector((state) => state.userReducer.userData?.student.appliedjobs)
+ 
+  const internships = useSelector((state) => state.internshipReducer.internshipData)
+  console.log(internships)
+  const jobs = useSelector((state) => state.jobReducer.jobData)
+  console.log(jobs)
+  // console.log(internship)
 
-  console.log(appliedjobs)
-  console.log(appliedinternships)
 
-  const student = useSelector((state) => state.userReducer.userData?.student)
-  
-  
-  useEffect(() => {
-    dispatch(allapplyinternship(student._id))
-  }, [dispatch])
+  // const  internship = internships?.filter(internship => internship._id === )
 
-  useEffect(() => {
-    dispatch(allapplyjob(student._id))
+  // console.log(internship)
 
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(allapplyinternship(student._id))
+  // }, [dispatch])
+
+  // useEffect(() => {
+  //   dispatch(allapplyjob(student._id))
+
+  // }, [dispatch])
 
   // const applications = [...appliedinternships, ...appliedjobs];
   return (
@@ -39,21 +44,24 @@ const Application = () => {
           <h1 className='w-1/5'>REVIEW APPLICATION</h1>
         </div>
         <ul>
-          {appliedinternships && appliedinternships.map((i, index) => (
+          {internshipId && internshipId.map((studentItem, index) => (
 
-            <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56 whitespace-nowrap'>
-              <h1 className='w-1/5'>{i.company}</h1>
-              <h1 className='w-1/5'>{i.profile}</h1>
-              <h1 className='w-1/5' >{i.internshiptype}</h1>
-              <h1 className='w-1/5'>{i.students.length}</h1>
-              <Link className='w-1/5'><MdOutlineLibraryBooks /></Link>
+            <div key={index}>
+              {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
+                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56 whitespace-nowrap' key={internIndex}>
+                  <h1 className='w-1/5'>{intern.company}</h1>
+                  <h1 className='w-1/5'>{intern.profile}</h1>
+                  <h1 className='w-1/5'>{intern.internshiptype}</h1>
+                  <h1 className='w-1/5'>{intern.students.length}</h1>
+                  
+                  <Link to="/some-route" className='w-1/5'><MdOutlineLibraryBooks /></Link>
+                  {/* Ensure proper usage of Link component */}
+                </div>
+              ))}
             </div>
           ))}
+
         </ul>
-
-
-
-
       </div>
       <div className='bg-gray-100 mx-20 rounded-lg my-10'>
         <h1 className='text-3xl text-center font-semibold py-4'>JOB APPLICATION</h1>
@@ -65,16 +73,23 @@ const Application = () => {
           <h1 className='w-1/5'>REVIEW APPLICATION</h1>
         </div>
         <ul>
-          {appliedjobs && appliedjobs.map((i, index) => (
+          {jobId && jobId.map((studentItem, index) => (
 
-            <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56 whitespace-nowrap'>
-              <h1 className='w-1/5'>{i.company}</h1>
-              <h1 className='w-1/5'>{i.profile}</h1>
-              <h1 className='w-1/5' >{i.jobtype}</h1>
-              <h1 className='w-1/5'>{i.students.length}</h1>
-              <Link className='w-1/5'><MdOutlineLibraryBooks /></Link>
+            <div key={index}>
+              {jobs?.filter(job => job._id === studentItem).map((job, Index) => (
+                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56 whitespace-nowrap' key={Index}>
+                  <h1 className='w-1/5'>{job.company}</h1>
+                  <h1 className='w-1/5'>{job.jobtittle}</h1>
+                  <h1 className='w-1/5'>{job.internshiptype}</h1>
+                  <h1 className='w-1/5'>{job.students.length}</h1>
+                  
+                  <Link to="/some-route" className='w-1/5'><MdOutlineLibraryBooks /></Link>
+                  {/* Ensure proper usage of Link component */}
+                </div>
+              ))}
             </div>
           ))}
+
         </ul>
 
 
