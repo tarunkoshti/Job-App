@@ -9,12 +9,14 @@ import { FaMoneyBill } from "react-icons/fa";
 import { IoBagCheck } from "react-icons/io5";
 import { IoMdPeople } from "react-icons/io";
 import { RxCountdownTimer } from "react-icons/rx";
+import { FaRegBookmark } from "react-icons/fa";
 import { SiOnlyoffice } from "react-icons/si";
 import { IoCalendarNumber } from "react-icons/io5";
 import { MdMessage } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { applyinternship } from '../../store/Actions/userActions';
-
+import { bookmarkinternship } from '../../store/Actions/userActions';
+import { CiBookmark } from "react-icons/ci";
 const Singleinternship = () => {
 
     const { id } = useParams()
@@ -29,27 +31,35 @@ const Singleinternship = () => {
 
     const applyHandler = async () => {
         await dispatch(applyinternship(id));
-           navigate("/student")
+        navigate("/student")
 
     }
 
-
+    const bookmarkHandler = async () => {
+        await dispatch(bookmarkinternship(id));
+        navigate("/student")
+    }
     // useEffect(() => {
     //     dispatch(internshipDetail(id));
     // }, [dispatch]);
 
     return (
-       
+
         internship && <div class="w-full flex flex-col items-center">
             <h1 class="text-center text-4xl font-semibold mt-6">{internship.profile} internship</h1>
-            <div class="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 rounded-lg">
+            <div class="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 relative rounded-lg">
 
-                <div class="border-b-2 border-zinc-200">
-                    <div class="flex items-center w-fit gap-2 px-4 py-1 bg-[#1F2937] text-white rounded-md ml-10 mt-4">
+                <div class="border-b-2 border-zinc-200 ">
+                    <div className='flex justify-between' >
+                        <div class="flex items-center   w-fit gap-2 px-4 py-1 bg-[#1F2937] text-white rounded-md ml-10 mt-4">
                         <FaArrowTrendUp size={14} />
                         <h6 class="text-xs">Actively hiring</h6>
-                    </div>
+                        </div>
+                     <div className='py-2 mt=4 px-10'>
+                         <button onClick={bookmarkHandler}><CiBookmark  size={26} /></button></div>   
 
+                    </div>
+                   
                     {/* <!-- internship-profile --> */}
                     <div class="mt-3">
                         <h1 class="text-lg ml-10 font-semibold">{internship.profile}</h1>

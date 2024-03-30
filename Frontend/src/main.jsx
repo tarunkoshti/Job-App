@@ -15,6 +15,7 @@ import EmployeeHome from './Pages/Employee/EmployeeHome.jsx'
 import AllInternship from './Pages/Internship/AllInternship.jsx'
 import AllJob from './Pages/Job/AllJob.jsx'
 import Application from './Pages/Student/Application.jsx'
+import Bookmark from './Pages/Student/Bookmark.jsx'
 import Singlejob from './Pages/Student/Singlejob.jsx'
 import AuthLayout from './Components/AuthLayout.jsx'
 import Singleinternship from './Pages/Student/Singleinternship.jsx'
@@ -101,6 +102,14 @@ const router = createBrowserRouter([
             element: (
               <AuthLayout authentication={true}>
                 <Application />
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "bookmark",
+            element: (
+              <AuthLayout authentication={true}>
+                <Bookmark/>
               </AuthLayout>
             ),
           },
