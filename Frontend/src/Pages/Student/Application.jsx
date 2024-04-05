@@ -8,9 +8,10 @@ const Application = () => {
 
   const dispatch = useDispatch()
 
-  const internshipId = useSelector((state) => state.userReducer.userData?.student.appliedinternships)
-  const jobId = useSelector((state) => state.userReducer.userData?.student.appliedjobs)
- 
+  const internshipId = useSelector((state) => state.userReducer.userData?.student.internships)
+  console.log(internshipId)
+  const jobId = useSelector((state) => state.userReducer.userData?.student.jobs)
+  console.log(jobId)
   const internships = useSelector((state) => state.internshipReducer.internshipData)
   console.log(internships)
   const jobs = useSelector((state) => state.jobReducer.jobData)
@@ -48,12 +49,12 @@ const Application = () => {
 
             <div key={index}>
               {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
-                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56 whitespace-nowrap' key={internIndex}>
+                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-48 whitespace-nowrap ' key={internIndex}>
                   <h1 className='w-1/5'>{intern.company}</h1>
-                  <h1 className='w-1/5'>{intern.profile}</h1>
+                  <h1 className='w-1/3'>{intern.profile}</h1>
                   <h1 className='w-1/5'>{intern.internshiptype}</h1>
                   <h1 className='w-1/5'>{intern.students.length}</h1>
-                  
+
                   <Link className='w-1/5' to={`/student/internship/singleintership/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
                   {/* Ensure proper usage of Link component */}
                 </div>
@@ -82,8 +83,8 @@ const Application = () => {
                   <h1 className='w-1/5'>{job.jobtittle}</h1>
                   <h1 className='w-1/5'>{job.internshiptype}</h1>
                   <h1 className='w-1/5'>{job.students.length}</h1>
-                  
-                
+
+
                   <Link className='w-1/5' to={`/student/job/read/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
                   {/* Ensure proper usage of Link component */}
                 </div>
