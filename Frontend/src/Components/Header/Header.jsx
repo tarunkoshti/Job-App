@@ -42,11 +42,11 @@ const Header = () => {
             path: "",
         },
         {
-            name: "Internships",
+            name: employe ? "Create Internship" : "Internships",
             path: "/internships",
         },
         {
-            name: "Jobs",
+            name: employe ? "Create Job" : "Jobs",
             path: "/jobs",
         }
     ]
@@ -200,17 +200,17 @@ const Header = () => {
                                     setDropdown(false))}
                                 to="/student" className='hover:text-blue-600'>Home</Link>
                             <Link onClick={() => (
-                                    setIsProfileOpen(false),
-                                    setDropdown(false))} to="/student/application" className='hover:text-blue-600'>My Application</Link>
+                                setIsProfileOpen(false),
+                                setDropdown(false))} to="/student/application" className='hover:text-blue-600'>My Application</Link>
                             <Link onClick={() => (
-                                    setIsProfileOpen(false),
-                                    setDropdown(false))} to="/student/bookmark" className='hover:text-blue-600'>My Bookmarks</Link>
+                                setIsProfileOpen(false),
+                                setDropdown(false))} to="/student/bookmark" className='hover:text-blue-600'>My Bookmarks</Link>
                             <Link onClick={() => (
-                                    setIsProfileOpen(false),
-                                    setDropdown(false))} to="/student/resume" className='hover:text-blue-600'>Edit Resume</Link>
+                                setIsProfileOpen(false),
+                                setDropdown(false))} to="/student/resume" className='hover:text-blue-600'>Edit Resume</Link>
                             <Link onClick={() => (
-                                    setIsProfileOpen(false),
-                                    setDropdown(false))} to="/student/edit/preference" className='hover:text-blue-600'>Edit Preferences</Link>
+                                setIsProfileOpen(false),
+                                setDropdown(false))} to="/student/edit/preference" className='hover:text-blue-600'>Edit Preferences</Link>
                         </div>
                             : <div className='w-full flex flex-col gap-3'>
                                 <Link onClick={() => (
