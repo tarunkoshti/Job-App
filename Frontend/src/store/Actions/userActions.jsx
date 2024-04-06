@@ -135,3 +135,13 @@ export const bookmarkjob = (id) => async (dispatch, getState) => {
         console.log(error)
     }
 }
+
+export const updateStudent = (id, data1) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/user/student/update/${id}`,data1)
+        console.log(data)
+        dispatch(currentUser({data}))
+    } catch (error) {
+        console.log(error)
+    }
+}

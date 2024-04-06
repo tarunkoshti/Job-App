@@ -9,13 +9,13 @@ const Application = () => {
   const dispatch = useDispatch()
 
   const internshipId = useSelector((state) => state.userReducer.userData?.student.internships)
-  console.log(internshipId)
+  // console.log(internshipId)
   const jobId = useSelector((state) => state.userReducer.userData?.student.jobs)
-  console.log(jobId)
+  // console.log(jobId)
   const internships = useSelector((state) => state.internshipReducer.internshipData)
-  console.log(internships)
+  // console.log(internships)
   const jobs = useSelector((state) => state.jobReducer.jobData)
-  console.log(jobs)
+  // console.log(jobs)
   // console.log(internship)
 
 

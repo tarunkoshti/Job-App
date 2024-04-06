@@ -25,7 +25,6 @@ const StudentHome = () => {
 
   useEffect(() => {
     dispatch(fetchInternships());
-    console.log("hii")
   }, [dispatch]);
 
 
@@ -133,8 +132,8 @@ const StudentHome = () => {
           <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
             {
               jobs &&
-              (jobs.map((job) => (
-                <JobCard job={job} />
+              (jobs.map((job, index) => (
+                <JobCard key={index} job={job} />
               )))
             }
           </div>
@@ -152,8 +151,8 @@ const StudentHome = () => {
           <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
             {
               internships &&
-              (internships.map((internship) => (
-                <InternshipCard internship={internship} />
+              (internships.map((internship, index) => (
+                <InternshipCard key={index} internship={internship} />
               )))
             }
           </div>
