@@ -133,7 +133,7 @@ exports.applyinternship = catchAsyncErrors(async function (req, res, next) {
     const internship = await Internship.findById(req.params.internshipid).exec()
 
     student.internships.push(internship._id);
-    internship.students.push(student._id);
+    internship.students.push(student);
 
     await student.save();
     await internship.save();
@@ -202,6 +202,20 @@ exports.bookmarkinternship = catchAsyncErrors(async function(req,res,next){
     const internship = await Internship.findById(req.params.internshipid).exec()
 
     student.bookmarkinternship.push(internship._id);
+    // internship.students.push(student._id);
+
+    await student.save();
+    // await internship.save();
+
+    res.json({ student, internship })
+})
+
+// disbookmark internship.................
+exports.disbookmarkinternship = catchAsyncErrors(async function(req,res,next){
+    const student = await Student.findById(req.id).exec();
+    const internship = await Internship.findById(req.params.internshipid).exec()
+
+    student.bookmarkinternship.pop(internship._id);
     // internship.students.push(student._id);
 
     await student.save();

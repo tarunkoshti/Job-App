@@ -13,7 +13,7 @@ const Bookmark = () => {
   console.log(jobId)
 
   const jobs = useSelector((state) => state.jobReducer.jobData)
-
+  
 
   return (
     <>

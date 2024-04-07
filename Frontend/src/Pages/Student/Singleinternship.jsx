@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { internshipDetail } from '../../store/Actions/internshipActions';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
@@ -16,28 +16,48 @@ import { MdMessage } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { applyinternship } from '../../store/Actions/userActions';
 import { bookmarkinternship } from '../../store/Actions/userActions';
+import { disbookmarkinternship } from '../../store/Actions/userActions';
 import { CiBookmark } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa6";
 const Singleinternship = () => {
 
     const { id } = useParams()
-    // console.log(id)
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const internships = useSelector((state) => state.internshipReducer.internshipData)
     const internship = internships?.filter(internship => internship._id === id)
+    const studentId = useSelector((state) => state.userReducer.userData?.student)
+    const internship_arr = studentId?.bookmarkinternship
+    console.log(internship_arr)
+    const [bookmarkbtn, setBookmarkbtn] = useState(false);
+  
 
+    const i = internship_arr?.filter((internId)=>internId==id)
 
-
-
+    useEffect(() => {
+        console.log("hello")
+        i[0] && setBookmarkbtn(true)
+    },[id,bookmarkbtn])
+    
     const applyHandler = async () => {
         await dispatch(applyinternship(id));
         navigate("/student")
-
     }
-
+    
     const bookmarkHandler = async () => {
+        if(bookmarkbtn==false)
+    {
         await dispatch(bookmarkinternship(id));
-        navigate("/student")
+        // navigate("/student")
+        setBookmarkbtn(true)
+    }
+}
+
+    const disbookmarkHandler = async () => {
+        await dispatch(disbookmarkinternship(id));
+        // navigate("/student")
+        setBookmarkbtn(false)
     }
     // useEffect(() => {
     //     dispatch(internshipDetail(id));
@@ -52,14 +72,16 @@ const Singleinternship = () => {
                 <div class="border-b-2 border-zinc-200 ">
                     <div className='flex justify-between' >
                         <div class="flex items-center   w-fit gap-2 px-4 py-1 bg-[#1F2937] text-white rounded-md ml-10 mt-4">
-                        <FaArrowTrendUp size={14} />
-                        <h6 class="text-xs">Actively hiring</h6>
+                            <FaArrowTrendUp size={14} />
+                            <h6 class="text-xs">Actively hiring</h6>
                         </div>
-                     <div className='py-2 mt=4 px-10'>
-                         <button onClick={bookmarkHandler}><CiBookmark  size={26} /></button></div>   
+                        <div className='py-2 mt=4 px-10'>
+                            <button >
+                                {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={26} /> :<CiBookmark onClick={bookmarkHandler}/> }
+                            </button></div>
 
                     </div>
-                   
+
                     {/* <!-- internship-profile --> */}
                     <div class="mt-3">
                         <h1 class="text-lg ml-10 font-semibold">{internship.profile}</h1>

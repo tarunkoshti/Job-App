@@ -8,8 +8,8 @@ const Application = () => {
 
   const dispatch = useDispatch()
 
-  const internshipId = useSelector((state) => state.userReducer.userData?.student.appliedinternships)
-  const jobId = useSelector((state) => state.userReducer.userData?.student.appliedjobs)
+  const internshipId = useSelector((state) => state.userReducer.userData?.student.internships)
+  const jobId = useSelector((state) => state.userReducer.userData?.student.jobs)
  
   const internships = useSelector((state) => state.internshipReducer.internshipData)
   console.log(internships)
@@ -48,9 +48,9 @@ const Application = () => {
 
             <div key={index}>
               {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
-                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56 whitespace-nowrap' key={internIndex}>
+                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-52 ' key={internIndex}>
                   <h1 className='w-1/5'>{intern.company}</h1>
-                  <h1 className='w-1/5'>{intern.profile}</h1>
+                  <h1 className='w-1/3'>{intern.profile}</h1>
                   <h1 className='w-1/5'>{intern.internshiptype}</h1>
                   <h1 className='w-1/5'>{intern.students.length}</h1>
                   
@@ -77,10 +77,10 @@ const Application = () => {
 
             <div key={index}>
               {jobs?.filter(job => job._id === studentItem).map((job, Index) => (
-                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56 whitespace-nowrap' key={Index}>
+                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56' key={Index}>
                   <h1 className='w-1/5'>{job.company}</h1>
-                  <h1 className='w-1/5'>{job.jobtittle}</h1>
-                  <h1 className='w-1/5'>{job.internshiptype}</h1>
+                  <h1 className='w-1/5'>{job.profile}</h1>
+                  <h1 className='w-1/5'>{job.jobtype}</h1>
                   <h1 className='w-1/5'>{job.students.length}</h1>
                   
                 

@@ -24,6 +24,8 @@ import ForgetLink from './Pages/ForgetLink.jsx'
 import Reset from './Pages/Reset.jsx'
 import CreateInternship from './Pages/Internship/CreateInternship.jsx'
 import CreateJob from './Pages/Job/CreateJob.jsx'
+import EmployeeApplication from './Pages/Employee/EmployeeApplication.jsx'
+import ApplicantsDetails from './Pages/Employee/ApplicantsDetails.jsx'
 
 
 const router = createBrowserRouter([
@@ -150,6 +152,22 @@ const router = createBrowserRouter([
             element: (
               <AuthLayout authentication={false}>
                 <Login userType="employee" />
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "application",
+            element: (
+              <AuthLayout authentication={true}>
+                <EmployeeApplication/>
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "application/applicants/:id",
+            element: (
+              <AuthLayout authentication={true}>
+               <ApplicantsDetails/>
               </AuthLayout>
             ),
           },

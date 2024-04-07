@@ -1,7 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { BsStars } from "react-icons/bs";
+import { useSelector,useDispatch } from 'react-redux';
+import { fetchJobs } from '../../store/Actions/jobActions';
+import { fetchInternships } from '../../store/Actions/internshipActions';
 const EmployeeHome = () => {
+
+  const dispatch = useDispatch();
+  const jobs = useSelector((state) => state.jobReducer.jobData);
+  const internships = useSelector((state) => state.internshipReducer.internshipData)
+  const students = useSelector((state)=> state.userReducer.userData)
+  useEffect(() => {
+   
+    try {
+      dispatch(fetchJobs());
+    } catch (error) {
+      console.log(error)
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchInternships());
+    console.log("hii")
+  }, [dispatch]);
+   
+
+  useEffect(()=>{
+    dispatch
+  },[dispatch])
   return (
     <>
       <div className="w-full bg-white font-sans">

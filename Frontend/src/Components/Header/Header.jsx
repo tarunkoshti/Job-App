@@ -67,7 +67,7 @@ const Header = () => {
         //     active: !authStatus
         // }
     ]
-
+    
     const LogoutHandler = async () => {
         if (isStudentAuth) {
             await dispatch(studentLogout())
@@ -81,20 +81,26 @@ const Header = () => {
             navigate("/")
         }
     }
-
-    const handleProfileImageChange = (e) => {
-        const imageFile = e.target.files[0];
+   const [image,setImage]= useState(null)
+    const handleImageChange = (e) => {
+         setImage(e.target.files[0])
         console.log(imageFile)
-        if (imageFile) {
-            if (student) {
-                const id = student._id
-                dispatch(asyncUploadProfileImage(id, imageFile))
-            }
-            else {
-                const id = employe._id
-            }
-        }
+        // if (imageFile) {
+        //     if (student) {
+        //         const id = student._id
+        //         dispatch(asyncUploadProfileImage(id, imageFile))
+        //     }
+        //     else {
+        //         const id = employe._id
+        //     }
+        // }
     };
+
+    const uploadImage = async()=>{
+        const formData = new FormData()
+        formData.append('image',image)
+        dispatch(asyncUploadProfileImage(student._id,formData))
+    }
 
     return (
         <header className='w-full px-20 py-5 mb-5 bg-white text-[#1F2937] font-semibold shadow-lg rounded-bl-2xl rounded-br-2xl'>
@@ -168,16 +174,19 @@ const Header = () => {
                     <div className='w-full flex flex-col items-center border-b py-2 mb-4'>
                         <div className='h-12 w-12 rounded-full border-2 relative'>
                             <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
-                            <AiOutlineEdit size={26}
+                            {/* <AiOutlineEdit size={26}
                                 className='absolute bottom-0 -right-8 rounded-full p-1 cursor-pointer'
                                 onClick={() => fileInputRef.current.click()} />
 
                             {/* // hidden input */}
 
-                            <input ref={fileInputRef} type="file" accept="image/*"
+                            {/* <input ref={fileInputRef} type="file" accept="image/*"
                                 className='hidden'
                                 onChange={handleProfileImageChange}
-                            />
+                            />  */}
+
+<input type="file" accept="image/*" onChange={handleImageChange} />
+      <button onClick={uploadImage}>Upload</button>
 
                         </div>
                         <h6 className='capitalize font-semibold text-sm'>{user.firstname} {user.lastname}</h6>
