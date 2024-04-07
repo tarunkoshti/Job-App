@@ -108,9 +108,9 @@ export const applyjob = (id) => async (dispatch, getState) => {
 
 export const applyinternship = (id) => async (dispatch, getState) => {
     try {
-        const {data} = await axios.post(`/api/user/student/apply/internship/${id}`)
+        const { data } = await axios.post(`/api/user/student/apply/internship/${id}`)
         console.log(data)
-        dispatch(currentUser({data}))
+        dispatch(currentUser({ data }))
     } catch (error) {
         console.log(error)
     }
@@ -118,9 +118,9 @@ export const applyinternship = (id) => async (dispatch, getState) => {
 
 export const bookmarkinternship = (id) => async (dispatch, getState) => {
     try {
-        const {data} = await axios.post(`/api/user/student/bookmark/internship/${id}`)
+        const { data } = await axios.post(`/api/user/student/bookmark/internship/${id}`)
         console.log(data)
-        dispatch(currentUser({data}))
+        dispatch(currentUser({ data }))
     } catch (error) {
         console.log(error)
     }
@@ -128,9 +128,9 @@ export const bookmarkinternship = (id) => async (dispatch, getState) => {
 
 export const bookmarkjob = (id) => async (dispatch, getState) => {
     try {
-        const {data} = await axios.post(`/api/user/student/bookmark/job/${id}`)
+        const { data } = await axios.post(`/api/user/student/bookmark/job/${id}`)
         console.log(data)
-        dispatch(currentUser({data}))
+        dispatch(currentUser({ data }))
     } catch (error) {
         console.log(error)
     }
@@ -138,9 +138,19 @@ export const bookmarkjob = (id) => async (dispatch, getState) => {
 
 export const updateStudent = (id, data1) => async (dispatch, getState) => {
     try {
-        const { data } = await axios.post(`/api/user/student/update/${id}`,data1)
+        const { data } = await axios.post(`/api/user/student/update/${id}`, data1)
         console.log(data)
-        dispatch(currentUser({data}))
+        dispatch(currentUser({ data }))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const addEducation = (id, data1) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/resume/add-edu/`, data1)
+        console.log(data)
+        dispatch(currentUser({ data }))
     } catch (error) {
         console.log(error)
     }

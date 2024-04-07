@@ -78,7 +78,7 @@ const Resume = () => {
                             </div>
 
                             <div className='project border-b py-5 flex items-center'>
-                                <h2 className='uppercase text-sm w-1/4'>ACADEMICS/ PERSONAL PROJECTS</h2>
+                                <h2 className='uppercase text-sm w-1/4'>ACADEMICS/ <br /> PERSONAL PROJECTS</h2>
                                 <Link
                                     className='text-blue-700' to='/student/resume/add/project'>
                                     <span className='flex items-center gap-1'>
@@ -98,7 +98,7 @@ const Resume = () => {
                             </div>
 
                             <div className='portfolio border-b py-5 flex items-center'>
-                                <h2 className='uppercase text-sm w-1/4'>PORTFOLIO/ WORK SAMPLES</h2>
+                                <h2 className='uppercase text-sm w-1/4'>PORTFOLIO/ <br /> WORK SAMPLES</h2>
                                 <Link
                                     className='text-blue-700' to='/student/resume/add/portfolio_work'>
                                     <span className='flex items-center gap-1'>
@@ -107,7 +107,7 @@ const Resume = () => {
                                 </Link>
                             </div>
                             <div className='accomplishment border-b py-5 flex items-center'>
-                                <h2 className='uppercase text-sm w-1/4'>ACCOMPLISHMENTS/ ADDITIONAL DETAILS</h2>
+                                <h2 className='uppercase text-sm w-1/4'>ACCOMPLISHMENTS/ <br /> ADDITIONAL DETAILS</h2>
                                 <Link
                                     className='text-blue-700' to='/student/resume/add/accomplishment'>
                                     <span className='flex items-center gap-1'>
@@ -121,9 +121,7 @@ const Resume = () => {
                 </div>
             )}
 
-            < div className='rounded-xl border bg-red-100 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]' >
                 <Outlet />
-            </div >
 
         </div>
     )
