@@ -6,9 +6,6 @@ import Button from '../../../Components/Button'
 import { addInternship, addJob, addTrainingCourse } from '../../../store/Actions/userActions'
 import { Link, useNavigate } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
-import { FaPlus } from "react-icons/fa6";
-import Select from '../../../Components/Select'
-
 
 
 const AddTrainingAndCourses = () => {

@@ -195,3 +195,13 @@ export const addTrainingCourse = (id, data1) => async (dispatch, getState) => {
         console.log(error)
     }
 }
+
+export const addProject = (id, data1) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/resume/add-project`, data1)
+        console.log(data)
+        dispatch(currentUser({ data }))
+    } catch (error) {
+        console.log(error)
+    }
+}

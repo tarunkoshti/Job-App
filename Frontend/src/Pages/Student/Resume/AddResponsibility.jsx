@@ -53,7 +53,7 @@ const AddResponsibility = () => {
 
           <label htmlFor="des" className='flex flex-col gap-1'>
             <span>Description</span>
-            <p className='text-sm mb-1'>If you have been/are an active part of societies, conducted any events or led a team, add details here</p>
+            <p className='text-sm mb-1 text-gray-400'>If you have been/are an active part of societies, conducted any events or led a team, add details here</p>
             {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
             <textarea
               name="description"
