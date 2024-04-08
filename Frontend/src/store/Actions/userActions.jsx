@@ -148,7 +148,17 @@ export const updateStudent = (id, data1) => async (dispatch, getState) => {
 
 export const addEducation = (id, data1) => async (dispatch, getState) => {
     try {
-        const { data } = await axios.post(`/api/resume/add-edu/`, data1)
+        const { data } = await axios.post(`/api/resume/add-edu`, data1)
+        console.log(data)
+        dispatch(currentUser({ data }))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const addJob = (id, data1) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/resume/add-job`, data1)
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
