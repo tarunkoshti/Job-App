@@ -71,7 +71,7 @@ const AddInternship = () => {
                         label="Location"
                         placeholder="e.g. Mumbai"
                         {...register("Location", {
-                            required: true
+                            // required: true
                         })}
                     />
                     <div className='w-full flex gap-2'>
