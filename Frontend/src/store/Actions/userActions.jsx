@@ -165,3 +165,13 @@ export const addJob = (id, data1) => async (dispatch, getState) => {
         console.log(error)
     }
 }
+
+export const addInternship = (id, data1) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/resume/add-intern`, data1)
+        console.log(data)
+        dispatch(currentUser({ data }))
+    } catch (error) {
+        console.log(error)
+    }
+}

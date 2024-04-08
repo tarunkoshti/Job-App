@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../../../Components/Input'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
@@ -15,22 +15,34 @@ const AddJob = () => {
 
   const student = useSelector((state) => state.userReducer.userData?.student)
   // console.log(student)
+  let [currlength, setCurrlength] = useState(0)
 
-  // const [first, setfirst] = useState("true")
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
   const submit = async (data) => {
-    console.log(data)
-    await dispatch(addJob(student._id, data))
-    navigate("/student/resume")
+    if (currlength <= 250) {
+      await dispatch(addJob(student._id, data))
+      navigate("/student/resume")
+    }
   }
 
   const backHandler = () => {
     navigate(-1)
   }
+
+
+  useEffect(() => {
+    const descriptionValue = watch((value, { name }) => {
+      if (name == "description") {
+        let str = value.description
+        setCurrlength(str.length)
+      }
+    });
+
+  }, [watch]);
 
   return (
     < div className='w-full h-screen absolute top-[0]' >
@@ -41,15 +53,8 @@ const AddJob = () => {
         <form
           onSubmit={handleSubmit(submit)}
           className='w-full p-10 flex flex-col gap-5'>
-          <h1 className='text-center text-xl font-semibold'>Graduation details/ Post graduation details</h1>
+          <h1 className='text-center text-xl font-semibold'>Job details</h1>
 
-          <Input
-            label="Designation"
-            placeholder="e.g. Sofware Engineer"
-            {...register("designation", {
-              required: true
-            })}
-          />
           <Input
             label="Profile"
             placeholder="e.g. Operations"
@@ -90,27 +95,46 @@ const AddJob = () => {
 
           </div>
 
-          <div className='w-full flex gap-2'>
+          <div className='w-full flex gap-2 '>
 
-            <label >
+            <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
               <input
                 type="checkbox"
                 {...register("workType", {
                 })}
               />
-              Is work from home
+              <span className='text-xs font-semibold'>Is work from home</span>
             </label>
 
-            <label >
+            <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
               <input
                 type="checkbox"
                 {...register("currentWorking", {
                 })}
               />
-              Is work from home
+              <span className='text-xs font-semibold'>Currently working here</span>
             </label>
 
           </div>
+
+          <label htmlFor="des" className='flex flex-col gap-1'>
+            <span>Description (Optional)</span>
+            {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
+            <textarea
+              name="description"
+              className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
+              id='des'
+              type="description"
+              placeholder={`Short description of work done(max 250 char)\n#Mention key job responsibilities, measurable impact or results you helped deliver, any awards you won during this time.\n#Keep it to 2-3 points`}
+              {...register("description", {
+                maxLength: {
+                  value: 250,
+                  message: "Description should not exceed 250 characters."
+                }
+              })}
+            />
+            <span className='text-xs'>{currlength}/250</span>
+          </label>
 
           <Button
             type='submit'
