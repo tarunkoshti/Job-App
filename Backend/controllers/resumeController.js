@@ -211,6 +211,34 @@ exports.deleteskill = catchAsyncErrors(async function (req, res, next) {
 
 // ACCOMPLISHMENTS
 
+exports.addwork = catchAsyncErrors(async function (req, res, next) {
+
+    const student = await Student.findById(req.id).exec();
+    student.resume.worksamples.push({ ...req.body, id: uuidv4() });
+    await student.save()
+    res.json({ message: "Work Sample added!" })
+});
+
+exports.editwork = catchAsyncErrors(async function (req, res, next) {
+
+    const student = await Student.findById(req.id).exec();
+    const workIndex = student.resume.worksamples.findIndex(i => i.id === req.params.workid)
+    student.resume.worksamples[workIndex] = { ...student.resume.worksamples[workIndex], ...req.body, }
+    await student.save()
+    res.json({ message: "Work Sample updated!" })
+});
+
+exports.deletework = catchAsyncErrors(async function (req, res, next) {
+
+    const student = await Student.findById(req.id).exec();
+    const filteredwork = student.resume.worksamples.filter((i) => i.id !== req.params.workid)
+    student.resume.worksamples = filteredwork;
+    await student.save()
+    res.json({ message: "Work Sample deleted!" })
+});
+
+// ACCOMPLISHMENTS
+
 exports.addacc = catchAsyncErrors(async function (req, res, next) {
 
     const student = await Student.findById(req.id).exec();

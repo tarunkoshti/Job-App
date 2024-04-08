@@ -69,6 +69,7 @@ const studentModel = new mongoose.Schema({
         courses: [],
         projects: [],
         skills: [],
+        worksamples:[],
         accomplishments: [],
     },
     internships: [

@@ -216,6 +216,15 @@ export const addSkill = (id, data1) => async (dispatch, getState) => {
     }
 }
 
+export const addWorkSample = (id, data1) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/resume/add-work`, data1)
+        console.log(data)
+        dispatch(currentUser({ data }))
+    } catch (error) {
+        console.log(error)
+    }
+}
 export const addAccomplishment = (id, data1) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/add-acc`, data1)
