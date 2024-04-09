@@ -101,7 +101,6 @@ exports.studentupdate = catchAsyncErrors(async function(req, res, next){
 });
 
 exports.studentavatar = catchAsyncErrors(async function(req, res, next){
-console.log("hello")
     const student = await Student.findById(req.params.id).exec();
     const file = req.files.avatar;
     const modifiedFileName = `resumebuilder-${Date.now()}${path.extname(file.name)}`

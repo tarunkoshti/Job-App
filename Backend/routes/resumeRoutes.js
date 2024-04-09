@@ -2,12 +2,13 @@ const express = require("express");
 const router = express.Router();
 const { resume, addeducation, editeducation, deleteeducation,
     addjob, editjob, deletejob,
-    addinternship, editinternship, deleteinternship, 
+    addinternship, editinternship, deleteinternship,
     addresponsibility, editresponsibility, deleteresponsibility,
     addcourse, editcourse, deletecourse,
     addproject, editproject, deleteproject,
     addskill, editskill, deleteskill,
     addacc, editacc, deleteacc,
+    addwork, editwork, deletework
 } = require("../controllers/resumeController");
 const { isAuthenticated } = require("../middlewares/auth");
 
@@ -92,6 +93,16 @@ router.post("/edit-skill/:skillid", isAuthenticated, editskill)
 //POST /delete-skill
 router.post("/delete-skill/:skillid", isAuthenticated, deleteskill)
 
+// WORKSAMPLE
+
+//POST /add-work
+router.post("/add-work", isAuthenticated, addwork)
+
+//POST /edit-work
+router.post("/edit-work/:workid", isAuthenticated, editwork)
+
+//POST /delete-work
+router.post("/delete-work/:workid", isAuthenticated, deletework)
 
 // ACCOMPLISHMENTS
 
