@@ -9,14 +9,9 @@ const Application = () => {
   const dispatch = useDispatch()
 
   const internshipId = useSelector((state) => state.userReducer.userData?.student.internships)
-<<<<<<< HEAD
+
   const jobId = useSelector((state) => state.userReducer.userData?.student.jobs)
- 
-=======
-  // console.log(internshipId)
-  const jobId = useSelector((state) => state.userReducer.userData?.student.jobs)
-  // console.log(jobId)
->>>>>>> origin/backup
+
   const internships = useSelector((state) => state.internshipReducer.internshipData)
   // console.log(internships)
   const jobs = useSelector((state) => state.jobReducer.jobData)
@@ -54,11 +49,8 @@ const Application = () => {
 
             <div key={index}>
               {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
-<<<<<<< HEAD
-                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-52 ' key={internIndex}>
-=======
+
                 <div className='px-10 py-3 bg-gray-300 my-2 flex gap-48 whitespace-nowrap ' key={internIndex}>
->>>>>>> origin/backup
                   <h1 className='w-1/5'>{intern.company}</h1>
                   <h1 className='w-1/3'>{intern.profile}</h1>
                   <h1 className='w-1/5'>{intern.internshiptype}</h1>
