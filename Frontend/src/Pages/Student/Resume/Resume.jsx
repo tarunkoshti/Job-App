@@ -36,7 +36,7 @@ const Resume = () => {
                             </div>
 
                             <div className='education border-b py-5 flex items-start'>
-                                <h2 className='uppercase text-sm w-1/4'>education</h2>
+                                <h2 className='uppercase font-semibold text-sm w-1/4'>education</h2>
                                 <div className='w-3/4'>
                                     <ul className=''>
                                         {resume.education.map((item) => (
@@ -77,7 +77,7 @@ const Resume = () => {
                             </div>
 
                             <div className='work border-b py-5 flex items-start'>
-                                <h2 className='uppercase text-sm w-1/4'>WORK EXPERIENCE</h2>
+                                <h2 className='font-semibold uppercase text-sm w-1/4'>WORK EXPERIENCE</h2>
                                 <div className='w-3/4'>
                                     <ul className=''>
                                         {
@@ -119,7 +119,7 @@ const Resume = () => {
                             </div>
 
                             <div className='responsibility border-b py-5 flex items-start'>
-                                <h2 className='uppercase text-sm w-1/4'>POSITIONS OF RESPONSIBILITY</h2>
+                                <h2 className='font-semibold uppercase text-sm w-1/4'>POSITIONS OF RESPONSIBILITY</h2>
                                 <div className='w-3/4'>
                                     <ul className=''>
                                         {resume.responsibilities.map((item) => (
@@ -145,53 +145,152 @@ const Resume = () => {
                                 </div>
                             </div>
 
-                            <div className='training&course border-b py-5 flex items-center'>
-                                <h2 className='uppercase text-sm w-1/4'>TRAININGS/ COURSES</h2>
-                                <Link
-                                    className='text-blue-700' to='/student/resume/add/training_courses'>
-                                    <span className='flex items-center gap-1'>
-                                        <FaPlus />Add training/ course
-                                    </span>
-                                </Link>
+                            <div className='training&course border-b py-5 flex items-start'>
+                                <h2 className='font-semibold uppercase text-sm w-1/4'>TRAININGS/ COURSES</h2>
+                                <div className='w-3/4'>
+                                    <ul className=''>
+                                        {resume.courses.map((item) => (
+                                            <li key={item.id}
+                                                className='mb-2 flex justify-between items-start'>
+                                                <div>
+                                                    <p className='font-semibold'>{item.training}</p>
+                                                    <p>{item.organization}, <span>{item.Location}</span></p>
+                                                    {item.startDate && item.endDate &&
+                                                        <p>{item.startDate} - {item.endDate}</p>
+                                                    }
+                                                    <p>{item.description}</p>
+                                                </div>
+                                                <div className='flex gap-5 pt-2'>
+                                                    <HiPencil className='cursor-pointer' />
+                                                    <MdDelete className='cursor-pointer' />
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <Link
+                                        className='text-blue-700' to='/student/resume/add/training_courses'>
+                                        <span className='flex items-center gap-1'>
+                                            <FaPlus />Add training/ course
+                                        </span>
+                                    </Link>
+                                </div>
                             </div>
 
-                            <div className='project border-b py-5 flex items-center'>
-                                <h2 className='uppercase text-sm w-1/4'>ACADEMICS/ <br /> PERSONAL PROJECTS</h2>
-                                <Link
-                                    className='text-blue-700' to='/student/resume/add/project'>
-                                    <span className='flex items-center gap-1'>
-                                        <FaPlus />Add academic/ personal project
-                                    </span>
-                                </Link>
+                            <div className='project border-b py-5 flex items-start'>
+                                <h2 className='font-semibold uppercase text-sm w-1/4'>ACADEMICS/ <br /> PERSONAL PROJECTS</h2>
+                                <div className='w-3/4'>
+
+                                    <ul className=''>
+                                        {resume.projects.map((item) => (
+                                            <li key={item.id}
+                                                className='mb-2 flex justify-between items-start'>
+                                                <div>
+                                                    <p className='font-semibold'>{item.title}</p>
+                                                    {item.startDate && item.endDate &&
+                                                        <p>{item.startDate} - {item.endDate}</p>
+                                                    }
+                                                    <p>{item.description}</p>
+                                                </div>
+                                                <div className='flex gap-5 pt-2'>
+                                                    <HiPencil className='cursor-pointer' />
+                                                    <MdDelete className='cursor-pointer' />
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <Link
+                                        className='text-blue-700' to='/student/resume/add/project'>
+                                        <span className='flex items-center gap-1'>
+                                            <FaPlus />Add academic/ personal project
+                                        </span>
+                                    </Link>
+                                </div>
                             </div>
 
-                            <div className='skills border-b py-5 flex items-center'>
-                                <h2 className='uppercase text-sm w-1/4'>SKILLS</h2>
-                                <Link
-                                    className='text-blue-700' to='/student/resume/add/skill'>
-                                    <span className='flex items-center gap-1'>
-                                        <FaPlus />Add skill
-                                    </span>
-                                </Link>
+                            <div className='skills border-b py-5 flex items-start'>
+                                <h2 className='font-semibold uppercase text-sm w-1/4'>SKILLS</h2>
+                                <div className='w-3/4'>
+                                    <ul className='flex w-full flex-wrap justify-between'>
+                                        {resume.skills.map((item) => (
+                                            <li key={item.id}
+                                                className='w-[34%] mb-2 flex justify-between items-start'>
+                                                <div>
+                                                    <p className='font-semibold'>{item.skill}</p>
+                                                    <p>{item.level}</p>
+                                                </div>
+                                                <div className='flex gap-5 pt-2'>
+                                                    <HiPencil className='cursor-pointer' />
+                                                    <MdDelete className='cursor-pointer' />
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <Link
+                                        className='text-blue-700' to='/student/resume/add/skill'>
+                                        <span className='flex items-center gap-1'>
+                                            <FaPlus />Add skill
+                                        </span>
+                                    </Link>
+                                </div>
                             </div>
 
-                            <div className='portfolio border-b py-5 flex items-center'>
-                                <h2 className='uppercase text-sm w-1/4'>PORTFOLIO/ <br /> WORK SAMPLES</h2>
-                                <Link
-                                    className='text-blue-700' to='/student/resume/add/portfolio_work'>
-                                    <span className='flex items-center gap-1'>
-                                        <FaPlus />Add portfolio/ work sample
-                                    </span>
-                                </Link>
+                            <div className='portfolio border-b py-5 flex items-start'>
+                                <h2 className='font-semibold uppercase text-sm w-1/4'>PORTFOLIO/ <br /> WORK SAMPLES</h2>
+                                <div className='w-3/4'>
+
+                                    {(resume.worksamples?.[0]) && (
+                                        <ul className=''>
+                                            {Object.entries(resume.worksamples[0]).map(([key, value]) => (
+                                                key !== "id" &&
+                                                <li key={key}
+                                                    className='mb-2 flex justify-between items-start'>
+                                                    <Link className='hover:text-blue-600'>{value}</Link>
+                                                    <div className='flex gap-5 pt-2'>
+                                                        <HiPencil className='cursor-pointer' />
+                                                        <MdDelete className='cursor-pointer' />
+                                                    </div>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+
+                                    {!(resume.worksamples?.[0]) &&
+                                        <Link
+                                            className='text-blue-700' to='/student/resume/add/portfolio_work'>
+                                            <span className='flex items-center gap-1'>
+                                                <FaPlus />Add portfolio/ work sample
+                                            </span>
+                                        </Link>
+                                    }
+                                </div>
                             </div>
-                            <div className='accomplishment border-b py-5 flex items-center'>
-                                <h2 className='uppercase text-sm w-1/4'>ACCOMPLISHMENTS/ <br /> ADDITIONAL DETAILS</h2>
+                            <div className='accomplishment border-b py-5 flex items-start'>
+                                <h2 className='font-semibold uppercase text-sm w-1/4'>ACCOMPLISHMENTS/ <br /> 
+                                ADDITIONAL DETAILS</h2>
+                                <div className='w-3/4'>
+                                    <ul className=''>
+                                        {resume.accomplishments.map((item) => (
+                                            <li key={item.id}
+                                                className='mb-2 flex justify-between items-start'>
+                                                <div>
+                                                    <p className=''>{item.description}</p>
+                                                </div>
+                                                <div className='flex gap-5 pt-2'>
+                                                    <HiPencil className='cursor-pointer' />
+                                                    <MdDelete className='cursor-pointer' />
+                                                </div>
+                                            </li>
+                                        ))
+                                        }
+                                    </ul>
                                 <Link
                                     className='text-blue-700' to='/student/resume/add/accomplishment'>
                                     <span className='flex items-center gap-1'>
                                         <FaPlus />Add accomplishment/ additional detail
                                     </span>
                                 </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
