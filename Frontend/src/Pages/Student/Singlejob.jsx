@@ -40,11 +40,8 @@ const Singlejob = () => {
     
       <>
        {job &&( <div class="w-full flex flex-col items-center">
-            <h1 class="text-center text-4xl font-semibold mt-6">{job.title} Job</h1>
-    return (
-
-
-        <div class="w-full flex flex-col items-center">
+            <h1 class="text-center text-4xl font-semibold mt-6">{job.title}</h1>
+            <div class="w-full flex flex-col items-center">
             <h1 class="text-center text-4xl font-semibold mt-6">{job.profile} Job</h1>
 
             <div class="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 rounded-lg">
@@ -227,9 +224,7 @@ const Singlejob = () => {
                 </div> */}
 
 
-                <div class="flex justify-center items-center mt-8 py-8">
-                    <button onClick={applyHandler} class="px-8 py-2 bg-[#1F2937] text-white font-semibold rounded-lg">Apply Now</button>
-                </div>
+               
             </div>
         </div>
 

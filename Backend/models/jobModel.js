@@ -14,8 +14,9 @@ const jobModel = new mongoose.Schema({
     skills: String,
     jobtype: {
         type: String,
-        enum: ["In office", "Remote"]
+        enum: ["In office", "Remote", "Hybrid"]
     },
+    workingtype:String,
     openings: Number,
     description: String,
     preferences: String,
@@ -30,7 +31,8 @@ const jobModel = new mongoose.Schema({
     qualifications: String,
     workconditions: String,
     applicants: Number,
-    companyDetail: String
+    companyDetail: String,
+    contact: String
 
 },
     { timestamps: true }
