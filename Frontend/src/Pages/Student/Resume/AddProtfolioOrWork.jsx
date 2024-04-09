@@ -17,6 +17,7 @@ const AddProtfolioOrWork = () => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
+    console.log(data)
       await dispatch(addWorkSample(student._id, data))
       navigate("/student/resume")
   }
@@ -40,28 +41,28 @@ const AddProtfolioOrWork = () => {
             label="Blog link"
             placeholder="e.g. http://myblog.com"
             {...register("blogLink", {
-              required: true
+              // required: true
             })}
           />
           <Input
             label="Github link"
             placeholder="e.g. http://github.com"
             {...register("githubLink", {
-              required: true
+              // required: true
             })}
           />
           <Input
             label="Play store developer A/c (public link)"
             placeholder="e.g. http://play.google.com/store/apps/developer?id=myapps"
             {...register("playstoreLink", {
-              required: true
+              // required: true
             })}
           />
           <Input
             label="Behance portfolio link"
             placeholder="e.g. http://behance.net/my_profile"
             {...register("behanceLink", {
-              required: true
+              // required: true
             })}
           />
           

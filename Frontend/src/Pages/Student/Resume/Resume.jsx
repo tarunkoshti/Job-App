@@ -1,12 +1,42 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { FaPlus } from "react-icons/fa6";
 import { HiPencil } from "react-icons/hi2";
 import { MdDelete } from "react-icons/md";
-import { BsDot } from "react-icons/bs";
+import { deleteAccomplishment, deleteEducation, deleteInternship, deleteJob, deleteProject, deleteResponsibility, deleteSkill, deleteTrainingCourse, deleteWorkSample } from '../../../store/Actions/userActions';
 
 const Resume = () => {
+
+    const dispatch = useDispatch();
+
+    const deleteEduHandler = async (id) => {
+        await dispatch(deleteEducation(id))
+    }
+    const deleteJobHandler = async (id) => {
+        await dispatch(deleteJob(id))
+    }
+    const deleteInternHandler = async (id) => {
+        await dispatch(deleteInternship(id))
+    }
+    const deleterespoHandler = async (id) => {
+        await dispatch(deleteResponsibility(id))
+    }
+    const deletecourseHandler = async (id) => {
+        await dispatch(deleteTrainingCourse(id))
+    }
+    const deleteprojectHandler = async (id) => {
+        await dispatch(deleteProject(id))
+    }
+    const deleteskillHandler = async (id) => {
+        await dispatch(deleteSkill(id))
+    }
+    const deleteportfolioHandler = async (id) => {
+        await dispatch(deleteWorkSample(id))
+    }
+    const deleteaccomplishmentHandler = async (id) => {
+        await dispatch(deleteAccomplishment(id))
+    }
 
     const student = useSelector((state) => state.userReducer.userData?.student)
     // console.log(student)
@@ -62,7 +92,7 @@ const Resume = () => {
                                                 )}
                                                 <div className='flex gap-5 pt-2'>
                                                     <HiPencil className='cursor-pointer' />
-                                                    <MdDelete className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleteEduHandler(item.id)} className='cursor-pointer' />
                                                 </div>
                                             </li>
                                         ))}
@@ -86,16 +116,36 @@ const Resume = () => {
                                                     className='mb-2 flex justify-between items-start'>
 
                                                     <div>
-                                                        {item?.designation ? <p className='font-semibold'>{item?.designation}<span>, ({item?.profile})</span></p> : <p className='font-semibold'>{item.profile}</p>
-                                                        }
+                                                        <p className='font-semibold'>{item?.designation}<span>, ({item?.profile})</span></p>
                                                         <p>{item.organization}, <span>{item.Location}</span></p>
-                                                        {item.designation ? <p className='flex gap-2'><span className='font-medium'>Job</span> <span>{item.startDate}</span>- <span>{item.endDate}</span></p> : <p className='flex gap-2 '><span className='font-medium'>Internship</span> <span>{item.startDate}</span>-<span>{item.endDate}</span></p>}
+                                                        <p className='flex gap-2'><span className='font-medium'>Job</span> <span>{item.startDate}</span>- <span>{item.endDate}</span></p>
                                                         <p>{item.description}</p>
                                                     </div>
 
                                                     <div className='flex gap-5 pt-2'>
                                                         <HiPencil className='cursor-pointer' />
-                                                        <MdDelete className='cursor-pointer' />
+                                                        <MdDelete onClick={() => deleteJobHandler(item.id)} className='cursor-pointer' />
+                                                    </div>
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
+                                    <ul className=''>
+                                        {
+                                            resume.internships.map((item) => (
+                                                <li key={item.id}
+                                                    className='mb-2 flex justify-between items-start'>
+
+                                                    <div>
+                                                        <p className='font-semibold'>{item?.profile}</p>
+                                                        <p>{item.organization}, <span>{item.Location}</span></p>
+                                                        <p className='flex gap-2'><span className='font-medium'>Internship</span> <span>{item.startDate}</span>- <span>{item.endDate}</span></p>
+                                                        <p>{item.description}</p>
+                                                    </div>
+
+                                                    <div className='flex gap-5 pt-2'>
+                                                        <HiPencil className='cursor-pointer' />
+                                                        <MdDelete onClick={() => deleteInternHandler(item.id)} className='cursor-pointer' />
                                                     </div>
                                                 </li>
                                             ))
@@ -130,7 +180,7 @@ const Resume = () => {
                                                 </div>
                                                 <div className='flex gap-5 pt-2'>
                                                     <HiPencil className='cursor-pointer' />
-                                                    <MdDelete className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleterespoHandler(item.id)} className='cursor-pointer' />
                                                 </div>
                                             </li>
                                         ))
@@ -162,7 +212,7 @@ const Resume = () => {
                                                 </div>
                                                 <div className='flex gap-5 pt-2'>
                                                     <HiPencil className='cursor-pointer' />
-                                                    <MdDelete className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deletecourseHandler(item.id)} className='cursor-pointer' />
                                                 </div>
                                             </li>
                                         ))}
@@ -193,7 +243,7 @@ const Resume = () => {
                                                 </div>
                                                 <div className='flex gap-5 pt-2'>
                                                     <HiPencil className='cursor-pointer' />
-                                                    <MdDelete className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleteprojectHandler(item.id)} className='cursor-pointer' />
                                                 </div>
                                             </li>
                                         ))}
@@ -221,7 +271,7 @@ const Resume = () => {
                                                 </div>
                                                 <div className='flex gap-5 pt-2'>
                                                     <HiPencil className='cursor-pointer' />
-                                                    <MdDelete className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleteskillHandler(item.id)} className='cursor-pointer' />
                                                 </div>
                                             </li>
                                         ))}
@@ -239,23 +289,23 @@ const Resume = () => {
                                 <h2 className='font-semibold uppercase text-sm w-1/4'>PORTFOLIO/ <br /> WORK SAMPLES</h2>
                                 <div className='w-3/4'>
 
-                                    {(resume.worksamples?.[0]) && (
-                                        <ul className=''>
-                                            {Object.entries(resume.worksamples[0]).map(([key, value]) => (
-                                                key !== "id" &&
-                                                <li key={key}
+                                    <ul className=''>
+                                        {resume.worksamples.map((item) => (
+                                            
+                                                item.value && <li key={item.id}
                                                     className='mb-2 flex justify-between items-start'>
-                                                    <Link className='hover:text-blue-600'>{value}</Link>
+                                                    <Link to={item.value} className='hover:text-blue-600'>{item.value}</Link>
                                                     <div className='flex gap-5 pt-2'>
                                                         <HiPencil className='cursor-pointer' />
-                                                        <MdDelete className='cursor-pointer' />
+                                                        <MdDelete onClick={() => deleteportfolioHandler(item.id)} className='cursor-pointer' />
                                                     </div>
                                                 </li>
-                                            ))}
-                                        </ul>
-                                    )}
+                                            
 
-                                    {!(resume.worksamples?.[0]) &&
+                                        ))}
+                                    </ul>
+
+                                    {(resume.worksamples.length < 1) &&
                                         <Link
                                             className='text-blue-700' to='/student/resume/add/portfolio_work'>
                                             <span className='flex items-center gap-1'>
@@ -265,9 +315,10 @@ const Resume = () => {
                                     }
                                 </div>
                             </div>
+
                             <div className='accomplishment border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>ACCOMPLISHMENTS/ <br /> 
-                                ADDITIONAL DETAILS</h2>
+                                <h2 className='font-semibold uppercase text-sm w-1/4'>ACCOMPLISHMENTS/ <br />
+                                    ADDITIONAL DETAILS</h2>
                                 <div className='w-3/4'>
                                     <ul className=''>
                                         {resume.accomplishments.map((item) => (
@@ -278,18 +329,18 @@ const Resume = () => {
                                                 </div>
                                                 <div className='flex gap-5 pt-2'>
                                                     <HiPencil className='cursor-pointer' />
-                                                    <MdDelete className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleteaccomplishmentHandler(item.id)} className='cursor-pointer' />
                                                 </div>
                                             </li>
                                         ))
                                         }
                                     </ul>
-                                <Link
-                                    className='text-blue-700' to='/student/resume/add/accomplishment'>
-                                    <span className='flex items-center gap-1'>
-                                        <FaPlus />Add accomplishment/ additional detail
-                                    </span>
-                                </Link>
+                                    <Link
+                                        className='text-blue-700' to='/student/resume/add/accomplishment'>
+                                        <span className='flex items-center gap-1'>
+                                            <FaPlus />Add accomplishment/ additional detail
+                                        </span>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

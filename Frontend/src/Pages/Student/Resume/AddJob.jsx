@@ -56,6 +56,14 @@ const AddJob = () => {
           <h1 className='text-center text-xl font-semibold'>Job details</h1>
 
           <Input
+            label="Designation"
+            placeholder="e.g. Software Engineer"
+            {...register("designation", {
+              required: true
+            })}
+          />
+
+          <Input
             label="Profile"
             placeholder="e.g. Operations"
             {...register("profile", {
