@@ -12,7 +12,7 @@ const jobSlice = createSlice({
             state.jobData = action.payload.jobs
         },
         readHisOwnJob: (state, action) => {
-
+            state.jobData = action.payload.data
         },
         readSingleJob: (state, action) => {
             state.jobData = action.payload.job;

@@ -5,6 +5,7 @@ import { asyncUploadProfileImage, asyncLogout as studentLogout } from '../../sto
 import { asyncLogout as employeeLogout } from '../../store/Actions/employeeActions'
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
+import { RxCross2 } from "react-icons/rx";
 
 const Header = () => {
 
@@ -30,17 +31,22 @@ const Header = () => {
         setDropdown(!dropdown)
     }
 
+    const backHandler = () => {
+        setIsProfileOpen(false)
+        setDropdown(false)
+    }
+
     const middleItems = [
         {
             name: "Home",
             path: "",
         },
         {
-            name: "Internships",
+            name: employe ? "Create Internship" : "Internships",
             path: "/internships",
         },
         {
-            name: "Jobs",
+            name: employe ? "Create Job" : "Jobs",
             path: "/jobs",
         }
     ]
@@ -68,14 +74,14 @@ const Header = () => {
         // }
     ]
 
-    const LogoutHandler = () => {
+    const LogoutHandler = async () => {
         if (isStudentAuth) {
-            dispatch(studentLogout())
+            await dispatch(studentLogout())
             setIsProfileOpen(false)
             setDropdown(false)
             navigate("/")
         } else if (isEmployeeAuth) {
-            dispatch(employeeLogout())
+            await dispatch(employeeLogout())
             setIsProfileOpen(false)
             setDropdown(false)
             navigate("/")
@@ -83,25 +89,29 @@ const Header = () => {
     }
 
     const handleProfileImageChange = (e) => {
-        const imageFile = e.target.files[0];
-        console.log(imageFile)
-        if (imageFile) {
-            if (student) {
-                const id = student._id
-                dispatch(asyncUploadProfileImage(id, imageFile))
-            }
-            else {
-                const id = employe._id
-            }
-        }
+        const formData = new FormData();
+        formData.set('avatar', e.target.files[0]);
+        console.log(formData)
+        dispatch(asyncUploadProfileImage(student._id,formData));
+        // const imageFile = e.target.files[0];
+        // console.log(imageFile)
+        // if (imageFile) {
+        //     if (student) {
+        //         const id = student._id
+        //         dispatch(asyncUploadProfileImage(id, imageFile))
+        //     }
+        //     else {
+        //         const id = employe._id
+        //     }
+        // }
     };
 
     return (
-        <header className='w-full px-20 py-5 mb-5 bg-white text-[#1F2937] font-semibold shadow-lg rounded-bl-2xl rounded-br-2xl'>
+        <header className='w-full px-20 py-5 mb-5 bg-white text-[#1F2937] font-semibold shadow-lg '>
             <nav className='w-full flex justify-start items-center relative'>
                 <div className='w-1/3'>
                     <NavLink to={authStatus ? (isStudentAuth ? "/student" : "/employee") : ""}>
-                         < img className='h-12' src="logo.jpg" alt="./logo.jpg" />
+                        < img className='h-12' src="logo.jpg" alt="./logo.jpg" />
                     </NavLink>
                 </div>
 
@@ -163,7 +173,9 @@ const Header = () => {
 
             {/*  profile options */}
             {authStatus && isProfileOpen ? (
-                <div className="w-full max-w-72 absolute top-18 right-20 bg-white p-4 rounded-lg shadow-lg">
+                <div className="w-full max-w-72 absolute top-5 right-5 bg-white p-4 rounded-lg shadow-lg">
+
+                    <RxCross2 onClick={backHandler} size={25} className='absolute right-5 top-5 cursor-pointer' />
 
                     <div className='w-full flex flex-col items-center border-b py-2 mb-4'>
                         <div className='h-12 w-12 rounded-full border-2 relative'>
@@ -186,15 +198,31 @@ const Header = () => {
                     <div className='w-full flex flex-col gap-3 font-normal px-2'>
 
                         {student ? <div className='w-full flex flex-col gap-3'>
-                            <Link to="/student" className='hover:text-blue-600'>Home</Link>
-                            <Link to="/student/application" className='hover:text-blue-600'>My Application</Link>
-                            <Link to="/student/bookmark" className='hover:text-blue-600'>My Bookmarks</Link>
-                            <Link to="/student/edit/resume" className='hover:text-blue-600'>Edit Resume</Link>
-                            <Link to="/student/edit/preference" className='hover:text-blue-600'>Edit Preferences</Link>
+                            <Link
+                                onClick={() => (
+                                    setIsProfileOpen(false),
+                                    setDropdown(false))}
+                                to="/student" className='hover:text-blue-600'>Home</Link>
+                            <Link onClick={() => (
+                                setIsProfileOpen(false),
+                                setDropdown(false))} to="/student/application" className='hover:text-blue-600'>My Application</Link>
+                            <Link onClick={() => (
+                                setIsProfileOpen(false),
+                                setDropdown(false))} to="/student/bookmark" className='hover:text-blue-600'>My Bookmarks</Link>
+                            <Link onClick={() => (
+                                setIsProfileOpen(false),
+                                setDropdown(false))} to="/student/resume" className='hover:text-blue-600'>Edit Resume</Link>
+                            <Link onClick={() => (
+                                setIsProfileOpen(false),
+                                setDropdown(false))} to="/student/edit/preference" className='hover:text-blue-600'>Edit Preferences</Link>
                         </div>
                             : <div className='w-full flex flex-col gap-3'>
-                                <Link to="/employee" className='hover:text-blue-600'>Home</Link>
-                                <Link to="/employee/application" className='hover:text-blue-600'>My Application</Link>
+                                <Link onClick={() => (
+                                    setIsProfileOpen(false),
+                                    setDropdown(false))} to="/employee" className='hover:text-blue-600'>Home</Link>
+                                <Link onClick={() => (
+                                    setIsProfileOpen(false),
+                                    setDropdown(false))} to="/employee/application" className='hover:text-blue-600'>My Application</Link>
                             </div>}
 
                         <div className='w-full'>
@@ -206,8 +234,8 @@ const Header = () => {
                             </button>
                             {dropdown && (
                                 <div className='w-5/6 ml-auto flex flex-col gap-3'>
-                                    <Link to={isStudentAuth ? "/student/reset-password" : "/employee/reset-password"} className='hover:text-blue-600'>Change Password</Link>
-                                    <Link to={isStudentAuth ? "/student/forget-password" : "/employee/forget-password"} className='hover:text-blue-600'>Forget Password</Link>
+                                    <Link onClick={() => setIsProfileOpen(false)} to={isStudentAuth ? "/student/reset-password" : "/employee/reset-password"} className='hover:text-blue-600'>Change Password</Link>
+                                    <Link onClick={() => setIsProfileOpen(false)} to={isStudentAuth ? "/student/forget-password" : "/employee/forget-password"} className='hover:text-blue-600'>Forget Password</Link>
                                     <Link onClick={LogoutHandler} className='hover:text-blue-600'>Logout</Link>
                                 </div>
                             )}

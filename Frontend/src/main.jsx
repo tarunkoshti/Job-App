@@ -15,6 +15,7 @@ import EmployeeHome from './Pages/Employee/EmployeeHome.jsx'
 import AllInternship from './Pages/Internship/AllInternship.jsx'
 import AllJob from './Pages/Job/AllJob.jsx'
 import Application from './Pages/Student/Application.jsx'
+import Bookmark from './Pages/Student/Bookmark.jsx'
 import Singlejob from './Pages/Student/Singlejob.jsx'
 import AuthLayout from './Components/AuthLayout.jsx'
 import Singleinternship from './Pages/Student/Singleinternship.jsx'
@@ -23,6 +24,17 @@ import ForgetLink from './Pages/ForgetLink.jsx'
 import Reset from './Pages/Reset.jsx'
 import CreateInternship from './Pages/Internship/CreateInternship.jsx'
 import CreateJob from './Pages/Job/CreateJob.jsx'
+import Resume from './Pages/Student/Resume/Resume.jsx'
+import PersonalDetails from './Pages/Student/Resume/PersonalDetails.jsx'
+import AddEducation from './Pages/Student/Resume/AddEducation.jsx'
+import AddJob from './Pages/Student/Resume/AddJob.jsx'
+import AddInternship from './Pages/Student/Resume/AddInternship.jsx'
+import AddResponsibility from './Pages/Student/Resume/AddResponsibility.jsx'
+import AddTrainingAndCourses from './Pages/Student/Resume/AddTrainingAndCourses.jsx'
+import AddProject from './Pages/Student/Resume/AddProject.jsx'
+import AddSkill from './Pages/Student/Resume/AddSkill.jsx'
+import AddProtfolioOrWork from './Pages/Student/Resume/AddProtfolioOrWork.jsx'
+import AddAccomplishment from './Pages/Student/Resume/AddAccomplishment.jsx'
 
 
 const router = createBrowserRouter([
@@ -91,10 +103,10 @@ const router = createBrowserRouter([
             path: "internship/singleintership/:id",
             element: (
               <AuthLayout authentication={true}>
-               <Singleinternship />
+                <Singleinternship />
               </AuthLayout>
             ),
-             
+
           },
           {
             path: "application",
@@ -103,6 +115,104 @@ const router = createBrowserRouter([
                 <Application />
               </AuthLayout>
             ),
+          },
+          {
+            path: "bookmark",
+            element: (
+              <AuthLayout authentication={true}>
+                <Bookmark />
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "resume",
+            element: (
+              <AuthLayout authentication={true}>
+                <Resume />
+              </AuthLayout>
+            ),
+            children: [
+              {
+                path: "edit/personal_details",
+                element:(
+                  <AuthLayout authentication={true}>
+                    <PersonalDetails />
+                  </AuthLayout>
+                )
+              },
+              {
+                path: "add/education",
+                element:(
+                  <AuthLayout authentication={true}>
+                    <AddEducation />
+                  </AuthLayout>
+                )
+              },
+              {
+                path: "add/job",
+                element:(
+                  <AuthLayout authentication={true}>
+                    <AddJob />
+                  </AuthLayout>
+                )
+              },
+              {
+                path: "add/internship",
+                element:(
+                  <AuthLayout authentication={true}>
+                    <AddInternship />
+                  </AuthLayout>
+                )
+              },
+              {
+                path: "add/responsibility",
+                element:(
+                  <AuthLayout authentication={true}>
+                    <AddResponsibility />
+                  </AuthLayout>
+                )
+              },
+              {
+                path: "add/training_courses",
+                element:(
+                  <AuthLayout authentication={true}>
+                    <AddTrainingAndCourses />
+                  </AuthLayout>
+                )
+              },
+              {
+                path: "add/project",
+                element:(
+                  <AuthLayout authentication={true}>
+                    <AddProject />
+                  </AuthLayout>
+                )
+              },
+              {
+                path: "add/skill",
+                element:(
+                  <AuthLayout authentication={true}>
+                    <AddSkill />
+                  </AuthLayout>
+                )
+              },
+              {
+                path: "add/portfolio_work",
+                element:(
+                  <AuthLayout authentication={true}>
+                    <AddProtfolioOrWork />
+                  </AuthLayout>
+                )
+              },
+              {
+                path: "add/accomplishment",
+                element:(
+                  <AuthLayout authentication={true}>
+                    <AddAccomplishment />
+                  </AuthLayout>
+                )
+              }
+            ]
           },
           {
             path: "forget-password",

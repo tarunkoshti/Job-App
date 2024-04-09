@@ -29,7 +29,7 @@ const App = () => {
 
   useEffect(() => {
     if (studentAuth) {
-      console.log(studentAuth)
+      // console.log(studentAuth)
       navigate("/student")
     }
     else if (employeeAuth) {

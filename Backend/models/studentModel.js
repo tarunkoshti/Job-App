@@ -3,7 +3,14 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 const studentModel = new mongoose.Schema({
-
+   bookmarkinternship: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "internship"
+    }],
+    bookmarkjob: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "job"
+    }],
     firstname: {
         type: String,
         required: [true, "First name is required"],
@@ -62,6 +69,7 @@ const studentModel = new mongoose.Schema({
         courses: [],
         projects: [],
         skills: [],
+        worksamples:[],
         accomplishments: [],
     },
     internships: [

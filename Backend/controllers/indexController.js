@@ -101,7 +101,6 @@ exports.studentupdate = catchAsyncErrors(async function(req, res, next){
 });
 
 exports.studentavatar = catchAsyncErrors(async function(req, res, next){
-console.log("hello")
     const student = await Student.findById(req.params.id).exec();
     const file = req.files.avatar;
     const modifiedFileName = `resumebuilder-${Date.now()}${path.extname(file.name)}`
@@ -185,8 +184,43 @@ exports.readinternship = catchAsyncErrors(async function (req, res, next) {
     })
 });
 
+// Apply read all job
+
+exports.readjob = catchAsyncErrors(async function (req, res, next) {
+    const { jobs } = await Student.findById(req.id).populate("jobs").exec();
+    res.status(200).json({
+        success: true,
+        jobs
+    })
+});
 
 
+// bookmark internship.................
+exports.bookmarkinternship = catchAsyncErrors(async function(req,res,next){
+    const student = await Student.findById(req.id).exec();
+    const internship = await Internship.findById(req.params.internshipid).exec()
+
+    student.bookmarkinternship.push(internship._id);
+    // internship.students.push(student._id);
+
+    await student.save();
+    // await internship.save();
+
+    res.json({ student, internship })
+})
+// bookmark job.................
+exports.bookmarkjob = catchAsyncErrors(async function(req,res,next){
+    const student = await Student.findById(req.id).exec();
+    const job = await Job.findById(req.params.jobid).exec()
+
+    student.bookmarkjob.push(job._id);
+    // internship.students.push(student._id);
+
+    await student.save();
+    // await internship.save();
+
+    res.json({ student, job })
+})
 // exports.readsingleinternship = catchAsyncErrors(async function (req, res, next) {
 //     const internship = await Internship.findById(req.params.id).exec();
 //     res.status(200).json({
