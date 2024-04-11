@@ -136,7 +136,7 @@ const router = createBrowserRouter([
             children: [
               {
                 path: "edit/personal_details",
-                element:(
+                element: (
                   <AuthLayout authentication={true}>
                     <PersonalDetails />
                   </AuthLayout>
@@ -144,73 +144,145 @@ const router = createBrowserRouter([
               },
               {
                 path: "add/education",
-                element:(
+                element: (
                   <AuthLayout authentication={true}>
                     <AddEducation />
                   </AuthLayout>
                 )
               },
               {
+                path: "edit/education/:id",
+                element: (
+                  <AuthLayout authentication={true}>
+                    <AddEducation edit={true} />
+                  </AuthLayout>
+                )
+              },
+              {
                 path: "add/job",
-                element:(
+                element: (
                   <AuthLayout authentication={true}>
                     <AddJob />
                   </AuthLayout>
                 )
               },
               {
+                path: "edit/job/:id",
+                element: (
+                  <AuthLayout authentication={true}>
+                    <AddJob edit={true} />
+                  </AuthLayout>
+                )
+              },
+              {
                 path: "add/internship",
-                element:(
+                element: (
                   <AuthLayout authentication={true}>
                     <AddInternship />
                   </AuthLayout>
                 )
               },
               {
+                path: "edit/internship/:id",
+                element: (
+                  <AuthLayout authentication={true}>
+                    <AddInternship edit={true} />
+                  </AuthLayout>
+                )
+              },
+              {
                 path: "add/responsibility",
-                element:(
+                element: (
                   <AuthLayout authentication={true}>
                     <AddResponsibility />
                   </AuthLayout>
                 )
               },
               {
+                path: "edit/responsibility/:id",
+                element: (
+                  <AuthLayout authentication={true}>
+                    <AddResponsibility edit={true} />
+                  </AuthLayout>
+                )
+              },
+              {
                 path: "add/training_courses",
-                element:(
+                element: (
                   <AuthLayout authentication={true}>
                     <AddTrainingAndCourses />
                   </AuthLayout>
                 )
               },
               {
+                path: "edit/training_courses/:id",
+                element: (
+                  <AuthLayout authentication={true}>
+                    <AddTrainingAndCourses edit={true} />
+                  </AuthLayout>
+                )
+              },
+              {
                 path: "add/project",
-                element:(
+                element: (
                   <AuthLayout authentication={true}>
                     <AddProject />
                   </AuthLayout>
                 )
               },
               {
+                path: "edit/project/:id",
+                element: (
+                  <AuthLayout authentication={true}>
+                    <AddProject edit={true} />
+                  </AuthLayout>
+                )
+              },
+              {
                 path: "add/skill",
-                element:(
+                element: (
                   <AuthLayout authentication={true}>
                     <AddSkill />
                   </AuthLayout>
                 )
               },
               {
+                path: "edit/skill/:id",
+                element: (
+                  <AuthLayout authentication={true}>
+                    <AddSkill edit={true} />
+                  </AuthLayout>
+                )
+              },
+              {
                 path: "add/portfolio_work",
-                element:(
+                element: (
                   <AuthLayout authentication={true}>
                     <AddProtfolioOrWork />
                   </AuthLayout>
                 )
               },
               {
+                path: "edit/portfolio_work/:id",
+                element: (
+                  <AuthLayout authentication={true}>
+                    <AddProtfolioOrWork edit={true} />
+                  </AuthLayout>
+                )
+              },
+              {
                 path: "add/accomplishment",
-                element:(
+                element: (
                   <AuthLayout authentication={true}>
                     <AddAccomplishment />
+                  </AuthLayout>
+                )
+              },
+              {
+                path: "edit/accomplishment/:id",
+                element: (
+                  <AuthLayout authentication={true}>
+                    <AddAccomplishment edit={true} />
                   </AuthLayout>
                 )
               }
@@ -260,7 +332,7 @@ const router = createBrowserRouter([
             path: "application",
             element: (
               <AuthLayout authentication={true}>
-                <EmployeeApplication/>
+                <EmployeeApplication />
               </AuthLayout>
             ),
           },
@@ -268,7 +340,7 @@ const router = createBrowserRouter([
             path: "application/applicants/:id",
             element: (
               <AuthLayout authentication={true}>
-               <ApplicantsDetails/>
+                <ApplicantsDetails />
               </AuthLayout>
             ),
           },

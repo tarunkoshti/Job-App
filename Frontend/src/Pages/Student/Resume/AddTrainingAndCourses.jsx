@@ -3,15 +3,17 @@ import Input from '../../../Components/Input'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Button from '../../../Components/Button'
-import { addInternship, addJob, addTrainingCourse } from '../../../store/Actions/userActions'
-import { Link, useNavigate } from 'react-router-dom'
+import { addInternship, addJob, addTrainingCourse, editTrainingCourse } from '../../../store/Actions/userActions'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
 
 
-const AddTrainingAndCourses = () => {
+const AddTrainingAndCourses = ({ edit = false }) => {
 
   const student = useSelector((state) => state.userReducer.userData?.student)
   // console.log(student)
+  const { id } = useParams()
+
   let [currlength, setCurrlength] = useState(0)
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -20,7 +22,8 @@ const AddTrainingAndCourses = () => {
 
   const submit = async (data) => {
     if (currlength <= 500) {
-      await dispatch(addTrainingCourse(student._id, data))
+      edit ? await dispatch(editTrainingCourse(id, data))
+        : await dispatch(addTrainingCourse(student._id, data))
       navigate("/student/resume")
     }
   }
@@ -39,6 +42,9 @@ const AddTrainingAndCourses = () => {
 
   }, [watch]);
 
+  const arr = student?.resume?.courses.filter(item => item.id === id)
+  const course = arr[0];
+
   return (
     < div className='w-full h-screen absolute top-[0]' >
       <div className='w-full h-[213%] overlay bg-black opacity-50'></div>
@@ -51,6 +57,7 @@ const AddTrainingAndCourses = () => {
           <h1 className='text-center text-xl font-semibold'>Training details</h1>
 
           <Input
+            defaultValue={edit ? (course?.training || '') : ''}
             label="Training program"
             placeholder="e.g. Analytics"
             {...register("training", {
@@ -58,6 +65,7 @@ const AddTrainingAndCourses = () => {
             })}
           />
           <Input
+            defaultValue={edit ? (course?.organization || '') : ''}
             label="Organization"
             placeholder="e.g. Career Training"
             {...register("organization", {
@@ -65,6 +73,7 @@ const AddTrainingAndCourses = () => {
             })}
           />
           <Input
+            defaultValue={edit ? (course?.Location || '') : ''}
             label="Location"
             placeholder="e.g. Mumbai"
             {...register("Location", {
@@ -74,6 +83,7 @@ const AddTrainingAndCourses = () => {
           <div className='w-full flex gap-2'>
 
             <Input
+              defaultValue={edit ? (course?.startDate || '') : ''}
               type="date"
               label="Start date"
               placeholder="Choose date"
@@ -81,6 +91,7 @@ const AddTrainingAndCourses = () => {
               })}
             />
             <Input
+              defaultValue={edit ? (course?.endDate || '') : ''}
               type="date"
               label="End date"
               placeholder="Choose date"
@@ -94,6 +105,7 @@ const AddTrainingAndCourses = () => {
 
             <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
               <input
+                defaultChecked={edit ? (course?.workType || '') : ''}
                 type="checkbox"
                 {...register("workType", {
                 })}
@@ -103,6 +115,7 @@ const AddTrainingAndCourses = () => {
 
             <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
               <input
+                defaultChecked={edit ? (course?.currentWorking || '') : ''}
                 type="checkbox"
                 {...register("currentWorking", {
                 })}
@@ -116,6 +129,7 @@ const AddTrainingAndCourses = () => {
             <span>Description (Optional)</span>
             {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
             <textarea
+              defaultValue={edit ? (course?.description || '') : ''}
               name="description"
               className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
               id='des'

@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Button from '../../../Components/Button'
-import { addAccomplishment } from '../../../store/Actions/userActions'
-import { useNavigate } from 'react-router-dom'
+import { addAccomplishment, editAccomplishment } from '../../../store/Actions/userActions'
+import { useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
 
 
 
-const AddAccomplishment = () => {
+const AddAccomplishment = ({ edit = false }) => {
 
   const student = useSelector((state) => state.userReducer.userData?.student)
   // console.log(student)
+  const { id } = useParams()
+
   let [currlength, setCurrlength] = useState(0)
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -20,7 +22,8 @@ const AddAccomplishment = () => {
 
   const submit = async (data) => {
     if (currlength <= 250) {
-      await dispatch(addAccomplishment(student._id, data))
+      edit ? await dispatch(editAccomplishment(id, data))
+        : await dispatch(addAccomplishment(student._id, data))
       navigate("/student/resume")
     }
   }
@@ -39,6 +42,9 @@ const AddAccomplishment = () => {
 
   }, [watch]);
 
+  const arr = student?.resume?.accomplishments.filter(item => item.id === id)
+  const accomplishment = arr[0];
+
   return (
     < div className='w-full h-screen absolute top-[0]' >
       <div className='w-full h-[213%] overlay bg-black opacity-50'></div>
@@ -56,6 +62,7 @@ const AddAccomplishment = () => {
             <p className='text-sm mb-1 font-semibold text-gray-700'>Add your accomplishments such as rewards, recognitions, test scores, certifications, etc. here. You may also add information such as seminars/workshops you have attended or any interests/hobbies you have pursued.</p>
             {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
             <textarea
+              defaultValue={edit ? (accomplishment?.description || '') : ''}
               name="description"
               className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
               id='des'

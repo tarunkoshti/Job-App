@@ -219,13 +219,20 @@ exports.addwork = catchAsyncErrors(async function (req, res, next) {
     // const work = student.resume.worksamples[0];
     const work = req.body;
     const keys = Object.keys(work);
-    keys.forEach((key) => {
-       
-        if (work[key] != '' && work[key] != 'na' && work[key] != 'NA' && work[key] != 'Na') {
-            work[key] = { id: uuidv4(), value: work[key] }
-            student.resume.worksamples.push(work[key])
+
+    keys.forEach((k) => {
+console.log(k)
+        if (work[k] != '' && work[k] != 'na' && work[k] != 'NA' && work[k] != 'Na') {
+            work[k] = { id: uuidv4(), value: work[k], key : k }
+            student.resume.worksamples.map((item) => {
+                if (item.key === k) {
+                    student.resume.worksamples.pop()
+                    // item = { ...work[k] }
+                }
+                    student.resume.worksamples.push(work[k])
+            })
         }
-        
+
     });
 
     await student.save()
