@@ -22,37 +22,46 @@ import { FaBookmark } from "react-icons/fa6";
 const Singleinternship = () => {
 
     const { id } = useParams()
-    
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const internships = useSelector((state) => state.internshipReducer.internshipData)
     const internship = internships?.filter(internship => internship._id === id)
     const studentId = useSelector((state) => state.userReducer.userData?.student)
+    console.log(studentId)
     const internship_arr = studentId?.bookmarkinternship
     console.log(internship_arr)
     const [bookmarkbtn, setBookmarkbtn] = useState(false);
-  
 
-    const i = internship_arr?.filter((internId)=>internId==id)
-
+    const a = studentId?.internships?.filter((internid) => internid == id)
+    console.log(a)
+    const i = internship_arr?.filter((internId) => internId == id)
+    useEffect(() => {
+        console.log("apply")
+        a[0]&&setApplyBtn(true);
+    })
     useEffect(() => {
         console.log("hello")
         i[0] && setBookmarkbtn(true)
-    },[id,bookmarkbtn])
-    
+    }, [id, bookmarkbtn])
+
+
+    const [applyBtn, setApplyBtn] = useState(false);
     const applyHandler = async () => {
-        await dispatch(applyinternship(id));
-        navigate("/student")
+        if (applyBtn == false) {
+            await dispatch(applyinternship(id));
+            setApplyBtn(true);
+            navigate("/student")
+        }
     }
-    
+
     const bookmarkHandler = async () => {
-        if(bookmarkbtn==false)
-    {
-        await dispatch(bookmarkinternship(id));
-        // navigate("/student")
-        setBookmarkbtn(true)
+        if (bookmarkbtn == false) {
+            await dispatch(bookmarkinternship(id));
+            // navigate("/student")
+            setBookmarkbtn(true)
+        }
     }
-}
 
     const disbookmarkHandler = async () => {
         await dispatch(disbookmarkinternship(id));
@@ -77,7 +86,7 @@ const Singleinternship = () => {
                         </div>
                         <div className='py-2 mt=4 px-10'>
                             <button >
-                                {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={26} /> :<CiBookmark onClick={bookmarkHandler}/> }
+                                {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={26} /> : <CiBookmark onClick={bookmarkHandler} />}
                             </button></div>
 
                     </div>

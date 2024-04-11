@@ -37,6 +37,7 @@ import AddProject from './Pages/Student/Resume/AddProject.jsx'
 import AddSkill from './Pages/Student/Resume/AddSkill.jsx'
 import AddProtfolioOrWork from './Pages/Student/Resume/AddProtfolioOrWork.jsx'
 import AddAccomplishment from './Pages/Student/Resume/AddAccomplishment.jsx'
+import ResumeTemp from './Pages/Employee/ResumeTemp.jsx'
 
 
 const router = createBrowserRouter([
@@ -269,6 +270,14 @@ const router = createBrowserRouter([
             element: (
               <AuthLayout authentication={true}>
                <ApplicantsDetails/>
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "applicants/resume/:id",
+            element: (
+              <AuthLayout authentication={true}>
+               <ResumeTemp/>
               </AuthLayout>
             ),
           },
