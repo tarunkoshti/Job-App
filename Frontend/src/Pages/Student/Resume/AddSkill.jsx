@@ -3,23 +3,28 @@ import Input from '../../../Components/Input'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Button from '../../../Components/Button'
-import { addSkill } from '../../../store/Actions/userActions'
-import { useNavigate } from 'react-router-dom'
+import { addSkill, editSkill } from '../../../store/Actions/userActions'
+import { useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
 
-const AddSkill = () => {
+const AddSkill = ({ edit = false }) => {
 
   const student = useSelector((state) => state.userReducer.userData?.student)
   // console.log(student)
+  const { id } = useParams()
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
   const submit = async (data) => {
-      await dispatch(addSkill(student._id, data))
+    edit ? await dispatch(editSkill(id, data))
+      : await dispatch(addSkill(student._id, data))
       navigate("/student/resume")
   }
+
+  const arr = student?.resume?.skills.filter(item => item.id === id)
+  const skill = arr[0];
 
   const backHandler = () => {
     navigate(-1)
@@ -37,6 +42,7 @@ const AddSkill = () => {
           <h1 className='text-center text-xl font-semibold'>Skills</h1>
 
           <Input
+            defaultValue={edit ? (skill?.skill || '') : ''}
             label="Add skills"
             placeholder="e.g. Adobe Photoshop"
             {...register("skill", {

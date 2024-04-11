@@ -18,16 +18,16 @@ exports.resume = catchAsyncErrors(async function (req, res, next) {
 exports.addeducation = catchAsyncErrors(async function (req, res, next) {
 
     const student = await Student.findById(req.id).exec();
-    student.resume.education.push({...req.body, id: uuidv4() });
+    student.resume.education.push({ ...req.body, id: uuidv4() });
     await student.save()
-    res.json({message: "Education added!"})
+    res.json({ message: "Education added!" })
 });
 
 exports.editeducation = catchAsyncErrors(async function (req, res, next) {
 
     const student = await Student.findById(req.id).exec();
     const eduIndex = student.resume.education.findIndex(i => i.id === req.params.eduid)
-    student.resume.education[eduIndex] = { ...student.resume.education[eduIndex], ...req.body,}
+    student.resume.education[eduIndex] = { ...student.resume.education[eduIndex], ...req.body, }
     await student.save()
     res.json({ message: "Education updated!" })
 });
@@ -127,7 +127,7 @@ exports.deleteresponsibility = catchAsyncErrors(async function (req, res, next) 
 
 // COURSES
 
-exports.addcourse  = catchAsyncErrors(async function (req, res, next) {
+exports.addcourse = catchAsyncErrors(async function (req, res, next) {
 
     const student = await Student.findById(req.id).exec();
     student.resume.courses.push({ ...req.body, id: uuidv4() });
@@ -214,8 +214,33 @@ exports.deleteskill = catchAsyncErrors(async function (req, res, next) {
 exports.addwork = catchAsyncErrors(async function (req, res, next) {
 
     const student = await Student.findById(req.id).exec();
-    student.resume.worksamples.push({ ...req.body, id: uuidv4() });
+    // student.resume.worksamples.push({ ...req.body, id: uuidv4() });
+    // await student.save()
+    // const work = student.resume.worksamples[0];
+    const work = req.body;
+    const keys = Object.keys(work);
+
+    keys.forEach((k) => {
+console.log(k)
+        if (work[k] != '' && work[k] != 'na' && work[k] != 'NA' && work[k] != 'Na') {
+            work[k] = { id: uuidv4(), value: work[k], key : k }
+            student.resume.worksamples.map((item) => {
+                if (item.key === k) {
+                    student.resume.worksamples.pop()
+                    // item = { ...work[k] }
+                }
+                    student.resume.worksamples.push(work[k])
+            })
+        }
+
+    });
+
     await student.save()
+    // student.resume.worksamples.push(work);
+    // Object.entries(work).map(([key, value]) => (
+
+    //     student.resume.worksamples[0] = { }
+    // ))
     res.json({ message: "Work Sample added!" })
 });
 
