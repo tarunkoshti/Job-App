@@ -288,6 +288,14 @@ const router = createBrowserRouter([
               }
             ]
           },
+          // {
+          //   path: "view/:id",
+          //   element: (
+          //     <AuthLayout authentication={true}>
+          //       <ResumeContent />
+          //     </AuthLayout>
+          //   )
+          // },
           {
             path: "forget-password",
             element: (

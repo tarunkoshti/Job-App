@@ -49,6 +49,9 @@ const Resume = () => {
                 <div className='w-full'>
                     <h1 className="text-center text-4xl font-semibold mt-6">Resume</h1>
 
+                    {/* view resume */}
+                    <Link to={`/student/view/${student._id}`} > view resume</Link>
+
                     <div className='w-[65%] m-auto mt-6'>
                         <div className='w-full text-center py-3 rounded-lg border border-orange-300'>Whenever you apply to an internship or fresher job, this is the resume that the employer will see. Always make sure it is up to date.
                         </div>

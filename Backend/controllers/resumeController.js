@@ -6,10 +6,23 @@ const { v4: uuidv4 } = require('uuid');
 
 exports.resume = catchAsyncErrors(async function (req, res, next) {
 
-    const { resume } = await Student.findById(req.id).exec();
+    const student = await Student.findById(req.params.studentid).exec();
+    
+    const details = {
+        firstname: student.firstname,
+        lastname: student.lastname,
+        email: student.email,
+        avatar: student.avatar,
+        city: student.city,
+        contact: student.contact,
+    }
+    
+    const { resume } = await Student.findById(req.params.studentid).exec();
+    const updatedResume = { ...resume, details };
+    console.log(updatedResume)
 
     res.json({
-        message: "secure resume page", resume
+        message: "secure resume page", updatedResume
     })
 });
 
