@@ -3,18 +3,20 @@ import Input from '../../../Components/Input'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Button from '../../../Components/Button'
-import { addInternship, addJob } from '../../../store/Actions/userActions'
-import { Link, useNavigate } from 'react-router-dom'
+import { addInternship, addJob, editInternship } from '../../../store/Actions/userActions'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa6";
 import Select from '../../../Components/Select'
 
 
 
-const AddInternship = () => {
+const AddInternship = ({ edit = false }) => {
 
     const student = useSelector((state) => state.userReducer.userData?.student)
     // console.log(student)
+    const { id } = useParams()
+
     let [currlength, setCurrlength] = useState(0)
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -23,7 +25,8 @@ const AddInternship = () => {
 
     const submit = async (data) => {
         if (currlength <= 250) {
-            await dispatch(addInternship(student._id, data))
+            edit ? await dispatch(editInternship(id, data))
+                : await dispatch(addInternship(student._id, data))
             navigate("/student/resume")
         }
     }
@@ -42,6 +45,10 @@ const AddInternship = () => {
 
     }, [watch]);
 
+    const arr = student?.resume?.internships.filter(item => item.id === id)
+    const internship = arr[0];
+    
+
     return (
         < div className='w-full h-screen absolute top-[0]' >
             <div className='w-full h-[213%] overlay bg-black opacity-50'></div>
@@ -54,6 +61,7 @@ const AddInternship = () => {
                     <h1 className='text-center text-xl font-semibold'>Internship details</h1>
 
                     <Input
+                        defaultValue={edit ? (internship?.profile || '') : ''}
                         label="Profile"
                         placeholder="e.g. Sales & Marketing"
                         {...register("profile", {
@@ -61,6 +69,7 @@ const AddInternship = () => {
                         })}
                     />
                     <Input
+                        defaultValue={edit ? (internship?.organization || '') : ''}
                         label="Organization"
                         placeholder="e.g. Career Race"
                         {...register("organization", {
@@ -68,6 +77,7 @@ const AddInternship = () => {
                         })}
                     />
                     <Input
+                        defaultValue={edit ? (internship?.Location || '') : ''}
                         label="Location"
                         placeholder="e.g. Mumbai"
                         {...register("Location", {
@@ -77,6 +87,7 @@ const AddInternship = () => {
                     <div className='w-full flex gap-2'>
 
                         <Input
+                            defaultValue={edit ? (internship?.startDate || '') : ''}
                             type="date"
                             label="Start date"
                             placeholder="Choose date"
@@ -84,6 +95,7 @@ const AddInternship = () => {
                             })}
                         />
                         <Input
+                            ddefaultValue={edit ? (internship?.endDate || '') : ''}
                             type="date"
                             label="End date"
                             placeholder="Choose date"
@@ -97,6 +109,7 @@ const AddInternship = () => {
 
                         <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
                             <input
+                                defaultChecked={edit ? (internship?.workType || '') : ''}
                                 type="checkbox"
                                 {...register("workType", {
                                 })}
@@ -106,6 +119,7 @@ const AddInternship = () => {
 
                         <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
                             <input
+                                defaultChecked={edit ? (internship?.currentWorking || '') : ''}
                                 type="checkbox"
                                 {...register("currentWorking", {
                                 })}
@@ -119,6 +133,7 @@ const AddInternship = () => {
                         <span>Description (Optional)</span>
                         {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
                         <textarea
+                            defaultValue={edit ? (internship?.description || '') : ''}
                             name="description"
                             className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
                             id='des'

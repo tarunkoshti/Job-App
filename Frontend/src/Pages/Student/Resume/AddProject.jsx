@@ -3,18 +3,20 @@ import Input from '../../../Components/Input'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Button from '../../../Components/Button'
-import { addProject } from '../../../store/Actions/userActions'
-import { Link, useNavigate } from 'react-router-dom'
+import { addProject, editProject } from '../../../store/Actions/userActions'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa6";
 import Select from '../../../Components/Select'
 
 
 
-const AddProject = () => {
+const AddProject = ({ edit = false }) => {
 
   const student = useSelector((state) => state.userReducer.userData?.student)
   // console.log(student)
+  const { id } = useParams()
+
   let [currlength, setCurrlength] = useState(0)
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -23,7 +25,8 @@ const AddProject = () => {
 
   const submit = async (data) => {
     if (currlength <= 1000) {
-      await dispatch(addProject(student._id, data))
+      edit ? await dispatch(editProject(id, data))
+        : await dispatch(addProject(student._id, data))
       navigate("/student/resume")
     }
   }
@@ -42,6 +45,9 @@ const AddProject = () => {
 
   }, [watch]);
 
+  const arr = student?.resume?.projects.filter(item => item.id === id)
+  const project = arr[0];
+
   return (
     < div className='w-full h-screen absolute top-[0]' >
       <div className='w-full h-[213%] overlay bg-black opacity-50'></div>
@@ -54,6 +60,7 @@ const AddProject = () => {
           <h1 className='text-center text-xl font-semibold'>Project details</h1>
 
           <Input
+            defaultValue={edit ? (project?.title || '') : ''}
             label="Title"
             placeholder="e.g. Job Seeker"
             {...register("title", {
@@ -64,6 +71,7 @@ const AddProject = () => {
           <div className='w-full flex gap-2'>
 
             <Input
+              defaultValue={edit ? (project?.startDate || '') : ''}
               type="date"
               label="Start date"
               placeholder="Choose date"
@@ -71,6 +79,7 @@ const AddProject = () => {
               })}
             />
             <Input
+              defaultValue={edit ? (project?.endDate || '') : ''}
               type="date"
               label="End date"
               placeholder="Choose date"
@@ -93,6 +102,7 @@ const AddProject = () => {
 
             <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
               <input
+                defaultChecked={edit ? (project?.currentWorking || '') : ''}
                 type="checkbox"
                 {...register("currentWorking", {
                 })}
@@ -106,6 +116,7 @@ const AddProject = () => {
             <span>Description (Optional)</span>
             {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
             <textarea
+              defaultValue={edit ? (project?.description || '') : ''}
               name="description"
               className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
               id='des'
@@ -123,6 +134,7 @@ const AddProject = () => {
 
           <div className='w-full'>
             <Input
+              defaultValue={edit ? (project?.projectLink || '') : ''}
               label="Project link (Optional)"
               placeholder="e.g. http://myprojectlink.com"
               {...register("projectLink", {

@@ -6,10 +6,23 @@ const { v4: uuidv4 } = require('uuid');
 
 exports.resume = catchAsyncErrors(async function (req, res, next) {
 
-    const { resume } = await Student.findById(req.id).exec();
+    const student = await Student.findById(req.params.studentid).exec();
+    
+    const details = {
+        firstname: student.firstname,
+        lastname: student.lastname,
+        email: student.email,
+        avatar: student.avatar,
+        city: student.city,
+        contact: student.contact,
+    }
+    
+    const { resume } = await Student.findById(req.params.studentid).exec();
+    const updatedResume = { ...resume, details };
+    console.log(updatedResume)
 
     res.json({
-        message: "secure resume page", resume
+        message: "secure resume page", updatedResume
     })
 });
 
@@ -18,16 +31,16 @@ exports.resume = catchAsyncErrors(async function (req, res, next) {
 exports.addeducation = catchAsyncErrors(async function (req, res, next) {
 
     const student = await Student.findById(req.id).exec();
-    student.resume.education.push({...req.body, id: uuidv4() });
+    student.resume.education.push({ ...req.body, id: uuidv4() });
     await student.save()
-    res.json({message: "Education added!"})
+    res.json({ message: "Education added!" })
 });
 
 exports.editeducation = catchAsyncErrors(async function (req, res, next) {
 
     const student = await Student.findById(req.id).exec();
     const eduIndex = student.resume.education.findIndex(i => i.id === req.params.eduid)
-    student.resume.education[eduIndex] = { ...student.resume.education[eduIndex], ...req.body,}
+    student.resume.education[eduIndex] = { ...student.resume.education[eduIndex], ...req.body, }
     await student.save()
     res.json({ message: "Education updated!" })
 });
@@ -127,7 +140,7 @@ exports.deleteresponsibility = catchAsyncErrors(async function (req, res, next) 
 
 // COURSES
 
-exports.addcourse  = catchAsyncErrors(async function (req, res, next) {
+exports.addcourse = catchAsyncErrors(async function (req, res, next) {
 
     const student = await Student.findById(req.id).exec();
     student.resume.courses.push({ ...req.body, id: uuidv4() });
@@ -214,8 +227,31 @@ exports.deleteskill = catchAsyncErrors(async function (req, res, next) {
 exports.addwork = catchAsyncErrors(async function (req, res, next) {
 
     const student = await Student.findById(req.id).exec();
-    student.resume.worksamples.push({ ...req.body, id: uuidv4() });
+    // student.resume.worksamples.push({ ...req.body, id: uuidv4() });
+    // await student.save()
+    // const work = student.resume.worksamples[0];
+    const work = req.body;
+    const keys = Object.keys(work);
+
+    keys.forEach((k) => {
+        console.log(k)
+        if (work[k] != '' && work[k] != 'na' && work[k] != 'NA' && work[k] != 'Na') {
+            work[k] = { id: uuidv4(), value: work[k], key: k }
+            const indexToRemove = student.resume.worksamples.findIndex(item => item.key === k);
+            if (indexToRemove !== -1) {
+                student.resume.worksamples.splice(indexToRemove, 1);
+            }
+            student.resume.worksamples.push(work[k])
+        }
+
+    });
+
     await student.save()
+    // student.resume.worksamples.push(work);
+    // Object.entries(work).map(([key, value]) => (
+
+    //     student.resume.worksamples[0] = { }
+    // ))
     res.json({ message: "Work Sample added!" })
 });
 

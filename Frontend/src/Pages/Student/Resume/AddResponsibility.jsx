@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Button from '../../../Components/Button'
-import { addResponsibility } from '../../../store/Actions/userActions'
-import { useNavigate } from 'react-router-dom'
+import { addResponsibility, editResponsibility } from '../../../store/Actions/userActions'
+import { useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
 
 
 
-const AddResponsibility = () => {
+const AddResponsibility = ({ edit = false }) => {
 
   const student = useSelector((state) => state.userReducer.userData?.student)
   // console.log(student)
+  const { id } = useParams()
+
   let [currlength, setCurrlength] = useState(0)
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -20,7 +22,8 @@ const AddResponsibility = () => {
 
   const submit = async (data) => {
     if (currlength <= 250) {
-      await dispatch(addResponsibility(student._id, data))
+      edit ? await dispatch(editResponsibility(id, data))
+        : await dispatch(addResponsibility(student._id, data))
       navigate("/student/resume")
     }
   }
@@ -39,6 +42,9 @@ const AddResponsibility = () => {
 
   }, [watch]);
 
+  const arr = student?.resume?.responsibilities.filter(item => item.id === id)
+  const responsibility = arr[0];
+
   return (
     < div className='w-full h-screen absolute top-[0]' >
       <div className='w-full h-[213%] overlay bg-black opacity-50'></div>
@@ -56,6 +62,7 @@ const AddResponsibility = () => {
             <p className='text-sm mb-1 text-gray-400'>If you have been/are an active part of societies, conducted any events or led a team, add details here</p>
             {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
             <textarea
+              defaultValue={edit ? (responsibility?.description || '') : ''}
               name="description"
               className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
               id='des'
