@@ -37,9 +37,6 @@ import AddProject from './Pages/Student/Resume/AddProject.jsx'
 import AddSkill from './Pages/Student/Resume/AddSkill.jsx'
 import AddProtfolioOrWork from './Pages/Student/Resume/AddProtfolioOrWork.jsx'
 import AddAccomplishment from './Pages/Student/Resume/AddAccomplishment.jsx'
-import MyDocument from './Pages/ResumeDocument/MyDocument.jsx'
-import { PDFViewer } from '@react-pdf/renderer'
-import ViewResume from './Pages/ResumeDocument/ViewResume.jsx'
 import ResumeTemp from './Pages/Employee/ResumeTemp.jsx'
 
 
@@ -291,14 +288,6 @@ const router = createBrowserRouter([
                 )
               }
             ]
-          },
-          {
-            path: "view/:id",
-            element: (
-              <AuthLayout authentication={true}>
-                  <ViewResume />
-              </AuthLayout>
-            )
           },
           {
             path: "forget-password",
