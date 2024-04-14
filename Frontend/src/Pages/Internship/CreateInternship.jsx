@@ -302,19 +302,6 @@ const CreateInternship = () => {
                                     />
                                 </div>
 
-                                {/* Assessments */}
-                                <div className="w-full md:max-w-lg mt-1">
-                                    <label htmlFor="assessments" className="block mb-2">Assessments:</label>
-                                    <textarea
-                                        id="assessments"
-                                        name="assessments"
-                                        className="w-full border rounded px-3 py-2 h-[110px] resize-none"
-                                        placeholder="Type your question here...."
-                                        {...register("assessments")}
-                                    />
-                                </div>
-
-
                                 {/* Applicants */}
                                 <div className="w-full md:max-w-lg mt-1">
                                     <Input
@@ -325,13 +312,25 @@ const CreateInternship = () => {
                                     />
                                 </div>
 
+                                {/* Assessments */}
+                                <div className="w-full md:max-w-lg mt-1">
+                                    <label htmlFor="assessments" className="block mb-2">Assessments:</label>
+                                    <textarea
+                                        id="assessments"
+                                        name="assessments"
+                                        className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
+                                        placeholder="Type your question here...."
+                                        {...register("assessments")}
+                                    />
+                                </div>
+
                                 {/* Description */}
                                 <div className="w-full md:max-w-lg mt-1">
                                         <label htmlFor="description" className="block mb-2">Description:</label>
                                         <textarea
                                             id="description"
                                             name="description"
-                                            className="w-full border rounded px-3 py-2 h-[110px] resize-none"
+                                            className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
                                             placeholder="e.g. Ensure an amazing demo experience for the child and parent..."
                                             {...register("description")}
                                         />
@@ -344,7 +343,7 @@ const CreateInternship = () => {
                                     <textarea
                                         id="qualifications"
                                         name="qualifications"
-                                        className="w-full border rounded px-3 py-2 h-[110px] resize-none"
+                                        className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Solid understanding of JavaScript, HTML, CSS, and related web technologies..."
                                         {...register("qualifications")}
                                     />
@@ -357,7 +356,7 @@ const CreateInternship = () => {
                                     <textarea
                                         id="workconditions"
                                         name="workconditions"
-                                        className="w-full border rounded px-3 py-2 h-[110px] resize-none"
+                                        className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Salary: 2-4 LPA"
                                         {...register("workconditions")}
                                     />
@@ -370,7 +369,7 @@ const CreateInternship = () => {
                                 <textarea
                                     id="companyDetail"
                                     name="companyDetail"
-                                    className="w-full border rounded px-3 py-2 h-[110px] resize-none"
+                                    className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
                                     placeholder="e.g. We're not just another digital agency, we're your dedicated dynamic world..."
                                     {...register("companyDetail")}
                                 />

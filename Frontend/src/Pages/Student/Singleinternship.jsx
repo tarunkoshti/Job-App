@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { internshipDetail } from '../../store/Actions/internshipActions';
+// import { internshipDetail } from '../../store/Actions/internshipActions';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { IoLocationSharp } from "react-icons/io5";
@@ -9,7 +9,7 @@ import { FaMoneyBill } from "react-icons/fa";
 import { IoBagCheck } from "react-icons/io5";
 import { IoMdPeople } from "react-icons/io";
 import { RxCountdownTimer } from "react-icons/rx";
-import { FaRegBookmark } from "react-icons/fa";
+import { FaBookmark } from "react-icons/fa";
 import { SiOnlyoffice } from "react-icons/si";
 import { IoCalendarNumber } from "react-icons/io5";
 import { MdMessage } from "react-icons/md";
@@ -18,7 +18,7 @@ import { applyinternship } from '../../store/Actions/userActions';
 import { bookmarkinternship } from '../../store/Actions/userActions';
 import { disbookmarkinternship } from '../../store/Actions/userActions';
 import { CiBookmark } from "react-icons/ci";
-<<<<<<< HEAD
+
 
 const Singleinternship = () => {
 
@@ -34,7 +34,6 @@ const Singleinternship = () => {
 
 
 
-    const internship = internships?.filter(internship => internship._id === id)
     const studentId = useSelector((state) => state.userReducer.userData?.student)
     const internship_arr = studentId?.bookmarkinternship
     console.log(internship_arr)
@@ -83,9 +82,9 @@ const Singleinternship = () => {
                             <FaArrowTrendUp size={14} />
                             <h6 class="text-xs">Actively hiring</h6>
                         </div>
-                        <div className='py-2 mt=4 px-10'>
+                        <div className='mt-4 px-10'>
                             <button >
-                                {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={26} /> :<CiBookmark onClick={bookmarkHandler}/> }
+                                {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={24} /> :<CiBookmark onClick={bookmarkHandler} size={24}/> }
                             </button></div>
 
                     </div>
@@ -245,9 +244,9 @@ const Singleinternship = () => {
 
                 {/* <!-- Assessments --> */}
                 {/* <div class="ml-10 mt-5">
-            <h1 class="font-semibold text-lg">Assessments :</h1>
-            <h3 class="ml-4 mt-1">{internship.assessments}</h3>
-        </div> */}
+                <h1 class="font-semibold text-lg">Assessments :</h1>
+                <h3 class="ml-4 mt-1">{internship.assessments}</h3>
+                </div> */}
 
                 {/* <!-- companyDetail --> */}
                 <div class="ml-10 mt-5">

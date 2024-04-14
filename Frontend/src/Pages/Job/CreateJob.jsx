@@ -192,7 +192,7 @@ const CreateJob = () => {
                               {/* Working-type-div */}
 
                             <div className="w-full md:max-w-lg mt-3">
-                                    <label className="block text-sm font-medium text-gray-700">Working Type</label>
+                                    <label className="block text-md">Working Type</label>
                                     <div className="mt-2 flex ml-5">
                                         <div className="mr-4 flex items-center">
                                             <input
@@ -222,7 +222,7 @@ const CreateJob = () => {
 
                                {/* Starting */}
                               <div className="w-full md:max-w-lg mt-3">
-                                <label className="block text-sm font-medium text-gray-700">Start</label>
+                                <label className="block text-md">Start</label>
                                 <div className="mt-2 flex">
                                     <div className="mr-4 flex items-center ml-5">
                                         <input
@@ -276,7 +276,7 @@ const CreateJob = () => {
                           <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
 
                               {/* Salary  */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-3">
                                   <Input
                                       label="Salary Amount (CTC)"
                                       placeholder="e.g. 10000"
@@ -286,7 +286,7 @@ const CreateJob = () => {
                               </div>
 
                               {/*Annual Salary  */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-3">
                                   <Input
                                       label="Annual Amount (CTC)"
                                       placeholder="e.g. 3,50000 /- Year"
@@ -296,7 +296,7 @@ const CreateJob = () => {
                               </div>
 
                               {/* Perks */}
-                                <div className="w-full md:max-w-lg mt-1">
+                                <div className="w-full md:max-w-lg mt-3">
                                     <label className="block mb-2">Perks:</label>
                                     <div className="flex flex-col ml-4">
                                         <div className="flex items-center">
@@ -370,7 +370,7 @@ const CreateJob = () => {
                           <div className="w-full mt-2  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
 
                               {/* Company */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-3">
                                   <Input
                                       label="Company Name"
                                       placeholder="e.g. Google"
@@ -380,7 +380,7 @@ const CreateJob = () => {
                               </div>
 
                               {/* Experience */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-3">
                                   <Input
                                       label="Experience"
                                       placeholder="e.g. 0-2 Years"
@@ -390,7 +390,7 @@ const CreateJob = () => {
                               </div>
 
                               {/* Location */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-3">
                                   <Input
                                       label="Location"
                                       placeholder="e.g. Indore"
@@ -400,7 +400,7 @@ const CreateJob = () => {
                               </div>
 
                               {/* Applicants */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-3">
                                   <Input
                                       label="Applicants"
                                       placeholder="e.g. 1250"
@@ -416,72 +416,72 @@ const CreateJob = () => {
                                         id="assessments"
                                         name="assessments"
                                         rows="4"
-                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-md px-2 py-2 h-[110px] resize-none"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                         placeholder="Type your question here......"
                                         {...register("assessments")}
                                     />
                                 </div>
 
                               {/*  preferences */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-4">
                                     <label htmlFor="preferences" className="block text-md">Preferences</label>
                                     <textarea
                                         id="preferences"
                                         name="preferences"
                                         rows="4"
-                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-md px-2 py-2 h-[110px] resize-none"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                         placeholder="e.g. I want to work for a Good company....."
                                         {...register("preferences")}
                                     />
                                 </div>
 
                               {/* Description */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-4">
                                 <label htmlFor="description" className="block text-md ">Description</label>
                                 <textarea
                                     id="description"
                                     name="description"
                                     rows="4"
-                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-md px-2 py-2 h-[110px] resize-none"
+                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                     placeholder="e.g. Ensure an amazing demo experience for the child and parent..."
                                     {...register("description")}
                                 />
                             </div>
 
                                {/* responsibilities */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-4">
                                 <label htmlFor="responsibilities" className="block text-md">Responsibilities</label>
                                 <textarea
                                     id="responsibilities"
                                     name="responsibilities"
                                     rows="4"
-                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-md px-2 py-2 h-[110px] resize-none"
+                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                     placeholder="e.g. Adhere to the schedule for the demo as well as regular classes..."
                                     {...register("responsibilities")}
                                 />
                             </div>
 
                               {/* Qualifications */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-4">
                                 <label htmlFor="qualifications" className="block text-md ">Qualifications</label>
                                 <textarea
                                     id="qualifications"
                                     name="qualifications"
                                     rows="4"
-                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-md px-2 py-2 h-[110px] resize-none"
+                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                     placeholder="e.g. Solid understanding of JavaScript, HTML, CSS, and related web technologies..."
                                     {...register("qualifications")}
                                 />
                             </div>
 
                               {/* Work conditions */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-4">
                                 <label htmlFor="workconditions" className="block text-md ">Work Conditions</label>
                                 <textarea
                                     id="workconditions"
                                     name="workconditions"
                                     rows="4"
-                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-md px-2 py-2 h-[110px] resize-none"
+                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                     placeholder="e.g. Salary: 2-4 LPA"
                                     {...register("workconditions")}
                                 />
@@ -489,13 +489,13 @@ const CreateJob = () => {
 
 
                               {/* Company Detail */}
-                              <div className="w-full md:max-w-lg mt-1">
+                              <div className="w-full md:max-w-lg mt-4">
                                 <label htmlFor="companyDetail" className="block text-md">Company Detail</label>
                                 <textarea
                                     id="companyDetail"
                                     name="companyDetail"
                                     rows="4"
-                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-md px-2 py-2 h-[110px] resize-none"
+                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                     placeholder="e.g. We're not just another digital agency, we're your dedicated dynamic world ...."
                                     {...register("companyDetail")}
                                 />
