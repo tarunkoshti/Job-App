@@ -92,7 +92,7 @@ const Header = () => {
         const formData = new FormData();
         formData.set('avatar', e.target.files[0]);
         console.log(formData)
-        dispatch(asyncUploadProfileImage(student._id,formData));
+        dispatch(asyncUploadProfileImage(student._id, formData));
         // const imageFile = e.target.files[0];
         // console.log(imageFile)
         // if (imageFile) {

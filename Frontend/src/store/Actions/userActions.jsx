@@ -126,6 +126,16 @@ export const bookmarkinternship = (id) => async (dispatch, getState) => {
     }
 }
 
+export const disbookmarkinternship = (id) => async (dispatch, getState) => {
+    try {
+        const {data} = await axios.post(`/api/user/student/disbookmark/internship/${id}`)
+        console.log(data)
+        dispatch(currentUser({data}))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const bookmarkjob = (id) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/user/student/bookmark/job/${id}`)

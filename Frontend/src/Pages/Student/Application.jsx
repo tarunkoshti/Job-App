@@ -9,9 +9,9 @@ const Application = () => {
   const dispatch = useDispatch()
 
   const internshipId = useSelector((state) => state.userReducer.userData?.student.internships)
-  // console.log(internshipId)
+
   const jobId = useSelector((state) => state.userReducer.userData?.student.jobs)
-  // console.log(jobId)
+
   const internships = useSelector((state) => state.internshipReducer.internshipData)
   // console.log(internships)
   const jobs = useSelector((state) => state.jobReducer.jobData)
@@ -68,7 +68,6 @@ const Application = () => {
                       </tbody>
                     </table>
                   </div>
-                </div>
 
                   {/* Job - Application */}
                 <div className=' mx-2 md:mx-20 rounded-lg overflow-x-auto border-2 border-zinc-300 mt-16'>
@@ -103,11 +102,11 @@ const Application = () => {
                       </tbody>
                     </table>
                   </div>
+
+                </div>
                 </div>
 
-              </>
-//           
-           
+              </>               
             )
 }
 

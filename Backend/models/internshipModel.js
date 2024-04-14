@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const internshipModel = new mongoose.Schema({
 
     students: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.Object,
         ref: "student"
     }],
     employe: {

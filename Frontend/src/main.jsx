@@ -12,6 +12,8 @@ import Student from './Components/Student.jsx'
 import Employee from './Components/Employee.jsx'
 import StudentHome from './Pages/Student/StudentHome.jsx'
 import EmployeeHome from './Pages/Employee/EmployeeHome.jsx'
+import EmployeeApplication from './Pages/Employee/EmployeeApplication.jsx'
+import ApplicantsDetails from './Pages/Employee/ApplicantsDetails.jsx'
 import AllInternship from './Pages/Internship/AllInternship.jsx'
 import AllJob from './Pages/Job/AllJob.jsx'
 import Application from './Pages/Student/Application.jsx'
@@ -251,6 +253,22 @@ const router = createBrowserRouter([
             element: (
               <AuthLayout authentication={false}>
                 <Login userType="employee" />
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "application",
+            element: (
+              <AuthLayout authentication={true}>
+                <EmployeeApplication/>
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "application/applicants/:id",
+            element: (
+              <AuthLayout authentication={true}>
+               <ApplicantsDetails/>
               </AuthLayout>
             ),
           },
