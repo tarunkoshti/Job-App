@@ -23,7 +23,7 @@ import { CiBookmark } from "react-icons/ci";
 const Singleinternship = () => {
 
     const { id } = useParams()
-    console.log(id)
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const internships = useSelector((state) => state.internshipReducer.internshipData)
@@ -33,33 +33,41 @@ const Singleinternship = () => {
     const internship = intern[0]
 
 
-
     const studentId = useSelector((state) => state.userReducer.userData?.student)
+    console.log(studentId)
     const internship_arr = studentId?.bookmarkinternship
     console.log(internship_arr)
     const [bookmarkbtn, setBookmarkbtn] = useState(false);
-  
 
-    const i = internship_arr?.filter((internId)=>internId==id)
-
+    const a = studentId?.internships?.filter((internid) => internid == id)
+    console.log(a)
+    const i = internship_arr?.filter((internId) => internId == id)
+    useEffect(() => {
+        console.log("apply")
+        a[0] && setApplyBtn(true);
+    })
     useEffect(() => {
         console.log("hello")
         i[0] && setBookmarkbtn(true)
-    },[id,bookmarkbtn])
-    
+    }, [id, bookmarkbtn])
+
+
+    const [applyBtn, setApplyBtn] = useState(false);
     const applyHandler = async () => {
-        await dispatch(applyinternship(id));
-        navigate("/student")
+        if (applyBtn == false) {
+            await dispatch(applyinternship(id));
+            setApplyBtn(true);
+            navigate("/student")
+        }
     }
-    
+
     const bookmarkHandler = async () => {
-        if(bookmarkbtn==false)
-    {
-        await dispatch(bookmarkinternship(id));
-        // navigate("/student")
-        setBookmarkbtn(true)
+        if (bookmarkbtn == false) {
+            await dispatch(bookmarkinternship(id));
+            // navigate("/student")
+            setBookmarkbtn(true)
+        }
     }
-}
 
     const disbookmarkHandler = async () => {
         await dispatch(disbookmarkinternship(id));
@@ -84,29 +92,29 @@ const Singleinternship = () => {
                         </div>
                         <div className='mt-4 px-10'>
                             <button >
-                                {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={24} /> :<CiBookmark onClick={bookmarkHandler} size={24}/> }
-                            </button></div>
+                                {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={24} /> : <CiBookmark onClick={bookmarkHandler} size={24} />}
+                            </button ></div >
 
-                    </div>
+                    </div >
 
                     {/* <!-- internship-profile --> */}
-                    <div class="mt-3">
+                    < div class="mt-3" >
                         <h1 class="text-lg ml-10 font-semibold">{internship.profile}</h1>
-                    </div>
+                    </div >
 
                     {/* <!-- company-name --> */}
-                    <div class="mt-1">
+                    < div class="mt-1" >
                         <h1 class="text-md ml-10 font-semibold text-zinc-600">{internship.company}</h1>
-                    </div>
+                    </div >
 
                     {/* <!-- location --> */}
-                    <div class="flex items-center ml-9 gap-1 mt-6">
+                    < div class="flex items-center ml-9 gap-1 mt-6" >
                         <IoLocationSharp size={15} />
                         <h1 class="text-md font-semibold">{internship.location}</h1>
-                    </div>
+                    </div >
 
                     {/* <!-- start, salary, experience, and opening number --> */}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ml-10 mt-8">
+                    < div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ml-10 mt-8" >
                         <div class="flex flex-col gap-1">
                             <div class="flex items-center gap-2">
                                 <FaRegCirclePlay class="w-6 h-6 sm:w-8 sm:h-8" />
@@ -135,7 +143,7 @@ const Singleinternship = () => {
                             </div>
                             <h1 class="ml-2 font-normal">{internship.internshiptype}</h1>
                         </div>
-                    </div>
+                    </div >
 
 
                     <div class="flex items-center gap-1 mt-6">
@@ -156,10 +164,10 @@ const Singleinternship = () => {
                         <IoMdPeople size={30} />
                         <h1 class="font-medium">{internship.applicants} applicants</h1>
                     </div>
-                </div>
+                </div >
 
                 {/* <!-- description --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <div>
                         <h1 class="font-semibold">About the internship</h1>
                         <h3 class="ml-2">{internship.description}</h3>
@@ -193,53 +201,53 @@ const Singleinternship = () => {
                             <p>3. Probation period: 4 months</p>
                         </p>
                     </div>
-                </div>
+                </div >
 
                 {/* <!-- skills --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Skill(s) required :</h1>
                     <h1 class="font-normal ml-4 mt-2 ">{internship.skills}</h1>
-                </div>
+                </div >
 
                 {/* <!-- Salary --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Stipend</h1>
                     <h3 class="ml-4 capitalize">Stipend: {internship.stipend?.status} </h3>
-                </div>
+                </div >
 
-                 {/* <!-- Joining--> */}
-                <div class="ml-10 mt-5">
+                {/* <!-- Joining--> */}
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Joining</h1>
                     <h3 class="ml-4 capitalize">{internship.startdate} </h3>
-                </div>
+                </div >
 
                 {/* <!-- Staring Date --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Duration Date</h1>
                     <h3 class="ml-4 ">{internship.from}   to   {internship.to}</h3>
-                </div>
+                </div >
 
                 {/* <!-- Openings --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Number of openings :</h1>
                     <h3 class="ml-4 mt-1">{internship.openings}</h3>
-                </div>
+                </div >
 
                 {/* <!-- Preferences --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Preferences :</h1>
                     <h3 class="ml-4 mt-1">{internship.preferences}</h3>
-                </div>
+                </div >
 
                 {/* <!-- Perks --> */}
-                <div className="ml-10 mt-5">
+                < div className="ml-10 mt-5" >
                     <h1 className="font-semibold text-lg">Perks:</h1>
                     <ul className="list-disc ml-10">
                         {internship.perks && internship.perks.map((item, index) => (
                             <li key={index}>{item}</li>
                         ))}
                     </ul>
-                </div>
+                </div >
 
 
                 {/* <!-- Assessments --> */}
@@ -254,7 +262,7 @@ const Singleinternship = () => {
                     <h3 class="ml-4 mt-1 w-full px-4">At {internship.companyDetail}, we're not just another digital agency, we're your dedicated allies in the dynamic world of marketing, community management, and website development. Our mission is simple - to provide our clients, ranging from small influencers and startups to industry-leading enterprises, with an unparalleled ease-of-work experience.</h3>
                 </div>
 
-                 {/* <!-- Contect Number --> */}
+                {/* <!-- Contect Number --> */}
                 <div class="ml-10 mt-5">
                     <h1 class="font-semibold text-lg">Contect Number :</h1>
                     <h3 class="ml-4 mt-1">{internship.contact}</h3>
@@ -278,14 +286,14 @@ const Singleinternship = () => {
                     </div>
                 </div>
 
-               
+
 
 
                 <div class="flex justify-center items-center mt-8 py-8">
                     <button onClick={applyHandler} class="px-8 py-2 bg-[#1F2937] text-white font-semibold rounded-lg">Apply Now</button>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
 
     )
 }

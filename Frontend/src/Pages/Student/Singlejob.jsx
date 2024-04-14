@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { jobDetail } from '../../store/Actions/jobActions';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
@@ -26,9 +26,29 @@ const Singlejob = () => {
     const j = jobs?.filter(job => job._id === id)
     const job = j[0]
 
+    const studentId = useSelector((state) => state.userReducer.userData?.student)
+    const job_arr = studentId?.bookmarkjob
+    const a = studentId?.jobs?.filter((jobid) => jobid == id)
+
+    const i = job_arr?.filter((jobId) => jobId == id)
+    const [bookmarkbtn, setBookmarkbtn] = useState(false);
+    const [applyBtn, setApplyBtn] = useState(false);
+
+    useEffect(() => {
+        console.log("apply")
+        a[0] && setApplyBtn(true);
+    })
+    useEffect(() => {
+        console.log("hello")
+        i[0] && setBookmarkbtn(true)
+    }, [id, bookmarkbtn])
+
+
     const applyHandler = async () => {
-        await dispatch(applyjob(id));
-        navigate("/student")
+        if (applyBtn == false) {
+            await dispatch(applyjob(id));
+            navigate("/student")
+        }
     }
 
 
@@ -37,9 +57,15 @@ const Singlejob = () => {
     // }, [dispatch]);
 
 
-    const bookmarkHandler = async()=>{
+    const bookmarkHandler = async () => {
         await dispatch(bookmarkjob(id))
         navigate("/student")
+    }
+
+    const disbookmarkHandler = async () => {
+        await dispatch(disbookmarkjob(id));
+        // navigate("/student")
+        setBookmarkbtn(false)
     }
     return (
 
@@ -50,10 +76,10 @@ const Singlejob = () => {
             <div className="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 rounded-lg">
 
                 <div class="border-b-2 border-zinc-200">
-                <div className='flex justify-between' >
+                    <div className='flex justify-between' >
                         <div class="flex items-center   w-fit gap-2 px-4 py-1 bg-[#1F2937] text-white rounded-md ml-10 mt-4">
-                        <FaArrowTrendUp size={14} />
-                        <h6 class="text-xs">Actively hiring</h6>
+                            <FaArrowTrendUp size={14} />
+                            <h6 class="text-xs">Actively hiring</h6>
                         </div>
                      <div className='py-2 mt=4 px-10'>
                          <button onClick={bookmarkHandler}><CiBookmark  size={26} /></button></div>   
@@ -105,68 +131,75 @@ const Singlejob = () => {
                                 <h1 class="text-sm sm:text-base tracking-wider font-semibold">JOB TYPE</h1>
                             </div>
                             <h1 class="ml-2 font-normal">{job.jobtype}</h1>
+
+                        <div className='py-2 mt=4 px-10'>
+                            <button >
+                                {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={26} /> : <CiBookmark onClick={bookmarkHandler} />}
+                            </button>
                         </div>
                     </div>
 
-
-                    <div class="flex items-center gap-1 mt-6">
-                        <div class="flex items-center gap-2 px-4 py-1 bg-[#1F2937] text-white rounded-md ml-10 mt-4">
-                            <RxCountdownTimer size={16} />
-                            <h6 class="text-xs">Posted 3 weeks ago</h6>
-                        </div>
-                        <div class=" px-4 py-1 bg-[#1F2937] text-white rounded-md ml-5 mt-4">
-                            <h6 class="text-xs">Job</h6>
-                        </div>
-                        <div class=" px-4 py-1 bg-[#1F2937] text-white rounded-md ml-5 mt-4">
-                            <h6 class="text-xs">Part time</h6>
-                        </div>
-                    </div>
-
-                    {/* <!-- Applicants --> */}
-                    <div class="flex items-center gap-2 mt-8 ml-10 mb-8">
-                        <IoMdPeople size={30} />
-                        <h1 class="font-medium">{job.applicants} applicants</h1>
-                    </div>
                 </div>
 
 
-                {/* <!-- description --> */}
-                <div class="ml-10 mt-5">
-                    <div>
-                        <h1 class="font-semibold">About the job</h1>
-                        <h3 class="ml-2">{job.description}</h3>
+                <div class="flex items-center gap-1 mt-6">
+                    <div class="flex items-center gap-2 px-4 py-1 bg-[#1F2937] text-white rounded-md ml-10 mt-4">
+                        <RxCountdownTimer size={16} />
+                        <h6 class="text-xs">Posted 3 weeks ago</h6>
                     </div>
-                    <div class="mt-2">
-                        <h1>Key responsibilities :</h1>
-                        <p class="ml-3 mt-2">{job.responsibilities}
-                            {/* <p>1. Conduct demo classes as per the PlanetSpark content and methodology</p>
+                    <div class=" px-4 py-1 bg-[#1F2937] text-white rounded-md ml-5 mt-4">
+                        <h6 class="text-xs">Job</h6>
+                    </div>
+                    <div class=" px-4 py-1 bg-[#1F2937] text-white rounded-md ml-5 mt-4">
+                        <h6 class="text-xs">Part time</h6>
+                    </div>
+                </div>
+
+                {/* <!-- Applicants --> */}
+                <div class="flex items-center gap-2 mt-8 ml-10 mb-8">
+                    <IoMdPeople size={30} />
+                    <h1 class="font-medium">{job.applicants}applicants</h1>
+                </div>
+            </div>
+
+
+            {/* <!-- description --> */}
+            <div class="ml-10 mt-5">
+                <div>
+                    <h1 class="font-semibold">About the job</h1>
+                    <h3 class="ml-2">{job.description}</h3>
+                </div>
+                <div class="mt-2">
+                    <h1>Key responsibilities :</h1>
+                    <p class="ml-3 mt-2">{job.responsibilities}
+                        {/* <p>1. Conduct demo classes as per the PlanetSpark content and methodology</p>
                             <p>2. Ensure an amazing demo experience for the child and parent</p>
                             <p>3. Conduct regular classes (post enrolment) using an in-house curriculum</p>
                             <p>4. Ensure timely feedback to the child</p>
                             <p>5. Adhere to the schedule for the demo as well as regular classes</p> */}
-                        </p>
-                    </div>
-                    <div class="mt-4">
-                        <h1>Qualifications:</h1>
-                        <p class="ml-3 mt-2">{job.qualifications}
-                            {/* <p>1. Solid understanding of JavaScript, HTML, CSS, and related web technologies</p>
+                    </p>
+                </div>
+                <div class="mt-4">
+                    <h1>Qualifications:</h1>
+                    <p class="ml-3 mt-2">{job.qualifications}
+                        {/* <p>1. Solid understanding of JavaScript, HTML, CSS, and related web technologies</p>
                             <p>2. Experience working with the MERN (MongoDB, Express.js, React.js, Node.js) stack</p>
                             <p>3. Familiarity with front-end frameworks such as React or Angular</p>
                             <p>4. Strong problem-solving and analytical skills</p>
                             <p>5. Ability to work independently and as part of a team</p>
                             <p>6. Excellent communication and collaboration skills</p> */}
-                        </p>
-                    </div>
-                    <div class="mt-4">
-                        <h1>Compensation and working conditions:</h1>
-                        <p class="ml-3 mt-2">{job.workconditions}
-                            {/* <p>1. Salary: 2-4 LPA (based on experience and skills)</p>
+                    </p>
+                </div>
+                <div class="mt-4">
+                    <h1>Compensation and working conditions:</h1>
+                    <p class="ml-3 mt-2">{job.workconditions}
+                        {/* <p>1. Salary: 2-4 LPA (based on experience and skills)</p>
                             <p>2. Commitment: 8 hours per day, Monday to Saturday</p>
                             <p>3. Probation period: 4 months</p> */}
-                        </p>
-                    </div>
-
+                    </p>
                 </div>
+
+            </div>
 
                 {/* <!-- skills --> */}
                 <div class="ml-10 mt-5">
@@ -212,21 +245,21 @@ const Singlejob = () => {
                             <li key={index}>{item}</li>
                         ))}
                     </ul>
-                </div>
+                </div>            
 
-                {/* <!-- Assessments --> */}
-                <div class="ml-10 mt-5">
-                    <h1 class="font-semibold text-lg">Assessments :</h1>
-                    <h3 class="ml-4 mt-1">{job.assements}</h3>
-                </div>
+            {/* <!-- Assessments --> */}
+            <div class="ml-10 mt-5">
+                <h1 class="font-semibold text-lg">Assessments :</h1>
+                <h3 class="ml-4 mt-1">{job.assements}</h3>
+            </div>
 
-                {/* <!-- companyDetail --> */}
-                <div class="ml-10 mt-5">
-                    <h1 class="font-semibold text-lg">About {job.company}</h1>
-                    <h3 class="ml-4 mt-1 w-full px-4">At {job.companyDetail}
-                        {/* , we're not just another digital agency, we're your dedicated allies in the dynamic world of marketing, community management, and website development. Our mission is simple - to provide our clients, ranging from small influencers and startups to industry-leading enterprises, with an unparalleled ease-of-work experience. */}
-                    </h3>
-                </div>
+            {/* <!-- companyDetail --> */}
+            <div class="ml-10 mt-5">
+                <h1 class="font-semibold text-lg">About {job.company}</h1>
+                <h3 class="ml-4 mt-1 w-full px-4">At {job.companyDetail}
+                    {/* , we're not just another digital agency, we're your dedicated allies in the dynamic world of marketing, community management, and website development. Our mission is simple - to provide our clients, ranging from small influencers and startups to industry-leading enterprises, with an unparalleled ease-of-work experience. */}
+                </h3>
+            </div>
 
                 {/* <!-- Contect Number --> */}
                 <div class="ml-10 mt-5">
@@ -236,7 +269,7 @@ const Singlejob = () => {
 
 
 
-                {/* <div class="flex justify-center items-center mt-5 py-4">
+            {/* <div class="flex justify-center items-center mt-5 py-4">
                     <div class="w-full md:w-11/12 lg:w-10/12 xl:w-9/12 2xl:w-8/12 flex items-center  rounded-lg">
                         <div class="flex items-center gap-2 ml-4 md:ml-10">
                             <IoCalendarNumber class="w-6 h-6 md:w-8 md:h-8" />
@@ -254,11 +287,11 @@ const Singlejob = () => {
                 </div> */}
 
 
-                <div class="flex justify-center items-center mt-8 py-8">
-                    <button onClick={applyHandler} class="px-8 py-2 bg-[#1F2937] text-white font-semibold rounded-lg">Apply Now</button>
-                </div>
+            <div class="flex justify-center items-center mt-8 py-8">
+                <button onClick={applyHandler} class="px-8 py-2 bg-[#1F2937] text-white font-semibold rounded-lg">Apply Now</button>
             </div>
         </div>
+        </div >
 
 
 

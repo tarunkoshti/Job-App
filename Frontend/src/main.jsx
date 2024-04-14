@@ -40,6 +40,7 @@ import AddAccomplishment from './Pages/Student/Resume/AddAccomplishment.jsx'
 import MyDocument from './Pages/ResumeDocument/MyDocument.jsx'
 import { PDFViewer } from '@react-pdf/renderer'
 import ViewResume from './Pages/ResumeDocument/ViewResume.jsx'
+import ResumeTemp from './Pages/Employee/ResumeTemp.jsx'
 
 
 const router = createBrowserRouter([
@@ -352,6 +353,14 @@ const router = createBrowserRouter([
             element: (
               <AuthLayout authentication={true}>
                 <ApplicantsDetails />
+              </AuthLayout>
+            ),
+          },
+          {
+            path: "applicants/resume/:id",
+            element: (
+              <AuthLayout authentication={true}>
+               <ResumeTemp/>
               </AuthLayout>
             ),
           },

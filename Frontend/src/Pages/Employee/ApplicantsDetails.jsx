@@ -13,9 +13,27 @@ const ApplicantsDetails = () => {
   console.log(internshipData)
 
   const intern = internshipData;
+  console.log(intern)
+  console.log(intern&&intern[0]?.students[0]?.resume)
   return (
     <>
-     
+      <div className='h-fitcontent w-screen bg-slate-500 p-16'>
+        <ul>
+          {intern && intern.map((item, index) => (
+            <div className='py-7 bg-blue-300 rounded-lg flex gap-32'>
+              <h1>{intern[index].students[index].firstname}</h1>
+              <h1>{intern[index].students[index].lastname}</h1>
+              <h1>{intern[index].students[index].email}</h1>
+              <Link to={`/employee/applicants/resume/${intern[index].students[index]._id}`}>Resume</Link>
+              
+            </div>
+        ))
+
+          }
+
+        </ul>
+
+      </div>
     </>
   )
 }
