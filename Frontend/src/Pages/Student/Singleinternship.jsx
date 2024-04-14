@@ -17,16 +17,18 @@ import { RiContactsFill } from "react-icons/ri";
 import { applyinternship } from '../../store/Actions/userActions';
 import { bookmarkinternship } from '../../store/Actions/userActions';
 import { CiBookmark } from "react-icons/ci";
+
 const Singleinternship = () => {
 
     const { id } = useParams()
-    // console.log(id)
+    console.log(id)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const internships = useSelector((state) => state.internshipReducer.internshipData)
-    const internship = internships?.filter(internship => internship._id === id)
-
-
+    console.log(internships)
+    const intern = internships?.filter(internship => internship._id === id)
+    console.log(intern)
+    const internship = intern[0]
 
 
     const applyHandler = async () => {
@@ -67,13 +69,13 @@ const Singleinternship = () => {
 
                     {/* <!-- company-name --> */}
                     <div class="mt-1">
-                        <h1 class="text-md ml-10 font-semibold text-zinc-600">{internship.company}Amazon</h1>
+                        <h1 class="text-md ml-10 font-semibold text-zinc-600">{internship.company}</h1>
                     </div>
 
                     {/* <!-- location --> */}
                     <div class="flex items-center ml-9 gap-1 mt-6">
                         <IoLocationSharp size={15} />
-                        <h1 class="text-md font-semibold">{internship.location}Bhopal</h1>
+                        <h1 class="text-md font-semibold">{internship.location}</h1>
                     </div>
 
                     {/* <!-- start, salary, experience, and opening number --> */}
@@ -83,7 +85,7 @@ const Singleinternship = () => {
                                 <FaRegCirclePlay class="w-6 h-6 sm:w-8 sm:h-8" />
                                 <h1 class="text-sm sm:text-base tracking-wider font-semibold">START DATE</h1>
                             </div>
-                            <h1 class="font-normal">{internship.start}Immediately</h1>
+                            <h1 class="font-normal">{internship.to}</h1>
                         </div>
                         <div class="flex flex-col gap-1">
                             <div class="flex items-center gap-2">
@@ -125,7 +127,7 @@ const Singleinternship = () => {
                     {/* <!-- Applicants --> */}
                     <div class="flex items-center gap-2 mt-8 ml-10 mb-8">
                         <IoMdPeople size={30} />
-                        <h1 class="font-medium">{internship.applicants} 1000+ applicants</h1>
+                        <h1 class="font-medium">{internship.applicants} applicants</h1>
                     </div>
                 </div>
 
@@ -137,7 +139,7 @@ const Singleinternship = () => {
                     </div>
                     <div class="mt-2">
                         <h1>Key responsibilities :</h1>
-                        <p class="ml-3 mt-2">{ }
+                        <p class="ml-3 mt-2">{internship.responsibility}
                             <p>1. Conduct demo classes as per the PlanetSpark content and methodology</p>
                             <p>2. Ensure an amazing demo experience for the child and parent</p>
                             <p>3. Conduct regular classes (post enrolment) using an in-house curriculum</p>
@@ -169,7 +171,7 @@ const Singleinternship = () => {
                 {/* <!-- skills --> */}
                 <div class="ml-10 mt-5">
                     <h1 class="font-semibold text-lg">Skill(s) required :</h1>
-                    <h1 class="font-normal ml-4 mt-2 ">{internship.skills}, Node.js,  Express.js,  MongoDB,  React.js,  GSAP</h1>
+                    <h1 class="font-normal ml-4 mt-2 ">{internship.skills}</h1>
                 </div>
 
                 {/* <!-- Salary --> */}
@@ -178,10 +180,16 @@ const Singleinternship = () => {
                     <h3 class="ml-4 capitalize">Stipend: {internship.stipend?.status} </h3>
                 </div>
 
+                 {/* <!-- Joining--> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Joining</h1>
+                    <h3 class="ml-4 capitalize">{internship.startdate} </h3>
+                </div>
+
                 {/* <!-- Staring Date --> */}
                 <div class="ml-10 mt-5">
                     <h1 class="font-semibold text-lg">Duration Date</h1>
-                    <h3 class="ml-4 ">{internship.from}  to  {internship.to}</h3>
+                    <h3 class="ml-4 ">{internship.from}   to   {internship.to}</h3>
                 </div>
 
                 {/* <!-- Openings --> */}
@@ -197,10 +205,15 @@ const Singleinternship = () => {
                 </div>
 
                 {/* <!-- Perks --> */}
-                <div class="ml-10 mt-5">
-                    <h1 class="font-semibold text-lg">Perks :</h1>
-                    <h3 class="ml-4 mt-1">{internship.perks}</h3>
+                <div className="ml-10 mt-5">
+                    <h1 className="font-semibold text-lg">Perks:</h1>
+                    <ul className="list-disc ml-10">
+                        {internship.perks && internship.perks.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
                 </div>
+
 
                 {/* <!-- Assessments --> */}
                 {/* <div class="ml-10 mt-5">
@@ -214,6 +227,11 @@ const Singleinternship = () => {
                     <h3 class="ml-4 mt-1 w-full px-4">At {internship.companyDetail}, we're not just another digital agency, we're your dedicated allies in the dynamic world of marketing, community management, and website development. Our mission is simple - to provide our clients, ranging from small influencers and startups to industry-leading enterprises, with an unparalleled ease-of-work experience.</h3>
                 </div>
 
+                 {/* <!-- Contect Number --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Contect Number :</h1>
+                    <h3 class="ml-4 mt-1">{internship.contact}</h3>
+                </div>
 
 
                 <div class="flex justify-center items-center mt-5 py-4">
@@ -232,6 +250,8 @@ const Singleinternship = () => {
                         </div>
                     </div>
                 </div>
+
+               
 
 
                 <div class="flex justify-center items-center mt-8 py-8">

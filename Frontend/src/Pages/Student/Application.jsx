@@ -34,72 +34,81 @@ const Application = () => {
 
   // const applications = [...appliedinternships, ...appliedjobs];
   return (
-    <>
-      <div className='bg-gray-100 mx-20 rounded-lg'>
-        <h1 className='text-3xl text-center font-semibold py-4'>Internship Application</h1>
-        <div className='flex bg-gray-300 gap-56 px-10 py-2 rounded-lg my-4 font-semibold'>
-          <h1 className='w-1/5'>COMPANY</h1>
-          <h1 className='w-1/5'>PROFILE</h1>
-          <h1 className='w-1/5'> TYPE</h1>
-          <h1 className='w-1/5'>NUMBER OF APPLICANTS</h1>
-          <h1 className='w-1/5'>REVIEW APPLICATION</h1>
-        </div>
-        <ul>
-          {internshipId && internshipId.map((studentItem, index) => (
-
-            <div key={index}>
-              {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
-                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-48 whitespace-nowrap ' key={internIndex}>
-                  <h1 className='w-1/5'>{intern.company}</h1>
-                  <h1 className='w-1/3'>{intern.profile}</h1>
-                  <h1 className='w-1/5'>{intern.internshiptype}</h1>
-                  <h1 className='w-1/5'>{intern.students.length}</h1>
-
-                  <Link className='w-1/5' to={`/student/internship/singleintership/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
-                  {/* Ensure proper usage of Link component */}
+        <>
+                {/* Internship - Application */}
+                <div className=' mx-2 md:mx-20 rounded-lg overflow-x-auto border-2 border-zinc-300 mt-16'>
+                  <h1 className='text-3xl text-center font-semibold py-10 '>Internship Application</h1>
+                  <div className='shadow-md'>
+                    <table className='w-full table-fixed'>
+                      <thead>
+                        <tr className='bg-gray-100 font-semibold border-b-2 border-zinc-500 text-sm'>
+                          <th className='w-1/6 md:w-1/5 py-4 text-sm'>Company</th>
+                          <th className='w-1/6 md:w-1/5 text-sm'>Profile</th>
+                          <th className='w-1/6 md:w-1/5 text-sm'>Type</th>
+                          <th className='w-1/6 md:w-1/5 text-sm'>Applicants</th>
+                          <th className='w-1/6 md:w-1/5 text-sm'>Review</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {internshipId && internshipId.map((studentItem, index) => (
+                          <tr key={index} className='border-b border-zinc-300'>
+                            {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
+                              <React.Fragment key={internIndex}>
+                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-10 py-3 md:py-3'>{intern.company}</td>
+                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-18 py-3 text-center'>{intern.profile}</td>
+                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-22 py-3 text-center'>{intern.internshiptype}</td>
+                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-16 lg:pl-24 py-3'>{intern.students.length}</td>
+                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-16 lg:pl-24 py-3'>
+                                  <Link to={`/student/internship/read/${studentItem}`} className='block text-center'><span><MdOutlineLibraryBooks /></span></Link>
+                                </td>
+                              </React.Fragment>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              ))}
-            </div>
-          ))}
 
-        </ul>
-      </div>
-      <div className='bg-gray-100 mx-20 rounded-lg my-10'>
-        <h1 className='text-3xl text-center font-semibold py-4'>JOB APPLICATION</h1>
-        <div className='flex bg-gray-300 gap-56 px-10 py-2 rounded-lg my-4 font-semibold'>
-          <h1 className='w-1/5'>COMPANY</h1>
-          <h1 className='w-1/5'>PROFILE</h1>
-          <h1 className='w-1/5'> TYPE</h1>
-          <h1 className='w-1/5'>NUMBER OF APPLICANTS</h1>
-          <h1 className='w-1/5'>REVIEW APPLICATION</h1>
-        </div>
-        <ul>
-          {jobId && jobId.map((studentItem, index) => (
-
-            <div key={index}>
-              {jobs?.filter(job => job._id === studentItem).map((job, Index) => (
-                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56 whitespace-nowrap' key={Index}>
-                  <h1 className='w-1/5'>{job.company}</h1>
-                  <h1 className='w-1/5'>{job.jobtittle}</h1>
-                  <h1 className='w-1/5'>{job.internshiptype}</h1>
-                  <h1 className='w-1/5'>{job.students.length}</h1>
-
-
-                  <Link className='w-1/5' to={`/student/job/read/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
-                  {/* Ensure proper usage of Link component */}
+                  {/* Job - Application */}
+                <div className=' mx-2 md:mx-20 rounded-lg overflow-x-auto border-2 border-zinc-300 mt-16'>
+                  <h1 className='text-3xl text-center font-semibold py-10 '>Job Application</h1>
+                  <div className='shadow-md'>
+                    <table className='w-full table-fixed'>
+                      <thead>
+                        <tr className='bg-gray-100 font-semibold border-b-2 border-zinc-500 text-sm'>
+                          <th className='w-1/6 md:w-1/5 py-4 text-sm'>Company</th>
+                          <th className='w-1/6 md:w-1/5 text-sm'>Profile</th>
+                          <th className='w-1/6 md:w-1/5 text-sm'>Type</th>
+                          <th className='w-1/6 md:w-1/5 text-sm'>Applicants</th>
+                          <th className='w-1/6 md:w-1/5 text-sm'>Review</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {jobId && jobId.map((studentItem, index) => (
+                          <tr key={index} className='border-b border-zinc-300'>
+                            {jobs?.filter(job => job._id === studentItem).map((job, Index) => (
+                              <React.Fragment key={Index}>
+                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-10 py-3 md:py-3'>{job.company}</td>
+                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-18 py-3 text-center'>{job.profile}</td>
+                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-22 py-3 text-center'>{job.jobtype}</td>
+                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-16 lg:pl-24 py-3'>{job.students.length}</td>
+                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-16 lg:pl-24 py-3'>
+                                  <Link to={`/student/job/read/${studentItem}`} className='block text-center'><span><MdOutlineLibraryBooks /></span></Link>
+                                </td>
+                              </React.Fragment>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              ))}
-            </div>
-          ))}
 
-        </ul>
-
-
-
-
-      </div>
-    </>
-  )
+              </>
+//           
+           
+            )
 }
 
 export default Application

@@ -16,40 +16,93 @@ const Bookmark = () => {
 
 
   return (
-    <>
-    <div className=' w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
-      <ul className='className=' px-10 py-3 bg-gray-300 my-2 flex gap-56 whitespace-nowrap>
-        {internshipId && internshipId.map((studentItem, index) => (
+    // <>
 
-          <>
-            {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
+    //   {/* Internship - BookMark */}
 
-              <InternshipCard internship={intern} />
+    //   <div className='flex items-center justify-center py-2 pt-10'>
+    //     <h1 className='text-3xl font-semibold'>All Bookmark Internships</h1>
+    //   </div>
+    //   <div id='job' className='h-3/5 w-full flex items-center gap-10 py-6 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory px-10'>
 
-            ))}
-          </>
-        ))}
+    //     <ul className='flex items-center px-10 py-4  gap-10 whitespace-nowrap'>
+    //     {internshipId && internshipId.map((studentItem, index) => (
 
-      </ul>
+    //       <>
+    //         {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
 
-    </div>
-      <div className=' w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
-        <ul className='className=' px-10 py-3 bg-gray-300 my-2 flex gap-56 whitespace-nowrap>
-          {jobId && jobId.map((studentItem, index) => (
+    //           <InternshipCard internship={intern} />
 
-            <>
-              {jobs?.filter(job => job._id === studentItem).map((job, internIndex) => (
+    //         ))}
+    //       </>
+    //     ))}
 
-                <JobCard job={job} />
+    //   </ul>
+         
+    //   </div>
+
+    //   {/* Jobs - BookMark */}
+
+    //   <div className='flex items-center justify-center py-2 '>
+    //     <h1 className='text-3xl font-semibold'>All Bookmark Jobs</h1>
+    //   </div>
+    //   <div id='job' className='h-3/5 w-full flex items-center gap-10 py-6 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory px-10'>
+
+    //     <ul className='flex items-center px-10 py-4 gap-10 whitespace-nowrap'>
+    //     {jobId && jobId.map((studentItem, index) => (
+
+    //         <>
+    //           {jobs?.filter(job => job._id === studentItem).map((job, internIndex) => (
+
+    //             <JobCard job={job} />
                 
 
-              ))}
-            </>
+    //           ))}
+    //         </>
+    //       ))}
+
+
+    //   </ul>
+         
+    //   </div>
+      
+    //   </>
+    
+    <>
+  {/* Internship - BookMark */}
+  <div className='flex items-center justify-center py-2 pt-10'>
+    <h1 className='text-3xl font-semibold text-center'>All Bookmark Internships</h1>
+  </div>
+  <div id='job' className='h-3/5 w-full flex items-center gap-10 py-6 whitespace-nowrap overflow-x-auto snap-mandatory px-2 sm:px-10'>
+    <ul className='flex items-center px-2 sm:px-10 py-4 gap-10 whitespace-nowrap'>
+      {internshipId && internshipId.map((studentItem, index) => (
+        <React.Fragment key={index}>
+          {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
+            <InternshipCard internship={intern} index={index} key={internIndex} />
           ))}
+        </React.Fragment>
+      ))}
+    </ul>
+  </div>
 
-        </ul>
+  {/* Jobs - BookMark */}
+  <div className='flex items-center justify-center py-2'>
+    <h1 className='text-3xl font-semibold text-center'>All Bookmark Jobs</h1>
+  </div>
+  <div id='job' className='h-3/5 w-full flex items-center gap-10 py-6 whitespace-nowrap overflow-x-auto snap-mandatory px-2 sm:px-10'>
+    <ul className='flex items-center px-2 sm:px-10 py-4 gap-10 whitespace-nowrap'>
+      {jobId && jobId.map((studentItem, index) => (
+        <React.Fragment key={index}>
+          {jobs?.filter(job => job._id === studentItem).map((job, jobIndex) => (
+            <JobCard job={job} key={jobIndex} index={index} />
+          ))}
+        </React.Fragment>
+      ))}
+    </ul>
+  </div>
+</>
 
-      </div></>
+
   )
 }
 

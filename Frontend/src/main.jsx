@@ -100,7 +100,7 @@ const router = createBrowserRouter([
 
           },
           {
-            path: "internship/singleintership/:id",
+            path: "internship/read/:id",
             element: (
               <AuthLayout authentication={true}>
                 <Singleinternship />

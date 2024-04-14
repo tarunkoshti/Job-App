@@ -23,7 +23,8 @@ const Singlejob = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const jobs = useSelector((state) => state.jobReducer.jobData);
-    const job = jobs?.filter(job => job._id === id)
+    const j = jobs?.filter(job => job._id === id)
+    const job = j[0]
 
     const applyHandler = async () => {
         await dispatch(applyjob(id));
@@ -43,6 +44,7 @@ const Singlejob = () => {
     return (
 
 
+        
         job && <div className="w-full flex flex-col items-center">
             <h1 className="text-center text-4xl font-semibold mt-6">{job.profile} Job</h1>
             <div className="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 rounded-lg">
@@ -81,14 +83,14 @@ const Singlejob = () => {
                                 <FaRegCirclePlay class="w-6 h-6 sm:w-8 sm:h-8" />
                                 <h1 class="text-sm sm:text-base tracking-wider font-semibold">START DATE</h1>
                             </div>
-                            <h1 class="font-normal">{job.start}Immediately</h1>
+                            <h1 class="font-normal">{job.startdate}</h1>
                         </div>
                         <div class="flex flex-col gap-1">
                             <div class="flex items-center gap-2">
                                 <FaMoneyBill class="w-6 h-6 sm:w-8 sm:h-8" />
                                 <h1 class="text-sm sm:text-base tracking-wider font-semibold">CTC (ANNUAL)</h1>
                             </div>
-                            <h1 class="font-normal">₹ {job.salary} /- Year</h1>
+                            <h1 class="font-normal">₹ {job.package} /- Year</h1>
                         </div>
                         <div class="flex flex-col gap-1">
                             <div class="flex items-center gap-2">
@@ -123,7 +125,7 @@ const Singlejob = () => {
                     {/* <!-- Applicants --> */}
                     <div class="flex items-center gap-2 mt-8 ml-10 mb-8">
                         <IoMdPeople size={30} />
-                        <h1 class="font-medium">{job.applicants}applicants</h1>
+                        <h1 class="font-medium">{job.applicants} applicants</h1>
                     </div>
                 </div>
 
@@ -174,14 +176,26 @@ const Singlejob = () => {
 
                 {/* <!-- Salary --> */}
                 <div class="ml-10 mt-5">
-                    <h1 class="font-semibold text-lg">Salary</h1>
-                    <h3 class="ml-4">Annual CTC: ₹ {job.salary} /year</h3>
+                    <h1 class="font-semibold text-lg">CTC</h1>
+                    <h3 class="ml-4">Annual CTC: ₹ {job.package} /year</h3>
+                </div>
+
+                 {/* <!-- Start Date --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Start Date</h1>
+                    <h3 class="ml-4">{job.start}</h3>
                 </div>
 
                 {/* <!-- Openings --> */}
                 <div class="ml-10 mt-5">
                     <h1 class="font-semibold text-lg">Number of openings :</h1>
                     <h3 class="ml-4 mt-1">{job.openings}</h3>
+                </div>
+
+                {/* <!-- Salary --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Salary</h1>
+                    <h3 class="ml-4">Monthly Salary: ₹ {job.salary} /- Month</h3>
                 </div>
 
                 {/* <!-- Preferences --> */}
@@ -191,9 +205,13 @@ const Singlejob = () => {
                 </div>
 
                 {/* <!-- Perks --> */}
-                <div class="ml-10 mt-5">
-                    <h1 class="font-semibold text-lg">Perks :</h1>
-                    <h3 class="ml-4 mt-1">{job.perks}</h3>
+                <div className="ml-10 mt-5">
+                    <h1 className="font-semibold text-lg">Perks:</h1>
+                    <ul className="list-disc ml-10">
+                        {job.perks && job.perks.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
                 </div>
 
                 {/* <!-- Assessments --> */}
@@ -208,6 +226,12 @@ const Singlejob = () => {
                     <h3 class="ml-4 mt-1 w-full px-4">At {job.companyDetail}
                         {/* , we're not just another digital agency, we're your dedicated allies in the dynamic world of marketing, community management, and website development. Our mission is simple - to provide our clients, ranging from small influencers and startups to industry-leading enterprises, with an unparalleled ease-of-work experience. */}
                     </h3>
+                </div>
+
+                {/* <!-- Contect Number --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Contect Number :</h1>
+                    <h3 class="ml-4 mt-1">{job.contact}</h3>
                 </div>
 
 

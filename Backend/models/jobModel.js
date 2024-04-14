@@ -16,17 +16,28 @@ const jobModel = new mongoose.Schema({
         type: String,
         enum: ["In office", "Remote", "Hybrid"]
     },
-    workingtype:String,
+    workingtype:{
+        type: String,
+        enum: ["Full-time", "Part-time"]
+    },
     openings: Number,
     description: String,
     preferences: String,
     salary: Number,
-    perks: String,
+    package: String,
+    perks: {
+        type: [String], // Change perks to an array of strings
+        enum: ["Certificate", "Letter of Recommendation", "Flexible Work Hours", "5 Days a Week", "Informal Dress Code", "Free Snacks & Beverages"] // Define all possible perks
+    },
     assements: String,
     company: String,
     location: String,
     experience: String,
-    start: String,
+    startdate: String,
+    start:{
+        type: String,
+        enum: ["Immediately", "Later"]
+    },
     responsibilities: String,
     qualifications: String,
     workconditions: String,
