@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { asyncUploadProfileImage, asyncLogout as studentLogout } from '../../store/Actions/userActions'
-import { asyncLogout as employeeLogout } from '../../store/Actions/employeeActions'
+import { asyncUploadProfileImageStudent, asyncLogout as studentLogout } from '../../store/Actions/userActions'
+import { asyncUploadProfileImageEmployee, asyncLogout as employeeLogout } from '../../store/Actions/employeeActions'
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
@@ -92,7 +92,8 @@ const Header = () => {
         const formData = new FormData();
         formData.set('avatar', e.target.files[0]);
         console.log(formData)
-        dispatch(asyncUploadProfileImage(student._id, formData));
+        student && dispatch(asyncUploadProfileImageStudent(student._id, formData));
+        employe && dispatch(asyncUploadProfileImageEmployee(employe._id, formData));
         // const imageFile = e.target.files[0];
         // console.log(imageFile)
         // if (imageFile) {

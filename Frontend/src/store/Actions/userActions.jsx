@@ -64,7 +64,7 @@ export const asyncResetPassword = (id, formData) => async (dispatch, getState) =
     }
 }
 
-export const asyncUploadProfileImage = (id, imageFile) => async (dispatch, getState) => {
+export const asyncUploadProfileImageStudent = (id, imageFile) => async (dispatch, getState) => {
     try {
         console.log("one")
         await axios.post(`/api/user/student/avatar/${id}`, imageFile)
