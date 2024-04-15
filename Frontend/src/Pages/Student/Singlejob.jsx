@@ -15,6 +15,7 @@ import { MdMessage } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { applyjob, bookmarkjob } from '../../store/Actions/userActions';
 import { CiBookmark } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa";
 
 const Singlejob = () => {
 
@@ -24,7 +25,7 @@ const Singlejob = () => {
     const navigate = useNavigate();
     const jobs = useSelector((state) => state.jobReducer.jobData);
     const j = jobs?.filter(job => job._id === id)
-    const job = j[0]
+    const job =j&& j[0]
 
     const studentId = useSelector((state) => state.userReducer.userData?.student)
     const job_arr = studentId?.bookmarkjob
@@ -79,8 +80,10 @@ const Singlejob = () => {
                             <h6 class="text-xs">Actively hiring</h6>
                         </div>
                         <div className='py-2 mt=4 px-10'>
-                            <button onClick={bookmarkHandler}><CiBookmark size={26} /></button></div>
-
+                                <button >
+                                    {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={26} /> : <CiBookmark onClick={bookmarkHandler} />}
+                                </button>
+                            </div>
                     </div>
 
                     {/* <!-- job-title --> */}
@@ -129,11 +132,7 @@ const Singlejob = () => {
                             </div>
                             <h1 class="ml-2 font-normal">{job.jobtype}</h1>
 
-                            <div className='py-2 mt=4 px-10'>
-                                <button >
-                                    {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={26} /> : <CiBookmark onClick={bookmarkHandler} />}
-                                </button>
-                            </div>
+                           
                         </div>
 
                     </div>
