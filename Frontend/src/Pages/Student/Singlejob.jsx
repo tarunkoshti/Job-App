@@ -264,7 +264,7 @@ const Singlejob = () => {
                 <button onClick={applyHandler} class="px-8 py-2 bg-[#1F2937] text-white font-semibold rounded-lg">Apply Now</button>
             </div>
         </div>
-        </div >
+        
 
 
 

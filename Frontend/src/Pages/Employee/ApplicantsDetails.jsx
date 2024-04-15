@@ -14,17 +14,23 @@ const ApplicantsDetails = () => {
 
   const intern = internshipData;
   console.log(intern)
-  console.log(intern&&intern[0]?.students[0]?.resume)
+  
   return (
     <>
       <div className='h-fitcontent w-screen bg-slate-500 p-16'>
+        <div className='flex py-4 bg-gray-200 rounded-lg px-10 mx-16 font-semibold'>
+          <h1 className='w-1/4'>First Name</h1>
+          <h1 className='w-1/4'>Last Name</h1>
+          <h1 className='w-1/4'>Email</h1>
+          <h1 className='w-1/4'>Applicant Resume</h1>
+        </div>
         <ul>
-          {intern && intern.map((item, index) => (
-            <div className='py-7 bg-blue-300 rounded-lg flex gap-32'>
-              <h1>{intern[index].students[index].firstname}</h1>
-              <h1>{intern[index].students[index].lastname}</h1>
-              <h1>{intern[index].students[index].email}</h1>
-              <Link to={`/employee/applicants/resume/${intern[index].students[index]._id}`}>Resume</Link>
+          {intern && intern[0].students.map((item, index) => (
+            <div className='py-3 px-12 bg-gray-100 rounded-lg flex gap-32 mx-16'>
+              <h1 className='w-1/4'>{intern[0].students[index].firstname}</h1>
+              <h1 className='w-1/4'>{intern[0].students[index].lastname}</h1>
+              <h1 className='w-1/4'>{intern[0].students[index].email}</h1>
+              <Link className='py-2 px-3 w-1/4 bg-gray-200 rounded-lg' to={`/employee/applicants/resume/${intern[0].students[index]._id}`}>Resume→</Link>
               
             </div>
         ))
