@@ -18,7 +18,6 @@ const Header = () => {
     const employe = useSelector((state) => state.employeeReducer.employeeData?.employe)
     const authStatus = isStudentAuth || isEmployeeAuth
     const user = student || employe
-    // console.log(authStatus, isStudentAuth, isEmployeeAuth)
 
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [dropdown, setDropdown] = useState(false)
@@ -62,16 +61,6 @@ const Header = () => {
             path: "/student/signup",
             active: !authStatus
         },
-        // {
-        //     name: "Student-Signup",
-        //     path: "/student/signup",
-        //     active: !authStatus
-        // },
-        // {
-        //     name: "Employee-Signup",
-        //     path: "/employee/signup",
-        //     active: !authStatus
-        // }
     ]
 
     const LogoutHandler = async () => {
@@ -91,20 +80,9 @@ const Header = () => {
     const handleProfileImageChange = (e) => {
         const formData = new FormData();
         formData.set('avatar', e.target.files[0]);
-        console.log(formData)
+        // console.log(formData)
         student && dispatch(asyncUploadProfileImageStudent(student._id, formData));
         employe && dispatch(asyncUploadProfileImageEmployee(employe._id, formData));
-        // const imageFile = e.target.files[0];
-        // console.log(imageFile)
-        // if (imageFile) {
-        //     if (student) {
-        //         const id = student._id
-        //         dispatch(asyncUploadProfileImage(id, imageFile))
-        //     }
-        //     else {
-        //         const id = employe._id
-        //     }
-        // }
     };
 
     return (
@@ -156,15 +134,8 @@ const Header = () => {
                             <div className='h-10 w-10 border-2 rounded-full flex items-center justify-center cursor-pointer'
                                 onClick={toggleProfile}>
 
-                                {/* {user.firstname.charAt(0).toUpperCase()} */}
                                 <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
                             </div>
-
-                            {/* <NavLink className='px-4 py-2 rounded-lg bg-[#1F2937] text-white'
-                                onClick={LogoutHandler}>
-                                Logout
-                            </NavLink> */}
-
                         </div>
                     )
                 }

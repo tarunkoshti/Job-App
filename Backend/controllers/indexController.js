@@ -200,12 +200,9 @@ exports.readjob = catchAsyncErrors(async function (req, res, next) {
 exports.bookmarkinternship = catchAsyncErrors(async function (req, res, next) {
     const student = await Student.findById(req.id).exec();
     const internship = await Internship.findById(req.params.internshipid).exec()
-    const value = internship._id.toString()
-    student.bookmarkinternship.push(value);
-    // internship.students.push(student._id);
-    console.log(value)
+    student.bookmarkinternship.push(internship._id);
+
     await student.save();
-    // await internship.save();
 
     res.json({ student, internship })
 })
@@ -216,11 +213,8 @@ exports.disbookmarkinternship = catchAsyncErrors(async function (req, res, next)
     const internship = await Internship.findById(req.params.internshipid).exec()
 
     student.bookmarkinternship = student.bookmarkinternship.filter(id => id.toString() !== req.params.internshipid);
-    console.log(student.bookmarkinternship)
-    // internship.students.push(student._id);
 
     await student.save();
-    // await internship.save();
 
     res.json({ student, internship })
 })
@@ -230,10 +224,8 @@ exports.bookmarkjob = catchAsyncErrors(async function (req, res, next) {
     const job = await Job.findById(req.params.jobid).exec()
 
     student.bookmarkjob.push(job._id);
-    // internship.students.push(student._id);
 
     await student.save();
-    // await internship.save();
 
     res.json({ student, job })
 })
@@ -244,18 +236,9 @@ exports.disbookmarkjob = catchAsyncErrors(async function (req, res, next) {
 
     student.bookmarkjob = student.bookmarkjob.filter(id => id.toString() !== req.params.jobid);
     console.log(student.bookmarkjob)
-    // internship.students.push(student._id);
 
     await student.save();
-    // await internship.save();
 
     res.json({ student, job })
 })
-// exports.readsingleinternship = catchAsyncErrors(async function (req, res, next) {
-//     const internship = await Internship.findById(req.params.id).exec();
-//     res.status(200).json({
-//         success: true,
-//         internship
-//     })
-// });
 

@@ -21,7 +21,6 @@ const EmployeeHome = () => {
 
   useEffect(() => {
     dispatch(fetchInternships());
-    console.log("hii")
   }, [dispatch]);
    
 

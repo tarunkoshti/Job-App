@@ -1,26 +1,25 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getStudentResume } from '../../store/Actions/resumeActions'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import MyDocument from '../ResumeDocument/MyDocument'
 import { RiDownload2Line } from 'react-icons/ri'
 
 const ApplicantsDetails = () => {
-  // const students = useSelector((state)=> state.employeeReducer.employeeData.employee)
 
   const { id } = useParams()
-  console.log(id)
+  // console.log(id)
   const internships = useSelector((state) => state.internshipReducer.internshipData);
-  console.log(internships)
+  // console.log(internships)
   const internshipData = internships?.filter(internship => internship._id == id);
-  console.log(internshipData)
+  // console.log(internshipData)
 
   const intern = internshipData;
-  console.log(intern[0])
+  // console.log(intern[0])
 
   const students = intern && intern[0]?.students
-  console.log(students)
+  // console.log(students)
 
   const dispatch = useDispatch()
 
@@ -31,7 +30,7 @@ const ApplicantsDetails = () => {
   }, [])
 
   const updatedResume = useSelector((state) => state.resumeReducer?.resumeData?.updatedResume)
-  console.log(updatedResume)
+  // console.log(updatedResume)
 
   return (
     <>

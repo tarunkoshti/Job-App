@@ -60,13 +60,6 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* <div className="flex flex-col md:flex-row items-center justify-center md:justify-around font-semibold px-4 md:px-8 lg:px-32 py-4 md:py-8">
-            <h6 className="mb-2 md:mb-0">Job Seekers 2024</h6>
-            <h6 className="mb-2 md:mb-0">Terms & Conditions</h6>
-            <h6 className="mb-2 md:mb-0">Privacy Policy</h6>
-            <h6 className="mb-2 md:mb-0">Accessibility Statement</h6>
-        </div> */}
-
             <div className="flex flex-col md:flex-row items-center justify-center md:justify-around font-semibold  md:px-32 lg:px-0 py-4 md:py-8">
                 <h6 className="mb-2 md:mb-0">Job Seekers 2024</h6>
                 <h6 className="mb-2 md:mb-0">Terms & Conditions</h6>
