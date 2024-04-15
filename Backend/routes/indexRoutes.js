@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { homepage, studentsignup, studentsignin, studentsignout, currnetUser, studentsendmail, studentforgetlink, studentresetpassword, studentupdate, studentavatar, applyinternship, singleinternship, applyjob,readinternship,readsinglejob, readjob,bookmarkinternship, bookmarkjob,disbookmarkinternship  } = require("../controllers/indexController");
+const { homepage, studentsignup, studentsignin, studentsignout, currnetUser, studentsendmail, studentforgetlink, studentresetpassword, studentupdate, studentavatar, applyinternship, singleinternship, applyjob,readinternship,readsinglejob, readjob,bookmarkinternship, bookmarkjob,disbookmarkinternship, disbookmarkjob  } = require("../controllers/indexController");
 const { isAuthenticated } = require("../middlewares/auth");
 
 //GET /
@@ -70,3 +70,6 @@ router.post("/student/disbookmark/internship/:internshipid", isAuthenticated, di
 
 //POST /student/bookmark/job/:jobid
 router.post("/student/bookmark/job/:jobid", isAuthenticated, bookmarkjob)
+
+//POST /student/disbookmark/job/:jobid
+router.post("/student/disbookmark/job/:jobid", isAuthenticated, disbookmarkjob)

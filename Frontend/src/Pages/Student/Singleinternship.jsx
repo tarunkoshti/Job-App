@@ -28,52 +28,36 @@ const Singleinternship = () => {
     const navigate = useNavigate();
     const internships = useSelector((state) => state.internshipReducer.internshipData)
     console.log(internships)
-    const intern = internships?.filter(internship => internship._id === id)
-    console.log(intern)
-    const internship = intern[0]
+    const internship = internships?.find(internship => internship._id === id)
+    console.log(internship)
 
+    const student = useSelector((state) => state.userReducer.userData?.student)
+    console.log(student)
 
-    const studentId = useSelector((state) => state.userReducer.userData?.student)
-    console.log(studentId)
-    const internship_arr = studentId?.bookmarkinternship
-    console.log(internship_arr)
-    const [bookmarkbtn, setBookmarkbtn] = useState(false);
-
-    const a = studentId?.internships?.filter((internid) => internid == id)
-    console.log(a)
-    const i = internship_arr?.filter((internId) => internId == id)
-    useEffect(() => {
-        console.log("apply")
-        a[0] && setApplyBtn(true);
-    })
-    useEffect(() => {
-        console.log("hello")
-        i[0] && setBookmarkbtn(true)
-    }, [id, bookmarkbtn])
-
-
-    const [applyBtn, setApplyBtn] = useState(false);
-    const applyHandler = async () => {
-        if (applyBtn == false) {
-            await dispatch(applyinternship(id));
-            setApplyBtn(true);
-            navigate("/student")
-        }
-    }
+    const bookmarkedInternships = student?.bookmarkinternship
+    console.log(bookmarkedInternships)
+    const bookmarkedInternship = bookmarkedInternships?.find((internId) => internId == id)
 
     const bookmarkHandler = async () => {
-        if (bookmarkbtn == false) {
             await dispatch(bookmarkinternship(id));
-            // navigate("/student")
-            setBookmarkbtn(true)
-        }
     }
 
     const disbookmarkHandler = async () => {
         await dispatch(disbookmarkinternship(id));
-        // navigate("/student")
-        setBookmarkbtn(false)
     }
+
+
+    const appliedInternship = student?.internships?.find((internid) => internid == id)
+    console.log(appliedInternship)
+
+    const applyHandler = async () => {
+        if(!appliedInternship){
+            await dispatch(applyinternship(id));
+            navigate("/student")
+        }
+    }
+
+    
     // useEffect(() => {
     //     dispatch(internshipDetail(id));
     // }, [dispatch]);
@@ -92,7 +76,7 @@ const Singleinternship = () => {
                         </div>
                         <div className='mt-4 px-10'>
                             <button >
-                                {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={24} /> : <CiBookmark onClick={bookmarkHandler} size={24} />}
+                                {bookmarkedInternship ? <FaBookmark onClick={disbookmarkHandler} size={24} /> : <CiBookmark onClick={bookmarkHandler} size={24} />}
                             </button ></div >
 
                     </div >

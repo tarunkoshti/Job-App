@@ -1,7 +1,11 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { MdOutlineLibraryBooks } from "react-icons/md";
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import MyDocument from '../ResumeDocument/MyDocument';
+import { RiDownload2Line } from 'react-icons/ri';
+import { getStudentResume } from '../../store/Actions/resumeActions';
 const EmployeeApplication = () => {
   const internshipId = useSelector((state) => state.employeeReducer.employeeData?.employe.internships)
   console.log(internshipId)
@@ -38,9 +42,9 @@ const EmployeeApplication = () => {
                   <h1 className='w-1/6 '>{intern.internshiptype}</h1>
                   <h1 className='w-1/6'>{intern.students.length}</h1>
 
-                  <Link className='w-1/6' to={`/student/internship/singleintership/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
+                  <Link className='w-1/6' to={`/student/internship/singleintership/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>ax c  
 
-                  <Link className='w-1/6' to ={`/employee/application/applicants/${studentItem}`}><button className='px-8 py-2 bg-gray-400 rounded-lg'>View</button></Link>
+                  <Link className='w-1/6' to={`/employee/application/applicants/${studentItem}`}><button className='px-8 py-2 bg-gray-400 rounded-lg'>View</button></Link>
                   {/* Ensure proper usage of Link component */}
                 </div>
               ))}
@@ -69,8 +73,8 @@ const EmployeeApplication = () => {
                   <h1 className='w-1/5'>{job.profile}</h1>
                   <h1 className='w-1/5'>{job.jobtype}</h1>
                   <h1 className='w-1/5'>{job.students.length}</h1>
-                  
-                
+
+
                   <Link className='w-1/5' to={`/student/job/read/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
                   {/* Ensure proper usage of Link component */}
                 </div>
