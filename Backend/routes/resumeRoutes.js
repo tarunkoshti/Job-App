@@ -13,7 +13,7 @@ const { resume, addeducation, editeducation, deleteeducation,
 const { isAuthenticated } = require("../middlewares/auth");
 
 //GET /
-router.get("/", isAuthenticated, resume)
+router.get("/:studentid", isAuthenticated, resume)
 
 // EDUCATION
 

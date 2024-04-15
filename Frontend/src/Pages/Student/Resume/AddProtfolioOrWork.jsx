@@ -19,9 +19,14 @@ const AddProtfolioOrWork = ({ edit = false }) => {
 
   const submit = async (data) => {
     console.log(data)
-    edit ? await dispatch(editWorkSample(id, data))
-      : await dispatch(addWorkSample(student._id, data))
-    navigate("/student/resume")
+    for (const key in data) {
+      if (data[key] !== "") {
+        edit ? await dispatch(editWorkSample(id, data))
+          : await dispatch(addWorkSample(student._id, data))
+        navigate("/student/resume")
+        break;
+      }
+    }
   }
 
   const backHandler = () => {
@@ -80,7 +85,7 @@ const AddProtfolioOrWork = ({ edit = false }) => {
                   label="Other work sample link"
                   placeholder="e.g. http://myworksample.com"
                   {...register("otherworkLink", {
-                    required: true
+                    // required: true
                   })}
                 />
                 <p className='text-sm mt-1 text-gray-400'>Your work samples could be in the form of social media posts, presentations, documents, website etc. If you have multiple work samples, upload them to google drive and add the link here.</p>
@@ -97,7 +102,7 @@ const AddProtfolioOrWork = ({ edit = false }) => {
               label="Blog link"
               placeholder="e.g. http://myblog.com"
               {...register("value", {
-                // required: true
+                required: true
               })}
             />
           }
@@ -109,7 +114,7 @@ const AddProtfolioOrWork = ({ edit = false }) => {
               label="Github link"
               placeholder="e.g. http://github.com"
               {...register("value", {
-                // required: true
+                required: true
               })}
             />
           }
@@ -121,7 +126,7 @@ const AddProtfolioOrWork = ({ edit = false }) => {
               label="Play store developer A/c (public link)"
               placeholder="e.g. http://play.google.com/store/apps/developer?id=myapps"
               {...register("value", {
-                // required: true
+                required: true
               })}
             />
           }
@@ -133,7 +138,7 @@ const AddProtfolioOrWork = ({ edit = false }) => {
               label="Behance portfolio link"
               placeholder="e.g. http://behance.net/my_profile"
               {...register("value", {
-                // required: true
+                required: true
               })}
             />
 
@@ -146,7 +151,7 @@ const AddProtfolioOrWork = ({ edit = false }) => {
                 defaultValue={worksample?.value || ''}
                 label="Other work sample link"
                 placeholder="e.g. http://myworksample.com"
-                  {...register("value", {
+                {...register("value", {
                   required: true
                 })}
               />

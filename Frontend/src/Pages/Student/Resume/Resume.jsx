@@ -5,6 +5,9 @@ import { FaPlus } from "react-icons/fa6";
 import { HiPencil } from "react-icons/hi2";
 import { MdDelete } from "react-icons/md";
 import { deleteAccomplishment, deleteEducation, deleteInternship, deleteJob, deleteProject, deleteResponsibility, deleteSkill, deleteTrainingCourse, deleteWorkSample } from '../../../store/Actions/userActions';
+import { Document, PDFDownloadLink, PDFViewer, Page, Text, View } from '@react-pdf/renderer';
+import MyDocument from '../../ResumeDocument/MyDocument';
+import { getStudentResume } from '../../../store/Actions/resumeActions';
 
 const Resume = () => {
 
@@ -41,13 +44,26 @@ const Resume = () => {
     const student = useSelector((state) => state.userReducer.userData?.student)
     // console.log(student)
     const resume = useSelector((state) => state.userReducer.userData?.student?.resume)
-    console.log(resume)
+    // console.log(resume)
+
+    useEffect(() => {
+        dispatch(getStudentResume(student._id))
+    }, [])
+
+    const updatedResume = useSelector((state) => state.resumeReducer?.resumeData?.updatedResume)
+    console.log(updatedResume)
 
     return (
         <div className=''>
             {student && (
                 <div className='w-full'>
                     <h1 className="text-center text-4xl font-semibold mt-6">Resume</h1>
+
+                    {/* view resume */}
+                    <Link to={`/student/view/${student._id}`}  > view resume</Link>
+                    <PDFDownloadLink document={<MyDocument updatedResume={updatedResume} />} fileName='resume'>
+                        download now
+                    </PDFDownloadLink>
 
                     <div className='w-[65%] m-auto mt-6'>
                         <div className='w-full text-center py-3 rounded-lg border border-orange-300'>Whenever you apply to an internship or fresher job, this is the resume that the employer will see. Always make sure it is up to date.
@@ -75,7 +91,14 @@ const Resume = () => {
                                                 {item?.college && (
                                                     <div>
                                                         {item?.branch && <p className='font-semibold'>{item?.degree}, <span>({item?.branch})</span></p>}
-                                                        {item?.stream && <p className='font-semibold'>{item?.stream}</p>}
+                                                        {item?.stream && item.eduType === "diploma" && (
+                                                            <p className='font-semibold'>Diploma, ({item?.stream})</p>
+                                                        )
+                                                        }
+                                                        {item?.stream && item.eduType === "phd" && (
+                                                            <p className='font-semibold'>PHD, ({item?.stream})</p>
+                                                        )
+                                                        }
                                                         <p>{item?.college}</p>
                                                         <p>{item?.startYear} - {item?.lastYear}</p>
                                                     </div>

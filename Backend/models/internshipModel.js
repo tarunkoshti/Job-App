@@ -16,8 +16,14 @@ const internshipModel = new mongoose.Schema({
         type: String,
         enum: ["In office", "Remote"]
     },
-    workingtype:String,
-    startdate: String,
+    workingtype: {
+        type: String,
+        enum: ["Full-time", "Part-time"]
+    },
+    startdate:{
+        type: String,
+        enum: ["Immediately", "Later"]
+    },
     openings: Number,
     from: String,
     to: String,
@@ -30,7 +36,11 @@ const internshipModel = new mongoose.Schema({
        },
        amount: Number,
     },
-    perks: String,
+    
+     perks: {
+        type: [String], // Change perks to an array of strings
+        enum: ["Certificate", "Letter of Recommendation", "Flexible Work Hours", "5 Days a Week", "Informal Dress Code", "Free Snacks & Beverages"] // Define all possible perks
+    },
     assessments: String,
     location: String,
     company: String,

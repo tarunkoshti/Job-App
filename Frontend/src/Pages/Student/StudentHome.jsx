@@ -133,7 +133,7 @@ const StudentHome = () => {
             {
               jobs &&
               (jobs.map((job, index) => (
-                <JobCard key={index} job={job} />
+                <JobCard key={index} index={index} job={job} />
               )))
             }
           </div>
@@ -152,7 +152,7 @@ const StudentHome = () => {
             {
               internships &&
               (internships.map((internship, index) => (
-                <InternshipCard key={index} internship={internship} />
+                <InternshipCard key={index} index={index} internship={internship} />
               )))
             }
           </div>

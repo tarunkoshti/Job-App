@@ -23,7 +23,8 @@ const Singlejob = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const jobs = useSelector((state) => state.jobReducer.jobData);
-    const job = jobs?.filter(job => job._id === id)
+    const j = jobs?.filter(job => job._id === id)
+    const job = j[0]
 
     const studentId = useSelector((state) => state.userReducer.userData?.student)
     const job_arr = studentId?.bookmarkjob
@@ -69,6 +70,7 @@ const Singlejob = () => {
     return (
 
 
+        
         job && <div className="w-full flex flex-col items-center">
             <h1 className="text-center text-4xl font-semibold mt-6">{job.profile} Job</h1>
             <div className="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 rounded-lg">
@@ -79,6 +81,57 @@ const Singlejob = () => {
                             <FaArrowTrendUp size={14} />
                             <h6 class="text-xs">Actively hiring</h6>
                         </div>
+                     <div className='py-2 mt=4 px-10'>
+                         <button onClick={bookmarkHandler}><CiBookmark  size={26} /></button></div>   
+
+                    </div>
+
+                    {/* <!-- job-title --> */}
+                    <div class="mt-3">
+                        <h1 class="text-lg ml-10 font-semibold">{job.profile}</h1>
+                    </div>
+
+                    {/* <!-- company-name --> */}
+                    <div class="mt-1">
+                        <h1 class="text-md ml-10 font-semibold text-zinc-600">{job.company}</h1>
+                    </div>
+
+                    {/* <!-- location --> */}
+                    <div class="flex items-center ml-9 gap-1 mt-6">
+                        <IoLocationSharp size={15} />
+                        <h1 class="text-md font-semibold">{job.location}</h1>
+                    </div>
+
+                    {/* <!-- start, salary, experience, and opening number --> */}
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ml-10 mt-8">
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2">
+                                <FaRegCirclePlay class="w-6 h-6 sm:w-8 sm:h-8" />
+                                <h1 class="text-sm sm:text-base tracking-wider font-semibold">START DATE</h1>
+                            </div>
+                            <h1 class="font-normal">{job.startdate}</h1>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2">
+                                <FaMoneyBill class="w-6 h-6 sm:w-8 sm:h-8" />
+                                <h1 class="text-sm sm:text-base tracking-wider font-semibold">CTC (ANNUAL)</h1>
+                            </div>
+                            <h1 class="font-normal">₹ {job.package} /- Year</h1>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2">
+                                <IoBagCheck class="w-6 h-6 sm:w-8 sm:h-8" />
+                                <h1 class="text-sm sm:text-base tracking-wider font-semibold">EXPERIENCE</h1>
+                            </div>
+                            <h1 class="ml-2 font-normal">{job.experience} Year</h1>
+                        </div>
+                        <div class="flex flex-col items-start gap-1">
+                            <div class="flex items-center gap-2">
+                                <SiOnlyoffice class="w-6 h-6 sm:w-8 sm:h-8" />
+                                <h1 class="text-sm sm:text-base tracking-wider font-semibold">JOB TYPE</h1>
+                            </div>
+                            <h1 class="ml-2 font-normal">{job.jobtype}</h1>
+
                         <div className='py-2 mt=4 px-10'>
                             <button >
                                 {bookmarkbtn ? <FaBookmark onClick={disbookmarkHandler} size={26} /> : <CiBookmark onClick={bookmarkHandler} />}
@@ -86,54 +139,6 @@ const Singlejob = () => {
                         </div>
                     </div>
 
-                </div>
-
-                {/* <!-- job-title --> */}
-                <div class="mt-3">
-                    <h1 class="text-lg ml-10 font-semibold">{job.profile}</h1>
-                </div>
-
-                {/* <!-- company-name --> */}
-                <div class="mt-1">
-                    <h1 class="text-md ml-10 font-semibold text-zinc-600">{job.company}</h1>
-                </div>
-
-                {/* <!-- location --> */}
-                <div class="flex items-center ml-9 gap-1 mt-6">
-                    <IoLocationSharp size={15} />
-                    <h1 class="text-md font-semibold">{job.location}</h1>
-                </div>
-
-                {/* <!-- start, salary, experience, and opening number --> */}
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ml-10 mt-8">
-                    <div class="flex flex-col gap-1">
-                        <div class="flex items-center gap-2">
-                            <FaRegCirclePlay class="w-6 h-6 sm:w-8 sm:h-8" />
-                            <h1 class="text-sm sm:text-base tracking-wider font-semibold">START DATE</h1>
-                        </div>
-                        <h1 class="font-normal">{job.start}Immediately</h1>
-                    </div>
-                    <div class="flex flex-col gap-1">
-                        <div class="flex items-center gap-2">
-                            <FaMoneyBill class="w-6 h-6 sm:w-8 sm:h-8" />
-                            <h1 class="text-sm sm:text-base tracking-wider font-semibold">CTC (ANNUAL)</h1>
-                        </div>
-                        <h1 class="font-normal">₹ {job.salary} /- Year</h1>
-                    </div>
-                    <div class="flex flex-col gap-1">
-                        <div class="flex items-center gap-2">
-                            <IoBagCheck class="w-6 h-6 sm:w-8 sm:h-8" />
-                            <h1 class="text-sm sm:text-base tracking-wider font-semibold">EXPERIENCE</h1>
-                        </div>
-                        <h1 class="ml-2 font-normal">{job.experience} Year</h1>
-                    </div>
-                    <div class="flex flex-col items-start gap-1">
-                        <div class="flex items-center gap-2">
-                            <SiOnlyoffice class="w-6 h-6 sm:w-8 sm:h-8" />
-                            <h1 class="text-sm sm:text-base tracking-wider font-semibold">JOB TYPE</h1>
-                        </div>
-                        <h1 class="ml-2 font-normal">{job.jobtype}</h1>
-                    </div>
                 </div>
 
 
@@ -196,35 +201,51 @@ const Singlejob = () => {
 
             </div>
 
-            {/* <!-- skills --> */}
-            <div class="ml-10 mt-5">
-                <h1 class="font-semibold text-lg">Skill(s) required :</h1>
-                <h1 class="font-normal ml-4 mt-2 ">{job.skills}</h1>
-            </div>
+                {/* <!-- skills --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Skill(s) required :</h1>
+                    <h1 class="font-normal ml-4 mt-2 ">{job.skills}</h1>
+                </div>
 
-            {/* <!-- Salary --> */}
-            <div class="ml-10 mt-5">
-                <h1 class="font-semibold text-lg">Salary</h1>
-                <h3 class="ml-4">Annual CTC: ₹ {job.salary} /year</h3>
-            </div>
+                {/* <!-- Salary --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">CTC</h1>
+                    <h3 class="ml-4">Annual CTC: ₹ {job.package} /year</h3>
+                </div>
 
-            {/* <!-- Openings --> */}
-            <div class="ml-10 mt-5">
-                <h1 class="font-semibold text-lg">Number of openings :</h1>
-                <h3 class="ml-4 mt-1">{job.openings}</h3>
-            </div>
+                 {/* <!-- Start Date --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Start Date</h1>
+                    <h3 class="ml-4">{job.start}</h3>
+                </div>
 
-            {/* <!-- Preferences --> */}
-            <div class="ml-10 mt-5">
-                <h1 class="font-semibold text-lg">Preferences :</h1>
-                <h3 class="ml-4 mt-1">{job.preferences}</h3>
-            </div>
+                {/* <!-- Openings --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Number of openings :</h1>
+                    <h3 class="ml-4 mt-1">{job.openings}</h3>
+                </div>
 
-            {/* <!-- Perks --> */}
-            <div class="ml-10 mt-5">
-                <h1 class="font-semibold text-lg">Perks :</h1>
-                <h3 class="ml-4 mt-1">{job.perks}</h3>
-            </div>
+                {/* <!-- Salary --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Salary</h1>
+                    <h3 class="ml-4">Monthly Salary: ₹ {job.salary} /- Month</h3>
+                </div>
+
+                {/* <!-- Preferences --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Preferences :</h1>
+                    <h3 class="ml-4 mt-1">{job.preferences}</h3>
+                </div>
+
+                {/* <!-- Perks --> */}
+                <div className="ml-10 mt-5">
+                    <h1 className="font-semibold text-lg">Perks:</h1>
+                    <ul className="list-disc ml-10">
+                        {job.perks && job.perks.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                </div>            
 
             {/* <!-- Assessments --> */}
             <div class="ml-10 mt-5">
@@ -239,6 +260,12 @@ const Singlejob = () => {
                     {/* , we're not just another digital agency, we're your dedicated allies in the dynamic world of marketing, community management, and website development. Our mission is simple - to provide our clients, ranging from small influencers and startups to industry-leading enterprises, with an unparalleled ease-of-work experience. */}
                 </h3>
             </div>
+
+                {/* <!-- Contect Number --> */}
+                <div class="ml-10 mt-5">
+                    <h1 class="font-semibold text-lg">Contect Number :</h1>
+                    <h3 class="ml-4 mt-1">{job.contact}</h3>
+                </div>
 
 
 
