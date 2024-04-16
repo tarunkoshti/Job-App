@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { jobDetail } from '../../store/Actions/jobActions';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { FaArrowTrendUp, FaBookmark } from "react-icons/fa6";
+import { FaArrowTrendUp } from "react-icons/fa6";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { FaMoneyBill } from "react-icons/fa";
