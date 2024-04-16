@@ -8,6 +8,7 @@ import { deleteAccomplishment, deleteEducation, deleteInternship, deleteJob, del
 import { Document, PDFDownloadLink, PDFViewer, Page, Text, View } from '@react-pdf/renderer';
 import MyDocument from '../../ResumeDocument/MyDocument';
 import { getStudentResume } from '../../../store/Actions/resumeActions';
+import { RiDownload2Line } from "react-icons/ri";
 
 const Resume = () => {
 
@@ -59,26 +60,30 @@ const Resume = () => {
                 <div className='w-full'>
                     <h1 className="text-center text-4xl font-semibold mt-6">Resume</h1>
 
-                    {/* view resume */}
-                    <Link to={`/student/view/${student._id}`}  > view resume</Link>
-                    <PDFDownloadLink document={<MyDocument updatedResume={updatedResume} />} fileName='resume'>
-                        download now
-                    </PDFDownloadLink>
-
                     <div className='w-[65%] m-auto mt-6'>
                         <div className='w-full text-center py-3 rounded-lg border border-orange-300'>Whenever you apply to an internship or fresher job, this is the resume that the employer will see. Always make sure it is up to date.
                         </div>
 
                         <div className='w-full border rounded-lg mt-5 p-10'>
-                            <div className='personalDetail border-b py-5'>
-                                <h6 className='capitalize font-semibold text-3xl'>{student.firstname} {student.lastname}
-                                    <Link
-                                        to='/student/resume/edit/personal_details' className='inline-block ml-5'><HiPencil size={20} /></Link>
-                                </h6>
+                            <div className='personalDetail border-b py-5 flex justify-between'>
+                                
+                                <div>
+                                    <h6 className='capitalize font-semibold text-3xl'>{student.firstname} {student.lastname}
+                                        <Link
+                                            to='/student/resume/edit/personal_details' className='inline-block ml-5'><HiPencil size={20} /></Link>
+                                    </h6>
 
-                                <p className='font-normal text-base'>{student.email}</p>
-                                <p className='font-normal text-base'>{student.contact}</p>
-                                <p className='font-normal text-base capitalize'>{student.city}</p>
+                                    <p className='font-normal text-base'>{student.email}</p>
+                                    <p className='font-normal text-base'>{student.contact}</p>
+                                    <p className='font-normal text-base capitalize'>{student.city}</p>
+                                </div>
+
+                                <div >
+                                    {/* download resume */}
+                                    <PDFDownloadLink document={<MyDocument updatedResume={updatedResume} />} fileName='resume'>
+                                        <RiDownload2Line size={25} />
+                                    </PDFDownloadLink>
+                                </div>
                             </div>
 
                             <div className='education border-b py-5 flex items-start'>

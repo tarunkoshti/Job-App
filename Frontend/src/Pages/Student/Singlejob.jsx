@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { jobDetail } from '../../store/Actions/jobActions';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { FaArrowTrendUp } from "react-icons/fa6";
+import { FaArrowTrendUp, FaBookmark } from "react-icons/fa6";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { FaMoneyBill } from "react-icons/fa";
@@ -13,22 +13,38 @@ import { SiOnlyoffice } from "react-icons/si";
 import { IoCalendarNumber } from "react-icons/io5";
 import { MdMessage } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
-import { applyjob, bookmarkjob } from '../../store/Actions/userActions';
+import { applyjob, bookmarkjob, disbookmarkjob } from '../../store/Actions/userActions';
 import { CiBookmark } from "react-icons/ci";
 
 const Singlejob = () => {
 
     const { id } = useParams()
-    // console.log(id)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const jobs = useSelector((state) => state.jobReducer.jobData);
-    const j = jobs?.filter(job => job._id === id)
-    const job = j[0]
+    const job = jobs?.find(job => job._id === id)
+
+
+    const student = useSelector((state) => state.userReducer.userData?.student)
+
+    const bookmarkedJobs = student?.bookmarkjob
+    const bookmarkedJob = bookmarkedJobs?.find((jobId) => jobId == id)
+
+    const bookmarkHandler = async () => {
+        await dispatch(bookmarkjob(id))
+    }
+
+    const disbookmarkHandler = async () => {
+        await dispatch(disbookmarkjob(id));
+    }
+
+    const appliedJob = student?.jobs?.find((jobid) => jobid == id)
 
     const applyHandler = async () => {
-        await dispatch(applyjob(id));
-        navigate("/student")
+        if (!appliedJob) {
+            await dispatch(applyjob(id));
+            navigate("/student")
+        }
     }
 
 
@@ -37,27 +53,24 @@ const Singlejob = () => {
     // }, [dispatch]);
 
 
-    const bookmarkHandler = async()=>{
-        await dispatch(bookmarkjob(id))
-        navigate("/student")
-    }
+
     return (
 
-
-        
         job && <div className="w-full flex flex-col items-center">
             <h1 className="text-center text-4xl font-semibold mt-6">{job.profile} Job</h1>
             <div className="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 rounded-lg">
 
                 <div class="border-b-2 border-zinc-200">
-                <div className='flex justify-between' >
+                    <div className='flex justify-between' >
                         <div class="flex items-center   w-fit gap-2 px-4 py-1 bg-[#1F2937] text-white rounded-md ml-10 mt-4">
-                        <FaArrowTrendUp size={14} />
-                        <h6 class="text-xs">Actively hiring</h6>
+                            <FaArrowTrendUp size={14} />
+                            <h6 class="text-xs">Actively hiring</h6>
                         </div>
-                     <div className='py-2 mt=4 px-10'>
-                         <button onClick={bookmarkHandler}><CiBookmark  size={26} /></button></div>   
-
+                        <div className='py-2 mt=4 px-10'>
+                            <button >
+                                {bookmarkedJob ? <FaBookmark onClick={disbookmarkHandler} size={24} /> : <CiBookmark onClick={bookmarkHandler} size={24} />}
+                            </button >
+                        </div >
                     </div>
 
                     {/* <!-- job-title --> */}
@@ -125,7 +138,7 @@ const Singlejob = () => {
                     {/* <!-- Applicants --> */}
                     <div class="flex items-center gap-2 mt-8 ml-10 mb-8">
                         <IoMdPeople size={30} />
-                        <h1 class="font-medium">{job.applicants} applicants</h1>
+                        <h1 class="font-medium">{job.applicants}applicants</h1>
                     </div>
                 </div>
 
@@ -180,7 +193,7 @@ const Singlejob = () => {
                     <h3 class="ml-4">Annual CTC: ₹ {job.package} /year</h3>
                 </div>
 
-                 {/* <!-- Start Date --> */}
+                {/* <!-- Start Date --> */}
                 <div class="ml-10 mt-5">
                     <h1 class="font-semibold text-lg">Start Date</h1>
                     <h3 class="ml-4">{job.start}</h3>
@@ -258,7 +271,7 @@ const Singlejob = () => {
                     <button onClick={applyHandler} class="px-8 py-2 bg-[#1F2937] text-white font-semibold rounded-lg">Apply Now</button>
                 </div>
             </div>
-        </div>
+        </div >
 
 
 

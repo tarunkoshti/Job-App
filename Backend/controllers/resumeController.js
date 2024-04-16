@@ -247,11 +247,7 @@ exports.addwork = catchAsyncErrors(async function (req, res, next) {
     });
 
     await student.save()
-    // student.resume.worksamples.push(work);
-    // Object.entries(work).map(([key, value]) => (
-
-    //     student.resume.worksamples[0] = { }
-    // ))
+   
     res.json({ message: "Work Sample added!" })
 });
 
