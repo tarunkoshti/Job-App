@@ -70,6 +70,8 @@ const Application = () => {
                   </div>
 
                   {/* Job - Application */}
+                
+                </div>
                 <div className=' mx-2 md:mx-20 rounded-lg overflow-x-auto border-2 border-zinc-300 mt-16'>
                   <h1 className='text-3xl text-center font-semibold py-10 '>Job Application</h1>
                   <div className='shadow-md'>
@@ -104,8 +106,6 @@ const Application = () => {
                   </div>
 
                 </div>
-                </div>
-
               </>               
             )
 }

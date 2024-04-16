@@ -15,6 +15,7 @@ import { MdMessage } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { applyjob, bookmarkjob, disbookmarkjob } from '../../store/Actions/userActions';
 import { CiBookmark } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa";
 
 const Singlejob = () => {
 
@@ -22,8 +23,8 @@ const Singlejob = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const jobs = useSelector((state) => state.jobReducer.jobData);
-    const job = jobs?.find(job => job._id === id)
 
+    const job = jobs?.find(job => job._id === id)
 
     const student = useSelector((state) => state.userReducer.userData?.student)
 
@@ -71,26 +72,26 @@ const Singlejob = () => {
                                 {bookmarkedJob ? <FaBookmark onClick={disbookmarkHandler} size={24} /> : <CiBookmark onClick={bookmarkHandler} size={24} />}
                             </button >
                         </div >
-                    </div>
+                    </div >
 
                     {/* <!-- job-title --> */}
-                    <div class="mt-3">
+                    < div class="mt-3" >
                         <h1 class="text-lg ml-10 font-semibold">{job.profile}</h1>
-                    </div>
+                    </div >
 
                     {/* <!-- company-name --> */}
-                    <div class="mt-1">
+                    < div class="mt-1" >
                         <h1 class="text-md ml-10 font-semibold text-zinc-600">{job.company}</h1>
-                    </div>
+                    </div >
 
                     {/* <!-- location --> */}
-                    <div class="flex items-center ml-9 gap-1 mt-6">
+                    < div class="flex items-center ml-9 gap-1 mt-6" >
                         <IoLocationSharp size={15} />
                         <h1 class="text-md font-semibold">{job.location}</h1>
-                    </div>
+                    </div >
 
                     {/* <!-- start, salary, experience, and opening number --> */}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ml-10 mt-8">
+                    < div class="grid grid-cols-1 sm:grid-cols-2 gap-4 ml-10 mt-8" >
                         <div class="flex flex-col gap-1">
                             <div class="flex items-center gap-2">
                                 <FaRegCirclePlay class="w-6 h-6 sm:w-8 sm:h-8" />
@@ -118,8 +119,8 @@ const Singlejob = () => {
                                 <h1 class="text-sm sm:text-base tracking-wider font-semibold">JOB TYPE</h1>
                             </div>
                             <h1 class="ml-2 font-normal">{job.jobtype}</h1>
-                        </div>
-                    </div>
+                        </div >
+                    </div >
 
 
                     <div class="flex items-center gap-1 mt-6">
@@ -135,16 +136,17 @@ const Singlejob = () => {
                         </div>
                     </div>
 
+
                     {/* <!-- Applicants --> */}
-                    <div class="flex items-center gap-2 mt-8 ml-10 mb-8">
+                    < div class="flex items-center gap-2 mt-8 ml-10 mb-8" >
                         <IoMdPeople size={30} />
                         <h1 class="font-medium">{job.applicants}applicants</h1>
-                    </div>
-                </div>
+                    </div >
+                </div >
 
 
                 {/* <!-- description --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <div>
                         <h1 class="font-semibold">About the job</h1>
                         <h3 class="ml-2">{job.description}</h3>
@@ -179,73 +181,73 @@ const Singlejob = () => {
                         </p>
                     </div>
 
-                </div>
+                </div >
 
                 {/* <!-- skills --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Skill(s) required :</h1>
                     <h1 class="font-normal ml-4 mt-2 ">{job.skills}</h1>
-                </div>
+                </div >
 
                 {/* <!-- Salary --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">CTC</h1>
                     <h3 class="ml-4">Annual CTC: ₹ {job.package} /year</h3>
-                </div>
+                </div >
 
                 {/* <!-- Start Date --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Start Date</h1>
                     <h3 class="ml-4">{job.start}</h3>
-                </div>
+                </div >
 
                 {/* <!-- Openings --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Number of openings :</h1>
                     <h3 class="ml-4 mt-1">{job.openings}</h3>
-                </div>
+                </div >
 
                 {/* <!-- Salary --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Salary</h1>
                     <h3 class="ml-4">Monthly Salary: ₹ {job.salary} /- Month</h3>
-                </div>
+                </div >
 
                 {/* <!-- Preferences --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Preferences :</h1>
                     <h3 class="ml-4 mt-1">{job.preferences}</h3>
-                </div>
+                </div >
 
                 {/* <!-- Perks --> */}
-                <div className="ml-10 mt-5">
+                < div className="ml-10 mt-5" >
                     <h1 className="font-semibold text-lg">Perks:</h1>
                     <ul className="list-disc ml-10">
                         {job.perks && job.perks.map((item, index) => (
                             <li key={index}>{item}</li>
                         ))}
                     </ul>
-                </div>
+                </div >
 
                 {/* <!-- Assessments --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Assessments :</h1>
                     <h3 class="ml-4 mt-1">{job.assements}</h3>
-                </div>
+                </div >
 
                 {/* <!-- companyDetail --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">About {job.company}</h1>
                     <h3 class="ml-4 mt-1 w-full px-4">At {job.companyDetail}
                         {/* , we're not just another digital agency, we're your dedicated allies in the dynamic world of marketing, community management, and website development. Our mission is simple - to provide our clients, ranging from small influencers and startups to industry-leading enterprises, with an unparalleled ease-of-work experience. */}
                     </h3>
-                </div>
+                </div >
 
                 {/* <!-- Contect Number --> */}
-                <div class="ml-10 mt-5">
+                < div class="ml-10 mt-5" >
                     <h1 class="font-semibold text-lg">Contect Number :</h1>
                     <h3 class="ml-4 mt-1">{job.contact}</h3>
-                </div>
+                </div >
 
 
 
@@ -267,16 +269,11 @@ const Singlejob = () => {
                 </div> */}
 
 
-                <div class="flex justify-center items-center mt-8 py-8">
+                < div class="flex justify-center items-center mt-8 py-8" >
                     <button onClick={applyHandler} class="px-8 py-2 bg-[#1F2937] text-white font-semibold rounded-lg">Apply Now</button>
-                </div>
-            </div>
+                </div >
+            </div >
         </div >
-
-
-
     )
-
 }
-
 export default Singlejob

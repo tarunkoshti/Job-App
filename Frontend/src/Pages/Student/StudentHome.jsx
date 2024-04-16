@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import JobCard from '../../Components/JobCard';
 import { fetchJobs } from '../../store/Actions/jobActions';
@@ -13,9 +13,10 @@ const StudentHome = () => {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobReducer.jobData);
   const internships = useSelector((state) => state.internshipReducer.internshipData)
-  
+
+
   useEffect(() => {
-   
+
     try {
       dispatch(fetchJobs());
     } catch (error) {
@@ -28,6 +29,41 @@ const StudentHome = () => {
   }, [dispatch]);
 
 
+  // filter functionality
+
+  const [data, setData] = useState(undefined);
+
+  const options = [
+    "Remote",
+    "In office",
+    "Part-time",
+    "Full-time",
+
+  ];
+  const onOptionChangeHandler = (event) => {
+    setData(event.target.value);
+    console.log(
+      "User Selected Value - ",
+      event.target.value
+    );
+  };
+
+  const [optionData, setOptionData] = useState(undefined);
+
+  const JobOptions = [
+    "Remote",
+    "In office",
+    "Part-time",
+    "Full-time",
+
+  ];
+  const onOptionChangeJobHandler = (event) => {
+    setOptionData(event.target.value);
+    console.log(
+      "User Selected Value - ",
+      event.target.value
+    );
+  };
   return (
     <>
       <div className='w-full  py-2'>
@@ -128,14 +164,41 @@ const StudentHome = () => {
           <div className='py-3 mb-8'>
             <h1 className='text-4xl text-center font-semibold'>Explore all Job Locations</h1>
           </div>
-
+          <div className='flex items-center justify-center'>
+            <h1 className='px-2 bg-pink-100 py-1 rounded-lg font-semibold'>Apply filter </h1>
+            <select className='py-1 bg-blue-100 rounded-lg px-3 mx-4' onChange={onOptionChangeJobHandler}>
+              <option>Please choose one option</option>
+              {JobOptions.map((option, index) => {
+                return (
+                  <option key={index}>
+                    {option}
+                  </option>
+                );
+              })}
+            </select></div>
           <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
-            {
+            {optionData === "Remote" ? (
+              jobs && jobs.filter((job) => job.jobtype === "Remote").map((job, index) => (
+                <JobCard key={index} index={index} job={job} />
+              ))
+            ) : optionData == "In office" ? (
+              jobs && jobs.filter((job) => job.jobtype === "In office").map((job, index) => (
+                <JobCard key={index} index={index} job={job} />
+              ))
+            ) : optionData == "Full-time" ? (
+              jobs && jobs.filter((job) => job.workingtype === "Full-time").map((job, index) => (
+                <JobCard key={index} index={index} job={job} />
+              ))) : optionData == "Part-time" ? (
+                jobs && jobs.filter((job) => job.workingtype === "Part-time").map((job, index) => (
+                  <JobCard key={index} index={index} job={job} />
+                ))) : (
+
               jobs &&
               (jobs.map((job, index) => (
                 <JobCard key={index} index={index} job={job} />
               )))
-            }
+
+            )}
           </div>
 
         </div>
@@ -147,14 +210,43 @@ const StudentHome = () => {
           <div className='py-3 mb-8'>
             <h1 className='text-4xl text-center font-semibold'>Explore all Internship Opportunity</h1>
           </div>
-
+          <div className='flex items-center justify-center'>
+            <h1 className='px-2 bg-pink-100 py-1 rounded-lg font-semibold'>Apply filter </h1>
+            <select className='py-1 bg-blue-100 rounded-lg px-3 mx-4' onChange={onOptionChangeHandler}>
+              <option>Please choose one option</option>
+              {options.map((option, index) => {
+                return (
+                  <option key={index}>
+                    {option}
+                  </option>
+                );
+              })}
+            </select></div>
           <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
-            {
-              internships &&
-              (internships.map((internship, index) => (
+
+            {data === "Remote" ? (
+              internships && internships.filter((internship) => internship.internshiptype === "Remote").map((internship, index) => (
                 <InternshipCard key={index} index={index} internship={internship} />
+              ))
+            ) : data == "In office" ? (
+              internships && internships.filter((internship) => internship.internshiptype === "In office").map((internship, index) => (
+                <InternshipCard key={index} index={index} internship={internship} />
+              ))
+            ) : data == "Full-time" ? (
+              internships && internships.filter((internship) => internship.workingtype === "Full-time").map((internship, index) => (
+                <InternshipCard key={index} index={index} internship={internship} />
+              ))) : data == "Part-time" ? (
+                internships && internships.filter((internship) => internship.workingtype === "Part-time").map((internship, index) => (
+                  <InternshipCard key={index} index={index} internship={internship} />
+                ))) : (
+
+              internships &&
+              (internships.map((intern, index) => (
+                <InternshipCard key={index} index={index} internship={intern} />
               )))
-            }
+
+            )}
+
           </div>
 
         </div>
