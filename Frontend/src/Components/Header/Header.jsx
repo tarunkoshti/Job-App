@@ -68,12 +68,14 @@ const Header = () => {
         if (isStudentAuth) {
             const error = await dispatch(studentLogout())
             error ? toast.error(error.data.message)
-            :toast.success("Logout Successfully")
+                : toast.success("Logout Successfully")
             setIsProfileOpen(false)
             setDropdown(false)
             navigate("/")
         } else if (isEmployeeAuth) {
-            await dispatch(employeeLogout())
+            const error = await dispatch(employeeLogout())
+            error ? toast.error(error.data.message)
+                : toast.success("Logout Successfully")
             setIsProfileOpen(false)
             setDropdown(false)
             navigate("/")
@@ -84,8 +86,10 @@ const Header = () => {
         const formData = new FormData();
         formData.set('avatar', e.target.files[0]);
         // console.log(formData)
-        student && dispatch(asyncUploadProfileImageStudent(student._id, formData));
-        employe && dispatch(asyncUploadProfileImageEmployee(employe._id, formData));
+        const errorStudent = student && dispatch(asyncUploadProfileImageStudent(student._id, formData));
+        errorStudent ? toast.error(errorStudent.data.response) : toast.success("Avatar Upadated");
+        const erroremployee = employe && dispatch(asyncUploadProfileImageEmployee(employe._id, formData));
+        erroremployee ? toast.error(erroremployee.data.response) : toast.success("Avatar Upadated");
     };
 
     return (

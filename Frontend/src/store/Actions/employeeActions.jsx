@@ -60,7 +60,7 @@ export const asyncResetPassword = (id, formData) => async (dispatch, getState) =
         const { data } = await axios.post(`/api/employe/reset-password/${id}`, formData)
         console.log(data)
     } catch (error) {
-        console.log(error.message)
+       return error.response
     }
 }
 
