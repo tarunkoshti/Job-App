@@ -44,7 +44,7 @@ export const asyncSendMail = (formData) => async (dispatch, getState) => {
     try {
         await axios.post('/api/user/student/send-mail', formData)
     } catch (error) {
-        console.log(error.response)
+       return error.response
     }
 }
 

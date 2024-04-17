@@ -39,7 +39,7 @@ const Singlejob = () => {
         await dispatch(disbookmarkjob(id));
     }
 
-    const appliedJob = student?.jobs?.find((jobid) => jobid == id)
+    const appliedJob = student?.jobs?.find((jobid) => jobid._id == id)
 
     const applyHandler = async () => {
         if (!appliedJob) {

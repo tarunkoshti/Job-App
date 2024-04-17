@@ -6,7 +6,7 @@ import { asyncSendMail as employeeMail } from '../store/Actions/employeeActions'
 import { useDispatch, useSelector } from 'react-redux'
 import Button from '../Components/Button'
 import { Link, useNavigate } from 'react-router-dom'
-
+import { toast } from 'react-toastify';
 const Forget = ({ userType }) => {
 
     const { register, handleSubmit } = useForm()
@@ -20,12 +20,14 @@ const Forget = ({ userType }) => {
     const submit = async (data) => {
         data.currentHost = currentHost
         if (userType === "student") {
-            await dispatch(studentMail(data))
+            const error = await dispatch(studentMail(data))
+            error ? toast.error(error.data.message):toast.success("Email successfully sent")
             sId && navigate(`/student/forget-link/${sId}`)
         }
         else {
             await dispatch(employeeMail(data))
             eId && navigate(`/employee/forget-link/${eId}`)
+            toast.success("Email successfully sent")
         }
     }
 

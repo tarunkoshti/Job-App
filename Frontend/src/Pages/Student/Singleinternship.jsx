@@ -47,13 +47,17 @@ const Singleinternship = () => {
     }
 
 
-    const appliedInternship = student?.internships?.find((internid) => internid == id)
+    const appliedInternship = useSelector((state) => state.userReducer.userData?.student.internships).filter((intern) => intern._id == id)
     console.log(appliedInternship)
 
     const applyHandler = async () => {
-        if(!appliedInternship){
+        if(appliedInternship.length==0){
             await dispatch(applyinternship(id));
             navigate("/student")
+        }
+        else
+        {
+            Navigate("/student")
         }
     }
 
