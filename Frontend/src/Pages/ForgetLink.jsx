@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { asyncForgrtPassword as studentForget } from '../store/Actions/userActions'
 import { asyncForgrtPassword as employeeForget } from '../store/Actions/employeeActions'
-
+import { toast } from 'react-toastify';
 const ForgetLink = () => {
 
     const { register, handleSubmit } = useForm()
@@ -19,12 +19,14 @@ const ForgetLink = () => {
 
     const submit = async (data) => {
         if (isStudent){
-            await dispatch(studentForget(id, data)) 
+         const error=   await dispatch(studentForget(id, data)) 
             navigate("/student")
+            error?toast.error(error.data.message):toast.success("Password has been changed")
         }
         else{
-            await dispatch(employeeForget(id, data))
+          const error=  await dispatch(employeeForget(id, data))
             navigate("/employee")
+            error?toast.error(error.data.message):toast.success("Password has been changed")
         }
     }
 
