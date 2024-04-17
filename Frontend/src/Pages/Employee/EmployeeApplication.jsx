@@ -37,7 +37,7 @@ const EmployeeApplication = () => {
                   <h1 className='w-1/6'>{intern.company}</h1>
                   <h1 className='w-1/6'>{intern.profile}</h1>
                   <h1 className='w-1/6 '>{intern.internshiptype}</h1>
-                  <h1 className='w-1/6'>{intern.students.length}</h1>
+                  <h1 className='w-1/6'>{intern?.students.length}</h1>
 
                   <Link className='w-1/6' to={`/student/internship/singleintership/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
 
@@ -68,7 +68,7 @@ const EmployeeApplication = () => {
                   <h1 className='w-1/5'>{job.company}</h1>
                   <h1 className='w-1/5'>{job.profile}</h1>
                   <h1 className='w-1/5'>{job.jobtype}</h1>
-                  <h1 className='w-1/5'>{job.students.length}</h1>
+                  <h1 className='w-1/5'>{job?.students.length}</h1>
 
                   <Link className='w-1/5' to={`/student/job/read/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
                 </div>
