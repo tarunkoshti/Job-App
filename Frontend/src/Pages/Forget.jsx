@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
 import { MdErrorOutline } from 'react-icons/md'
-import { Bounce, Flip, Slide, Zoom, toast } from 'react-toastify'
+import { Bounce, Flip, Slide, Zoom } from 'react-toastify'
 
 
 const Forget = ({ userType }) => {
@@ -33,9 +33,9 @@ const Forget = ({ userType }) => {
             sId && navigate(`/student/forget-link/${sId}`)
         }
         else {
-            await dispatch(employeeMail(data))
+         const error=   await dispatch(employeeMail(data))
             eId && navigate(`/employee/forget-link/${eId}`)
-            toast.success("Email successfully sent")
+           error?toast.error(error.data.message): toast.success("Email successfully sent")
         }
     }
 
