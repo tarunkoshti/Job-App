@@ -39,7 +39,7 @@ const EmployeeApplication = () => {
                   <h1 className='w-1/6 '>{intern.internshiptype}</h1>
                   <h1 className='w-1/6'>{intern.students.length}</h1>
 
-                  <Link className='w-1/6' to={`/student/internship/singleintership/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>ax c
+                  <Link className='w-1/6' to={`/student/internship/singleintership/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
 
                   <Link className='w-1/6' to={`/employee/application/applicants/${studentItem}`}><button className='px-8 py-2 bg-gray-400 rounded-lg'>View</button></Link>
                 </div>
