@@ -6,6 +6,7 @@ import Input from '../Components/Input';
 import Button from '../Components/Button';
 import { asyncLogin as studentLogin } from '../store/Actions/userActions'
 import { asyncLogin as employeeLogin } from '../store/Actions/employeeActions';
+import { toast } from 'react-toastify';
 
 const Login = ({ userType }) => {
 
@@ -17,9 +18,11 @@ const Login = ({ userType }) => {
 
   const { register, handleSubmit } = useForm();
 
-  const login = (data) => {
+  const login = async (data) => {
     if (userType === "student") {
-      dispatch(studentLogin(data))
+      const error = await dispatch(studentLogin(data))
+      error ? toast.error(error.data.message)
+      : toast.success("Successfully Login")
     } else if (userType === "employee") {
       dispatch(employeeLogin(data))
     }

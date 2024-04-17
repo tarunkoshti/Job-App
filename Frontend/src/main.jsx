@@ -37,12 +37,18 @@ import AddProject from './Pages/Student/Resume/AddProject.jsx'
 import AddSkill from './Pages/Student/Resume/AddSkill.jsx'
 import AddProtfolioOrWork from './Pages/Student/Resume/AddProtfolioOrWork.jsx'
 import AddAccomplishment from './Pages/Student/Resume/AddAccomplishment.jsx'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <>
+        <App />
+        <ToastContainer />
+      </>
+    ),
     children: [
       {
         path: "/",
