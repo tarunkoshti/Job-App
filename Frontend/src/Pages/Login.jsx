@@ -24,7 +24,9 @@ const Login = ({ userType }) => {
       error ? toast.error(error.data.message)
       : toast.success("Successfully Login")
     } else if (userType === "employee") {
-      dispatch(employeeLogin(data))
+     const error11= await dispatch(employeeLogin(data))
+      error11 ? toast.error(error11.data.message)
+      : toast.success("Successfully Login")
     }
   }
 
