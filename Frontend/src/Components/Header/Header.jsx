@@ -6,6 +6,7 @@ import { asyncUploadProfileImageEmployee, asyncLogout as employeeLogout } from '
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
+import { toast } from 'react-toastify'
 
 const Header = () => {
 
@@ -65,7 +66,9 @@ const Header = () => {
 
     const LogoutHandler = async () => {
         if (isStudentAuth) {
-            await dispatch(studentLogout())
+            const error = await dispatch(studentLogout())
+            error ? toast.error(error.data.message)
+            :toast.success("Logout Successfully")
             setIsProfileOpen(false)
             setDropdown(false)
             navigate("/")

@@ -23,7 +23,7 @@ const Login = ({ userType }) => {
     if (userType === "student") {
       const error = await dispatch(studentLogin(data))
       error ? toast.error(error.data.message)
-        : toast.success("Successfully Login")
+        : toast.success("Login Successfully")
     } else if (userType === "employee") {
       dispatch(employeeLogin(data))
     }
@@ -70,10 +70,10 @@ const Login = ({ userType }) => {
                     value: true,
                     message: "email is required"
                   },
-                  pattern: {
-                    value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                    message: "Invalid email address"
-                  }
+                  // pattern: {
+                  //   value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                  //   message: "Invalid email address"
+                  // }
                 })}
               />
               {errors.email && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.email.message}</span></p>}
@@ -83,7 +83,7 @@ const Login = ({ userType }) => {
               <Input
                 label="Password"
                 type="password"
-                placeholder="Must be atleat 6 character"
+                placeholder="Enter password"
                 {...register("password", {
                   required: {
                     value: true,
