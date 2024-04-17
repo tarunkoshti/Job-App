@@ -7,6 +7,7 @@ import Button from '../Components/Button';
 import { asyncLogin as studentLogin } from '../store/Actions/userActions'
 import { asyncLogin as employeeLogin } from '../store/Actions/employeeActions';
 import { toast } from 'react-toastify';
+import { MdErrorOutline } from 'react-icons/md';
 
 const Login = ({ userType }) => {
 
@@ -16,13 +17,13 @@ const Login = ({ userType }) => {
   const { isAuth: isEmployeeAuth } = useSelector((state) => state.employeeReducer)
 
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const login = async (data) => {
     if (userType === "student") {
       const error = await dispatch(studentLogin(data))
       error ? toast.error(error.data.message)
-      : toast.success("Successfully Login")
+        : toast.success("Successfully Login")
     } else if (userType === "employee") {
       dispatch(employeeLogin(data))
     }
@@ -59,26 +60,39 @@ const Login = ({ userType }) => {
           className='mt-5'
         >
           <div className='space-y-5'>
-            <Input
-              label="Email"
-              placeholder="John@example.com"
-              type="email"
-              {...register("email", {
-                required: true,
-                // validate: {
-                //     matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                //         "Email address must be a valid address",
-                // }
-              })}
-            />
-            <Input
-              label="Password"
-              type="password"
-              placeholder="Must be atleat 6 character"
-              {...register("password", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                label="Email"
+                placeholder="John@example.com"
+                type="string"
+                {...register("email", {
+                  required: {
+                    value: true,
+                    message: "email is required"
+                  },
+                  pattern: {
+                    value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                    message: "Invalid email address"
+                  }
+                })}
+              />
+              {errors.email && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.email.message}</span></p>}
+            </div>
+
+            <div>
+              <Input
+                label="Password"
+                type="password"
+                placeholder="Must be atleat 6 character"
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "password is required"
+                  },
+                })}
+              />
+              {errors.password && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.password.message}</span></p>}
+            </div>
 
             <Link to="/student/forget-password"
               className='text-blue-700 text-right font-semibold text-sm inline-block'
