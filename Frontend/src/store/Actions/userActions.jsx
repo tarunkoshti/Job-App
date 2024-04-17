@@ -9,7 +9,7 @@ export const currentUser = () => async (dispatch, getState) => {
             dispatch(login({ userData }))
         }
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -18,7 +18,7 @@ export const asyncSignup = (userData) => async (dispatch, getState) => {
         await axios.post('/api/user/student/signup', userData)
         dispatch(currentUser())
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -36,7 +36,7 @@ export const asyncLogout = () => async (dispatch, getState) => {
         await axios.get('/api/user/student/signout')
         dispatch(logout())
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -44,7 +44,9 @@ export const asyncSendMail = (formData) => async (dispatch, getState) => {
     try {
         await axios.post('/api/user/student/send-mail', formData)
     } catch (error) {
-       return error.response
+
+        return error.response
+
     }
 }
 
@@ -52,7 +54,7 @@ export const asyncForgrtPassword = (id, formData) => async (dispatch, getState) 
     try {
         await axios.post(`/api/user/student/forget-link/${id}`, formData)
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 
 }
@@ -60,7 +62,7 @@ export const asyncResetPassword = (id, formData) => async (dispatch, getState) =
     try {
         await axios.post(`/api/user/student/reset-password/${id}`, formData)
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -71,7 +73,7 @@ export const asyncUploadProfileImageStudent = (id, imageFile) => async (dispatch
         console.log("two")
         dispatch(currentUser())
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -81,7 +83,7 @@ export const allapplyinternship = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(readHisOwnInternship({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -91,7 +93,7 @@ export const allapplyjob = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(readHisOwnJob({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -99,9 +101,9 @@ export const applyjob = (id) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/user/student/apply/job/${id}`)
         console.log(data)
-        // dispatch(currentUser({ data }));
+        dispatch(currentUser({ data }));
     } catch (error) {
-        console.log(error.response)
+        return error.response
 
     }
 }
@@ -112,7 +114,7 @@ export const applyinternship = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -122,7 +124,7 @@ export const bookmarkinternship = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -132,7 +134,7 @@ export const disbookmarkinternship = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({data}))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -142,7 +144,7 @@ export const bookmarkjob = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -152,7 +154,7 @@ export const disbookmarkjob = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -162,7 +164,7 @@ export const updateStudent = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -172,7 +174,7 @@ export const addEducation = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -182,7 +184,7 @@ export const editEducation = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -192,7 +194,7 @@ export const deleteEducation = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -202,7 +204,7 @@ export const addJob = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -212,7 +214,7 @@ export const editJob = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -222,7 +224,7 @@ export const deleteJob = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -232,7 +234,7 @@ export const addInternship = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -242,7 +244,7 @@ export const editInternship = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -252,7 +254,7 @@ export const deleteInternship = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -262,7 +264,7 @@ export const addResponsibility = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -272,7 +274,7 @@ export const editResponsibility = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -282,7 +284,7 @@ export const deleteResponsibility = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -292,7 +294,7 @@ export const addTrainingCourse = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -302,7 +304,7 @@ export const editTrainingCourse = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -312,7 +314,7 @@ export const deleteTrainingCourse = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -322,7 +324,7 @@ export const addProject = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -332,7 +334,7 @@ export const editProject = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -342,7 +344,7 @@ export const deleteProject = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -352,7 +354,7 @@ export const addSkill = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -362,7 +364,7 @@ export const editSkill = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -372,7 +374,7 @@ export const deleteSkill = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -382,7 +384,7 @@ export const addWorkSample = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -392,7 +394,7 @@ export const editWorkSample = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -402,7 +404,7 @@ export const deleteWorkSample = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -412,7 +414,7 @@ export const addAccomplishment = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -422,7 +424,7 @@ export const editAccomplishment = (id, data1) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
 
@@ -432,6 +434,6 @@ export const deleteAccomplishment = (id) => async (dispatch, getState) => {
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {
-        console.log(error.response)
+        return error.response
     }
 }
