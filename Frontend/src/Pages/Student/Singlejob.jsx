@@ -16,6 +16,7 @@ import { RiContactsFill } from "react-icons/ri";
 import { applyjob, bookmarkjob, disbookmarkjob } from '../../store/Actions/userActions';
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
+import { toast } from 'react-toastify';
 
 const Singlejob = () => {
 
@@ -43,8 +44,12 @@ const Singlejob = () => {
 
     const applyHandler = async () => {
         if (!appliedJob) {
-            await dispatch(applyjob(id));
+            const error = await dispatch(applyjob(id));
+            error ? toast.error(error.data.message)
+                : toast.success("Applied successfully")
             navigate("/student")
+        } else {
+            toast.error("You have already applied")
         }
     }
 
