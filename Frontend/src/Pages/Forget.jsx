@@ -28,14 +28,14 @@ const Forget = ({ userType }) => {
         if (userType === "student") {
             const error = await dispatch(studentMail(data))
             error ? toast.error(error.data.message)
-                : toast.success("Link send successfully to registered mail id")
-
-            sId && navigate(`/student/forget-link/${sId}`)
+                : sId ? navigate(`/student/forget-link/${sId}`)
+                    : toast.success("Link send successfully to registered mail id")
         }
         else {
-         const error=   await dispatch(employeeMail(data))
-            eId && navigate(`/employee/forget-link/${eId}`)
-           error?toast.error(error.data.message): toast.success("Email successfully sent")
+            const error = await dispatch(employeeMail(data))
+            error ? toast.error(error.data.message)
+                : eId ? navigate(`/employee/forget-link/${eId}`)
+                    : toast.success("Link send successfully to registered mail id")
         }
     }
 
