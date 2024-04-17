@@ -99,7 +99,7 @@ export const applyjob = (id) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/user/student/apply/job/${id}`)
         console.log(data)
-        // dispatch(currentUser({ data }));
+        dispatch(currentUser({ data }));
     } catch (error) {
         return error.response
 
