@@ -18,6 +18,7 @@ import { applyinternship } from '../../store/Actions/userActions';
 import { bookmarkinternship } from '../../store/Actions/userActions';
 import { disbookmarkinternship } from '../../store/Actions/userActions';
 import { CiBookmark } from "react-icons/ci";
+import { toast } from 'react-toastify';
 
 
 const Singleinternship = () => {
@@ -52,8 +53,12 @@ const Singleinternship = () => {
 
     const applyHandler = async () => {
         if(!appliedInternship){
-            await dispatch(applyinternship(id));
+            const error = await dispatch(applyinternship(id));
+            error ? toast.error(error.data.message)
+                : toast.success("Applied successfully")
             navigate("/student")
+        } else {
+            toast.error("You have already applied")
         }
     }
 
