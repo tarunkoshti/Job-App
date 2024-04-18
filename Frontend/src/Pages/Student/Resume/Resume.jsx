@@ -10,6 +10,7 @@ import MyDocument from '../../ResumeDocument/MyDocument';
 import { getStudentResume } from '../../../store/Actions/resumeActions';
 import { RiDownload2Line } from "react-icons/ri";
 import { MdErrorOutline } from "react-icons/md";
+import { toast } from 'react-toastify';
 
 const Resume = () => {
 
@@ -46,7 +47,9 @@ const Resume = () => {
         await dispatch(deleteWorkSample(id, student._id))
     }
     const deleteaccomplishmentHandler = async (id) => {
-        await dispatch(deleteAccomplishment(id, student._id))
+       const error = await dispatch(deleteAccomplishment(id, student._id))
+       error ? toast.error(error.data.message)
+       : toast.success("Accomplishment Deleted")
     }
 
     useEffect(() => {
@@ -392,7 +395,14 @@ const Resume = () => {
                                             <li key={item.id}
                                                 className='mb-2 flex justify-between items-start'>
                                                 <div>
-                                                    <p className=''>{item.description}</p>
+                                                    <ul>
+                                                        {item.description.split('\n').map((point, index) => (
+                                                            <li key={index}>
+                                                                <span>&#8226;</span> {/* Bullet point character */}
+                                                                <span className="ml-2">{point.trim().replace(/^\d+\./, '')}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
                                                 </div>
                                                 <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/accomplishment/${item.id}`}>
