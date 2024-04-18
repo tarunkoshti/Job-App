@@ -25,7 +25,7 @@ const AddInternship = ({ edit = false }) => {
 
     const submit = async (data) => {
         if (currlength <= 250) {
-            edit ? await dispatch(editInternship(id, data))
+            edit ? await dispatch(editInternship(id, student._id, data))
                 : await dispatch(addInternship(student._id, data))
             navigate("/student/resume")
         }
@@ -45,9 +45,7 @@ const AddInternship = ({ edit = false }) => {
 
     }, [watch]);
 
-    const arr = student?.resume?.internships.filter(item => item.id === id)
-    const internship = arr[0];
-    
+    const internship = student?.resume?.internships.filter(item => item.id === id)
 
     return (
         < div className='w-full h-screen absolute top-[0]' >

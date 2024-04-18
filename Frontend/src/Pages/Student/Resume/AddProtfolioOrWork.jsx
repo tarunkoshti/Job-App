@@ -21,7 +21,7 @@ const AddProtfolioOrWork = ({ edit = false }) => {
     console.log(data)
     for (const key in data) {
       if (data[key] !== "") {
-        edit ? await dispatch(editWorkSample(id, data))
+        edit ? await dispatch(editWorkSample(id, student._id, data))
           : await dispatch(addWorkSample(student._id, data))
         navigate("/student/resume")
         break;
@@ -33,8 +33,7 @@ const AddProtfolioOrWork = ({ edit = false }) => {
     navigate(-1)
   }
 
-  const arr = student?.resume?.worksamples.filter(item => item.id === id)
-  const worksample = arr[0];
+  const worksample = student?.resume?.worksamples.filter(item => item.id === id)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >

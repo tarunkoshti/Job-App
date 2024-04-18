@@ -25,7 +25,7 @@ const AddProject = ({ edit = false }) => {
 
   const submit = async (data) => {
     if (currlength <= 1000) {
-      edit ? await dispatch(editProject(id, data))
+      edit ? await dispatch(editProject(id, student._id, data))
         : await dispatch(addProject(student._id, data))
       navigate("/student/resume")
     }
@@ -45,8 +45,7 @@ const AddProject = ({ edit = false }) => {
 
   }, [watch]);
 
-  const arr = student?.resume?.projects.filter(item => item.id === id)
-  const project = arr[0];
+  const project = student?.resume?.projects.filter(item => item.id === id)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >

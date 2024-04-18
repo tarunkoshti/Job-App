@@ -18,13 +18,12 @@ const AddSkill = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
-    edit ? await dispatch(editSkill(id, data))
+    edit ? await dispatch(editSkill(id, student._id, data))
       : await dispatch(addSkill(student._id, data))
       navigate("/student/resume")
   }
 
-  const arr = student?.resume?.skills.filter(item => item.id === id)
-  const skill = arr[0];
+  const skill = student?.resume?.skills.find(item => item.id === id)
 
   const backHandler = () => {
     navigate(-1)

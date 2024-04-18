@@ -22,7 +22,7 @@ const AddTrainingAndCourses = ({ edit = false }) => {
 
   const submit = async (data) => {
     if (currlength <= 500) {
-      edit ? await dispatch(editTrainingCourse(id, data))
+      edit ? await dispatch(editTrainingCourse(id, student._id, data))
         : await dispatch(addTrainingCourse(student._id, data))
       navigate("/student/resume")
     }
@@ -42,8 +42,7 @@ const AddTrainingAndCourses = ({ edit = false }) => {
 
   }, [watch]);
 
-  const arr = student?.resume?.courses.filter(item => item.id === id)
-  const course = arr[0];
+  const course = student?.resume?.courses.filter(item => item.id === id)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >

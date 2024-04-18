@@ -22,7 +22,7 @@ const AddResponsibility = ({ edit = false }) => {
 
   const submit = async (data) => {
     if (currlength <= 250) {
-      edit ? await dispatch(editResponsibility(id, data))
+      edit ? await dispatch(editResponsibility(id, student._id, data))
         : await dispatch(addResponsibility(student._id, data))
       navigate("/student/resume")
     }
@@ -42,8 +42,7 @@ const AddResponsibility = ({ edit = false }) => {
 
   }, [watch]);
 
-  const arr = student?.resume?.responsibilities.filter(item => item.id === id)
-  const responsibility = arr[0];
+  const responsibility = student?.resume?.responsibilities.filter(item => item.id === id)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >

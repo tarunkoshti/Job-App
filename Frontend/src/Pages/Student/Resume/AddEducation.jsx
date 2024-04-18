@@ -26,7 +26,7 @@ const AddEducation = ({ edit = false }) => {
 
   const submit = async (data) => {
     console.log(data)
-    edit ? await dispatch(editEducation(id, data))
+    edit ? await dispatch(editEducation(id, student._id, data))
       : await dispatch(addEducation(student._id, data))
     navigate("/student/resume")
   }
@@ -40,9 +40,8 @@ const AddEducation = ({ edit = false }) => {
   const year = currentYear - 46
   const startYearOptions = Array.from({ length: currentYear - year + 1 }, (_, index) => 1984 + index);
 
-  const arr = student?.resume?.education.filter(item => item.id === id)
-  const edu = arr[0];
-  console.log(edu?.eduType)
+  const edu = student?.resume?.education.filter(item => item.id === id)
+  // console.log(edu?.eduType)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >

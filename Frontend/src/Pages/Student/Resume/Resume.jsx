@@ -15,42 +15,43 @@ const Resume = () => {
 
     const dispatch = useDispatch();
 
-    const deleteEduHandler = async (id) => {
-        await dispatch(deleteEducation(id))
-    }
-    const deleteJobHandler = async (id) => {
-        await dispatch(deleteJob(id))
-    }
-    const deleteInternHandler = async (id) => {
-        await dispatch(deleteInternship(id))
-    }
-    const deleterespoHandler = async (id) => {
-        await dispatch(deleteResponsibility(id))
-    }
-    const deletecourseHandler = async (id) => {
-        await dispatch(deleteTrainingCourse(id))
-    }
-    const deleteprojectHandler = async (id) => {
-        await dispatch(deleteProject(id))
-    }
-    const deleteskillHandler = async (id) => {
-        await dispatch(deleteSkill(id))
-    }
-    const deleteportfolioHandler = async (id) => {
-        await dispatch(deleteWorkSample(id))
-    }
-    const deleteaccomplishmentHandler = async (id) => {
-        await dispatch(deleteAccomplishment(id))
-    }
-
     const student = useSelector((state) => state.userReducer.userData?.student)
     // console.log(student)
     const resume = useSelector((state) => state.userReducer.userData?.student?.resume)
     // console.log(resume)
 
+
+    const deleteEduHandler = async (id) => {
+        await dispatch(deleteEducation(id, student._id))
+    }
+    const deleteJobHandler = async (id) => {
+        await dispatch(deleteJob(id, student._id))
+    }
+    const deleteInternHandler = async (id) => {
+        await dispatch(deleteInternship(id, student._id))
+    }
+    const deleterespoHandler = async (id) => {
+        await dispatch(deleteResponsibility(id, student._id))
+    }
+    const deletecourseHandler = async (id) => {
+        await dispatch(deleteTrainingCourse(id, student._id))
+    }
+    const deleteprojectHandler = async (id) => {
+        await dispatch(deleteProject(id, student._id))
+    }
+    const deleteskillHandler = async (id) => {
+        await dispatch(deleteSkill(id, student._id))
+    }
+    const deleteportfolioHandler = async (id) => {
+        await dispatch(deleteWorkSample(id, student._id))
+    }
+    const deleteaccomplishmentHandler = async (id) => {
+        await dispatch(deleteAccomplishment(id, student._id))
+    }
+
     useEffect(() => {
         dispatch(getStudentResume(student._id))
-    }, [])
+    }, [dispatch])
 
     const updatedResume = useSelector((state) => state.resumeReducer?.resumeData?.updatedResume)
     console.log(updatedResume)

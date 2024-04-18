@@ -22,7 +22,7 @@ const AddAccomplishment = ({ edit = false }) => {
 
   const submit = async (data) => {
     if (currlength <= 250) {
-      edit ? await dispatch(editAccomplishment(id, data))
+      edit ? await dispatch(editAccomplishment(id, student._id, data))
         : await dispatch(addAccomplishment(student._id, data))
       navigate("/student/resume")
     }
@@ -42,8 +42,7 @@ const AddAccomplishment = ({ edit = false }) => {
 
   }, [watch]);
 
-  const arr = student?.resume?.accomplishments.filter(item => item.id === id)
-  const accomplishment = arr[0];
+  const accomplishment = student?.resume?.accomplishments.find(item => item.id === id)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >

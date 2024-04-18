@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { asyncUploadProfileImageStudent, asyncLogout as studentLogout } from '../../store/Actions/userActions'
 import { asyncUploadProfileImageEmployee, asyncLogout as employeeLogout } from '../../store/Actions/employeeActions'
@@ -23,10 +23,11 @@ const Header = () => {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [dropdown, setDropdown] = useState(false)
 
+    const location = useLocation();
     useEffect(() => {
         setIsProfileOpen(false)
         setDropdown(false)
-    },[navigate])
+    },[location])
 
     const toggleProfile = () => {
         setIsProfileOpen(!isProfileOpen);

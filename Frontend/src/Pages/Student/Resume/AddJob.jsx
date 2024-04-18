@@ -27,7 +27,7 @@ const AddJob = ({ edit = false }) => {
   const submit = async (data) => {
     if (currlength <= 250) {
       edit ? await dispatch(editJob(id, data))
-        : await dispatch(addJob(student._id, data))
+        : await dispatch(addJob(student._id, student._id, data))
       navigate("/student/resume")
     }
   }
@@ -47,8 +47,7 @@ const AddJob = ({ edit = false }) => {
 
   }, [watch]);
 
-  const arr = student?.resume?.jobs.filter(item => item.id === id)
-  const job = arr[0];
+  const job = student?.resume?.jobs.filter(item => item.id === id)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >
