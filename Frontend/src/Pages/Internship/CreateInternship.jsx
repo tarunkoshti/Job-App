@@ -6,10 +6,10 @@ import Select from '../../Components/Select'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { asyncCreateInternship } from '../../store/Actions/internshipActions'
-
+import { MdErrorOutline } from "react-icons/md";
 const CreateInternship = () => {
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -20,7 +20,7 @@ const CreateInternship = () => {
 
     return (
 
-       <>
+        <>
             <div className="w-full flex flex-col items-center py-5 gap-5 bg-zinc-100">
                 <h1 className="text-2xl font-semibold">Post Internship</h1>
                 <div className="mt-2  w-full md:w-1/2 py-10 px-8 border-2 border-zinc-200 rounded-xl">
@@ -35,8 +35,14 @@ const CreateInternship = () => {
                                         label="Profile"
                                         placeholder="e.g. MERN Stack Development"
                                         type="text"
-                                        {...register("profile")}
+                                        {...register("profile", {
+                                            required: {
+                                                value: true,
+                                                message: "Profile is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.profile && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.profile.message}</span></p>}
                                 </div>
                                 {/* Skills-div */}
                                 <div className="w-full md:max-w-lg mt-3">
@@ -44,37 +50,54 @@ const CreateInternship = () => {
                                         label="Skills"
                                         placeholder="e.g. Java"
                                         type="text"
-                                        {...register("skills")}
+                                        {...register("skills", {
+                                            required: {
+                                                value: true,
+                                                message: "Skills is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.skills && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.skills.message}</span></p>}
                                 </div>
 
-                               {/* Internship-type-div */}
-                                    <div className="w-full md:max-w-lg mt-5">
-                                        <label className="block mb-2">Internship Type:</label>
+                                {/* Internship-type-div */}
+                                <div className="w-full md:max-w-lg mt-5">
+                                    <label className="block mb-2">Internship Type:</label>
+                                    <div className="flex items-center">
                                         <div className="flex items-center">
-                                            <div className="flex items-center">
-                                                <input
-                                                    id="inOffice"
-                                                    type="radio"
-                                                    value="In office"
-                                                    {...register("internshiptype")}
-                                                />
-                                                <label htmlFor="inOffice" className="ml-2 mr-4">In office</label>
-                                            </div>
-                                            <div className="flex items-center">
-                                                <input
-                                                    id="remote"
-                                                    type="radio"
-                                                    value="Remote"
-                                                    {...register("internshiptype")}
-                                                />
-                                                <label htmlFor="remote" className="ml-2">Remote</label>
-                                            </div>
+                                            <input
+                                                id="inOffice"
+                                                type="radio"
+                                                value="In office"
+                                                {...register("internshiptype", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "internshiptype is required"
+                                                    },
+                                                })}
+                                            />
+                                            <label htmlFor="inOffice" className="ml-2 mr-4">In office</label>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <input
+                                                id="remote"
+                                                type="radio"
+                                                value="Remote"
+                                                {...register("internshiptype", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "internshiptype is required"
+                                                    },
+                                                })}
+                                            />
+                                            <label htmlFor="remote" className="ml-2">Remote</label>
                                         </div>
                                     </div>
-                            
+                                    {errors.internshiptype && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.internshiptype.message}</span></p>}
+                                </div>
 
-                               {/* Working-type-div */}
+
+                                {/* Working-type-div */}
                                 <div className="w-full md:max-w-lg mt-3">
                                     <label className="block mb-2">Working Type:</label>
                                     <div className="flex items-center gap-5">
@@ -83,7 +106,12 @@ const CreateInternship = () => {
                                                 id="partTime"
                                                 type="radio"
                                                 value="Part-time"
-                                                {...register("workingtype")}
+                                                {...register("workingtype", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "workingtype is required"
+                                                    },
+                                                })}
                                             />
                                             <label htmlFor="partTime" className="ml-2">Part-time</label>
                                         </div>
@@ -92,11 +120,17 @@ const CreateInternship = () => {
                                                 id="fullTime"
                                                 type="radio"
                                                 value="Full-time"
-                                                {...register("workingtype")}
+                                                {...register("workingtype", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "workingtype is required"
+                                                    },
+                                                })}
                                             />
                                             <label htmlFor="fullTime" className="ml-2">Full-time</label>
                                         </div>
                                     </div>
+                                    {errors.workingtype && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.workingtype.message}</span></p>}
                                 </div>
 
 
@@ -107,8 +141,14 @@ const CreateInternship = () => {
                                         label="Number of Openings"
                                         placeholder="e.g. 5"
                                         type="number"
-                                        {...register("openings")}
+                                        {...register("openings", {
+                                            required: {
+                                                value: true,
+                                                message: "openings is required"
+                                            },
+                                        })}
                                     />
+                                      {errors.openings && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.openings.message}</span></p>}
                                 </div>
 
                                 {/* Start Date */}
@@ -159,7 +199,7 @@ const CreateInternship = () => {
                                 </div>
 
                                 {/* To */}
-                                
+
                                 <div className="w-full md:max-w-lg mt-3">
                                     <label htmlFor="toDate" className="block mb-2">To:</label>
                                     <input
@@ -176,9 +216,15 @@ const CreateInternship = () => {
                                     <textarea
                                         id="responsibility"
                                         placeholder="Intern's day-to-day responsibility : "
-                                        {...register("responsibility")}
+                                        {...register("responsibility", {
+                                            required: {
+                                                value: true,
+                                                message: "Responsibility is required"
+                                            }
+                                            })}
                                         className="border border-gray-300 px-3 py-2 rounded-lg w-full h-[110px] resize-none"
                                     />
+                                      {errors.Responsibility && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.Responsibility.message}</span></p>}
                                 </div>
 
 
@@ -195,8 +241,14 @@ const CreateInternship = () => {
                                         label="Stipend Amount"
                                         placeholder="'e.g. 10000'"
                                         type="number"
-                                        {...register("stipend.amount")}
+                                        {...register("stipend", {
+                                            required: {
+                                                value: true,
+                                                message: "Stipend Amount is required"
+                                            }
+                                            })}
                                     />
+                                    {errors.stipend && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.stipend.message}</span></p>}
                                 </div>
                                 {/* Status */}
                                 <div className="w-full md:max-w-lg mt-1">
@@ -288,8 +340,14 @@ const CreateInternship = () => {
                                         label="Company Name"
                                         placeholder="e.g. Google"
                                         type="text"
-                                        {...register("company")}
+                                        {...register("company", {
+                                            required: {
+                                                value: true,
+                                                message: "Company is required"
+                                            }
+                                            })}
                                     />
+                                      {errors.company && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.company.message}</span></p>}
                                 </div>
 
                                 {/* Location */}
@@ -298,19 +356,25 @@ const CreateInternship = () => {
                                         label="Location"
                                         placeholder="e.g. Indore"
                                         type="text"
-                                        {...register("location")}
+                                        {...register("location", {
+                                            required: {
+                                                value: true,
+                                                message: "Location is required"
+                                            }
+                                            })}
                                     />
+                                      {errors.location && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.location.message}</span></p>}
                                 </div>
 
                                 {/* Applicants */}
-                                <div className="w-full md:max-w-lg mt-1">
+                                {/* <div className="w-full md:max-w-lg mt-1">
                                     <Input
                                         label="Applicants"
                                         placeholder="e.g. 1250"
                                         type="text"
                                         {...register("applicants")}
                                     />
-                                </div>
+                                </div> */}
 
                                 {/* Assessments */}
                                 <div className="w-full md:max-w-lg mt-1">
@@ -326,54 +390,72 @@ const CreateInternship = () => {
 
                                 {/* Description */}
                                 <div className="w-full md:max-w-lg mt-1">
-                                        <label htmlFor="description" className="block mb-2">Description:</label>
-                                        <textarea
-                                            id="description"
-                                            name="description"
-                                            className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
-                                            placeholder="e.g. Ensure an amazing demo experience for the child and parent..."
-                                            {...register("description")}
-                                        />
-                                    </div>
+                                    <label htmlFor="description" className="block mb-2">Description:</label>
+                                    <textarea
+                                        id="description"
+                                        name="description"
+                                        className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
+                                        placeholder="e.g. Ensure an amazing demo experience for the child and parent..."
+                                        {...register("description")}
+                                    />
+                                </div>
 
 
                                 {/* Qualifications */}
-                              <div className="w-full md:max-w-lg mt-1">
+                                <div className="w-full md:max-w-lg mt-1">
                                     <label htmlFor="qualifications" className="block mb-2">Qualifications:</label>
                                     <textarea
                                         id="qualifications"
                                         name="qualifications"
                                         className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Solid understanding of JavaScript, HTML, CSS, and related web technologies..."
-                                        {...register("qualifications")}
+                                        {...register("qualifications", {
+                                            required: {
+                                                value: true,
+                                                message: "Qualifications is required"
+                                            }
+                                            })}
                                     />
+                                     {errors.qualifications && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.qualifications.message}</span></p>}
                                 </div>
 
 
                                 {/* Work conditions */}
-                               <div className="w-full md:max-w-lg mt-1">
+                                <div className="w-full md:max-w-lg mt-1">
                                     <label htmlFor="workconditions" className="block mb-2">Work Conditions:</label>
                                     <textarea
                                         id="workconditions"
                                         name="workconditions"
                                         className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Salary: 2-4 LPA"
-                                        {...register("workconditions")}
+                                        {...register("workconditions", {
+                                            required: {
+                                                value: true,
+                                                message: "Workconditions is required"
+                                            }
+                                            })}
                                     />
+                                      {errors.workconditions && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.workconditions.message}</span></p>}
                                 </div>
 
 
                                 {/* Company Detail */}
                                 <div className="w-full md:max-w-lg mt-1">
-                                <label htmlFor="companyDetail" className="block mb-2">Company Detail:</label>
-                                <textarea
-                                    id="companyDetail"
-                                    name="companyDetail"
-                                    className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
-                                    placeholder="e.g. We're not just another digital agency, we're your dedicated dynamic world..."
-                                    {...register("companyDetail")}
-                                />
-                            </div>
+                                    <label htmlFor="companyDetail" className="block mb-2">Company Detail:</label>
+                                    <textarea
+                                        id="companyDetail"
+                                        name="companyDetail"
+                                        className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
+                                        placeholder="e.g. We're not just another digital agency, we're your dedicated dynamic world..."
+                                        {...register("companyDetail", {
+                                            required: {
+                                                value: true,
+                                                message: "companyDetail is required"
+                                            }
+                                            })}
+                                    />
+                                     {errors.companyDetail && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.companyDetail.message}</span></p>}
+                                </div>
 
 
                             </div>
@@ -388,8 +470,16 @@ const CreateInternship = () => {
                                         label="Contact Number"
                                         placeholder="e.g. +91 Enter Mobile Number...."
                                         type="number"
-                                        {...register("contact")}
+                                        {...register("contact", {
+                                            required: {
+                                                value: true,
+                                                message: "Contact is required"
+                                            },
+                                            maxLength: [10, "Contact must not exceed 10 character"],
+                                            minLength: [10, "Contact should be atleast 4 character long"],
+                                        })}
                                     />
+                                    {errors.contact && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.contact.message}</span></p>}
                                 </div>
                             </div>
                         </div>
@@ -406,8 +496,8 @@ const CreateInternship = () => {
                 </div>
             </div>
 
-       </>
-       
+        </>
+
     )
 }
 
