@@ -450,14 +450,9 @@ const CreateInternship = () => {
                                         name="workconditions"
                                         className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Salary: 2-4 LPA"
-                                        {...register("workconditions", {
-                                            required: {
-                                                value: true,
-                                                message: "Workconditions is required"
-                                            }
-                                        })}
+                                        {...register("workconditions")}
                                     />
-                                    {errors.workconditions && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.workconditions.message}</span></p>}
+                                   
                                 </div>
 
 
