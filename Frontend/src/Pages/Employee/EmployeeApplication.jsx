@@ -38,8 +38,7 @@ const EmployeeApplication = () => {
                   <h1 className='w-1/6'>{intern.profile}</h1>
                   <h1 className='w-1/6 '>{intern.internshiptype}</h1>
                   <h1 className='w-1/6'>{intern?.students.length}</h1>
-
-                  <Link className='w-1/6' to={`/student/internship/singleintership/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
+                  <Link className='w-1/6' to={`/employee/internship/singleinternship/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
 
                   <Link className='w-1/6' to={`/employee/application/applicants/${studentItem}`}><button className='px-8 py-2 bg-gray-400 rounded-lg'>View</button></Link>
                 </div>
@@ -64,13 +63,14 @@ const EmployeeApplication = () => {
 
             <div key={index}>
               {jobs?.filter(job => job._id === studentItem).map((job, Index) => (
-                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56' key={Index}>
-                  <h1 className='w-1/5'>{job.company}</h1>
-                  <h1 className='w-1/5'>{job.profile}</h1>
-                  <h1 className='w-1/5'>{job.jobtype}</h1>
-                  <h1 className='w-1/5'>{job?.students.length}</h1>
+                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-32' key={Index}>
+                  <h1 className='w-1/6'>{job.company}</h1>
+                  <h1 className='w-1/6'>{job.profile}</h1>
+                  <h1 className='w-1/6'>{job.jobtype}</h1>
+                  <h1 className='w-1/6'>{job?.students.length}</h1>
 
-                  <Link className='w-1/5' to={`/student/job/read/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
+                  <Link className='w-1/6' to={`/employee/job/singlejob/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
+                  <Link className='w-1/6' to={`/employee/application/applicants/${studentItem}`}><button className='px-8 py-2 bg-gray-400 rounded-lg'>View</button></Link>
                 </div>
               ))}
             </div>

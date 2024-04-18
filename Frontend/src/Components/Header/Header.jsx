@@ -87,9 +87,9 @@ const Header = () => {
         formData.set('avatar', e.target.files[0]);
         // console.log(formData)
         const errorStudent = student && dispatch(asyncUploadProfileImageStudent(student._id, formData));
-        errorStudent ? toast.error(errorStudent.data.response) : toast.success("Avatar Upadated");
+        errorStudent?toast.error(errorStudent.data.message):toast.success("Avatar Upadated");
         const erroremployee = employe && dispatch(asyncUploadProfileImageEmployee(employe._id, formData));
-        erroremployee ? toast.error(erroremployee.data.response) : toast.success("Avatar Upadated");
+        erroremployee ? toast.error(erroremployee.data.message) : toast.success("Avatar Upadated");
     };
 
     return (

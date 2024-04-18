@@ -24,7 +24,7 @@ import { toast } from 'react-toastify';
 const Singleinternship = () => {
 
     const { id } = useParams()
-
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const internships = useSelector((state) => state.internshipReducer.internshipData)
@@ -47,13 +47,15 @@ const Singleinternship = () => {
         await dispatch(disbookmarkinternship(id));
     }
 
-
-    const appliedInternship = useSelector((state) => state.userReducer.userData?.student.internships).filter((intern) => intern._id == id)
+   
+    const appliedInternship = useSelector((state) => state.userReducer.userData?.student)
+   const ii =(appliedInternship.internships).find((internid)=> internid==id)
+   console.log(ii)
     console.log(appliedInternship)
-
+   
     const applyHandler = async () => {
 
-        if(!appliedInternship){
+        if(!ii){
             const error = await dispatch(applyinternship(id));
             error ? toast.error(error.data.message)
                 : toast.success("Applied successfully")

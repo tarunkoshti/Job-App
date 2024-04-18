@@ -346,6 +346,24 @@ const router = createBrowserRouter([
             ),
           },
           {
+            path: "internship/singleinternship/:id",
+            element: (
+              <AuthLayout authentication={true}>
+                <Singleinternship />
+              </AuthLayout>
+            ),
+
+          },
+          {
+            path: "job/singlejob/:id",
+            element: (
+              <AuthLayout authentication={true}>
+                <Singlejob />
+              </AuthLayout>
+            ),
+
+          },
+          {
             path: "application/applicants/:id",
             element: (
               <AuthLayout authentication={true}>
