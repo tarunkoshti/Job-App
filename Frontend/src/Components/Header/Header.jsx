@@ -82,14 +82,17 @@ const Header = () => {
         }
     }
 
-    const handleProfileImageChange = (e) => {
+    const handleProfileImageChange = async (e) => {
         const formData = new FormData();
         formData.set('avatar', e.target.files[0]);
         // console.log(formData)
-        const errorStudent = student && dispatch(asyncUploadProfileImageStudent(student._id, formData));
-        errorStudent ? toast.error(errorStudent.data.response) : toast.success("Avatar Upadated");
-        const erroremployee = employe && dispatch(asyncUploadProfileImageEmployee(employe._id, formData));
-        erroremployee ? toast.error(erroremployee.data.response) : toast.success("Avatar Upadated");
+        if(student){
+            const errorStudent = await dispatch(asyncUploadProfileImageStudent(student._id, formData));
+            errorStudent ? toast.error(errorStudent.data.response) : toast.success("Avatar Upadated");
+        }else if(employe){
+            const erroremployee = await dispatch(asyncUploadProfileImageEmployee(employe._id, formData));
+            erroremployee ? toast.error(erroremployee.data.response) : toast.success("Avatar Upadated");
+        }
     };
 
     return (
