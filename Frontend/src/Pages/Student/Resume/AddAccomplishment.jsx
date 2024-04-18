@@ -27,11 +27,11 @@ const AddAccomplishment = ({ edit = false }) => {
       if (edit) {
         const error = await dispatch(editAccomplishment(id, student._id, data))
         error ? toast.error(error.data.message)
-          : toast.success("Accomplishment Edited")
+          : toast.success("Accomplishment updated")
       } else {
         const error = await dispatch(addAccomplishment(student._id, data))
         error ? toast.error(error.data.message)
-          : toast.success("Accomplishment Added")
+          : toast.success("Accomplishment added")
       }
       // edit ? await dispatch(editAccomplishment(id, student._id, data))
       //   : await dispatch(addAccomplishment(student._id, data))

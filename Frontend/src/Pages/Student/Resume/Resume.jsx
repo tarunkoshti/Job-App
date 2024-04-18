@@ -23,33 +23,50 @@ const Resume = () => {
 
 
     const deleteEduHandler = async (id) => {
-        await dispatch(deleteEducation(id, student._id))
+        const error = await dispatch(deleteEducation(id, student._id))
+        console.log(error)
+        error ? toast.error(error.data.message)
+            : toast.success("Education deleted")
     }
     const deleteJobHandler = async (id) => {
-        await dispatch(deleteJob(id, student._id))
+        const error = await dispatch(deleteJob(id, student._id))
+        error ? toast.error(error.data.message)
+            : toast.success("Job deleted")
     }
     const deleteInternHandler = async (id) => {
-        await dispatch(deleteInternship(id, student._id))
+        const error = await dispatch(deleteInternship(id, student._id))
+        error ? toast.error(error.data.message)
+            : toast.success("Internship deleted")
     }
     const deleterespoHandler = async (id) => {
-        await dispatch(deleteResponsibility(id, student._id))
+        const error = await dispatch(deleteResponsibility(id, student._id))
+        error ? toast.error(error.data.message)
+            : toast.success("Responsibility deleted")
     }
     const deletecourseHandler = async (id) => {
-        await dispatch(deleteTrainingCourse(id, student._id))
+        const error = await dispatch(deleteTrainingCourse(id, student._id))
+        error ? toast.error(error.data.message)
+            : toast.success("Course deleted")
     }
     const deleteprojectHandler = async (id) => {
-        await dispatch(deleteProject(id, student._id))
+        const error = await dispatch(deleteProject(id, student._id))
+        error ? toast.error(error.data.message)
+            : toast.success("Project deleted")
     }
     const deleteskillHandler = async (id) => {
-        await dispatch(deleteSkill(id, student._id))
+        const error = await dispatch(deleteSkill(id, student._id))
+        error ? toast.error(error.data.message)
+            : toast.success("Skill deleted")
     }
     const deleteportfolioHandler = async (id) => {
-        await dispatch(deleteWorkSample(id, student._id))
+        const error = await dispatch(deleteWorkSample(id, student._id))
+        error ? toast.error(error.data.message)
+            : toast.success("Work Sample deleted")
     }
     const deleteaccomplishmentHandler = async (id) => {
        const error = await dispatch(deleteAccomplishment(id, student._id))
        error ? toast.error(error.data.message)
-       : toast.success("Accomplishment Deleted")
+       : toast.success("Accomplishment deleted")
     }
 
     useEffect(() => {
