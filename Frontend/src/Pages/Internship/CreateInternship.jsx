@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from '../../Components/Input'
 import Button from '../../Components/Button'
@@ -7,16 +7,31 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { asyncCreateInternship } from '../../store/Actions/internshipActions'
 import { MdErrorOutline } from "react-icons/md";
+
 const CreateInternship = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, watch, formState: { errors } } = useForm()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    const [i, setI] = useState(null)
+    console.log(i)
     const create = async (data) => {
         await dispatch(asyncCreateInternship(data))
         navigate("/employee")
     }
+    useEffect(() => {
+        const internshiptype = watch((value, { name }) => {
+            if (name == "internshiptype") {
+                let str = value.internshiptype
+             
+                    setI(str)
+                
+                console.log(str)
+            }
+        });
+        internshiptype
+
+    }, [watch,i]);
 
     return (
 
@@ -109,7 +124,7 @@ const CreateInternship = () => {
                                                 {...register("workingtype", {
                                                     required: {
                                                         value: true,
-                                                        message: "workingtype is required"
+                                                        message: "Workingtype is required"
                                                     },
                                                 })}
                                             />
@@ -148,7 +163,7 @@ const CreateInternship = () => {
                                             },
                                         })}
                                     />
-                                      {errors.openings && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.openings.message}</span></p>}
+                                    {errors.openings && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.openings.message}</span></p>}
                                 </div>
 
                                 {/* Start Date */}
@@ -221,10 +236,10 @@ const CreateInternship = () => {
                                                 value: true,
                                                 message: "Responsibility is required"
                                             }
-                                            })}
+                                        })}
                                         className="border border-gray-300 px-3 py-2 rounded-lg w-full h-[110px] resize-none"
                                     />
-                                      {errors.Responsibility && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.Responsibility.message}</span></p>}
+                                    {errors.Responsibility && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.Responsibility.message}</span></p>}
                                 </div>
 
 
@@ -246,7 +261,7 @@ const CreateInternship = () => {
                                                 value: true,
                                                 message: "Stipend Amount is required"
                                             }
-                                            })}
+                                        })}
                                     />
                                     {errors.stipend && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.stipend.message}</span></p>}
                                 </div>
@@ -345,26 +360,33 @@ const CreateInternship = () => {
                                                 value: true,
                                                 message: "Company is required"
                                             }
-                                            })}
+                                        })}
                                     />
-                                      {errors.company && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.company.message}</span></p>}
+                                    {errors.company && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.company.message}</span></p>}
                                 </div>
 
                                 {/* Location */}
-                                <div className="w-full md:max-w-lg mt-1">
-                                    <Input
-                                        label="Location"
-                                        placeholder="e.g. Indore"
-                                        type="text"
-                                        {...register("location", {
-                                            required: {
-                                                value: true,
-                                                message: "Location is required"
-                                            }
+                                {i == "Remote" ? (
+                                    <div />
+                                ) : (
+                                    <div className="w-full md:max-w-lg mt-1">
+                                        <Input
+                                            label="Location"
+                                            placeholder="e.g. Indore"
+                                            type="text"
+                                            {...register("location", {
+                                                required: { value: true, message: "Location is required" },
                                             })}
-                                    />
-                                      {errors.location && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.location.message}</span></p>}
-                                </div>
+                                        />
+                                        {errors.location && (
+                                            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                                                <MdErrorOutline />
+                                                <span>{errors.location.message}</span>
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+
 
                                 {/* Applicants */}
                                 {/* <div className="w-full md:max-w-lg mt-1">
@@ -414,9 +436,9 @@ const CreateInternship = () => {
                                                 value: true,
                                                 message: "Qualifications is required"
                                             }
-                                            })}
+                                        })}
                                     />
-                                     {errors.qualifications && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.qualifications.message}</span></p>}
+                                    {errors.qualifications && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.qualifications.message}</span></p>}
                                 </div>
 
 
@@ -433,9 +455,9 @@ const CreateInternship = () => {
                                                 value: true,
                                                 message: "Workconditions is required"
                                             }
-                                            })}
+                                        })}
                                     />
-                                      {errors.workconditions && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.workconditions.message}</span></p>}
+                                    {errors.workconditions && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.workconditions.message}</span></p>}
                                 </div>
 
 
@@ -452,9 +474,9 @@ const CreateInternship = () => {
                                                 value: true,
                                                 message: "companyDetail is required"
                                             }
-                                            })}
+                                        })}
                                     />
-                                     {errors.companyDetail && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.companyDetail.message}</span></p>}
+                                    {errors.companyDetail && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.companyDetail.message}</span></p>}
                                 </div>
 
 

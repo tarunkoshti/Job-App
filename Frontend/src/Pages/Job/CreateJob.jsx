@@ -35,8 +35,14 @@ const CreateJob = () => {
                                         label="Job Title"
                                         placeholder="e.g. Software Engineer Trainee"
                                         type="text"
-                                        {...register("profile")}
+                                        {...register("profile", {
+                                            required: {
+                                                value: true,
+                                                message: "Profile is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.profile && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.profile.message}</span></p>}
                                 </div>
 
                                 {/* Skills-div */}
@@ -45,8 +51,14 @@ const CreateJob = () => {
                                         label="Skills required"
                                         placeholder="e.g. Java"
                                         type="text"
-                                        {...register("skills")}
+                                        {...register("skills", {
+                                            required: {
+                                                value: true,
+                                                message: "Skills is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.skills && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.skills.message}</span></p>}
                                 </div>
 
                                 {/* Job-type-div */}
@@ -55,8 +67,14 @@ const CreateJob = () => {
                                         options={["In office", "Remote", "Hybrid"]}
                                         label="Job Type"
                                         className="mb-4"
-                                        {...register("jobtype")}
+                                        {...register("jobtype", {
+                                            required: {
+                                                value: true,
+                                                message: "Jobtype is required"
+                                            },
+                                        })}
                                     />
+                                     {errors.jobtype && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.jobtype.message}</span></p>}
                                 </div>
 
                                 {/* Working-type-div */}
@@ -71,7 +89,12 @@ const CreateJob = () => {
                                                 type="radio"
                                                 value="Full-time"
                                                 className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                {...register("workingtype")}
+                                                {...register("workingtype", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "Workingtype is required"
+                                                    },
+                                                })}
                                             />
                                             <label htmlFor="fullTime" className="ml-2 block text-md text-gray-900">Full-time</label>
                                         </div>
@@ -82,11 +105,17 @@ const CreateJob = () => {
                                                 type="radio"
                                                 value="Part-time"
                                                 className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                {...register("workingtype")}
+                                                {...register("workingtype", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "Workingtype is required"
+                                                    },
+                                                })}
                                             />
                                             <label htmlFor="partTime" className="ml-2 block text-md text-gray-900">Part-time</label>
                                         </div>
                                     </div>
+                                    {errors.workingtype && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.workingtype.message}</span></p>}
                                 </div>
 
 
