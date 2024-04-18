@@ -9,6 +9,7 @@ import { Document, PDFDownloadLink, PDFViewer, Page, Text, View } from '@react-p
 import MyDocument from '../../ResumeDocument/MyDocument';
 import { getStudentResume } from '../../../store/Actions/resumeActions';
 import { RiDownload2Line } from "react-icons/ri";
+import { MdErrorOutline } from "react-icons/md";
 
 const Resume = () => {
 
@@ -61,16 +62,21 @@ const Resume = () => {
                     <h1 className="text-center text-4xl font-semibold mt-6">Resume</h1>
 
                     <div className='w-[65%] m-auto mt-6'>
-                        <div className='w-full text-center py-3 rounded-lg border border-orange-300'>Whenever you apply to an internship or fresher job, this is the resume that the employer will see. Always make sure it is up to date.
+                        <div className='w-full py-3 rounded-lg border border-orange-300 flex justify-center items-center gap-2'>
+                            <MdErrorOutline className='text-orange-300' />
+                            <span>Whenever you apply to an internship or fresher job, this is the resume that the employer will see. Always make sure it is up to date.</span>
                         </div>
 
                         <div className='w-full border rounded-lg mt-5 p-10'>
                             <div className='personalDetail border-b py-5 flex justify-between'>
-                                
+
                                 <div>
-                                    <h6 className='capitalize font-semibold text-3xl'>{student.firstname} {student.lastname}
+                                    <h6 className='capitalize font-semibold text-3xl flex items-center gap-2'>
+                                        <span>{student.firstname} {student.lastname}</span>
                                         <Link
-                                            to='/student/resume/edit/personal_details' className='inline-block ml-5'><HiPencil size={20} /></Link>
+                                            to='/student/resume/edit/personal_details' className='mt-1.5'><HiPencil size={30}
+                                                className='hover:bg-gray-200 rounded-full p-1.5' />
+                                        </Link>
                                     </h6>
 
                                     <p className='font-normal text-base'>{student.email}</p>
@@ -81,7 +87,8 @@ const Resume = () => {
                                 <div >
                                     {/* download resume */}
                                     <PDFDownloadLink document={<MyDocument updatedResume={updatedResume} />} fileName='resume'>
-                                        <RiDownload2Line size={25} />
+                                        <RiDownload2Line size={35}
+                                            className='hover:bg-gray-200 rounded-full p-1.5' />
                                     </PDFDownloadLink>
                                 </div>
                             </div>

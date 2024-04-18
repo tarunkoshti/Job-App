@@ -7,9 +7,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { asyncForgrtPassword as studentForget } from '../store/Actions/userActions'
 import { asyncForgrtPassword as employeeForget } from '../store/Actions/employeeActions'
 import { toast } from 'react-toastify';
+import { MdErrorOutline } from 'react-icons/md'
 const ForgetLink = () => {
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const currentpathname = window.location.pathname
@@ -18,15 +19,15 @@ const ForgetLink = () => {
     const { id } = useParams()
 
     const submit = async (data) => {
-        if (isStudent){
-         const error=   await dispatch(studentForget(id, data)) 
+        if (isStudent) {
+            const error = await dispatch(studentForget(id, data))
             navigate("/student")
-            error?toast.error(error.data.message):toast.success("Password has been changed")
+            error ? toast.error(error.data.message) : toast.success("Password has been changed")
         }
-        else{
-          const error=  await dispatch(employeeForget(id, data))
+        else {
+            const error = await dispatch(employeeForget(id, data))
             navigate("/employee")
-            error?toast.error(error.data.message):toast.success("Password has been changed")
+            error ? toast.error(error.data.message) : toast.success("Password has been changed")
         }
     }
 
@@ -42,12 +43,20 @@ const ForgetLink = () => {
             >
                 <div className='space-y-5'>
 
-                    <Input
-                        label="Password"
-                        type="password"
-                        placeholder="Password must be 6 character long"
-                        {...register("password", { required: true })}
-                    />
+                    <div>
+                        <Input
+                            label="Password"
+                            type="password"
+                            placeholder="Enter new password here"
+                            {...register("password", {
+                                required: {
+                                    value: true,
+                                    message: "password is required"
+                                },
+                            })}
+                        />
+                        {errors.password && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.password.message}</span></p>}
+                    </div>
 
                     <Button
                         type='submit'
