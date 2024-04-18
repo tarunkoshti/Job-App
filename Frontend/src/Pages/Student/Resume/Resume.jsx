@@ -125,10 +125,13 @@ const Resume = () => {
                                                         }</p>
                                                     </div>
                                                 )}
-                                                <div className='flex gap-5 pt-2'>
-                                                    <Link to={`/student/resume/edit/education/${item.id}`}><HiPencil className='cursor-pointer' />
+                                                <div className='flex gap-5'>
+                                                    <Link to={`/student/resume/edit/education/${item.id}`}><HiPencil
+                                                        className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteEduHandler(item.id)} className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleteEduHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        size={27} />
                                                 </div>
                                             </li>
                                         ))}
@@ -158,11 +161,13 @@ const Resume = () => {
                                                         <p>{item.description}</p>
                                                     </div>
 
-                                                    <div className='flex gap-5 pt-2'>
+                                                    <div className='flex gap-5'>
                                                         <Link to={`/student/resume/edit/job/${item.id}`}>
-                                                            <HiPencil className='cursor-pointer' />
+                                                            <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                                size={27} />
                                                         </Link>
-                                                        <MdDelete onClick={() => deleteJobHandler(item.id)} className='cursor-pointer' />
+                                                        <MdDelete onClick={() => deleteJobHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={27} />
                                                     </div>
                                                 </li>
                                             ))
@@ -181,11 +186,13 @@ const Resume = () => {
                                                         <p>{item.description}</p>
                                                     </div>
 
-                                                    <div className='flex gap-5 pt-2'>
+                                                    <div className='flex gap-5'>
                                                         <Link to={`/student/resume/edit/internship/${item.id}`}>
-                                                            <HiPencil className='cursor-pointer' />
+                                                            <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                                size={27} />
                                                         </Link>
-                                                        <MdDelete onClick={() => deleteInternHandler(item.id)} className='cursor-pointer' />
+                                                        <MdDelete onClick={() => deleteInternHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={27} />
                                                     </div>
                                                 </li>
                                             ))
@@ -218,11 +225,13 @@ const Resume = () => {
                                                 <div>
                                                     <p className=''>{item.description}</p>
                                                 </div>
-                                                <div className='flex gap-5 pt-2'>
+                                                <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/responsibility/${item.id}`}>
-                                                        <HiPencil className='cursor-pointer' />
+                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleterespoHandler(item.id)} className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleterespoHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        size={27} />
                                                 </div>
                                             </li>
                                         ))
@@ -252,11 +261,13 @@ const Resume = () => {
                                                     }
                                                     <p>{item.description}</p>
                                                 </div>
-                                                <div className='flex gap-5 pt-2'>
+                                                <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/training_courses/${item.id}`}>
-                                                        <HiPencil className='cursor-pointer' />
+                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deletecourseHandler(item.id)} className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deletecourseHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        size={27} />
                                                 </div>
                                             </li>
                                         ))}
@@ -285,11 +296,12 @@ const Resume = () => {
                                                     }
                                                     <p>{item.description}</p>
                                                 </div>
-                                                <div className='flex gap-5 pt-2'>
+                                                <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/project/${item.id}`}>
-                                                        <HiPencil className='cursor-pointer' />
+                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5' size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteprojectHandler(item.id)} className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleteprojectHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        size={27} />
                                                 </div>
                                             </li>
                                         ))}
@@ -315,11 +327,13 @@ const Resume = () => {
                                                     <p className='font-semibold'>{item.skill}</p>
                                                     <p>{item.level}</p>
                                                 </div>
-                                                <div className='flex gap-5 pt-2'>
+                                                <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/skill/${item.id}`}>
-                                                        <HiPencil className='cursor-pointer' />
+                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteskillHandler(item.id)} className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleteskillHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        size={27} />
                                                 </div>
                                             </li>
                                         ))}
@@ -343,11 +357,13 @@ const Resume = () => {
                                             item.value && <li key={item.id}
                                                 className='mb-2 flex justify-between items-start'>
                                                 <Link to={item.value} className='hover:text-blue-600'>{item.value}</Link>
-                                                <div className='flex gap-5 pt-2'>
+                                                <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/portfolio_work/${item.id}`}>
-                                                        <HiPencil className='cursor-pointer' />
+                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteportfolioHandler(item.id)} className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleteportfolioHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        size={27} />
                                                 </div>
                                             </li>
 
@@ -377,11 +393,13 @@ const Resume = () => {
                                                 <div>
                                                     <p className=''>{item.description}</p>
                                                 </div>
-                                                <div className='flex gap-5 pt-2'>
+                                                <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/accomplishment/${item.id}`}>
-                                                        <HiPencil className='cursor-pointer' />
+                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteaccomplishmentHandler(item.id)} className='cursor-pointer' />
+                                                    <MdDelete onClick={() => deleteaccomplishmentHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        size={27} />
                                                 </div>
                                             </li>
                                         ))
