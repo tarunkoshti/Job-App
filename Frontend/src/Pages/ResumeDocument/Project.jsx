@@ -36,6 +36,13 @@ const styles = StyleSheet.create({
         color: 'blue',
         textDecoration: 'underline',
     },
+    bulletPoint: {
+        width: 4,
+        height: 4,
+        marginRight: 5,
+        borderRadius: 50,
+        backgroundColor: 'black',
+    },
 });
 
 // Project component
@@ -57,7 +64,18 @@ const Project = ({ resume }) => {
                         </View>
                         {/* <Text style={styles.dateRange}>{project?.startDate} - {project?.endDate}</Text> */}
                     </View>
-                    <Text style={styles.projectDescription}>{project.description}</Text>
+                    {
+                        project?.description && <View style={styles.projectDescription} >
+                            <Text>Desription :</Text>
+                            {project?.description.split('\n').map((point, index) => (
+                                <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <View style={styles.bulletPoint}></View>
+                                    <Text className="ml-2">{point.trim().replace(/^\d+\./, '')}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    }
+                    {/* <Text style={styles.projectDescription}>{project.description}</Text> */}
                 </View>
             ))}
         </View>
