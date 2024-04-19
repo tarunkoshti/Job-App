@@ -206,6 +206,9 @@ const AddInternship = ({ edit = false }) => {
                                 },
                                 validate: {
                                     bulletPoints: value => {
+                                        if (!value || /^\s*$/.test(value)) {
+                                            return true;
+                                        }
                                         const bulletPoints = value.split('\n');
                                         return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
                                             || "Each point must start with a number followed by a dot.";

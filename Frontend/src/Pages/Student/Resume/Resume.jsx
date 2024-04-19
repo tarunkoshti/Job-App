@@ -333,7 +333,16 @@ const Resume = () => {
                                                     {item.startDate && item.endDate &&
                                                         <p>{item.startDate} - {item.endDate}</p>
                                                     }
-                                                    <p>{item.description}</p>
+                                                    <div>
+                                                        <ul>
+                                                            {item.description.split('\n').map((point, index) => (
+                                                                <li key={index}>
+                                                                    <span>&#8226;</span> {/* Bullet point character */}
+                                                                    <span className="ml-2">{point.trim().replace(/^\d+\./, '')}</span>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                                 <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/project/${item.id}`}>

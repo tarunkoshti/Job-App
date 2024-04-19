@@ -141,7 +141,7 @@ const AddJob = ({ edit = false }) => {
                 {...register("workType", {
                 })}
               />
-              <span className='text-xs font-semibold'>Is work from home</span>
+              <span className='text-sm font-semibold'>Is work from home</span>
             </label>
           </div>
 
@@ -196,20 +196,20 @@ const AddJob = ({ edit = false }) => {
 
               {errors.endDate && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.endDate.message}</span></p>}
 
-              <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
+              <label className='w-full pl-1 flex gap-1.5 items-center'>
                 <input
                   defaultChecked={edit ? (job?.currentWorking || '') : ''}
                   type="checkbox"
                   {...register("currentWorking", {
                   })}
                 />
-                <span className='text-xs font-semibold'>Currently working here</span>
+                <span className='text-sm pt-1 font-semibold'>Currently working here</span>
               </label>
             </div>
           </div>
 
           <label htmlFor="des" className='flex flex-col gap-1'>
-            <span>Description (Optional)</span>
+            <span>Description (optional)</span>
             {errors.description && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.description.message}</span></p>}
             <textarea
               defaultValue={edit ? (job?.description || '') : ''}
@@ -225,6 +225,9 @@ const AddJob = ({ edit = false }) => {
                 },
                 validate: {
                   bulletPoints: value => {
+                    if (!value || /^\s*$/.test(value)) {
+                      return true;
+                    }
                     const bulletPoints = value.split('\n');
                     return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
                       || "Each point must start with a number followed by a dot.";
