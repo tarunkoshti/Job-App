@@ -6,6 +6,8 @@ import Button from '../../../Components/Button'
 import { updateStudent } from '../../../store/Actions/userActions'
 import { useNavigate } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
+import { MdErrorOutline } from 'react-icons/md'
+import { toast } from 'react-toastify'
 
 
 const PersonalDetails = () => {
@@ -13,14 +15,16 @@ const PersonalDetails = () => {
     const student = useSelector((state) => state.userReducer.userData?.student)
     // console.log(student)
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
 
     const submit = async (data) => {
-        console.log(data)
-        await dispatch(updateStudent(student._id, data))
+        // console.log(data)
+        const error = await dispatch(updateStudent(student._id, data))
+        error ? toast.error(error.data.message)
+        : toast.success("Profile updated")
         navigate("/student/resume")
     }
 
@@ -37,23 +41,35 @@ const PersonalDetails = () => {
                     <h1 className='text-center text-xl font-semibold'>Personal Details</h1>
 
                     <div className='w-full flex gap-2'>
-                        <Input
-                            defaultValue={student?.firstname || ''}
-                            label="Firstname"
-                            placeholder="John"
-                            {...register("firstname", {
-                                required: true
-                            })}
-                        />
+                        <div>
+                            <Input
+                                defaultValue={student?.firstname || ''}
+                                label="Firstname"
+                                placeholder="John"
+                                {...register("firstname", {
+                                    required: {
+                                        value: true,
+                                        message: "firstname is required"
+                                    }
+                                })}
+                            />
+                            {errors.firstname && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.firstname.message}</span></p>}
+                        </div>
 
-                        <Input
-                            defaultValue={student?.lastname || ''}
-                            label="Lastname"
-                            placeholder="Doe"
-                            {...register("lastname", {
-                                required: true
-                            })}
-                        />
+                        <div>
+                            <Input
+                                defaultValue={student?.lastname || ''}
+                                label="Lastname"
+                                placeholder="Doe"
+                                {...register("lastname", {
+                                    required: {
+                                        value: true,
+                                        message: "lastname is required"
+                                    }
+                                })}
+                            />
+                            {errors.lastname && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.lastname.message}</span></p>}
+                        </div>
                     </div>
                     <Input
                         defaultValue={student?.email || ''}
