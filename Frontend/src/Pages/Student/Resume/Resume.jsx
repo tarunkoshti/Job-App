@@ -64,9 +64,9 @@ const Resume = () => {
             : toast.success("Work Sample deleted")
     }
     const deleteaccomplishmentHandler = async (id) => {
-       const error = await dispatch(deleteAccomplishment(id, student._id))
-       error ? toast.error(error.data.message)
-       : toast.success("Accomplishment deleted")
+        const error = await dispatch(deleteAccomplishment(id, student._id))
+        error ? toast.error(error.data.message)
+            : toast.success("Accomplishment deleted")
     }
 
     useEffect(() => {
@@ -262,7 +262,14 @@ const Resume = () => {
                                             <li key={item.id}
                                                 className='mb-2 flex justify-between items-start'>
                                                 <div>
-                                                    <p className=''>{item.description}</p>
+                                                    <ul>
+                                                        {item.description.split('\n').map((point, index) => (
+                                                            <li key={index}>
+                                                                <span>&#8226;</span> {/* Bullet point character */}
+                                                                <span className="ml-2">{point.trim().replace(/^\d+\./, '')}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
                                                 </div>
                                                 <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/responsibility/${item.id}`}>
@@ -276,12 +283,13 @@ const Resume = () => {
                                         ))
                                         }
                                     </ul>
-                                    <Link
-                                        className='text-blue-700' to='/student/resume/add/responsibility'>
-                                        <span className='flex items-center gap-1'>
-                                            <FaPlus />Add position of responsibility
-                                        </span>
-                                    </Link>
+                                    {resume.responsibilities.length == "0" &&
+                                        <Link
+                                            className='text-blue-700' to='/student/resume/add/responsibility'>
+                                            <span className='flex items-center gap-1'>
+                                                <FaPlus />Add position of responsibility
+                                            </span>
+                                        </Link>}
                                 </div>
                             </div>
 
@@ -404,41 +412,41 @@ const Resume = () => {
 
                                             item.value && <li key={item.id}
                                                 className='mb-2 flex justify-between items-start'>
-                                                
+
                                                 <div className='flex items-center gap-2'>
                                                     {
                                                         item.key === "blogLink" && (
                                                             <FaBlog className=' hover:bg-gray-200 rounded-full p-1.5'
-                                                            size={30}/>
+                                                                size={30} />
                                                         )
                                                     }
                                                     {
                                                         item.key === "githubLink" && (
-                                                            <FaGithub  className=' hover:bg-gray-200 rounded-full p-1.5'
-                                                            size={30}/>
+                                                            <FaGithub className=' hover:bg-gray-200 rounded-full p-1.5'
+                                                                size={30} />
                                                         )
                                                     }
                                                     {
                                                         item.key === "playstoreLink" && (
-                                                            <FaGooglePlay  className=' hover:bg-gray-200 rounded-full p-1.5'
-                                                            size={30}/>
+                                                            <FaGooglePlay className=' hover:bg-gray-200 rounded-full p-1.5'
+                                                                size={30} />
                                                         )
                                                     }
                                                     {
                                                         item.key === "behanceLink" && (
-                                                            <FaBehance  className=' hover:bg-gray-200 rounded-full p-1.5'
-                                                            size={30}/>
+                                                            <FaBehance className=' hover:bg-gray-200 rounded-full p-1.5'
+                                                                size={30} />
                                                         )
                                                     }
                                                     {
                                                         item.key === "otherworkLink" && (
-                                                            <MdWorkspacesFilled  className=' hover:bg-gray-200 rounded-full p-1.5'
-                                                            size={30}/>
+                                                            <MdWorkspacesFilled className=' hover:bg-gray-200 rounded-full p-1.5'
+                                                                size={30} />
                                                         )
                                                     }
                                                     <Link to={item.value} className='hover:text-blue-600 capitalize'>{item.key.replace("Link", "")}</Link>
                                                 </div>
-                                                
+
                                                 <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/portfolio_work/${item.id}`}>
                                                         <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
@@ -494,12 +502,14 @@ const Resume = () => {
                                         ))
                                         }
                                     </ul>
-                                    <Link
-                                        className='text-blue-700' to='/student/resume/add/accomplishment'>
-                                        <span className='flex items-center gap-1'>
-                                            <FaPlus />Add accomplishment/ additional detail
-                                        </span>
-                                    </Link>
+                                    {resume.accomplishments.length == "0" &&
+                                        <Link
+                                            className='text-blue-700' to='/student/resume/add/accomplishment'>
+                                            <span className='flex items-center gap-1'>
+                                                <FaPlus />Add accomplishment/ additional detail
+                                            </span>
+                                        </Link>
+                                    }
                                 </div>
                             </div>
                         </div>
