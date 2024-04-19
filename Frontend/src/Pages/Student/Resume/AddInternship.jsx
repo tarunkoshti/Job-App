@@ -3,12 +3,13 @@ import Input from '../../../Components/Input'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Button from '../../../Components/Button'
-import { addInternship, addJob, editInternship } from '../../../store/Actions/userActions'
+import { addInternship, editInternship } from '../../../store/Actions/userActions'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
-import { FaPlus } from "react-icons/fa6";
-import Select from '../../../Components/Select'
-
+import { MdErrorOutline } from 'react-icons/md'
+import { toast } from 'react-toastify'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 const AddInternship = ({ edit = false }) => {
@@ -19,14 +20,23 @@ const AddInternship = ({ edit = false }) => {
 
     let [currlength, setCurrlength] = useState(0)
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm();
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
     const submit = async (data) => {
         if (currlength <= 250) {
-            edit ? await dispatch(editInternship(id, student._id, data))
-                : await dispatch(addInternship(student._id, data))
+            if (edit) {
+                const error = await dispatch(editInternship(id, student._id, data))
+                error ? toast.error(error.data.message)
+                    : toast.success("Internship updated")
+            } else {
+                const error = await dispatch(addInternship(student._id, data))
+                error ? toast.error(error.data.message)
+                    : toast.success("Internship added")
+            }
+            // edit ? await dispatch(editInternship(id, student._id, data))
+            //     : await dispatch(addInternship(student._id, data))
             navigate("/student/resume")
         }
     }
@@ -38,14 +48,22 @@ const AddInternship = ({ edit = false }) => {
     useEffect(() => {
         const descriptionValue = watch((value, { name }) => {
             if (name == "description") {
-                let str = value.description
+                let str = value.description.trim("/n")
                 setCurrlength(str.length)
+            }
+            if (name == "workType") {
+                value.workType ? setValue("Location", "Remote")
+                    : setValue("Location", "")
+            }
+            if (name == "currentWorking") {
+                value.currentWorking ? setValue("endDate", "Currently Working")
+                    : setValue("endDate", "")
             }
         });
 
     }, [watch]);
 
-    const internship = student?.resume?.internships.filter(item => item.id === id)
+    const internship = student?.resume?.internships.find(item => item.id === id)
 
     return (
         < div className='w-full h-screen absolute top-[0]' >
@@ -58,54 +76,47 @@ const AddInternship = ({ edit = false }) => {
                     className='w-full p-10 flex flex-col gap-5'>
                     <h1 className='text-center text-xl font-semibold'>Internship details</h1>
 
-                    <Input
-                        defaultValue={edit ? (internship?.profile || '') : ''}
-                        label="Profile"
-                        placeholder="e.g. Sales & Marketing"
-                        {...register("profile", {
-                            required: true
-                        })}
-                    />
-                    <Input
-                        defaultValue={edit ? (internship?.organization || '') : ''}
-                        label="Organization"
-                        placeholder="e.g. Career Race"
-                        {...register("organization", {
-                            required: true
-                        })}
-                    />
-                    <Input
-                        defaultValue={edit ? (internship?.Location || '') : ''}
-                        label="Location"
-                        placeholder="e.g. Mumbai"
-                        {...register("Location", {
-                            // required: true
-                        })}
-                    />
-                    <div className='w-full flex gap-2'>
-
+                    <div>
                         <Input
-                            defaultValue={edit ? (internship?.startDate || '') : ''}
-                            type="date"
-                            label="Start date"
-                            placeholder="Choose date"
-                            {...register("startDate", {
+                            defaultValue={edit ? (internship?.profile || '') : ''}
+                            label="Profile"
+                            placeholder="e.g. Sales & Marketing"
+                            {...register("profile", {
+                                required: {
+                                    value: true,
+                                    message: "profile is required"
+                                },
                             })}
                         />
-                        <Input
-                            ddefaultValue={edit ? (internship?.endDate || '') : ''}
-                            type="date"
-                            label="End date"
-                            placeholder="Choose date"
-                            {...register("endDate", {
-                            })}
-                        />
-
+                        {errors.profile && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.profile.message}</span></p>}
                     </div>
 
-                    <div className='w-full flex gap-2 '>
+                    <div>
+                        <Input
+                            defaultValue={edit ? (internship?.organization || '') : ''}
+                            label="Organization"
+                            placeholder="e.g. Career Race"
+                            {...register("organization", {
+                                required: {
+                                    value: true,
+                                    message: "organization name is required"
+                                },
+                            })}
+                        />
+                        {errors.organization && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.organization.message}</span></p>}
+                    </div>
 
-                        <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
+                    <div >
+                        <Input
+                            defaultValue={edit ? (internship?.Location || '') : ''}
+                            label="Location"
+                            placeholder="e.g. Mumbai"
+                            {...register("Location", {
+                            })}
+                            readOnly={watch("workType")}
+                        />
+
+                        <label className='pl-1 pt-2 flex gap-1.5 items-center text-sm font-semibold'>
                             <input
                                 defaultChecked={edit ? (internship?.workType || '') : ''}
                                 type="checkbox"
@@ -114,22 +125,73 @@ const AddInternship = ({ edit = false }) => {
                             />
                             <span>Is work from home</span>
                         </label>
+                    </div>
 
-                        <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
-                            <input
-                                defaultChecked={edit ? (internship?.currentWorking || '') : ''}
-                                type="checkbox"
-                                {...register("currentWorking", {
+                    <div className='w-full flex gap-2'>
+
+                        <div>
+                            <Input
+                                defaultValue={edit ? (internship?.startDate || '') : ''}
+                                type="text"
+                                label="Start date"
+                                placeholder="Choose date"
+                                {...register("startDate", {
+                                    required: {
+                                        value: true,
+                                        message: "required"
+                                    }
                                 })}
-                            />
-                            <span>Currently working here</span>
-                        </label>
+                            >
+                                <DatePicker
+                                    className='w-full outline-none px-3 py-2 bg-red-500 rounded-lg opacity-0'
+                                    onChange={(date) => {
+                                        const formattedDate = date.toLocaleDateString('en-GB'); // Format: dd/MM/yyyy
+                                        setValue("startDate", formattedDate);
+                                    }}
+                                />
+                            </Input>
+                            {errors.startDate && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.startDate.message}</span></p>}
+                        </div>
 
+                        <div className='relative'>
+
+                            <Input
+                                defaultValue={edit ? (internship?.endDate || '') : ''}
+                                type="text"
+                                label="End date"
+                                placeholder="Choose date"
+                                {...register("endDate", {
+                                    required: {
+                                        value: true,
+                                        message: "required"
+                                    }
+                                })}
+                            >
+                                <DatePicker
+                                    className='w-full outline-none px-3 py-2 bg-red-500 rounded-lg opacity-0'
+                                    onChange={(date) => {
+                                        const formattedDate = date.toLocaleDateString('en-GB'); // Format: dd/MM/yyyy
+                                        setValue("endDate", formattedDate);
+                                    }}
+                                    readOnly={watch("currentWorking")}
+                                />
+                            </Input>
+                            {errors.endDate && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.endDate.message}</span></p>}
+                            <label className='w-full pl-1 pt-1 flex gap-1.5 items-center text-sm font-semibold'>
+                                <input
+                                    defaultChecked={edit ? (internship?.currentWorking || '') : ''}
+                                    type="checkbox"
+                                    {...register("currentWorking", {
+                                    })}
+                                />
+                                <span>Currently working here</span>
+                            </label>
+                        </div>
                     </div>
 
                     <label htmlFor="des" className='flex flex-col gap-1'>
-                        <span>Description (Optional)</span>
-                        {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
+                        <span>Description (optional)</span>
+                        {errors.description && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.description.message}</span></p>}
                         <textarea
                             defaultValue={edit ? (internship?.description || '') : ''}
                             name="description"
@@ -141,6 +203,13 @@ const AddInternship = ({ edit = false }) => {
                                 maxLength: {
                                     value: 250,
                                     message: "Description should not exceed 250 characters."
+                                },
+                                validate: {
+                                    bulletPoints: value => {
+                                        const bulletPoints = value.split('\n');
+                                        return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                            || "Each point must start with a number followed by a dot.";
+                                    },
                                 }
                             })}
                         />
