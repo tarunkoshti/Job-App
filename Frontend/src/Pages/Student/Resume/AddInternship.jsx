@@ -116,7 +116,7 @@ const AddInternship = ({ edit = false }) => {
                             readOnly={watch("workType")}
                         />
 
-                        <label className='pl-1 pt-2 flex gap-1.5 items-center text-sm font-semibold'>
+                        <label className='pl-1 pt-1 flex gap-1.5 items-center text-sm font-semibold'>
                             <input
                                 defaultChecked={edit ? (internship?.workType || '') : ''}
                                 type="checkbox"

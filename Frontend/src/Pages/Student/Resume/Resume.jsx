@@ -179,7 +179,16 @@ const Resume = () => {
                                                         <p className='font-semibold'>{item?.designation}<span>, ({item?.profile})</span></p>
                                                         <p>{item.organization}, <span>{item.Location}</span></p>
                                                         <p className='flex gap-2'><span className='font-medium'>Job</span> <span>{item.startDate}</span>- <span>{item.endDate}</span></p>
-                                                        <p>{item.description}</p>
+                                                        <div>
+                                                            <ul>
+                                                                {item.description.split('\n').map((point, index) => (
+                                                                    <li key={index}>
+                                                                        <span>&#8226;</span> {/* Bullet point character */}
+                                                                        <span className="ml-2">{point.trim().replace(/^\d+\./, '')}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
                                                     </div>
 
                                                     <div className='flex gap-5'>
@@ -204,7 +213,16 @@ const Resume = () => {
                                                         <p className='font-semibold'>{item?.profile}</p>
                                                         <p>{item.organization}, <span>{item.Location}</span></p>
                                                         <p className='flex gap-2'><span className='font-medium'>Internship</span> <span>{item.startDate}</span>- <span>{item.endDate}</span></p>
-                                                        <p>{item.description}</p>
+                                                        <div>
+                                                            <ul>
+                                                                {item.description.split('\n').map((point, index) => (
+                                                                    <li key={index}>
+                                                                        <span>&#8226;</span> {/* Bullet point character */}
+                                                                        <span className="ml-2">{point.trim().replace(/^\d+\./, '')}</span>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
                                                     </div>
 
                                                     <div className='flex gap-5'>

@@ -32,6 +32,13 @@ const styles = StyleSheet.create({
     description: {
         fontSize: 12,
     },
+    bulletPoint: {
+        width: 4,
+        height: 4,
+        marginRight: 5,
+        borderRadius: 50,
+        backgroundColor: 'black',
+    },
 });
 
 // WorkExperience component
@@ -44,22 +51,40 @@ const WorkExperience = ({ resume }) => {
             </View>
             {resume?.jobs.map((item) => (
                 <View key={item.id} style={styles.experienceItem}>
-                    <View style={{ flexDirection: 'row', justifyContent:'space-between'}}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={styles.jobTitle}>Position : {item?.designation}, ({item?.profile})</Text>
                         <Text style={styles.dateRange}>Job : {item?.startDate} - {item?.endDate}</Text>
                     </View>
                     <Text style={styles.companyName}>Organization : {item?.organization}</Text>
-                    <Text style={styles.description}>Description :{item?.description}</Text>
+                   {
+                        item?.description && <View style={styles.description} >
+                            <Text>Desription :</Text>
+                            {item?.description.split('\n').map((point, index) => (
+                                <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <View style={styles.bulletPoint}></View>
+                                    <Text className="ml-2">{point.trim().replace(/^\d+\./, '')}</Text>
+                                </View>
+                            ))}
+                        </View>
+                   }
                 </View>
             ))}
             {resume?.internships.map((item) => (
                 <View key={item.id} style={styles.experienceItem}>
-                    <View style={{ flexDirection: 'row', justifyContent:'space-between'}}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={styles.jobTitle}>Profile : {item?.profile}</Text>
                         <Text style={styles.dateRange}>Internship : {item?.startDate} - {item?.endDate}</Text>
                     </View>
                     <Text style={styles.companyName}>Organization : {item?.organization}</Text>
-                    <Text style={styles.description}>Description : {item?.description}</Text>
+                    {item?.description && <View style={styles.description} >
+                        <Text>Desription :</Text>
+                        {item?.description.split('\n').map((point, index) => (
+                            <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <View style={styles.bulletPoint}></View>
+                                <Text className="ml-2">{point.trim().replace(/^\d+\./, '')}</Text>
+                            </View>
+                        ))}
+                    </View>}
                 </View>
             ))}
         </View>
