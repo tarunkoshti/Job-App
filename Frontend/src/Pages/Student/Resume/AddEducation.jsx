@@ -212,27 +212,40 @@ const AddEducation = ({ edit = false }) => {
               {...register("eduType")}
             />
 
-            <Select
-              defaultValue={edit ? (edu?.completionYear || '') : ''}
-              label="Year of completion"
-              options={startYearOptions.reverse()}
-              {...register("completionYear", {
-                required: true
-              })}
-            />
+            <div>
+              <Select
+                defaultValue={edit ? (edu?.completionYear || '') : ''}
+                label="Year of completion"
+                placeholder="Choose year"
+                options={startYearOptions.reverse()}
+                {...register("completionYear", {
+                  required: {
+                    value: true,
+                    message: "required"
+                  }
+                })}
+              />
+              {errors.completionYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.completionYear.message}</span></p>}
+            </div>
 
-            <Input
-              defaultValue={edit ? (edu?.board || '') : ''}
-              label="Board"
-              placeholder="e.g. CBSE"
-              {...register("board", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                defaultValue={edit ? (edu?.board || '') : ''}
+                label="Board"
+                placeholder="e.g. CBSE"
+                {...register("board", {
+                  required: {
+                    value: true,
+                    message: "required"
+                  }
+                })}
+              />
+              {errors.board && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.board.message}</span></p>}
+            </div>
 
             <Input
               defaultValue={edit ? (edu?.performance || '') : ''}
-              label="Performance"
+              label="Performance (optional)"
               placeholder="0.00"
               {...register("performance", {
               })}
@@ -240,21 +253,26 @@ const AddEducation = ({ edit = false }) => {
 
             <Input
               defaultValue={edit ? (edu?.stream || '') : ''}
-              label="Stream"
+              label="Stream (optional)"
               placeholder="e.g. Science"
               {...register("stream", {
-                required: true
               })}
             />
 
-            <Input
-              defaultValue={edit ? (edu?.school || '') : ''}
-              label="School"
-              placeholder="e.g. Hindu Public School"
-              {...register("school", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                defaultValue={edit ? (edu?.school || '') : ''}
+                label="School"
+                placeholder="e.g. Hindu Public School"
+                {...register("school", {
+                  required: {
+                    value: true,
+                    message: "school name required"
+                  }
+                })}
+              />
+              {errors.school && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.school.message}</span></p>}
+            </div>
 
             <Button
               type='submit'
@@ -275,40 +293,59 @@ const AddEducation = ({ edit = false }) => {
               {...register("eduType")}
             />
 
-            <Select
-              defaultValue={edit ? (edu?.completionYear || '') : ''}
-              label="Year of completion"
-              options={startYearOptions.reverse()}
-              {...register("completionYear", {
-                required: true
-              })}
-            />
+            <div>
+              <Select
+                defaultValue={edit ? (edu?.completionYear || '') : ''}
+                label="Year of completion"
+                placeholder="Choose year"
+                options={startYearOptions.reverse()}
+                {...register("completionYear", {
+                  required: {
+                    value: true,
+                    message: "required"
+                  }
+                })}
+              />
+              {errors.completionYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.completionYear.message}</span></p>}
+            </div>
 
-            <Input
-              defaultValue={edit ? (edu?.board || '') : ''}
-              label="Board"
-              placeholder="e.g. CBSE"
-              {...register("board", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                defaultValue={edit ? (edu?.board || '') : ''}
+                label="Board"
+                placeholder="e.g. CBSE"
+                {...register("board", {
+                  required: {
+                    value: true,
+                    message: "required"
+                  }
+                })}
+              />
+              {errors.board && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.board.message}</span></p>}
+            </div>
 
             <Input
               defaultValue={edit ? (edu?.performance || '') : ''}
-              label="Performance"
+              label="Performance (optional)"
               placeholder="0.00"
               {...register("performance", {
               })}
             />
 
-            <Input
-              defaultValue={edit ? (edu?.school || '') : ''}
-              label="School"
-              placeholder="e.g. Hindu Public School"
-              {...register("school", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                defaultValue={edit ? (edu?.school || '') : ''}
+                label="School"
+                placeholder="e.g. Hindu Public School"
+                {...register("school", {
+                  required: {
+                    value: true,
+                    message: "school name is required"
+                  }
+                })}
+              />
+              {errors.school && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.school.message}</span></p>}
+            </div>
 
             <Button
               type='submit'
@@ -329,48 +366,74 @@ const AddEducation = ({ edit = false }) => {
               {...register("eduType")}
             />
 
-            <Input
-              defaultValue={edit ? (edu?.college || '') : ''}
-              label="College"
-              placeholder="e.g. Hindu College"
-              {...register("college", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                defaultValue={edit ? (edu?.college || '') : ''}
+                label="College"
+                placeholder="e.g. Hindu College"
+                {...register("college", {
+                  required: {
+                    value: true,
+                    message: "college name is required"
+                  }
+                })}
+              />
+              {errors.college && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.college.message}</span></p>}
+            </div>
 
             <div className='w-full flex gap-2'>
 
-              <Select
-                defaultValue={edit ? (edu?.startYear || '') : ''}
-                label="Start year"
-                options={startYearOptions.reverse()}
-                {...register("startYear", {
-                  required: true
+              <div>
+                <Select
+                  defaultValue={edit ? (edu?.startYear || '') : ''}
+                  label="Start year"
+                  placeholder="Choose year"
+                  options={startYearOptions.reverse()}
+                  {...register("startYear", {
+                    required: {
+                      value: true,
+                      message: "required"
+                    }
+                  })}
+                />
+                {errors.startYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.startYear.message}</span></p>}
+              </div>
+
+              <div>
+                <Select
+                  defaultValue={edit ? (edu?.lastYear || '') : ''}
+                  label="End year"
+                  placeholder="Choose year"
+                  options={startYearOptions}
+                  {...register("lastYear", {
+                    required: {
+                      value: true,
+                      message: "required"
+                    }
+                  })}
+                />
+                {errors.lastYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.lastYear.message}</span></p>}
+              </div>
+            </div>
+
+            <div>
+              <Input
+                defaultValue={edit ? (edu?.stream || '') : ''}
+                label="Stream"
+                placeholder="e.g. Creative Writing"
+                {...register("stream", {
+                  required: {
+                    value: true,
+                    message: "stream is required"
+                  }
                 })}
               />
-
-              <Select
-                defaultValue={edit ? (edu?.lastYear || '') : ''}
-                label="End year"
-                options={startYearOptions}
-                {...register("lastYear", {
-                  required: true
-                })}
-              />
-
+              {errors.stream && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.stream.message}</span></p>}
             </div>
 
             <Input
-              defaultValue={edit ? (edu?.stream || '') : ''}
-              label="Stream (Optional)"
-              placeholder="e.g. Creative Writing"
-              {...register("stream", {
-              })}
-            />
-
-            <Input
               defaultValue={edit ? (edu?.performance || '') : ''}
-              label="Performance"
+              label="Performance (optional)"
               placeholder="0.00"
               {...register("performance", {
               })}
@@ -395,49 +458,75 @@ const AddEducation = ({ edit = false }) => {
               {...register("eduType")}
             />
 
-            <Input
-              defaultValue={edit ? (edu?.college || '') : ''}
-              label="College"
-              placeholder="e.g. Hindu College"
-              {...register("college", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                defaultValue={edit ? (edu?.college || '') : ''}
+                label="College"
+                placeholder="e.g. Hindu College"
+                {...register("college", {
+                  required: {
+                    value: true,
+                    message: "college name is required"
+                  }
+                })}
+              />
+              {errors.college && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.college.message}</span></p>}
+            </div>
 
             <div className='w-full flex gap-2'>
 
-              <Select
-                defaultValue={edit ? (edu?.startYear || '') : ''}
-                label="Start year"
-                options={startYearOptions.reverse()}
-                {...register("startYear", {
-                  required: true
-                })}
-              />
+              <div>
+                <Select
+                  defaultValue={edit ? (edu?.startYear || '') : ''}
+                  label="Start year"
+                  placeholder="Choose year"
+                  options={startYearOptions.reverse()}
+                  {...register("startYear", {
+                    required: {
+                      value: true,
+                      message: "required"
+                    }
+                  })}
+                />
+                {errors.startYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.startYear.message}</span></p>}
+              </div>
 
-              <Select
-                defaultValue={edit ? (edu?.lastYear || '') : ''}
-                label="End year"
-                options={startYearOptions}
-                {...register("lastYear", {
-                  required: true
-                })}
-              />
+              <div>
+                <Select
+                  defaultValue={edit ? (edu?.lastYear || '') : ''}
+                  label="End year"
+                  placeholder="Choose year"
+                  options={startYearOptions}
+                  {...register("lastYear", {
+                    required: {
+                      value: true,
+                      message: "required"
+                    }
+                  })}
+                />
+                {errors.lastYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.lastYear.message}</span></p>}
+              </div>
 
             </div>
 
-            <Input
-              defaultValue={edit ? (edu?.stream || '') : ''}
-              label="Stream"
-              placeholder="e.g. Commerce & Business Studies"
-              {...register("stream", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                defaultValue={edit ? (edu?.stream || '') : ''}
+                label="Stream"
+                placeholder="e.g. Commerce & Business Studies"
+                {...register("stream", {
+                  required: {
+                    value: true,
+                    message: "stream is required"
+                  }
+                })}
+              />
+              {errors.stream && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.stream.message}</span></p>}
+            </div>
 
             <Input
               defaultValue={edit ? (edu?.performance || '') : ''}
-              label="Performance"
+              label="Performance (optional)"
               placeholder="0.00"
               {...register("performance", {
               })}
