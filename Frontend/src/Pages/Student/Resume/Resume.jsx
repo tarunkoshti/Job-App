@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { FaPlus } from "react-icons/fa6";
+import { FaBehance, FaBlog, FaGithub, FaGooglePlay, FaPlus } from "react-icons/fa6";
 import { HiPencil } from "react-icons/hi2";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdWorkspacesFilled } from "react-icons/md";
 import { deleteAccomplishment, deleteEducation, deleteInternship, deleteJob, deleteProject, deleteResponsibility, deleteSkill, deleteTrainingCourse, deleteWorkSample } from '../../../store/Actions/userActions';
 import { Document, PDFDownloadLink, PDFViewer, Page, Text, View } from '@react-pdf/renderer';
 import MyDocument from '../../ResumeDocument/MyDocument';
@@ -404,7 +404,41 @@ const Resume = () => {
 
                                             item.value && <li key={item.id}
                                                 className='mb-2 flex justify-between items-start'>
-                                                <Link to={item.value} className='hover:text-blue-600'>{item.value}</Link>
+                                                
+                                                <div className='flex items-center gap-2'>
+                                                    {
+                                                        item.key === "blogLink" && (
+                                                            <FaBlog className=' hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={30}/>
+                                                        )
+                                                    }
+                                                    {
+                                                        item.key === "githubLink" && (
+                                                            <FaGithub  className=' hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={30}/>
+                                                        )
+                                                    }
+                                                    {
+                                                        item.key === "playstoreLink" && (
+                                                            <FaGooglePlay  className=' hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={30}/>
+                                                        )
+                                                    }
+                                                    {
+                                                        item.key === "behanceLink" && (
+                                                            <FaBehance  className=' hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={30}/>
+                                                        )
+                                                    }
+                                                    {
+                                                        item.key === "otherworkLink" && (
+                                                            <MdWorkspacesFilled  className=' hover:bg-gray-200 rounded-full p-1.5'
+                                                            size={30}/>
+                                                        )
+                                                    }
+                                                    <Link to={item.value} className='hover:text-blue-600 capitalize'>{item.key.replace("Link", "")}</Link>
+                                                </div>
+                                                
                                                 <div className='flex gap-5'>
                                                     <Link to={`/student/resume/edit/portfolio_work/${item.id}`}>
                                                         <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'

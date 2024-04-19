@@ -6,6 +6,8 @@ import Button from '../../../Components/Button'
 import { addWorkSample, editWorkSample } from '../../../store/Actions/userActions'
 import { useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
+import { toast } from 'react-toastify'
+import { MdErrorOutline } from 'react-icons/md'
 
 const AddProtfolioOrWork = ({ edit = false }) => {
 
@@ -18,22 +20,36 @@ const AddProtfolioOrWork = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
-    console.log(data)
+    // console.log(data)
+    let i = 0;
     for (const key in data) {
       if (data[key] !== "") {
-        edit ? await dispatch(editWorkSample(id, student._id, data))
-          : await dispatch(addWorkSample(student._id, data))
+        if (edit) {
+          const error = await dispatch(editWorkSample(id, student._id, data))
+          error ? toast.error(error.data.message)
+            : toast.success("Work sample updated")
+        } else {
+          const error = await dispatch(addWorkSample(student._id, data))
+          error ? toast.error(error.data.message)
+            : toast.success("Work sample added")
+        }
+        // edit ? await dispatch(editWorkSample(id, student._id, data))
+        //   : await dispatch(addWorkSample(student._id, data))
         navigate("/student/resume")
         break;
       }
+      else{
+        i++;
+      }
     }
+    i == "5" && toast.error("You need to add atleast one work sample") 
   }
 
   const backHandler = () => {
     navigate(-1)
   }
 
-  const worksample = student?.resume?.worksamples.filter(item => item.id === id)
+  const worksample = student?.resume?.worksamples.find(item => item.id === id)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >
@@ -96,64 +112,93 @@ const AddProtfolioOrWork = ({ edit = false }) => {
 
           {
             edit && worksample.key === "blogLink" &&
-            <Input
-              defaultValue={worksample?.value || ''}
-              label="Blog link"
-              placeholder="e.g. http://myblog.com"
-              {...register("value", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                defaultValue={worksample?.value || ''}
+                label="Blog link"
+                placeholder="e.g. http://myblog.com"
+                {...register("value", {
+                  required: {
+                    value: true,
+                    message: "required"
+                  }
+                })}
+              />
+              {errors.value && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.value.message}</span></p>}
+            </div>
           }
 
           {
             edit && worksample.key === "githubLink" &&
-            <Input
-              defaultValue={worksample?.value || ''}
-              label="Github link"
-              placeholder="e.g. http://github.com"
-              {...register("value", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                defaultValue={worksample?.value || ''}
+                label="Github link"
+                placeholder="e.g. http://github.com"
+                {...register("value", {
+                  required: {
+                    value: true,
+                    message: "required"
+                  }
+                })}
+              />
+              {errors.value && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.value.message}</span></p>}
+            </div>
           }
 
           {
             edit && worksample.key === "playstoreLink" &&
-            <Input
-              defaultValue={worksample?.value || ''}
-              label="Play store developer A/c (public link)"
-              placeholder="e.g. http://play.google.com/store/apps/developer?id=myapps"
-              {...register("value", {
-                required: true
-              })}
-            />
+            <div>
+              <Input
+                defaultValue={worksample?.value || ''}
+                label="Play store developer A/c (public link)"
+                placeholder="e.g. http://play.google.com/store/apps/developer?id=myapps"
+                {...register("value", {
+                  required: {
+                    value: true,
+                    message: "required"
+                  }
+                })}
+              />
+              {errors.value && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.value.message}</span></p>}
+            </div>
           }
 
           {
             edit && worksample.key === "behanceLink" &&
-            <Input
-              defaultValue={worksample?.value || ''}
-              label="Behance portfolio link"
-              placeholder="e.g. http://behance.net/my_profile"
-              {...register("value", {
-                required: true
-              })}
-            />
-
+            <div>
+              <Input
+                defaultValue={worksample?.value || ''}
+                label="Behance portfolio link"
+                placeholder="e.g. http://behance.net/my_profile"
+                {...register("value", {
+                  required: {
+                    value: true,
+                    message: "required"
+                  }
+                })}
+              />
+              {errors.value && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.value.message}</span></p>}
+            </div>
           }
 
           {
             edit && worksample.key === "otherworkLink" &&
             <div className='w-full'>
-              <Input
-                defaultValue={worksample?.value || ''}
-                label="Other work sample link"
-                placeholder="e.g. http://myworksample.com"
-                {...register("value", {
-                  required: true
-                })}
-              />
+              <div>
+                <Input
+                  defaultValue={worksample?.value || ''}
+                  label="Other work sample link"
+                  placeholder="e.g. http://myworksample.com"
+                  {...register("value", {
+                    required: {
+                      value: true,
+                      message: "required"
+                    }
+                  })}
+                />
+                {errors.value && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.value.message}</span></p>}
+              </div>
               <p className='text-sm mt-1 text-gray-400'>Your work samples could be in the form of social media posts, presentations, documents, website etc. If you have multiple work samples, upload them to google drive and add the link here.</p>
             </div>
           }
