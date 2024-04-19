@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from '../../Components/Input'
 import Button from '../../Components/Button'
@@ -6,18 +6,29 @@ import Select from '../../Components/Select'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { asyncCreateJob } from '../../store/Actions/jobActions'
-
+import { MdErrorOutline } from "react-icons/md";
 const CreateJob = () => {
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, watch, formState: { errors } } = useForm()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    const [i, setI] = useState(null)
     const create = async (data) => {
         await dispatch(asyncCreateJob(data))
         navigate("/employee")
     }
+    useEffect(() => {
+        const jobtype = watch((value, { name }) => {
+            if (name == "jobtype") {
+                let str = value.jobtype
+                setI(str)
 
+                console.log(str)
+            }
+        });
+        jobtype
+
+    }, [watch, i]);
     return (
         <>
             <div className="w-full flex flex-col items-center py-5 gap-5 bg-zinc-100">
@@ -35,8 +46,14 @@ const CreateJob = () => {
                                         label="Job Title"
                                         placeholder="e.g. Software Engineer Trainee"
                                         type="text"
-                                        {...register("profile")}
+                                        {...register("profile", {
+                                            required: {
+                                                value: true,
+                                                message: "Profile is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.profile && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.profile.message}</span></p>}
                                 </div>
 
                                 {/* Skills-div */}
@@ -45,8 +62,14 @@ const CreateJob = () => {
                                         label="Skills required"
                                         placeholder="e.g. Java"
                                         type="text"
-                                        {...register("skills")}
+                                        {...register("skills", {
+                                            required: {
+                                                value: true,
+                                                message: "Skills is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.skills && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.skills.message}</span></p>}
                                 </div>
 
                                 {/* Job-type-div */}
@@ -55,8 +78,14 @@ const CreateJob = () => {
                                         options={["In office", "Remote", "Hybrid"]}
                                         label="Job Type"
                                         className="mb-4"
-                                        {...register("jobtype")}
+                                        {...register("jobtype", {
+                                            required: {
+                                                value: true,
+                                                message: "Jobtype is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.jobtype && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.jobtype.message}</span></p>}
                                 </div>
 
                                 {/* Working-type-div */}
@@ -71,7 +100,12 @@ const CreateJob = () => {
                                                 type="radio"
                                                 value="Full-time"
                                                 className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                {...register("workingtype")}
+                                                {...register("workingtype", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "Workingtype is required"
+                                                    },
+                                                })}
                                             />
                                             <label htmlFor="fullTime" className="ml-2 block text-md text-gray-900">Full-time</label>
                                         </div>
@@ -82,11 +116,17 @@ const CreateJob = () => {
                                                 type="radio"
                                                 value="Part-time"
                                                 className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                {...register("workingtype")}
+                                                {...register("workingtype", {
+                                                    required: {
+                                                        value: true,
+                                                        message: "Workingtype is required"
+                                                    },
+                                                })}
                                             />
                                             <label htmlFor="partTime" className="ml-2 block text-md text-gray-900">Part-time</label>
                                         </div>
                                     </div>
+                                    {errors.workingtype && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.workingtype.message}</span></p>}
                                 </div>
 
 
@@ -125,8 +165,14 @@ const CreateJob = () => {
                                         label="Number of Opening"
                                         placeholder="e.g. 5"
                                         type="number"
-                                        {...register("openings")}
+                                        {...register("openings", {
+                                            required: {
+                                                value: true,
+                                                message: "openings is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.openings && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.openings.message}</span></p>}
                                 </div>
 
                                 {/* Start date */}
@@ -161,8 +207,14 @@ const CreateJob = () => {
                                         label="Annual Amount (CTC)"
                                         placeholder="e.g. 3,50000 /- Year"
                                         type="number"
-                                        {...register("package")}
+                                        {...register("package", {
+                                            required: {
+                                                value: true,
+                                                message: "Annual Amount is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.package && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.package.message}</span></p>}
                                 </div>
 
                                 {/* Perks */}
@@ -245,8 +297,14 @@ const CreateJob = () => {
                                         label="Company Name"
                                         placeholder="e.g. Google"
                                         type="text"
-                                        {...register("company")}
+                                        {...register("company", {
+                                            required: {
+                                                value: true,
+                                                message: "Company Name is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.company && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.company.message}</span></p>}
                                 </div>
 
                                 {/* Experience */}
@@ -260,24 +318,36 @@ const CreateJob = () => {
                                 </div>
 
                                 {/* Location */}
-                                <div className="w-full md:max-w-lg mt-3">
-                                    <Input
-                                        label="Location"
-                                        placeholder="e.g. Indore"
-                                        type="text"
-                                        {...register("location")}
-                                    />
-                                </div>
+                                {i == "Remote" ? (
+                                    <div />
+                                ) : (
+                                    <div className="w-full md:max-w-lg mt-1">
+                                        <Input
+                                            label="Location"
+                                            placeholder="e.g. Indore"
+                                            type="text"
+                                            {...register("location", {
+                                                required: { value: true, message: "Location is required" },
+                                            })}
+                                        />
+                                        {errors.location && (
+                                            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                                                <MdErrorOutline />
+                                                <span>{errors.location.message}</span>
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
 
                                 {/* Applicants */}
-                                <div className="w-full md:max-w-lg mt-3">
+                                {/* <div className="w-full md:max-w-lg mt-3">
                                     <Input
                                         label="Applicants"
                                         placeholder="e.g. 1250"
                                         type="text"
                                         {...register("applicants")}
                                     />
-                                </div>
+                                </div> */}
 
                                 {/* Assessments */}
                                 <div className="w-full md:max-w-lg mt-4">
@@ -314,8 +384,14 @@ const CreateJob = () => {
                                         rows="4"
                                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Ensure an amazing demo experience for the child and parent..."
-                                        {...register("description")}
+                                        {...register("description", {
+                                            required: {
+                                                value: true,
+                                                message: "Description is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.description && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.description.message}</span></p>}
                                 </div>
 
                                 {/* responsibilities */}
@@ -327,8 +403,14 @@ const CreateJob = () => {
                                         rows="4"
                                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Adhere to the schedule for the demo as well as regular classes..."
-                                        {...register("responsibilities")}
+                                        {...register("responsibilities", {
+                                            required: {
+                                                value: true,
+                                                message: "responsibilities is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.responsibilities && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.responsibilities.message}</span></p>}
                                 </div>
 
                                 {/* Qualifications */}
@@ -367,8 +449,14 @@ const CreateJob = () => {
                                         rows="4"
                                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                         placeholder="e.g. We're not just another digital agency, we're your dedicated dynamic world ...."
-                                        {...register("companyDetail")}
+                                        {...register("companyDetail", {
+                                            required: {
+                                                value: true,
+                                                message: "Company Detail is required"
+                                            },
+                                        })}
                                     />
+                                    {errors.companyDetail && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.companyDetail.message}</span></p>}
                                 </div>
 
 
