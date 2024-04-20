@@ -27,7 +27,7 @@ const Header = () => {
     useEffect(() => {
         setIsProfileOpen(false)
         setDropdown(false)
-    },[location])
+    }, [location])
 
     const toggleProfile = () => {
         setIsProfileOpen(!isProfileOpen);
@@ -54,7 +54,11 @@ const Header = () => {
         {
             name: employe ? "Create Job" : "Jobs",
             path: "/jobs",
-        }
+        },
+        {
+            name: "About",
+            path: "/about",
+        },
     ]
 
     const rightItems = [
@@ -169,7 +173,7 @@ const Header = () => {
                         <div className='h-12 w-12 rounded-full border-2 relative'>
                             <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
                             <AiOutlineEdit size={27}
-                                className='absolute bottom-0 -right-8 cursor-pointer hover:bg-gray-200 rounded-full p-1.5' 
+                                className='absolute bottom-0 -right-8 cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
                                 onClick={() => fileInputRef.current.click()} />
 
                             {/* // hidden input */}

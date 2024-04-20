@@ -39,6 +39,7 @@ import AddProtfolioOrWork from './Pages/Student/Resume/AddProtfolioOrWork.jsx'
 import AddAccomplishment from './Pages/Student/Resume/AddAccomplishment.jsx'
 import { Flip, Slide, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import About from './Pages/About.jsx'
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/student",
