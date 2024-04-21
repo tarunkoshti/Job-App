@@ -7,8 +7,16 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import { toast } from 'react-toastify'
+import { RiMenu3Fill } from "react-icons/ri";
+import { motion } from 'framer-motion'
 
 const Header = () => {
+
+    const var1 = {
+        initial: { x: "100%" },
+        animate: { x: 0 },
+        exit: { x: "100%" }
+    }
 
     const fileInputRef = useRef(null)
     const navigate = useNavigate()
@@ -22,11 +30,13 @@ const Header = () => {
 
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [dropdown, setDropdown] = useState(false)
+    const [openMenu, setOpenMenu] = useState(false)
 
     const location = useLocation();
     useEffect(() => {
         setIsProfileOpen(false)
         setDropdown(false)
+        setOpenMenu(false)
     }, [location])
 
     const toggleProfile = () => {
@@ -37,9 +47,14 @@ const Header = () => {
         setDropdown(!dropdown)
     }
 
+    const Menu = () => {
+        setOpenMenu(!openMenu)
+    }
+
     const backHandler = () => {
         setIsProfileOpen(false)
         setDropdown(false)
+        setOpenMenu(false)
     }
 
     const middleItems = [
@@ -92,6 +107,7 @@ const Header = () => {
         }
     }
 
+
     const handleProfileImageChange = async (e) => {
         const formData = new FormData();
         formData.set('avatar', e.target.files[0]);
@@ -105,20 +121,24 @@ const Header = () => {
         }
     };
 
+
     return (
-        <header className='w-full px-20 py-5 mb-5 bg-white text-[#1F2937] font-semibold shadow-lg '>
-            <nav className='w-full flex justify-start items-center relative'>
-                <div className='w-1/3'>
+        <header className='w-full  py-5 bg-white text-gray-500 font-semibold'>
+            <nav className='w-full px-10 flex justify-between items-center relative border-b-2 pb-2'>
+
+                {/* leftItem */}
+                <div className='w-[200px]'>
                     <NavLink to={authStatus ? (isStudentAuth ? "/student" : "/employee") : ""}>
-                        < img className='h-12' src="logo.jpg" alt="./logo.jpg" />
+                        < img className='max-sm:h-6 h-10' src="Job Seeking2.png" alt="./logo.jpg" />
                     </NavLink>
                 </div>
 
-                <ul className='w-1/3 flex justify-center gap-8 items-center'>
+                {/* middleItems */}
+                <ul className='hidden lg:flex justify-center gap-12 items-center'>
                     {middleItems.map((item) => (
                         <li key={item.name}>
                             <NavLink to={authStatus ? (isStudentAuth ? `/student${item.path}` : `/employee${item.path}`) : `${item.path}`}
-                                className='text-[#1F2937]'
+                                className='text-gray-500 font-normal text-lg hover:text-[#2507B3] '
                             // style={(e) => {
                             //     return {
                             //         backgroundColor: e.isActive ? "#10151cc2" : "",
@@ -133,34 +153,43 @@ const Header = () => {
                     ))}
                 </ul>
 
+                {/* rightItems */}
                 {
                     !authStatus && (
-                        <ul className='w-1/3 flex justify-end gap-8 items-center'>
+                        <ul className='w-[200px] max-sm:hidden flex lg:flex justify-end gap-5 items-center'>
                             {rightItems.map((item) =>
                                 item.active ? (
                                     <li key={item.name}>
-                                        <NavLink to={item.path} className={`px-4 py-2 rounded-lg  border-2 border-[#1F2937] text-[#1F2937] ${item.name === "Signup" ? "bg-[#1F2937] text-white" : ""}`}>
+                                        <NavLink to={item.path} className={`max-lg:hidden px-4 py-2 rounded-lg  border-2 border-[#2507B3] ${item.name === "Signup" ? "bg-[#2507B3] text-white" : "text-[#2507B3]"}`}>
                                             {item.name}
                                         </NavLink>
+                                        {/* max-lg:bg-transparent max-lg:border-none max-lg:text-gray-500 max-lg:hover:text-[#2507B3]  */}
                                     </li>
                                 ) : null)}
                         </ul>
                     )
                 }
+
+                {/* menuBar */}
+                {
+                    !authStatus && (
+                        <div className='w-[200px]  lg:hidden flex justify-end text-black'>
+                            <RiMenu3Fill onClick={Menu} className='max-sm:size-5 size-6' />
+                        </div>
+                    )
+                }
+
                 {
                     authStatus && (
-                        <div className='w-1/3 flex justify-end gap-8 items-center'>
+                        <div className='w-[200px] flex justify-end gap-8 items-center'>
 
                             <div className='h-10 w-10 border-2 rounded-full flex items-center justify-center cursor-pointer'
                                 onClick={toggleProfile}>
-
                                 <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
                             </div>
                         </div>
                     )
                 }
-
-
             </nav>
 
             {/*  profile options */}
@@ -235,6 +264,40 @@ const Header = () => {
                     </div>
                 </div>
             ) : ""
+            }
+
+            {/* menu options */}
+            {
+                !authStatus ? (
+                <>
+                    <motion.div className={openMenu ?  `overlay w-full h-screen absolute top-0 bg-black opacity-80` : "hidden"}
+                        onClick={backHandler}>
+                    </motion.div>
+                    <motion.div variants={var1} initial="initial" animate={openMenu ? "animate" : "exit"} exit="exit" transition={{ duration: .5 }} className='w-72 h-full bg-gray-100 absolute right-0 top-0'>
+
+                        <div className='w-full flex justify-end px-10 py-6'>
+                            <RxCross2 onClick={backHandler} size={27} className='cursor-pointer text-black ' />
+                        </div>
+
+                        {/* <div className='w-full flex justify-end'> */}
+                        <div className='pl-[40%] flex flex-col'>
+                            {middleItems.map((item) => (
+                                <Link key={item.name}
+                                    to={authStatus ? (isStudentAuth ? `/student${item.path}` : `/employee${item.path}`) : `${item.path}`}
+                                    className='text-black font-semibold text-lg hover:text-[#2507B3] mb-2'>
+                                    {item.name}
+                                </Link>
+                            ))}
+                            {rightItems.map((item) => (
+                                <Link key={item.name} to={item.path} className='text-black font-semibold text-lg hover:text-[#2507B3] mb-2'>
+                                    {item.name}
+                                </Link>
+                            ))}
+                        </div>
+                    </motion.div>
+                    {/* </div> */}
+                </>
+                ) : ""
             }
         </header>
     )
