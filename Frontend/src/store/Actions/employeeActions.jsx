@@ -9,7 +9,7 @@ export const currentUser = () => async (dispatch, getState) => {
             dispatch(login({ employeeData }))
         }
     } catch (error) {
-        // console.log(error.message)
+        console.log(error.response)
     }
 }
 
@@ -27,7 +27,7 @@ export const asyncLogin = (employeeData) => async (dispatch, getState) => {
         await axios.post('/api/employe/signin', employeeData)
         dispatch(currentUser())
     } catch (error) {
-        console.log(error.message)
+       return error.response
     }
 }
 export const asyncLogout = () => async (dispatch, getState) => {
@@ -43,7 +43,7 @@ export const asyncSendMail = (formData) => async (dispatch, getState) => {
     try {
         await axios.post('/api/employe/send-mail', formData)
     } catch (error) {
-        console.log(error.message)
+       return error.response
     }
 }
 
@@ -51,7 +51,7 @@ export const asyncForgrtPassword = (id, formData) => async (dispatch, getState) 
     try {
         await axios.post(`/api/employe/forget-link/${id}`, formData)
     } catch (error) {
-        console.log(error.message)
+       return error.response
     }
 }
 
@@ -60,7 +60,7 @@ export const asyncResetPassword = (id, formData) => async (dispatch, getState) =
         const { data } = await axios.post(`/api/employe/reset-password/${id}`, formData)
         console.log(data)
     } catch (error) {
-        console.log(error.message)
+       return error.response
     }
 }
 

@@ -16,6 +16,8 @@ import { RiContactsFill } from "react-icons/ri";
 import { applyjob, bookmarkjob, disbookmarkjob } from '../../store/Actions/userActions';
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
+import { IoBookmark } from "react-icons/io5";
+import { toast } from 'react-toastify';
 
 const Singlejob = () => {
 
@@ -43,8 +45,12 @@ const Singlejob = () => {
 
     const applyHandler = async () => {
         if (!appliedJob) {
-            await dispatch(applyjob(id));
+            const error = await dispatch(applyjob(id));
+            error ? toast.error(error.data.message)
+                : toast.success("Applied successfully")
             navigate("/student")
+        } else {
+            toast.error("You have already applied")
         }
     }
 
@@ -69,7 +75,9 @@ const Singlejob = () => {
                         </div>
                         <div className='py-2 mt=4 px-10'>
                             <button >
-                                {bookmarkedJob ? <FaBookmark onClick={disbookmarkHandler} size={24} /> : <CiBookmark onClick={bookmarkHandler} size={24} />}
+                                {bookmarkedJob ? <IoBookmark onClick={disbookmarkHandler} size={35}
+                                    className='hover:bg-gray-200 rounded-full p-1.5' /> : <CiBookmark onClick={bookmarkHandler} size={35}
+                                        className='hover:bg-gray-200 rounded-full p-1.5' />}
                             </button >
                         </div >
                     </div >

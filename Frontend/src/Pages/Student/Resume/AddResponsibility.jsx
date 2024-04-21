@@ -5,6 +5,8 @@ import Button from '../../../Components/Button'
 import { addResponsibility, editResponsibility } from '../../../store/Actions/userActions'
 import { useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
+import { MdErrorOutline } from 'react-icons/md'
+import { toast } from 'react-toastify'
 
 
 
@@ -22,8 +24,17 @@ const AddResponsibility = ({ edit = false }) => {
 
   const submit = async (data) => {
     if (currlength <= 250) {
-      edit ? await dispatch(editResponsibility(id, data))
-        : await dispatch(addResponsibility(student._id, data))
+      if(edit){
+        const error = await dispatch(editResponsibility(id, student._id, data))
+        error ? toast.error(error.data.message)
+        : toast.success("Responsibility updated")
+      }else{
+        const error = await dispatch(addResponsibility(student._id, data))
+        error ? toast.error(error.data.message)
+          : toast.success("Responsibility added")
+      }
+      // edit ? await dispatch(editResponsibility(id, student._id, data))
+      //   : await dispatch(addResponsibility(student._id, data))
       navigate("/student/resume")
     }
   }
@@ -35,15 +46,14 @@ const AddResponsibility = ({ edit = false }) => {
   useEffect(() => {
     const descriptionValue = watch((value, { name }) => {
       if (name == "description") {
-        let str = value.description
+        let str = value.description.trim("/n")
         setCurrlength(str.length)
       }
     });
 
   }, [watch]);
 
-  const arr = student?.resume?.responsibilities.filter(item => item.id === id)
-  const responsibility = arr[0];
+  const responsibility = student?.resume?.responsibilities.find(item => item.id === id)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >
@@ -60,19 +70,29 @@ const AddResponsibility = ({ edit = false }) => {
           <label htmlFor="des" className='flex flex-col gap-1'>
             <span>Description</span>
             <p className='text-sm mb-1 text-gray-400'>If you have been/are an active part of societies, conducted any events or led a team, add details here</p>
-            {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
+            {errors.description && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.description.message}</span></p>}
             <textarea
               defaultValue={edit ? (responsibility?.description || '') : ''}
               name="description"
               className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
               id='des'
               type="description"
-              placeholder={`e.g. Led a team of 5 volunteers to plan and conduct activities for literary event in college fest.\n#Keep it to 2-3 points`}
+              placeholder={`#Keep it in points\n1. Led a team of 5 volunteers to plan and conduct activities for literary event in college fest.\n2.`}
               {...register("description", {
-                required:true,
+                required: {
+                  value: true,
+                  message: "description is required"
+                },
                 maxLength: {
                   value: 250,
                   message: "Description should not exceed 250 characters."
+                },
+                validate: {
+                  bulletPoints: value => {
+                    const bulletPoints = value.split('\n');
+                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                      || "Each point must start with a number followed by a dot.";
+                  },
                 }
               })}
             />

@@ -6,6 +6,8 @@ import Button from '../../../Components/Button'
 import { addSkill, editSkill } from '../../../store/Actions/userActions'
 import { useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
+import { toast } from 'react-toastify'
+import { MdErrorOutline } from 'react-icons/md'
 
 const AddSkill = ({ edit = false }) => {
 
@@ -18,13 +20,21 @@ const AddSkill = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
-    edit ? await dispatch(editSkill(id, data))
-      : await dispatch(addSkill(student._id, data))
-      navigate("/student/resume")
+    if (edit) {
+      const error = await dispatch(editSkill(id, student._id, data))
+      error ? toast.error(error.data.message)
+        : toast.success("Skill updated")
+    } else {
+      const error = await dispatch(addSkill(student._id, data))
+      error ? toast.error(error.data.message)
+        : toast.success("Skill added")
+    }
+    // edit ? await dispatch(editSkill(id, student._id, data))
+    //   : await dispatch(addSkill(student._id, data))
+    navigate("/student/resume")
   }
 
-  const arr = student?.resume?.skills.filter(item => item.id === id)
-  const skill = arr[0];
+  const skill = student?.resume?.skills.find(item => item.id === id)
 
   const backHandler = () => {
     navigate(-1)
@@ -41,14 +51,20 @@ const AddSkill = ({ edit = false }) => {
           className='w-full p-10 flex flex-col gap-5'>
           <h1 className='text-center text-xl font-semibold'>Skills</h1>
 
-          <Input
-            defaultValue={edit ? (skill?.skill || '') : ''}
-            label="Add skills"
-            placeholder="e.g. Adobe Photoshop"
-            {...register("skill", {
-              required: true
-            })}
-          />
+          <div>
+            <Input
+              defaultValue={edit ? (skill?.skill || '') : ''}
+              label="Add skills"
+              placeholder="e.g. Adobe Photoshop"
+              {...register("skill", {
+                required: {
+                  value: true,
+                  message: "required"
+                }
+              })}
+            />
+            {errors.skill && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.skill.message}</span></p>}
+          </div>
 
           <Button
             type='submit'

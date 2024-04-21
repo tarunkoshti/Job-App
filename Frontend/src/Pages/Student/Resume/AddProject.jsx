@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Button from '../../../Components/Button'
 import { addProject, editProject } from '../../../store/Actions/userActions'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
-import { FaPlus } from "react-icons/fa6";
-import Select from '../../../Components/Select'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { toast } from 'react-toastify'
+import { MdErrorOutline } from 'react-icons/md'
 
 
 
@@ -19,14 +21,23 @@ const AddProject = ({ edit = false }) => {
 
   let [currlength, setCurrlength] = useState(0)
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
   const submit = async (data) => {
     if (currlength <= 1000) {
-      edit ? await dispatch(editProject(id, data))
-        : await dispatch(addProject(student._id, data))
+      if (edit) {
+        const error = await dispatch(editProject(id, student._id, data))
+        error ? toast.error(error.data.message)
+          : toast.success("Project updated")
+      } else {
+        const error = await dispatch(addProject(student._id, data))
+        error ? toast.error(error.data.message)
+          : toast.success("Project added")
+      }
+      // edit ? await dispatch(editProject(id, student._id, data))
+      //   : await dispatch(addProject(student._id, data))
       navigate("/student/resume")
     }
   }
@@ -38,15 +49,18 @@ const AddProject = ({ edit = false }) => {
   useEffect(() => {
     const descriptionValue = watch((value, { name }) => {
       if (name == "description") {
-        let str = value.description
+        let str = value.description.trim("/n")
         setCurrlength(str.length)
+      }
+      if (name == "currentWorking") {
+        value.currentWorking ? setValue("endDate", "Ongoing")
+          : setValue("endDate", "")
       }
     });
 
   }, [watch]);
 
-  const arr = student?.resume?.projects.filter(item => item.id === id)
-  const project = arr[0];
+  const project = student?.resume?.projects.find(item => item.id === id)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >
@@ -59,62 +73,86 @@ const AddProject = ({ edit = false }) => {
           className='w-full p-10 flex flex-col gap-5'>
           <h1 className='text-center text-xl font-semibold'>Project details</h1>
 
-          <Input
-            defaultValue={edit ? (project?.title || '') : ''}
-            label="Title"
-            placeholder="e.g. Job Seeker"
-            {...register("title", {
-              required: true
-            })}
-          />
-          
-          <div className='w-full flex gap-2'>
-
+          <div>
             <Input
-              defaultValue={edit ? (project?.startDate || '') : ''}
-              type="date"
-              label="Start date"
-              placeholder="Choose date"
-              {...register("startDate", {
+              defaultValue={edit ? (project?.title || '') : ''}
+              label="Title"
+              placeholder="e.g. Job Seeker"
+              {...register("title", {
+                required: {
+                  value: true,
+                  message: "job title is required"
+                }
               })}
             />
-            <Input
-              defaultValue={edit ? (project?.endDate || '') : ''}
-              type="date"
-              label="End date"
-              placeholder="Choose date"
-              {...register("endDate", {
-              })}
-            />
-
+            {errors.title && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.title.message}</span></p>}
           </div>
 
-          <div className='w-full flex gap-2 '>
+          <div className='w-full flex gap-2'>
 
-            <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
-              {/* <input
-                type="checkbox"
-                {...register("workType", {
+            <div>
+              <Input
+                defaultValue={edit ? (project?.startDate || '') : ''}
+                type="text"
+                label="Start date"
+                placeholder="Choose date"
+                {...register("startDate", {
+                  required: {
+                    value: true,
+                    message: "required"
+                  }
                 })}
-              />
-              <span>Is work from home</span> */}
-            </label>
+              >
+                <DatePicker
+                  className='w-full outline-none px-3 py-2 bg-red-500 rounded-lg opacity-0'
+                  onChange={(date) => {
+                    const formattedDate = date.toLocaleDateString('en-GB'); // Format: dd/MM/yyyy
+                    setValue("startDate", formattedDate);
+                  }}
+                />
+              </Input>
+              {errors.startDate && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.startDate.message}</span></p>}
+            </div>
 
-            <label className='w-1/2 pl-1 flex gap-1.5 items-center'>
-              <input
-                defaultChecked={edit ? (project?.currentWorking || '') : ''}
-                type="checkbox"
-                {...register("currentWorking", {
+            <div>
+              <Input
+                defaultValue={edit ? (project?.endDate || '') : ''}
+                type="text"
+                label="End date"
+                placeholder="Choose date"
+                {...register("endDate", {
+                  required: {
+                    value: true,
+                    message: "required"
+                  }
                 })}
-              />
-              <span>Currently ongoing</span>
-            </label>
+              >
+                <DatePicker
+                  className='w-full outline-none px-3 py-2 bg-red-500 rounded-lg opacity-0'
+                  onChange={(date) => {
+                    const formattedDate = date.toLocaleDateString('en-GB'); // Format: dd/MM/yyyy
+                    setValue("endDate", formattedDate);
+                  }}
+                  readOnly={watch("currentWorking")}
+                />
+              </Input>
+              {errors.endDate && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.endDate.message}</span></p>}
 
+              <label className='w-full pl-1 pt-1 flex gap-1.5 items-center'>
+                <input
+                  defaultChecked={edit ? (project?.currentWorking || '') : ''}
+                  type="checkbox"
+                  {...register("currentWorking", {
+                  })}
+                />
+                <span className='text-sm font-semibold'>Currently ongoing</span>
+              </label>
+            </div>
           </div>
 
           <label htmlFor="des" className='flex flex-col gap-1'>
-            <span>Description (Optional)</span>
-            {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
+            <span>Description (optional)</span>
+            {errors.description && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.description.message}</span></p>}
             <textarea
               defaultValue={edit ? (project?.description || '') : ''}
               name="description"
@@ -123,9 +161,22 @@ const AddProject = ({ edit = false }) => {
               type="description"
               placeholder={`Short description about project (max 1000 char)\n#Keep it in points`}
               {...register("description", {
+                required: {
+                  value: false
+                },
                 maxLength: {
                   value: 1000,
                   message: "Description should not exceed 1000 characters."
+                },
+                validate: {
+                  bulletPoints: value => {
+                    if (!value || /^\s*$/.test(value)) {
+                      return true;
+                    }
+                    const bulletPoints = value.split('\n');
+                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                      || "Each point must start with a number followed by a dot.";
+                  },
                 }
               })}
             />
@@ -135,7 +186,7 @@ const AddProject = ({ edit = false }) => {
           <div className='w-full'>
             <Input
               defaultValue={edit ? (project?.projectLink || '') : ''}
-              label="Project link (Optional)"
+              label="Project link (optional)"
               placeholder="e.g. http://myprojectlink.com"
               {...register("projectLink", {
               })}
@@ -150,7 +201,7 @@ const AddProject = ({ edit = false }) => {
           >Save</Button>
         </form>
 
-      </div>
+      </div >
     </div >
 
 

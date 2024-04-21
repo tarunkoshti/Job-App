@@ -1,11 +1,12 @@
-import React, { useRef, useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { asyncUploadProfileImageStudent, asyncLogout as studentLogout } from '../../store/Actions/userActions'
 import { asyncUploadProfileImageEmployee, asyncLogout as employeeLogout } from '../../store/Actions/employeeActions'
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
+import { toast } from 'react-toastify'
 
 const Header = () => {
 
@@ -21,6 +22,12 @@ const Header = () => {
 
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [dropdown, setDropdown] = useState(false)
+
+    const location = useLocation();
+    useEffect(() => {
+        setIsProfileOpen(false)
+        setDropdown(false)
+    },[location])
 
     const toggleProfile = () => {
         setIsProfileOpen(!isProfileOpen);
@@ -65,24 +72,33 @@ const Header = () => {
 
     const LogoutHandler = async () => {
         if (isStudentAuth) {
-            await dispatch(studentLogout())
+            const error = await dispatch(studentLogout())
+            error ? toast.error(error.data.message)
+                : toast.success("Logout Successfully")
             setIsProfileOpen(false)
             setDropdown(false)
             navigate("/")
         } else if (isEmployeeAuth) {
-            await dispatch(employeeLogout())
+            const error = await dispatch(employeeLogout())
+            error ? toast.error(error.data.message)
+                : toast.success("Logout Successfully")
             setIsProfileOpen(false)
             setDropdown(false)
             navigate("/")
         }
     }
 
-    const handleProfileImageChange = (e) => {
+    const handleProfileImageChange = async (e) => {
         const formData = new FormData();
         formData.set('avatar', e.target.files[0]);
         // console.log(formData)
-        student && dispatch(asyncUploadProfileImageStudent(student._id, formData));
-        employe && dispatch(asyncUploadProfileImageEmployee(employe._id, formData));
+        if (student) {
+            const errorStudent = await dispatch(asyncUploadProfileImageStudent(student._id, formData));
+            errorStudent ? toast.error(errorStudent.data.message) : toast.success("Avatar Upadated");
+        } else if (employe) {
+            const erroremployee = await dispatch(asyncUploadProfileImageEmployee(employe._id, formData));
+            erroremployee ? toast.error(erroremployee.data.message) : toast.success("Avatar Upadated");
+        }
     };
 
     return (
@@ -147,13 +163,13 @@ const Header = () => {
             {authStatus && isProfileOpen ? (
                 <div className="w-full max-w-72 absolute top-5 right-5 bg-white p-4 rounded-lg shadow-lg">
 
-                    <RxCross2 onClick={backHandler} size={25} className='absolute right-5 top-5 cursor-pointer' />
+                    <RxCross2 onClick={backHandler} size={27} className='absolute right-5 top-5 cursor-pointer hover:bg-gray-200 rounded-full p-1.5' />
 
                     <div className='w-full flex flex-col items-center border-b py-2 mb-4'>
                         <div className='h-12 w-12 rounded-full border-2 relative'>
                             <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
-                            <AiOutlineEdit size={26}
-                                className='absolute bottom-0 -right-8 rounded-full p-1 cursor-pointer'
+                            <AiOutlineEdit size={27}
+                                className='absolute bottom-0 -right-8 cursor-pointer hover:bg-gray-200 rounded-full p-1.5' 
                                 onClick={() => fileInputRef.current.click()} />
 
                             {/* // hidden input */}

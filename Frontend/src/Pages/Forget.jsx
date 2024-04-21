@@ -7,9 +7,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import Button from '../Components/Button'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { toast } from 'react-toastify';
+
+import { MdErrorOutline } from 'react-icons/md'
+import { Bounce, Flip, Slide, Zoom } from 'react-toastify'
+
+
 const Forget = ({ userType }) => {
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const currentHost = window.location.host
@@ -20,12 +26,16 @@ const Forget = ({ userType }) => {
     const submit = async (data) => {
         data.currentHost = currentHost
         if (userType === "student") {
-            await dispatch(studentMail(data))
-            sId && navigate(`/student/forget-link/${sId}`)
+            const error = await dispatch(studentMail(data))
+            error ? toast.error(error.data.message)
+                : sId ? navigate(`/student/forget-link/${sId}`)
+                    : toast.success("Link send successfully to registered mail id")
         }
         else {
-            await dispatch(employeeMail(data))
-            eId && navigate(`/employee/forget-link/${eId}`)
+            const error = await dispatch(employeeMail(data))
+            error ? toast.error(error.data.message)
+                : eId ? navigate(`/employee/forget-link/${eId}`)
+                    : toast.success("Link send successfully to registered mail id")
         }
     }
 
@@ -49,12 +59,25 @@ const Forget = ({ userType }) => {
             >
                 <div className='space-y-5'>
 
-                    <Input
-                        label="Email"
-                        type="email"
-                        placeholder="john123@example.com"
-                        {...register("email", { required: true })}
-                    />
+                    <div>
+                        <Input
+                            label="Email"
+                            type="string"
+                            placeholder="john123@example.com"
+                            {...register("email", {
+                                required: {
+                                    value: true,
+                                    message: "email is required"
+                                },
+                                // pattern: {
+                                //     value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                //     message: "Invalid email address"
+                                // }
+                            })}
+                        />
+                        {errors.email && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.email.message}</span></p>}
+                    </div>
+
                     <Button
                         type='submit'
                         bgColor='bg-[#1F2937]'

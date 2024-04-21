@@ -5,6 +5,8 @@ import Button from '../../../Components/Button'
 import { addAccomplishment, editAccomplishment } from '../../../store/Actions/userActions'
 import { useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
+import { MdErrorOutline } from 'react-icons/md'
+import { toast } from 'react-toastify'
 
 
 
@@ -22,8 +24,17 @@ const AddAccomplishment = ({ edit = false }) => {
 
   const submit = async (data) => {
     if (currlength <= 250) {
-      edit ? await dispatch(editAccomplishment(id, data))
-        : await dispatch(addAccomplishment(student._id, data))
+      if (edit) {
+        const error = await dispatch(editAccomplishment(id, student._id, data))
+        error ? toast.error(error.data.message)
+          : toast.success("Accomplishment updated")
+      } else {
+        const error = await dispatch(addAccomplishment(student._id, data))
+        error ? toast.error(error.data.message)
+          : toast.success("Accomplishment added")
+      }
+      // edit ? await dispatch(editAccomplishment(id, student._id, data))
+      //   : await dispatch(addAccomplishment(student._id, data))
       navigate("/student/resume")
     }
   }
@@ -35,15 +46,14 @@ const AddAccomplishment = ({ edit = false }) => {
   useEffect(() => {
     const descriptionValue = watch((value, { name }) => {
       if (name == "description") {
-        let str = value.description
+        let str = value.description.trim("/n")
         setCurrlength(str.length)
       }
     });
 
   }, [watch]);
 
-  const arr = student?.resume?.accomplishments.filter(item => item.id === id)
-  const accomplishment = arr[0];
+  const accomplishment = student?.resume?.accomplishments.find(item => item.id === id)
 
   return (
     < div className='w-full h-screen absolute top-[0]' >
@@ -54,25 +64,35 @@ const AddAccomplishment = ({ edit = false }) => {
         <form
           onSubmit={handleSubmit(submit)}
           className='w-full p-10 flex flex-col gap-5'>
-          <h1 className='text-center text-xl font-semibold'>Position of responsibility</h1>
+          <h1 className='text-center text-xl font-semibold'>Accomplishments</h1>
 
 
           <label htmlFor="des" className='flex flex-col gap-1'>
             {/* <span>Description</span> */}
             <p className='text-sm mb-1 font-semibold text-gray-700'>Add your accomplishments such as rewards, recognitions, test scores, certifications, etc. here. You may also add information such as seminars/workshops you have attended or any interests/hobbies you have pursued.</p>
-            {errors.description && <p className="text-red-500 text-sm">{errors.description.message}</p>}
+            {errors.description && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.description.message}</span></p>}
             <textarea
               defaultValue={edit ? (accomplishment?.description || '') : ''}
               name="description"
               className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
               id='des'
               type="description"
-              placeholder={`e.g. Secured 1st rank among 500 entries in national level story writing compitition organised by Carrer Race.\n#Keep it to 2-3 points`}
+              placeholder={`#Keep it in points\n1. Secured 1st rank among 500 entries in national level story writing compitition organised by Carrer Race.\n2.`}
               {...register("description", {
-                required: true,
+                required: {
+                  value: true,
+                  message: "description is required"
+                },
                 maxLength: {
                   value: 250,
                   message: "Description should not exceed 250 characters."
+                },
+                validate: {
+                  bulletPoints: value => {
+                    const bulletPoints = value.split('\n');
+                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                      || "Each point must start with a number followed by a dot.";
+                  },
                 }
               })}
             />

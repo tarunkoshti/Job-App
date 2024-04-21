@@ -18,6 +18,9 @@ import { applyinternship } from '../../store/Actions/userActions';
 import { bookmarkinternship } from '../../store/Actions/userActions';
 import { disbookmarkinternship } from '../../store/Actions/userActions';
 import { CiBookmark } from "react-icons/ci";
+import { IoBookmark } from "react-icons/io5";
+
+import { toast } from 'react-toastify';
 
 
 const Singleinternship = () => {
@@ -27,19 +30,16 @@ const Singleinternship = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const internships = useSelector((state) => state.internshipReducer.internshipData)
-    console.log(internships)
+
     const internship = internships?.find(internship => internship._id === id)
-    console.log(internship)
 
     const student = useSelector((state) => state.userReducer.userData?.student)
-    console.log(student)
 
     const bookmarkedInternships = student?.bookmarkinternship
-    console.log(bookmarkedInternships)
     const bookmarkedInternship = bookmarkedInternships?.find((internId) => internId == id)
 
     const bookmarkHandler = async () => {
-            await dispatch(bookmarkinternship(id));
+        await dispatch(bookmarkinternship(id));
     }
 
     const disbookmarkHandler = async () => {
@@ -48,16 +48,21 @@ const Singleinternship = () => {
 
 
     const appliedInternship = student?.internships?.find((internid) => internid == id)
-    console.log(appliedInternship)
 
     const applyHandler = async () => {
-        if(!appliedInternship){
-            await dispatch(applyinternship(id));
+
+        if (!appliedInternship) {
+            const error = await dispatch(applyinternship(id));
+            error ? toast.error(error.data.message)
+                : toast.success("Applied successfully")
             navigate("/student")
+        } else {
+            toast.error("You have already applied")
         }
+
     }
 
-    
+
     // useEffect(() => {
     //     dispatch(internshipDetail(id));
     // }, [dispatch]);
@@ -76,7 +81,9 @@ const Singleinternship = () => {
                         </div>
                         <div classNameName='mt-4 px-10'>
                             <button >
-                                {bookmarkedInternship ? <FaBookmark onClick={disbookmarkHandler} size={24} /> : <CiBookmark onClick={bookmarkHandler} size={24} />}
+                                {bookmarkedInternship ? <IoBookmark onClick={disbookmarkHandler} size={30}
+                                    className='hover:bg-gray-200 rounded-full p-1' /> : <CiBookmark onClick={bookmarkHandler} size={30}
+                                        className='hover:bg-gray-200 rounded-full p-1' />}
                             </button ></div >
 
                     </div >

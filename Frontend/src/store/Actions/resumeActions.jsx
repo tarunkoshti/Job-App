@@ -12,3 +12,14 @@ export const getStudentResume = (id) => async (dispatch, getState) => {
         console.log(error)
     }
 }
+
+export const setStudentResume = (id) => async (dispatch, getState) => {
+    try {
+        // const { data } = await axios.get(`/api/resume/${id}`)
+        // const { updatedResume } = data
+        // console.log(data)
+        dispatch(setResume(null))
+    } catch (error) {
+        console.log(error)
+    }
+}

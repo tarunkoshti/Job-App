@@ -42,11 +42,15 @@ const Accomplishment = ({ resume }) => {
             {
                 resume?.accomplishments.map((accomplishment) => (
                     <View key={accomplishment.id} style={styles.content}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <View style={styles.bulletPoint}></View>
-                            <Text>{accomplishment?.description}</Text>
+                            <View>
+                                {accomplishment?.description.split('\n').map((point, index) => (
+                                    <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <View style={styles.bulletPoint}></View>
+                                        <Text className="ml-2">{point.trim().replace(/^\d+\./, '')}</Text>
+                                    </View>
+                                ))}
+                            </View>
                             {/* <Text style={styles.dateRange}>{accomplishment?.date}</Text> */}
-                        </View>
                         {/* <Text>{accomplishment?.description}</Text> */}
                     </View>
                 ))

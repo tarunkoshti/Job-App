@@ -6,7 +6,7 @@ import { asyncResetPassword as studentReset } from '../store/Actions/userActions
 import { asyncResetPassword as employeeReset } from '../store/Actions/employeeActions'
 import Input from '../Components/Input'
 import Button from '../Components/Button'
-
+import { toast } from 'react-toastify'
 
 const Reset = ({ userType }) => {
 
@@ -18,11 +18,15 @@ const Reset = ({ userType }) => {
 
     const submit = async (data) => {
         if (userType === "student") {
-            await dispatch(studentReset(sId, data))
-            navigate(`/student`)
+            const error = await dispatch(studentReset(sId, data))
+            error ? toast.error(error.data.message)
+                : toast.success("Password has been changed")
+                      navigate(`/student`)
         }
         else {
-            await dispatch(employeeReset(eId, data))
+            const error = await dispatch(employeeReset(eId, data))
+            error ? toast.error(error.data.message)
+                : toast.success("Password has been changed")
             navigate(`/employee`)
         }
     }
