@@ -64,7 +64,7 @@ export const asyncResetPassword = (id, formData) => async (dispatch, getState) =
     }
 }
 
-export const asyncUploadProfileImage = (id, imageFile) => async (dispatch, getState) => {
+export const asyncUploadProfileImageStudent = (id, imageFile) => async (dispatch, getState) => {
     try {
         console.log("one")
         await axios.post(`/api/user/student/avatar/${id}`, imageFile)
@@ -139,6 +139,16 @@ export const disbookmarkinternship = (id) => async (dispatch, getState) => {
 export const bookmarkjob = (id) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/user/student/bookmark/job/${id}`)
+        console.log(data)
+        dispatch(currentUser({ data }))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const disbookmarkjob = (id) => async (dispatch, getState) => {
+    try {
+        const { data } = await axios.post(`/api/user/student/disbookmark/job/${id}`)
         console.log(data)
         dispatch(currentUser({ data }))
     } catch (error) {

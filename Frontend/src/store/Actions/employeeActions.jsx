@@ -63,3 +63,14 @@ export const asyncResetPassword = (id, formData) => async (dispatch, getState) =
         console.log(error.message)
     }
 }
+
+export const asyncUploadProfileImageEmployee = (id, imageFile) => async (dispatch, getState) => {
+    try {
+        console.log("one")
+        await axios.post(`/api/employe/avatar/${id}`, imageFile)
+        console.log("two")
+        dispatch(currentUser())
+    } catch (error) {
+        console.log(error.message)
+    }
+}

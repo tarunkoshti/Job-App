@@ -37,7 +37,6 @@ import AddProject from './Pages/Student/Resume/AddProject.jsx'
 import AddSkill from './Pages/Student/Resume/AddSkill.jsx'
 import AddProtfolioOrWork from './Pages/Student/Resume/AddProtfolioOrWork.jsx'
 import AddAccomplishment from './Pages/Student/Resume/AddAccomplishment.jsx'
-import ViewResume from './Pages/ResumeDocument/ViewResume.jsx'
 
 
 const router = createBrowserRouter([
@@ -288,14 +287,6 @@ const router = createBrowserRouter([
                 )
               }
             ]
-          },
-          {
-            path: "view/:id",
-            element: (
-              <AuthLayout authentication={true}>
-                  <ViewResume />
-              </AuthLayout>
-            )
           },
           {
             path: "forget-password",

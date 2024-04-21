@@ -9,189 +9,59 @@ import { asyncCreateJob } from '../../store/Actions/jobActions'
 
 const CreateJob = () => {
 
-  const { register, handleSubmit } = useForm()
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+    const { register, handleSubmit } = useForm()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-  const create = async (data) => {
-    await dispatch(asyncCreateJob(data))
-    navigate("/employee")
-  }
+    const create = async (data) => {
+        await dispatch(asyncCreateJob(data))
+        navigate("/employee")
+    }
 
-  return (
-    // <div className={`mx-auto w-full max-w-lg bg-white rounded-xl p-10 `}>
-    //   <h1 className='text-center font-semibold text-lg'>Create Job</h1>
-    //   <form onSubmit={handleSubmit(create)}
-    //     className='mt-5'
-    //   >
-    //     <div className='space-y-5'>
-    //       <Input
-    //         label="Profile"
-    //         placeholder="Enter Profile"
-    //         type="text"
-    //         {
-    //         ...register("profile")
-    //         }
-    //       />
-    //       <Input
-    //         label="Skills"
-    //         placeholder="Enter Skills"
-    //         type="text"
-    //         {
-    //         ...register("skills")
-    //         }
-    //       />
-    //       <Select
-    //         options={["In office", "Remote"]}
-    //         label="Internship Type"
-    //         className="mb-4"
-    //         {...register("jobtype")}
-    //       />
-    //       <Input
-    //         label="Opening"
-    //         placeholder="Enter Number of openings"
-    //         type="Number"
-    //         {
-    //         ...register("openings")
-    //         }
-    //       />
-    //       <Input
-    //         label="Description"
-    //         placeholder="Write Description"
-    //         type="text"
-    //         {
-    //         ...register("description")
-    //         }
-    //       />
-    //       <Input
-    //         label="Preferences"
-    //         placeholder="Enter Preferences"
-    //         type="text"
-    //         {
-    //         ...register("preferences")
-    //         }
-    //       />
-
-    //       <Input
-    //         label="Salary"
-    //         placeholder="Enter Salary"
-    //         type="number"
-    //         {...register("salary")}
-    //       />
-
-    //       <Input
-    //         label="Perks"
-    //         placeholder="Enter Perks"
-    //         type="text"
-    //         {...register("perks")}
-    //       />
-
-    //       <Input
-    //         label="Assements"
-    //         placeholder="Enter assements"
-    //         type="text"
-    //         {...register("assements")}
-    //       />
-    //       <Input
-    //         label="Company Name"
-    //         placeholder="Enter Company Name"
-    //         type="text"
-    //         {...register("company")}
-    //       />
-
-    //       <Input
-    //         label="Location"
-    //         placeholder="Enter location"
-    //         type="text"
-    //         {...register("location")}
-    //       />
-
-    //       <Input
-    //         label="Experience"
-    //         placeholder="Enter Experience"
-    //         type="text"
-    //         {...register("experience")}
-    //       />
-
-    //       <Input
-    //         label="Responsibility"
-    //         placeholder="Enter Responsibility"
-    //         type="text"
-    //         {...register("responsibilities")}
-    //       />
-          
-    //       <Input
-    //         label="Qualifications"
-    //         placeholder="Enter qualifications"
-    //         type="text"
-    //         {...register("qualifications")}
-    //       />
-
-    //       <Input
-    //         label="Work conditions"
-    //         placeholder="Enter Work conditions"
-    //         type="text"
-    //         {...register("workconditions")}
-    //       />
-
-    //       <Input
-    //         label="Company Detail"
-    //         placeholder="Enter Company Detail"
-    //         type="text"
-    //         {...register("companyDetail")}
-    //       />
-
-    //       <Button
-    //         type='submit'
-    //         bgColor='bg-[#1F2937]'
-    //         className='w-full font-semibold'
-    //       >Create</Button>
-    //     </div>
-    //   </form>
-    // </div>
-     <>
+    return (
+        <>
             <div className="w-full flex flex-col items-center py-5 gap-5 bg-zinc-100">
-              <h1 className="text-2xl font-semibold">Post Job</h1>
-              <div className="mt-2  w-full md:w-1/2 py-10 px-8 border-2 border-zinc-200 rounded-xl">
-                  <form onSubmit={handleSubmit(create)} className="">
-                      {/* Section-1-div */}
-                      <div className=" p-3 rounded-lg">
-                          <h1 className="px-5 py-3 font-semibold">Job Details</h1>
-                          <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
+                <h1 className="text-2xl font-semibold">Post Job</h1>
+                <div className="mt-2  w-full md:w-1/2 py-10 px-8 border-2 border-zinc-200 rounded-xl">
+                    <form onSubmit={handleSubmit(create)} className="">
+                        {/* Section-1-div */}
+                        <div className=" p-3 rounded-lg">
+                            <h1 className="px-5 py-3 font-semibold">Job Details</h1>
+                            <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
 
-                              {/* title-div */}
-                              <div className="w-full md:max-w-lg mt-1">
-                                  <Input
-                                      label="Job Title"
-                                      placeholder="e.g. Software Engineer Trainee"
-                                      type="text"
-                                      {...register("profile")}
-                                  />
-                              </div>
+                                {/* title-div */}
+                                <div className="w-full md:max-w-lg mt-1">
+                                    <Input
+                                        label="Job Title"
+                                        placeholder="e.g. Software Engineer Trainee"
+                                        type="text"
+                                        {...register("profile")}
+                                    />
+                                </div>
 
-                              {/* Skills-div */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                  <Input
-                                      label="Skills required"
-                                      placeholder="e.g. Java"
-                                      type="text"
-                                      {...register("skills")}
-                                  />
-                              </div>
+                                {/* Skills-div */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Input
+                                        label="Skills required"
+                                        placeholder="e.g. Java"
+                                        type="text"
+                                        {...register("skills")}
+                                    />
+                                </div>
 
-                              {/* Job-type-div */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                  <Select
-                                      options={["In office", "Remote", "Hybrid"]}
-                                      label="Job Type"
-                                      className="mb-4"
-                                      {...register("jobtype")}
-                                  />
-                              </div>
+                                {/* Job-type-div */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Select
+                                        options={["In office", "Remote", "Hybrid"]}
+                                        label="Job Type"
+                                        className="mb-4"
+                                        {...register("jobtype")}
+                                    />
+                                </div>
 
-                              {/* Working-type-div */}
+                                {/* Working-type-div */}
 
-                            <div className="w-full md:max-w-lg mt-3">
+                                <div className="w-full md:max-w-lg mt-3">
                                     <label className="block text-md">Working Type</label>
                                     <div className="mt-2 flex ml-5">
                                         <div className="mr-4 flex items-center">
@@ -220,82 +90,82 @@ const CreateJob = () => {
                                 </div>
 
 
-                               {/* Starting */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                <label className="block text-md">Start</label>
-                                <div className="mt-2 flex">
-                                    <div className="mr-4 flex items-center ml-5">
-                                        <input
-                                            id="immediately"
-                                            name="start"
-                                            type="radio"
-                                            value="Immediately"
-                                            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                            {...register("start")}
-                                        />
-                                        <label htmlFor="immediately" className="ml-2 block text-md text-gray-900">Immediately</label>
-                                    </div>
-                                    <div className='flex items-center'>
-                                        <input
-                                            id="later"
-                                            name="start"
-                                            type="radio"
-                                            value="Later"
-                                            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                            {...register("start")}
-                                        />
-                                        <label htmlFor="later" className="ml-2 block text-md text-gray-900">Later</label>
+                                {/* Starting */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <label className="block text-md">Start</label>
+                                    <div className="mt-2 flex">
+                                        <div className="mr-4 flex items-center ml-5">
+                                            <input
+                                                id="immediately"
+                                                name="start"
+                                                type="radio"
+                                                value="Immediately"
+                                                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                                {...register("start")}
+                                            />
+                                            <label htmlFor="immediately" className="ml-2 block text-md text-gray-900">Immediately</label>
+                                        </div>
+                                        <div className='flex items-center'>
+                                            <input
+                                                id="later"
+                                                name="start"
+                                                type="radio"
+                                                value="Later"
+                                                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                                {...register("start")}
+                                            />
+                                            <label htmlFor="later" className="ml-2 block text-md text-gray-900">Later</label>
+                                        </div>
                                     </div>
                                 </div>
+
+                                {/* Openings */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Input
+                                        label="Number of Opening"
+                                        placeholder="e.g. 5"
+                                        type="number"
+                                        {...register("openings")}
+                                    />
+                                </div>
+
+                                {/* Start date */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Input
+                                        label="Start Date"
+                                        placeholder="e.g. 01-06-2024"
+                                        type="text"
+                                        {...register("startdate")}
+                                    />
+                                </div>
                             </div>
+                        </div>
+                        {/* Section-2-div */}
+                        <div className=" mt-6 p-3 rounded-lg">
+                            <h1 className="px-5 py-2 font-semibold">Salary & perks</h1>
+                            <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
 
-                              {/* Openings */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                  <Input
-                                      label="Number of Opening"
-                                      placeholder="e.g. 5"
-                                      type="number"
-                                      {...register("openings")}
-                                  />
-                              </div>
+                                {/* Salary  */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Input
+                                        label="Salary Amount (CTC)"
+                                        placeholder="e.g. 10000"
+                                        type="number"
+                                        {...register("salary")}
+                                    />
+                                </div>
 
-                              {/* Start date */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                  <Input
-                                      label="Start Date"
-                                      placeholder="e.g. 01-06-2024"
-                                      type="text"
-                                      {...register("startdate")}
-                                  />
-                              </div>
-                          </div>
-                      </div>
-                      {/* Section-2-div */}
-                      <div className=" mt-6 p-3 rounded-lg">
-                          <h1 className="px-5 py-2 font-semibold">Salary & perks</h1>
-                          <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
+                                {/*Annual Salary  */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Input
+                                        label="Annual Amount (CTC)"
+                                        placeholder="e.g. 3,50000 /- Year"
+                                        type="number"
+                                        {...register("package")}
+                                    />
+                                </div>
 
-                              {/* Salary  */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                  <Input
-                                      label="Salary Amount (CTC)"
-                                      placeholder="e.g. 10000"
-                                      type="number"
-                                      {...register("salary")}
-                                  />
-                              </div>
-
-                              {/*Annual Salary  */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                  <Input
-                                      label="Annual Amount (CTC)"
-                                      placeholder="e.g. 3,50000 /- Year"
-                                      type="number"
-                                      {...register("package")}
-                                  />
-                              </div>
-
-                              {/* Perks */}
+                                {/* Perks */}
                                 <div className="w-full md:max-w-lg mt-3">
                                     <label className="block mb-2">Perks:</label>
                                     <div className="flex flex-col ml-4">
@@ -362,55 +232,55 @@ const CreateJob = () => {
                                     </div>
                                 </div>
 
-                          </div>
-                      </div>
-                      {/* Section-3-div */}
-                      <div className=" mt-5 p-3 rounded-lg">
-                          <h1 className="px-5 py-2 font-semibold">Company, Location, and Description</h1>
-                          <div className="w-full mt-2  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
+                            </div>
+                        </div>
+                        {/* Section-3-div */}
+                        <div className=" mt-5 p-3 rounded-lg">
+                            <h1 className="px-5 py-2 font-semibold">Company, Location, and Description</h1>
+                            <div className="w-full mt-2  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
 
-                              {/* Company */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                  <Input
-                                      label="Company Name"
-                                      placeholder="e.g. Google"
-                                      type="text"
-                                      {...register("company")}
-                                  />
-                              </div>
+                                {/* Company */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Input
+                                        label="Company Name"
+                                        placeholder="e.g. Google"
+                                        type="text"
+                                        {...register("company")}
+                                    />
+                                </div>
 
-                              {/* Experience */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                  <Input
-                                      label="Experience"
-                                      placeholder="e.g. 0-2 Years"
-                                      type="text"
-                                      {...register("experience")}
-                                  />
-                              </div>
+                                {/* Experience */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Input
+                                        label="Experience"
+                                        placeholder="e.g. 0-2 Years"
+                                        type="text"
+                                        {...register("experience")}
+                                    />
+                                </div>
 
-                              {/* Location */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                  <Input
-                                      label="Location"
-                                      placeholder="e.g. Indore"
-                                      type="text"
-                                      {...register("location")}
-                                  />
-                              </div>
+                                {/* Location */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Input
+                                        label="Location"
+                                        placeholder="e.g. Indore"
+                                        type="text"
+                                        {...register("location")}
+                                    />
+                                </div>
 
-                              {/* Applicants */}
-                              <div className="w-full md:max-w-lg mt-3">
-                                  <Input
-                                      label="Applicants"
-                                      placeholder="e.g. 1250"
-                                      type="text"
-                                      {...register("applicants")}
-                                  />
-                              </div>
+                                {/* Applicants */}
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Input
+                                        label="Applicants"
+                                        placeholder="e.g. 1250"
+                                        type="text"
+                                        {...register("applicants")}
+                                    />
+                                </div>
 
-                              {/* Assessments */}
-                              <div className="w-full md:max-w-lg mt-4">
+                                {/* Assessments */}
+                                <div className="w-full md:max-w-lg mt-4">
                                     <label htmlFor="assessments" className="block text-md ">Assessments</label>
                                     <textarea
                                         id="assessments"
@@ -422,8 +292,8 @@ const CreateJob = () => {
                                     />
                                 </div>
 
-                              {/*  preferences */}
-                              <div className="w-full md:max-w-lg mt-4">
+                                {/*  preferences */}
+                                <div className="w-full md:max-w-lg mt-4">
                                     <label htmlFor="preferences" className="block text-md">Preferences</label>
                                     <textarea
                                         id="preferences"
@@ -435,105 +305,105 @@ const CreateJob = () => {
                                     />
                                 </div>
 
-                              {/* Description */}
-                              <div className="w-full md:max-w-lg mt-4">
-                                <label htmlFor="description" className="block text-md ">Description</label>
-                                <textarea
-                                    id="description"
-                                    name="description"
-                                    rows="4"
-                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
-                                    placeholder="e.g. Ensure an amazing demo experience for the child and parent..."
-                                    {...register("description")}
-                                />
+                                {/* Description */}
+                                <div className="w-full md:max-w-lg mt-4">
+                                    <label htmlFor="description" className="block text-md ">Description</label>
+                                    <textarea
+                                        id="description"
+                                        name="description"
+                                        rows="4"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
+                                        placeholder="e.g. Ensure an amazing demo experience for the child and parent..."
+                                        {...register("description")}
+                                    />
+                                </div>
+
+                                {/* responsibilities */}
+                                <div className="w-full md:max-w-lg mt-4">
+                                    <label htmlFor="responsibilities" className="block text-md">Responsibilities</label>
+                                    <textarea
+                                        id="responsibilities"
+                                        name="responsibilities"
+                                        rows="4"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
+                                        placeholder="e.g. Adhere to the schedule for the demo as well as regular classes..."
+                                        {...register("responsibilities")}
+                                    />
+                                </div>
+
+                                {/* Qualifications */}
+                                <div className="w-full md:max-w-lg mt-4">
+                                    <label htmlFor="qualifications" className="block text-md ">Qualifications</label>
+                                    <textarea
+                                        id="qualifications"
+                                        name="qualifications"
+                                        rows="4"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
+                                        placeholder="e.g. Solid understanding of JavaScript, HTML, CSS, and related web technologies..."
+                                        {...register("qualifications")}
+                                    />
+                                </div>
+
+                                {/* Work conditions */}
+                                <div className="w-full md:max-w-lg mt-4">
+                                    <label htmlFor="workconditions" className="block text-md ">Work Conditions</label>
+                                    <textarea
+                                        id="workconditions"
+                                        name="workconditions"
+                                        rows="4"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
+                                        placeholder="e.g. Salary: 2-4 LPA"
+                                        {...register("workconditions")}
+                                    />
+                                </div>
+
+
+                                {/* Company Detail */}
+                                <div className="w-full md:max-w-lg mt-4">
+                                    <label htmlFor="companyDetail" className="block text-md">Company Detail</label>
+                                    <textarea
+                                        id="companyDetail"
+                                        name="companyDetail"
+                                        rows="4"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
+                                        placeholder="e.g. We're not just another digital agency, we're your dedicated dynamic world ...."
+                                        {...register("companyDetail")}
+                                    />
+                                </div>
+
+
                             </div>
-
-                               {/* responsibilities */}
-                              <div className="w-full md:max-w-lg mt-4">
-                                <label htmlFor="responsibilities" className="block text-md">Responsibilities</label>
-                                <textarea
-                                    id="responsibilities"
-                                    name="responsibilities"
-                                    rows="4"
-                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
-                                    placeholder="e.g. Adhere to the schedule for the demo as well as regular classes..."
-                                    {...register("responsibilities")}
-                                />
+                        </div>
+                        {/* Section-4-div */}
+                        <div className=" mt-6 p-3 rounded-lg">
+                            <h1 className="px-5 py-2 font-semibold">Alternate Mobile Number for this listing</h1>
+                            <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
+                                {/* Contact */}
+                                <div className="w-full md:max-w-lg mt-1">
+                                    <Input
+                                        label="Contact Number"
+                                        placeholder="e.g. +91 Enter Mobile Number...."
+                                        type="number"
+                                        {...register("contact")}
+                                    />
+                                </div>
                             </div>
+                        </div>
+                        <div className="flex items-center justify-center mt-10">
+                            <Button
+                                type="submit"
+                                bgColor="bg-[#1F2937]"
+                                className="py-2 px-5 bg-[#1F2937] text-white rounded-lg"
+                            >
+                                Post Job
+                            </Button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-                              {/* Qualifications */}
-                              <div className="w-full md:max-w-lg mt-4">
-                                <label htmlFor="qualifications" className="block text-md ">Qualifications</label>
-                                <textarea
-                                    id="qualifications"
-                                    name="qualifications"
-                                    rows="4"
-                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
-                                    placeholder="e.g. Solid understanding of JavaScript, HTML, CSS, and related web technologies..."
-                                    {...register("qualifications")}
-                                />
-                            </div>
-
-                              {/* Work conditions */}
-                              <div className="w-full md:max-w-lg mt-4">
-                                <label htmlFor="workconditions" className="block text-md ">Work Conditions</label>
-                                <textarea
-                                    id="workconditions"
-                                    name="workconditions"
-                                    rows="4"
-                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
-                                    placeholder="e.g. Salary: 2-4 LPA"
-                                    {...register("workconditions")}
-                                />
-                            </div>
-
-
-                              {/* Company Detail */}
-                              <div className="w-full md:max-w-lg mt-4">
-                                <label htmlFor="companyDetail" className="block text-md">Company Detail</label>
-                                <textarea
-                                    id="companyDetail"
-                                    name="companyDetail"
-                                    rows="4"
-                                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
-                                    placeholder="e.g. We're not just another digital agency, we're your dedicated dynamic world ...."
-                                    {...register("companyDetail")}
-                                />
-                            </div>
-
-
-                          </div>
-                      </div>
-                      {/* Section-4-div */}
-                      <div className=" mt-6 p-3 rounded-lg">
-                          <h1 className="px-5 py-2 font-semibold">Alternate Mobile Number for this listing</h1>
-                          <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
-                              {/* Contact */}
-                              <div className="w-full md:max-w-lg mt-1">
-                                  <Input
-                                      label="Contact Number"
-                                      placeholder="e.g. +91 Enter Mobile Number...."
-                                      type="number"
-                                      {...register("contact")}
-                                  />
-                              </div>
-                          </div>
-                      </div>
-                      <div className="flex items-center justify-center mt-10">
-                          <Button
-                              type="submit"
-                              bgColor="bg-[#1F2937]"
-                              className="py-2 px-5 bg-[#1F2937] text-white rounded-lg"
-                          >
-                              Post Job
-                          </Button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-
-       </>
-  )
+        </>
+    )
 }
 
 export default CreateJob

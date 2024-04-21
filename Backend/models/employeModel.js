@@ -59,17 +59,6 @@ const employeModel = new mongoose.Schema({
         }
     },
 
-    // resume: {
-    //     education: [],
-    //     jobs: [],
-    //     internships: [],
-    //     responsibilities: [],
-    //     courses: [],
-    //     projects: [],
-    //     skills: [],
-    //     accomplishments: [],
-    // }
-
     internships: [
         {
             type: mongoose.Schema.Types.ObjectId,

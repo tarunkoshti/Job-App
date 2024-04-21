@@ -102,11 +102,12 @@ exports.employeupdate = catchAsyncErrors(async function (req, res, next) {
 exports.employeavatar = catchAsyncErrors(async function (req, res, next) {
 
     const employe = await Employe.findById(req.params.id).exec();
-    const file = req.files.organizationlogo;
+    console.log(employe)
+    const file = req.files.avatar;
     const modifiedFileName = `resumebuilder-${Date.now()}${path.extname(file.name)}`
 
-    if (employe.organizationlogo.fileId !== "") {
-        await imagekit.deleteFile(employe.organizationlogo.fileId);
+    if (employe.avatar.fileId !== "") {
+        await imagekit.deleteFile(employe.avatar.fileId);
     }
 
     const { fileId, url } = await imagekit.upload({
@@ -114,7 +115,7 @@ exports.employeavatar = catchAsyncErrors(async function (req, res, next) {
         fileName: modifiedFileName,
     })
 
-    employe.organizationlogo = { fileId, url };
+    employe.avatar = { fileId, url };
     await employe.save();
 
     res.status(200).json({
