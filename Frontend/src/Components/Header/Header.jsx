@@ -124,7 +124,7 @@ const Header = () => {
 
     return (
         <header className='w-full  py-5 bg-white text-gray-500 font-semibold'>
-            <nav className='w-full px-10 flex justify-between items-center relative border-b-2 pb-2'>
+            <nav className='w-full px-10 flex justify-between items-center relative border-b-2 pb-2 '>
 
                 {/* leftItem */}
                 <div className='w-[200px]'>
@@ -138,7 +138,7 @@ const Header = () => {
                     {middleItems.map((item) => (
                         <li key={item.name}>
                             <NavLink to={authStatus ? (isStudentAuth ? `/student${item.path}` : `/employee${item.path}`) : `${item.path}`}
-                                className='text-gray-500 font-normal text-lg hover:text-[#2507B3] '
+                                className='text-black font-normal text-lg hover:text-[#2507B3] '
                             // style={(e) => {
                             //     return {
                             //         backgroundColor: e.isActive ? "#10151cc2" : "",
@@ -193,110 +193,121 @@ const Header = () => {
             </nav>
 
             {/*  profile options */}
-            {authStatus && isProfileOpen ? (
-                <div className="w-full max-w-72 absolute top-5 right-5 bg-white p-4 rounded-lg shadow-lg">
-
-                    <RxCross2 onClick={backHandler} size={27} className='absolute right-5 top-5 cursor-pointer hover:bg-gray-200 rounded-full p-1.5' />
-
-                    <div className='w-full flex flex-col items-center border-b py-2 mb-4'>
-                        <div className='h-12 w-12 rounded-full border-2 relative'>
-                            <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
-                            <AiOutlineEdit size={27}
-                                className='absolute bottom-0 -right-8 cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
-                                onClick={() => fileInputRef.current.click()} />
-
-                            {/* // hidden input */}
-
-                            <input ref={fileInputRef} type="file" accept="image/*"
-                                className='hidden'
-                                onChange={handleProfileImageChange}
-                            />
-
-                        </div>
-                        <h6 className='capitalize font-semibold text-sm'>{user.firstname} {user.lastname}</h6>
-                        <span className='font-normal text-sm'>{user.email}</span>
-                    </div>
-                    <div className='w-full flex flex-col gap-3 font-normal px-2'>
-
-                        {student ? <div className='w-full flex flex-col gap-3'>
-                            <Link
-                                onClick={() => (
-                                    setIsProfileOpen(false),
-                                    setDropdown(false))}
-                                to="/student" className='hover:text-blue-600'>Home</Link>
-                            <Link onClick={() => (
-                                setIsProfileOpen(false),
-                                setDropdown(false))} to="/student/application" className='hover:text-blue-600'>My Application</Link>
-                            <Link onClick={() => (
-                                setIsProfileOpen(false),
-                                setDropdown(false))} to="/student/bookmark" className='hover:text-blue-600'>My Bookmarks</Link>
-                            <Link onClick={() => (
-                                setIsProfileOpen(false),
-                                setDropdown(false))} to="/student/resume" className='hover:text-blue-600'>Edit Resume</Link>
-                            <Link onClick={() => (
-                                setIsProfileOpen(false),
-                                setDropdown(false))} to="/student/edit/preference" className='hover:text-blue-600'>Edit Preferences</Link>
-                        </div>
-                            : <div className='w-full flex flex-col gap-3'>
-                                <Link onClick={() => (
-                                    setIsProfileOpen(false),
-                                    setDropdown(false))} to="/employee" className='hover:text-blue-600'>Home</Link>
-                                <Link onClick={() => (
-                                    setIsProfileOpen(false),
-                                    setDropdown(false))} to="/employee/application" className='hover:text-blue-600'>My Application</Link>
-                            </div>}
-
-                        <div className='w-full'>
-                            <button
-                                className='w-full flex justify-between items-center mb-3 hover:text-blue-600'
-                                onClick={Dropdown}>
-                                <span>Manage Account</span>
-                                <RiArrowDropDownLine size={25} />
-                            </button>
-                            {dropdown && (
-                                <div className='w-5/6 ml-auto flex flex-col gap-3'>
-                                    <Link onClick={() => setIsProfileOpen(false)} to={isStudentAuth ? "/student/reset-password" : "/employee/reset-password"} className='hover:text-blue-600'>Change Password</Link>
-                                    <Link onClick={() => setIsProfileOpen(false)} to={isStudentAuth ? "/student/forget-password" : "/employee/forget-password"} className='hover:text-blue-600'>Forget Password</Link>
-                                    <Link onClick={LogoutHandler} className='hover:text-blue-600'>Logout</Link>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            ) : ""
-            }
-
-            {/* menu options */}
-            {
-                !authStatus ? (
+            {authStatus ? (
                 <>
-                    <motion.div className={openMenu ?  `overlay w-full h-screen absolute top-0 bg-black opacity-80` : "hidden"}
+                    <motion.div className={isProfileOpen ? `overlay w-full h-screen fixed top-0 bg-black opacity-50` : "hidden"}
                         onClick={backHandler}>
                     </motion.div>
-                    <motion.div variants={var1} initial="initial" animate={openMenu ? "animate" : "exit"} exit="exit" transition={{ duration: .5 }} className='w-72 h-full bg-gray-100 absolute right-0 top-0'>
+                    <motion.div className="h-full w-full max-w-sm fixed top-0 right-0 bg-gray-100 p-4"
+                        variants={var1} initial="initial" animate={isProfileOpen ? "animate" : "exit"} exit="exit" transition={{ duration: .5 }}
+                    >
 
                         <div className='w-full flex justify-end px-10 py-6'>
                             <RxCross2 onClick={backHandler} size={27} className='cursor-pointer text-black ' />
                         </div>
 
-                        {/* <div className='w-full flex justify-end'> */}
-                        <div className='pl-[40%] flex flex-col'>
-                            {middleItems.map((item) => (
-                                <Link key={item.name}
-                                    to={authStatus ? (isStudentAuth ? `/student${item.path}` : `/employee${item.path}`) : `${item.path}`}
-                                    className='text-black font-semibold text-lg hover:text-[#2507B3] mb-2'>
-                                    {item.name}
-                                </Link>
-                            ))}
-                            {rightItems.map((item) => (
-                                <Link key={item.name} to={item.path} className='text-black font-semibold text-lg hover:text-[#2507B3] mb-2'>
-                                    {item.name}
-                                </Link>
-                            ))}
+                        <div className='w-full flex flex-col items-center border-b py-2 mb-4'>
+                            <div className='h-12 w-12 rounded-full border-2 relative'>
+                                <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
+                                <AiOutlineEdit size={27}
+                                    className='absolute bottom-0 -right-8 cursor-pointer hover:bg-gray-200 rounded-full p-1.5 text-black'
+                                    onClick={() => fileInputRef.current.click()} />
+
+                                {/* // hidden input */}
+
+                                <input ref={fileInputRef} type="file" accept="image/*"
+                                    className='hidden'
+                                    onChange={handleProfileImageChange}
+                                />
+
+                            </div>
+                            <h6 className='text-black capitalize font-semibold text-sm'>{user.firstname} {user.lastname}</h6>
+                            <span className='font-normal text-sm'>{user.email}</span>
+                        </div>
+                        <div className='w-full flex flex-col gap-3 px-2 text-black text-lg font-normal'>
+
+                            {student ? <div className='w-full flex flex-col gap-3'>
+                                <Link
+                                    onClick={() => (
+                                        setIsProfileOpen(false),
+                                        setDropdown(false))}
+                                    to="/student" className='hover:text-blue-600'>Home</Link>
+                                <Link onClick={() => (
+                                    setIsProfileOpen(false),
+                                    setDropdown(false))} to="/student/application" className='hover:text-blue-600'>My Application</Link>
+                                <Link onClick={() => (
+                                    setIsProfileOpen(false),
+                                    setDropdown(false))} to="/student/bookmark" className='hover:text-blue-600'>My Bookmarks</Link>
+                                <Link onClick={() => (
+                                    setIsProfileOpen(false),
+                                    setDropdown(false))} to="/student/resume" className='hover:text-blue-600'>Edit Resume</Link>
+                                <Link onClick={() => (
+                                    setIsProfileOpen(false),
+                                    setDropdown(false))} to="/student/edit/preference" className='hover:text-blue-600'>Edit Preferences</Link>
+                            </div>
+                                : <div className='w-full flex flex-col gap-3'>
+                                    <Link onClick={() => (
+                                        setIsProfileOpen(false),
+                                        setDropdown(false))} to="/employee" className='hover:text-blue-600'>Home</Link>
+                                    <Link onClick={() => (
+                                        setIsProfileOpen(false),
+                                        setDropdown(false))} to="/employee/application" className='hover:text-blue-600'>My Application</Link>
+                                </div>}
+
+                            <div className='w-full'>
+                                <button
+                                    className='w-full flex justify-between items-center mb-3 hover:text-blue-600'
+                                    onClick={Dropdown}>
+                                    <span>Manage Account</span>
+                                    <RiArrowDropDownLine size={25} />
+                                </button>
+                                {dropdown && (
+                                    <div className='w-5/6 ml-auto flex flex-col gap-3'>
+                                        <Link onClick={() => setIsProfileOpen(false)} to={isStudentAuth ? "/student/reset-password" : "/employee/reset-password"} className='hover:text-blue-600'>Change Password</Link>
+                                        <Link onClick={() => setIsProfileOpen(false)} to={isStudentAuth ? "/student/forget-password" : "/employee/forget-password"} className='hover:text-blue-600'>Forget Password</Link>
+                                        <Link onClick={LogoutHandler} className='hover:text-blue-600'>Logout</Link>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </motion.div>
-                    {/* </div> */}
                 </>
+            )
+                : ""
+            }
+
+            {/* menu options */}
+            {
+                !authStatus ? (
+                    <>
+                        <motion.div className={openMenu ? `overlay w-full h-screen fixed top-0 bg-black opacity-50` : "hidden"}
+                            onClick={backHandler}>
+                        </motion.div>
+
+                        <motion.div variants={var1} initial="initial" animate={openMenu ? "animate" : "exit"} exit="exit" transition={{ duration: .5 }} className='w-72 h-full bg-gray-100 fixed right-0 top-0'>
+
+                            <div className='w-full flex justify-end px-10 py-6'>
+                                <RxCross2 onClick={backHandler} size={27} className='cursor-pointer text-black ' />
+                            </div>
+
+                            {/* <div className='w-full flex justify-end'> */}
+                            <div className='pl-[10%] flex flex-col'>
+                                {middleItems.map((item) => (
+                                    <Link key={item.name}
+                                        to={authStatus ? (isStudentAuth ? `/student${item.path}` : `/employee${item.path}`) : `${item.path}`}
+                                        className='text-black font-normal text-lg hover:text-[#2507B3] mb-2'>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                                {rightItems.map((item) => (
+                                    <Link key={item.name} to={item.path} className='text-black font-normal text-lg hover:text-[#2507B3] mb-2'>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </motion.div>
+                        {/* </div> */}
+                    </>
                 ) : ""
             }
         </header>
