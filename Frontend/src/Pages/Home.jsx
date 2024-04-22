@@ -34,11 +34,17 @@ const Home = () => {
   // Loading state
   const [loader, setLoader] = useState(true)
 
-  if (loader) {
-    return (
-      <LoadingPage />
-    )
-  }
+  useEffect(() => {
+    if (fetchInternships !== null && fetchJobs !== null) {
+      setLoader(false)
+    }
+  })
+
+  // if (loader) {
+  //   return (
+  //     <LoadingPage />
+  //   )
+  // }
 
   return (
 

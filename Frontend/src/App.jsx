@@ -41,7 +41,7 @@ const App = () => {
   const [loader, setLoader] = useState(true)
 
   useEffect(() => {
-    if (studentAuth !== null || employeeAuth != null){
+    if (studentAuth !== null || employeeAuth !== null){
       setLoader(false)
     }
   })
