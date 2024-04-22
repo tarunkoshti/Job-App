@@ -156,7 +156,7 @@ const Header = () => {
                 {/* rightItems */}
                 {
                     !authStatus && (
-                        <ul className='w-[200px] max-sm:hidden flex lg:flex justify-end gap-5 items-center'>
+                        <ul className='w-[200px] max-sm:hidden flex lg:flex justify-end gap-5 items-center '>
                             {rightItems.map((item) =>
                                 item.active ? (
                                     <li key={item.name}>

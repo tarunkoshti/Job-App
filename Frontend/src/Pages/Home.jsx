@@ -4,6 +4,9 @@ import { fetchInternships } from '../store/Actions/internshipActions';
 import { fetchJobs } from '../store/Actions/jobActions';
 import InternshipCard from '../Components/InternshipCard';
 import JobCard from '../Components/JobCard';
+import Button from '../Components/Button'
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { MdArrowOutward } from "react-icons/md";
 
 const Home = () => {
 
@@ -12,7 +15,7 @@ const Home = () => {
   const internships = useSelector((state) => state.internshipReducer.internshipData)
 
   useEffect(() => {
-   
+
     try {
       dispatch(fetchJobs());
     } catch (error) {
@@ -24,18 +27,28 @@ const Home = () => {
     dispatch(fetchInternships());
   }, [dispatch]);
 
-
+  const navigate = useNavigate()
 
   return (
 
 
-    <div className="w-full bg-white">
-      <div className="flex flex-col items-center md:gap-10 px-4 md:px-0">
-        <div className="flex flex-col items-center gap-8 mt-10 md:mt-32">
-          <h1 className="text-center  text-4xl md:text-6xl font-bold leading-tight md:pl-12">Unleash Your Potential <br /> Find Your Dream Job Today</h1>
-          <h4 className="text-center  text-2xl font-semibold md:text-3xl">Navigate Your Career Path with Precision and Ease.</h4>
-          <p className="pl-4 md:pl-10  leading-normal mt-5 text-base md:text-lg text-center tracking-wide">Discover endless opportunities and unlock your career Potential <br /> with <span className="font-semibold">Job-Seekers- An amazing job search platform</span></p>
-          {/* <img className="w-[600px] mt-5 pl-12 md:w-full h-auto pr-12 md:ml-0 md:max-w-[510px]" src="logo1.jpg" alt="" /> */}
+    <div className="w-full ">
+      <div className="h-screen w-full flex justify-center">
+        <div className="pt-20 flex flex-col items-center">
+          <div className='flex gap-4'>
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-wider">Welcome To
+            </h1>
+            < img className='h-14' src="Job Seeking2.png" alt="./logo.jpg" />
+          </div>
+          <span className='md:text-4xl block mt-3 tracking-wide'>Your Gateway to Career Opportunities!</span>
+
+          <p className="text-gray-500 mt-10 text-base md:text-lg text-center tracking-wider">Discover endless opportunities and unlock your career Potential and explore <br /> endless possibilities with  <span className="font-semibold">Hirer- An amazing job search platform.</span></p>
+
+          <Button className='mt-20 flex items-center gap-2 py-3'
+            onClick={() => navigate('/student/signup')}>
+            Get Started Now
+            <MdArrowOutward />
+          </Button>
         </div>
       </div>
 
@@ -51,46 +64,41 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="py-5 mt-5">
-        <h1 className="text-center text-3xl md:text-5xl font-semibold">Find your perfect dream jobs</h1>
-        <p className="text-center text-[#1F2937] mt-2 md:mt-5 text-base md:text-lg tracking-wider mb-10 pb-5">JobSeekrs present for help candidate for meet the dream company</p>
+      {/* Explore Internships */}
+      <div className=' w-full overflow-hidden'>
+
+        <div className='py-3 mb-8'>
+          <h1 className='text-4xl text-center font-semibold'>Explore all Internship Opportunity</h1>
+        </div>
+
+        <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+          {
+            internships &&
+            (internships.map((internship, index) => (
+              <InternshipCard key={index} index={index} internship={internship} />
+            )))
+          }
+        </div>
+
       </div>
 
-        {/* Explore Internships */}
-          <div className=' w-full overflow-hidden'>
+      {/* Explore Job */}
+      <div className=' w-full overflow-hidden'>
 
-          <div className='py-3 mb-8'>
-            <h1 className='text-4xl text-center font-semibold'>Explore all Internship Opportunity</h1>
-          </div>
-
-          <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
-            {
-              internships &&
-              (internships.map((internship, index) => (
-                <InternshipCard key={index} index={index} internship={internship} />
-              )))
-            }
-          </div>
-
+        <div className='py-3 mb-8'>
+          <h1 className='text-4xl text-center font-semibold'>Explore all Job Locations</h1>
         </div>
 
-        {/* Explore Job */}
-        <div className=' w-full overflow-hidden'>
-
-          <div className='py-3 mb-8'>
-            <h1 className='text-4xl text-center font-semibold'>Explore all Job Locations</h1>
-          </div>
-
-          <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
-            {
-              jobs &&
-              (jobs.map((job, index) => (
-                <JobCard key={index} index={index} job={job} />
-              )))
-            }
-          </div>
-
+        <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+          {
+            jobs &&
+            (jobs.map((job, index) => (
+              <JobCard key={index} index={index} job={job} />
+            )))
+          }
         </div>
+
+      </div>
 
     </div>
 
