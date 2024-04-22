@@ -40,6 +40,7 @@ import AddAccomplishment from './Pages/Student/Resume/AddAccomplishment.jsx'
 import { Flip, Slide, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import About from './Pages/About.jsx'
+import Notfound from './Pages/Notfound.jsx'
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
       </>
     ),
     children: [
+      
       {
         path: "/",
         element: <Home />,
@@ -419,7 +421,12 @@ const router = createBrowserRouter([
         )
       },
     ]
-  }
+  },
+
+     {
+        path: "*",
+        element: <Notfound/>
+      },
 ])
 
 

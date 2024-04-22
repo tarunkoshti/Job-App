@@ -158,7 +158,7 @@ const StudentHome = () => {
         </div>
 
         {/* <JobCard /> */}
-
+          <section>
         <div className=' w-full overflow-hidden'>
 
           <div className='py-3 mb-8'>
@@ -202,9 +202,10 @@ const StudentHome = () => {
           </div>
 
         </div>
+        </section>
 
         {/* Internship-Card */}
-
+            <section>
         <div className=' w-full overflow-hidden'>
 
           <div className='py-3 mb-8'>
@@ -250,6 +251,7 @@ const StudentHome = () => {
           </div>
 
         </div>
+        </section>
 
       </div>
     </>
