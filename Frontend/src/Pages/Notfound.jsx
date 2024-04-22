@@ -5,10 +5,10 @@ import { FaArrowRight } from "react-icons/fa6";
 
 const Notfound = () => {
   return (
-    <div className='mt-10 flex flex-col tracking-widest'>
-      <h1 className='text-6xl md:text-9xl font-semibold text-center mt-10 '>Opps...!</h1>
-      <h1 className='text-6xl md:text-9xl font-bold text-[#2507B3] text-center mt-5 mr-10'>404</h1>
-      <h1 className='text-4xl md:text-6xl text-center font-semibold'>Page not found</h1>
+    <div className='pt-10 h-screen flex flex-col tracking-widest '>
+      <h1 className='text-6xl md:text-9xl font-medium text-center mt-10 '>Opps...!</h1>
+      <h1 className='text-6xl md:text-9xl font-medium text-[#2507B3] text-center mt-5 mr-10'>404</h1>
+      <h1 className='text-4xl md:text-6xl text-center font-medium'>Page not found</h1>
       <h6 className='text-center text-lg mt-7'>Sorry, we couldn’t find the page you’re looking for.</h6>
 
       <div className='flex flex-col md:flex-row items-center justify-center mt-16 gap-5 md:gap-10'>
