@@ -33,18 +33,18 @@ const Home = () => {
 
 
     <div className="w-full ">
-      <div className="h-screen w-full flex justify-center">
-        <div className="pt-20 flex flex-col items-center">
-          <div className='flex gap-4'>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-wider">Welcome To
+      <div className=" w-full flex justify-center px-10">
+        <div className="pt-10 md:pt-20 md:flex flex-col items-center">
+          <div className='flex flex-wrap gap-4'>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-wider">Welcome To
             </h1>
-            < img className='h-14' src="Job Seeking2.png" alt="./logo.jpg" />
+            < img className='h-10 sm:h-12 md:h-14' src="Job Seeking2.png" alt="./logo.jpg" />
           </div>
-          <span className='md:text-4xl block mt-3 tracking-wide'>Your Gateway to Career Opportunities!</span>
+          <span className='text-3xl md:text-4xl block mt-3 tracking-wide'>Your Gateway to Career Opportunities!</span>
 
-          <p className="text-gray-500 mt-10 text-base md:text-lg text-center tracking-wider">Discover endless opportunities and unlock your career Potential and explore <br /> endless possibilities with  <span className="font-semibold">Hirer- An amazing job search platform.</span></p>
+          <p className="text-gray-500 mt-10 text-base md:text-lg md:text-center tracking-wider">Discover endless opportunities and unlock your career Potential and explore <br /> endless possibilities with  <span className="font-semibold">Hirer- An amazing job search platform.</span></p>
 
-          <Button className='mt-20 flex items-center gap-2 py-3'
+          <Button className='mt-10 md:mt-20 flex items-center gap-2 py-3'
             onClick={() => navigate('/student/signup')}>
             Get Started Now
             <MdArrowOutward />
@@ -52,9 +52,42 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="w-full py-10 px-2 md:px-0 border-b-2 border-zinc-300 my-8">
-        <h1 className="text-center  text-3xl md:text-5xl leading-tight font-semibold">Trusted <span className=" font-bold">1000+</span> company find best <br className="md:hidden" />job seekers</h1>
-        <div className="w-full flex flex-wrap items-center justify-evenly mt-10">
+      <div className='w-full py-10 sm:py-16 bg-gray-100 mt-28 flex px-10'>
+        <div className='w-full h-full flex flex-wrap justify-center gap-10 sm:gap-20'>
+          <div className='one w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
+            <div className='top text-4xl'>01</div>
+            <div className='bottom'>
+              <h1 className='font-semibold'>Register Account</h1>
+              <p className='text-sm'>Create a personalized account to access all platform exclusive features.</p>
+            </div>
+          </div>
+          <div className='two w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
+            <div className='top text-4xl'>02</div>
+            <div className='bottom'>
+              <h1 className='font-semibold'>Search For Job</h1>
+              <p className='text-sm'>Explore diverse job listings and find the perfect match for your skills.</p>
+            </div>
+          </div>
+          <div className='three w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
+            <div className='top text-4xl'>03</div>
+            <div className='bottom'>
+              <h1 className='font-semibold'>Create Resume</h1>
+              <p className='text-sm'>Craft a professional resume to showcase your qualifications and experience.</p>
+            </div>
+          </div>
+          <div className='four w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
+            <div className='top text-4xl'>04</div>
+            <div className='bottom'>
+              <h1 className='font-semibold'>Apply For Job</h1>
+              <p className='text-sm'>Submit applications easily and track your job search progress effectively.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full py-10 sm:py-20 px-10 border-b-2 border-zinc-300 ">
+        <h1 className="sm:text-center text-3xl md:text-5xl leading-tight">Trusted <span className=" font-bold text-[#2507B3]">1000+</span> company find best job seekers</h1>
+        <div className="w-full flex flex-wrap items-center sm:justify-evenly max-sm:gap-3 mt-10">
           <img className="w-[110px] h-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/1024px-Logo_of_YouTube_%282015-2017%29.svg.png" alt="" />
           <img className="w-[110px] h-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Slack_Technologies_Logo.svg/2560px-Slack_Technologies_Logo.svg.png" alt="" />
           <img className="w-[110px] h-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="" />
@@ -67,11 +100,11 @@ const Home = () => {
       {/* Explore Internships */}
       <div className=' w-full overflow-hidden'>
 
-        <div className='py-3 mb-8'>
-          <h1 className='text-4xl text-center font-semibold'>Explore all Internship Opportunity</h1>
+        <div className='py-14 sm:py-20 px-10'>
+          <h1 className='text-4xl sm:text-center'>Explore all Internship Opportunity</h1>
         </div>
 
-        <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+        <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  px-10'>
           {
             internships &&
             (internships.map((internship, index) => (
@@ -83,13 +116,13 @@ const Home = () => {
       </div>
 
       {/* Explore Job */}
-      <div className=' w-full overflow-hidden'>
+      <div className=' w-full overflow-hidden '>
 
-        <div className='py-3 mb-8'>
-          <h1 className='text-4xl text-center font-semibold'>Explore all Job Locations</h1>
+        <div className='py-14 sm:py-20 px-10'>
+          <h1 className='text-4xl sm:text-center '>Explore all Job Opportunity</h1>
         </div>
 
-        <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+        <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  px-10'>
           {
             jobs &&
             (jobs.map((job, index) => (
