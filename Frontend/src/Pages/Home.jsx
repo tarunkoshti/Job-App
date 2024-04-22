@@ -1,6 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchInternships } from '../store/Actions/internshipActions';
+import { fetchJobs } from '../store/Actions/jobActions';
+import InternshipCard from '../Components/InternshipCard';
+import JobCard from '../Components/JobCard';
 
 const Home = () => {
+
+  const dispatch = useDispatch();
+  const jobs = useSelector((state) => state.jobReducer.jobData);
+  const internships = useSelector((state) => state.internshipReducer.internshipData)
+
+  useEffect(() => {
+   
+    try {
+      dispatch(fetchJobs());
+    } catch (error) {
+      console.log(error)
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchInternships());
+  }, [dispatch]);
+
+
+
   return (
 
 
@@ -28,8 +53,45 @@ const Home = () => {
 
       <div className="py-5 mt-5">
         <h1 className="text-center text-3xl md:text-5xl font-semibold">Find your perfect dream jobs</h1>
-        <p className="text-center  mt-2 md:mt-5 text-base md:text-lg tracking-wider">JobSeekrs present for help candidate for meet the dream company</p>
+        <p className="text-center text-[#1F2937] mt-2 md:mt-5 text-base md:text-lg tracking-wider mb-10 pb-5">JobSeekrs present for help candidate for meet the dream company</p>
       </div>
+
+        {/* Explore Internships */}
+          <div className=' w-full overflow-hidden'>
+
+          <div className='py-3 mb-8'>
+            <h1 className='text-4xl text-center font-semibold'>Explore all Internship Opportunity</h1>
+          </div>
+
+          <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+            {
+              internships &&
+              (internships.map((internship, index) => (
+                <InternshipCard key={index} index={index} internship={internship} />
+              )))
+            }
+          </div>
+
+        </div>
+
+        {/* Explore Job */}
+        <div className=' w-full overflow-hidden'>
+
+          <div className='py-3 mb-8'>
+            <h1 className='text-4xl text-center font-semibold'>Explore all Job Locations</h1>
+          </div>
+
+          <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+            {
+              jobs &&
+              (jobs.map((job, index) => (
+                <JobCard key={index} index={index} job={job} />
+              )))
+            }
+          </div>
+
+        </div>
+
     </div>
 
   )
