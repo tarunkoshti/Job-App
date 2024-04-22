@@ -123,8 +123,8 @@ const Header = () => {
 
 
     return (
-        <header className='w-full  py-5 bg-white text-gray-500 font-semibold'>
-            <nav className='w-full px-10 flex justify-between items-center relative border-b-2 pb-2 '>
+        <header className='w-full  bg-white] text-gray-500 font-semibold'>
+            <nav className='w-full px-10 py-5 flex justify-between items-center relative border-b-2 pb-3 '>
 
                 {/* leftItem */}
                 <div className='w-[200px]'>

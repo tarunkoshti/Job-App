@@ -10,3 +10,7 @@
 #job::-webkit-scrollbar {
     display: none;
 }
+
+*{
+    font-family: 'gilroy';
+}
