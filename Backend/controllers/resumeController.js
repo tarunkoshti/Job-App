@@ -4,10 +4,10 @@ const Student = require("../models/studentModel");
 const ErrorHandler = require("../utils/ErrorHandler");
 const { v4: uuidv4 } = require('uuid');
 
-exports.resume = catchAsyncErrors(async function (req, res, next) {
 
+exports.studentinfo = catchAsyncErrors(async function (req, res, next) {
     const student = await Student.findById(req.params.studentid).exec();
-    
+
     const details = {
         firstname: student.firstname,
         lastname: student.lastname,
@@ -16,7 +16,23 @@ exports.resume = catchAsyncErrors(async function (req, res, next) {
         city: student.city,
         contact: student.contact,
     }
-    
+    res.json({
+        details
+    })
+})
+exports.resume = catchAsyncErrors(async function (req, res, next) {
+
+    const student = await Student.findById(req.params.studentid).exec();
+
+    const details = {
+        firstname: student.firstname,
+        lastname: student.lastname,
+        email: student.email,
+        avatar: student.avatar,
+        city: student.city,
+        contact: student.contact,
+    }
+
     const { resume } = await Student.findById(req.params.studentid).exec();
     const updatedResume = { ...resume, details };
     console.log(updatedResume)
@@ -247,7 +263,7 @@ exports.addwork = catchAsyncErrors(async function (req, res, next) {
     });
 
     await student.save()
-   
+
     res.json({ message: "Work Sample added!" })
 });
 
