@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchInternships } from '../store/Actions/internshipActions';
 import { fetchJobs } from '../store/Actions/jobActions';
@@ -7,6 +7,8 @@ import JobCard from '../Components/JobCard';
 import Button from '../Components/Button'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { MdArrowOutward } from "react-icons/md";
+import { LuArrowDown } from "react-icons/lu";
+import LoadingPage from '../Components/Loading/LoadingPage';
 
 const Home = () => {
 
@@ -29,11 +31,19 @@ const Home = () => {
 
   const navigate = useNavigate()
 
+  // Loading state
+  const [loader, setLoader] = useState(true)
+
+  if (loader) {
+    return (
+      <LoadingPage />
+    )
+  }
+
   return (
 
-
     <div className="w-full ">
-      <div className=" w-full flex justify-center px-10">
+      <div className=" w-full h-screen flex justify-center px-10">
         <div className="pt-10 md:pt-20 md:flex flex-col items-center">
           <div className='flex flex-wrap gap-4'>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-wider">Welcome To
@@ -49,10 +59,13 @@ const Home = () => {
             Get Started Now
             <MdArrowOutward />
           </Button>
+
+          <div class="animate-bounce bg-[#2507B3] rounded-full absolute bottom-5"><LuArrowDown className='text-white p-5 size-16' />
+          </div>
         </div>
       </div>
 
-      <div className='w-full py-10 sm:py-16 bg-gray-100 mt-28 flex px-10'>
+      <div className='w-full py-10 sm:py-16 bg-gray-100  flex px-10'>
         <div className='w-full h-full flex flex-wrap justify-center gap-10 sm:gap-20'>
           <div className='one w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
             <div className='top text-4xl'>01</div>
@@ -86,7 +99,7 @@ const Home = () => {
       </div>
 
       <div className="w-full py-10 sm:py-20 px-10 border-b-2 border-zinc-300 ">
-        <h1 className="sm:text-center text-3xl md:text-5xl leading-tight">Trusted <span className=" font-bold text-[#2507B3]">1000+</span> company find best job seekers</h1>
+        <h1 className="sm:text-center text-3xl md:text-5xl leading-tight ">Trusted <span className=" font-bold text-[#2507B3]">1000+</span> company find best job seekers</h1>
         <div className="w-full flex flex-wrap items-center sm:justify-evenly max-sm:gap-3 mt-10">
           <img className="w-[110px] h-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/1024px-Logo_of_YouTube_%282015-2017%29.svg.png" alt="" />
           <img className="w-[110px] h-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Slack_Technologies_Logo.svg/2560px-Slack_Technologies_Logo.svg.png" alt="" />
@@ -101,7 +114,7 @@ const Home = () => {
       <div className=' w-full overflow-hidden'>
 
         <div className='py-14 sm:py-20 px-10'>
-          <h1 className='text-4xl sm:text-center'>Explore all Internship Opportunity</h1>
+          <h1 className='text-4xl sm:text-center font-medium'>Explore all Internship Opportunity</h1>
         </div>
 
         <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  px-10'>
@@ -119,7 +132,7 @@ const Home = () => {
       <div className=' w-full overflow-hidden '>
 
         <div className='py-14 sm:py-20 px-10'>
-          <h1 className='text-4xl sm:text-center '>Explore all Job Opportunity</h1>
+          <h1 className='text-4xl sm:text-center font-medium'>Explore all Job Opportunity</h1>
         </div>
 
         <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  px-10'>

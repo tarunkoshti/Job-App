@@ -6,8 +6,7 @@ import Footer from './Components/Footer/Footer'
 import { currentUser as currentStudent } from './store/Actions/userActions'
 import { currentUser as currentEmployee } from './store/Actions/employeeActions'
 import { useDispatch, useSelector } from 'react-redux'
-
-
+import LoadingPage from './Components/Loading/LoadingPage'
 
 const App = () => {
 
@@ -36,6 +35,22 @@ const App = () => {
       navigate("/employee")
     }
   }, [studentAuth, employeeAuth, navigate])
+
+
+  // Loading state
+  const [loader, setLoader] = useState(true)
+
+  useEffect(() => {
+    if (studentAuth !== null || employeeAuth != null){
+      setLoader(false)
+    }
+  })
+
+  if (loader) {
+    return (
+      <LoadingPage />
+    )
+  }
 
   return (
     <div className='bg-white h-screen min-h-screen w-full'>
