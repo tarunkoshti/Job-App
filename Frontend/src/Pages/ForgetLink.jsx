@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Input from '../Components/Input'
 import { useForm } from 'react-hook-form'
 import Button from '../Components/Button'
@@ -8,6 +8,7 @@ import { asyncForgrtPassword as studentForget } from '../store/Actions/userActio
 import { asyncForgrtPassword as employeeForget } from '../store/Actions/employeeActions'
 import { toast } from 'react-toastify';
 import { MdErrorOutline } from 'react-icons/md'
+import { CgSpinner } from 'react-icons/cg'
 const ForgetLink = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -19,21 +20,26 @@ const ForgetLink = () => {
     const { id } = useParams()
 
     const submit = async (data) => {
+        setLoader(true)
         if (isStudent) {
             const error = await dispatch(studentForget(id, data))
-            navigate("/student")
+            setLoader(false)
             error ? toast.error(error.data.message) : toast.success("Password has been changed")
+            navigate("/student")
         }
         else {
             const error = await dispatch(employeeForget(id, data))
-            navigate("/employee")
+            setLoader(false)
             error ? toast.error(error.data.message) : toast.success("Password has been changed")
+            navigate("/employee")
         }
     }
 
     const style = {
         boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04)'
     }
+
+    const [loader, setLoader] = useState()
 
     return (
         <div style={style} className={`mx-auto w-full max-w-md bg-white rounded-xl p-10 `}>
@@ -61,8 +67,10 @@ const ForgetLink = () => {
                     <Button
                         type='submit'
                         bgColor='bg-[#1F2937]'
-                        className='w-full font-semibold'
-                    >Done</Button>
+                        className='w-full font-semibold flex justify-center'
+                    >
+                        {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) : "Done"}
+                    </Button>
                 </div>
             </form>
         </div>
