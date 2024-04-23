@@ -9,6 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 import { toast } from 'react-toastify'
 import { RiMenu3Fill } from "react-icons/ri";
 import { motion } from 'framer-motion'
+import { CgSpinner } from 'react-icons/cg'
 
 const Header = () => {
 
@@ -107,23 +108,26 @@ const Header = () => {
         }
     }
 
-
     const handleProfileImageChange = async (e) => {
         const formData = new FormData();
         formData.set('avatar', e.target.files[0]);
+        setPicLoader(true)
         // console.log(formData)
         if (student) {
             const errorStudent = await dispatch(asyncUploadProfileImageStudent(student._id, formData));
+            setPicLoader(false)
             errorStudent ? toast.error(errorStudent.data.message) : toast.success("Avatar Upadated");
         } else if (employe) {
             const erroremployee = await dispatch(asyncUploadProfileImageEmployee(employe._id, formData));
+            setPicLoader(false)
             erroremployee ? toast.error(erroremployee.data.message) : toast.success("Avatar Upadated");
         }
     };
 
+    const [picLoader, setPicLoader] = useState(false)
 
     return (
-        <header className='w-full  bg-white] text-gray-500 font-semibold'>
+        <header className={'w-full  bg-white] text-gray-500 font-semibold'}>
             <nav className='w-full px-10 py-5 flex justify-between items-center relative border-b-2 pb-3 '>
 
                 {/* leftItem */}
@@ -207,10 +211,16 @@ const Header = () => {
                         </div>
 
                         <div className='w-full flex flex-col items-center border-b py-2 mb-4'>
-                            <div className='h-12 w-12 rounded-full border-2 relative'>
-                                <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
+                            <div className='h-12 w-12 rounded-full border-2 relative flex justify-center items-center'>
+                                {
+                                    picLoader ? <>
+                                        <div className='w-screen h-screen fixed top-0 left-0 overflow-hidden z-10'></div>
+                                        <CgSpinner class="animate-spin rounded-full h-[50%] w-[50%] text-gray-500" />
+                                    </>
+                                        : <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
+                                }
                                 <AiOutlineEdit size={27}
-                                    className='absolute bottom-0 -right-8 cursor-pointer hover:bg-gray-200 rounded-full p-1.5 text-black'
+                                    className='absolute -z-0 bottom-0 -right-8 cursor-pointer hover:bg-gray-200 rounded-full p-1.5 text-black'
                                     onClick={() => fileInputRef.current.click()} />
 
                                 {/* // hidden input */}
