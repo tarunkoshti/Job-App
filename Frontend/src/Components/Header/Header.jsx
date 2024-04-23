@@ -91,8 +91,10 @@ const Header = () => {
     ]
 
     const LogoutHandler = async () => {
+        setLogoutLoader(true)
         if (isStudentAuth) {
             const error = await dispatch(studentLogout())
+            setLogoutLoader(false)
             error ? toast.error(error.data.message)
                 : toast.success("Logout Successfully")
             setIsProfileOpen(false)
@@ -100,6 +102,7 @@ const Header = () => {
             navigate("/")
         } else if (isEmployeeAuth) {
             const error = await dispatch(employeeLogout())
+            setLogoutLoader(false)
             error ? toast.error(error.data.message)
                 : toast.success("Logout Successfully")
             setIsProfileOpen(false)
@@ -125,6 +128,7 @@ const Header = () => {
     };
 
     const [picLoader, setPicLoader] = useState(false)
+    const [logoutLoader, setLogoutLoader] = useState(false)
 
     return (
         <header className={'w-full  bg-white] text-gray-500 font-semibold'}>
@@ -214,7 +218,7 @@ const Header = () => {
                             <div className='h-12 w-12 rounded-full border-2 relative flex justify-center items-center'>
                                 {
                                     picLoader ? <>
-                                        <div className='w-screen h-screen fixed top-0 left-0 overflow-hidden z-10'></div>
+                                        <div className='w-screen h-screen fixed top-0 left-0 z-10'></div>
                                         <CgSpinner class="animate-spin rounded-full h-[50%] w-[50%] text-gray-500" />
                                     </>
                                         : <img className='rounded-full h-full w-full' src={user.avatar.url} alt="" />
@@ -275,7 +279,13 @@ const Header = () => {
                                     <div className='w-5/6 ml-auto flex flex-col gap-3'>
                                         <Link onClick={() => setIsProfileOpen(false)} to={isStudentAuth ? "/student/reset-password" : "/employee/reset-password"} className='hover:text-blue-600'>Change Password</Link>
                                         <Link onClick={() => setIsProfileOpen(false)} to={isStudentAuth ? "/student/forget-password" : "/employee/forget-password"} className='hover:text-blue-600'>Forget Password</Link>
-                                        <Link onClick={LogoutHandler} className='hover:text-blue-600'>Logout</Link>
+                                        {
+                                            logoutLoader ? <>
+                                                <div className='w-screen h-screen fixed top-0 left-0 z-10'></div>
+                                                <CgSpinner class="animate-spin h-5 w-5 text-gray-500 text-center m-auto" />
+                                            </>
+                                            : <Link onClick={LogoutHandler} className='hover:text-blue-600'>Logout</Link>
+                                        }
                                     </div>
                                 )}
                             </div>
