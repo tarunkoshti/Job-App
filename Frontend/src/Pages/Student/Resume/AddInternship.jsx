@@ -66,8 +66,8 @@ const AddInternship = ({ edit = false }) => {
     const internship = student?.resume?.internships.find(item => item.id === id)
 
     return (
-        < div className='w-full h-screen absolute top-[0]' >
-            <div className='w-full h-[213%] overlay bg-black opacity-50'></div>
+        < div className='w-full h-screen fixed top-[0]' >
+            <div className='w-full h-screen  overlay bg-black opacity-50'></div>
             <div className='w-full h-[100px
       ]: max-w-lg rounded-xl border bg-gray-50 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
                 <RxCross2 onClick={backHandler} size={25} className='absolute right-5 top-5 cursor-pointer' />
