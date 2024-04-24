@@ -7,6 +7,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
 import { MdErrorOutline } from 'react-icons/md'
 import { toast } from 'react-toastify'
+import { CgSpinner } from "react-icons/cg";
+
 
 
 
@@ -23,13 +25,16 @@ const AddResponsibility = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
+    setLoader(true)
     if (currlength <= 250) {
       if(edit){
         const error = await dispatch(editResponsibility(id, student._id, data))
+        setLoader(false)
         error ? toast.error(error.data.message)
         : toast.success("Responsibility updated")
       }else{
         const error = await dispatch(addResponsibility(student._id, data))
+        setLoader(false)
         error ? toast.error(error.data.message)
           : toast.success("Responsibility added")
       }
@@ -54,6 +59,9 @@ const AddResponsibility = ({ edit = false }) => {
   }, [watch]);
 
   const responsibility = student?.resume?.responsibilities.find(item => item.id === id)
+
+      const [loader, setLoader] = useState(false)
+
 
   return (
     < div className='w-full h-screen fixed top-[0]' >
@@ -102,8 +110,8 @@ const AddResponsibility = ({ edit = false }) => {
           <Button
             type='submit'
             bgColor='bg-[#1F2937]'
-            className='w-1/2 font-semibold m-auto'
-          >Save</Button>
+            className='w-1/2 font-semibold m-auto flex justify-center'
+          >{loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :"Save"}</Button>
         </form>
 
       </div>

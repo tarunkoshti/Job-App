@@ -10,6 +10,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from 'react-toastify'
 import { MdErrorOutline } from 'react-icons/md'
+import { motion } from 'framer-motion'
+import { CgSpinner } from "react-icons/cg";
 
 
 
@@ -26,13 +28,16 @@ const AddProject = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
+        setLoader(true)
     if (currlength <= 1000) {
       if (edit) {
         const error = await dispatch(editProject(id, student._id, data))
+        setLoader(false)
         error ? toast.error(error.data.message)
           : toast.success("Project updated")
       } else {
         const error = await dispatch(addProject(student._id, data))
+        setLoader(false)
         error ? toast.error(error.data.message)
           : toast.success("Project added")
       }
@@ -61,6 +66,8 @@ const AddProject = ({ edit = false }) => {
   }, [watch]);
 
   const project = student?.resume?.projects.find(item => item.id === id)
+
+    const [loader, setLoader] = useState(false)
 
   return (
     < div className='w-full h-screen fixed top-[0]' >
@@ -197,8 +204,8 @@ const AddProject = ({ edit = false }) => {
           <Button
             type='submit'
             bgColor='bg-[#1F2937]'
-            className='w-1/2 font-semibold m-auto'
-          >Save</Button>
+            className='w-1/2 font-semibold m-auto flex justify-center'
+          >{loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :"Save"}</Button>
         </form>
 
       </div >

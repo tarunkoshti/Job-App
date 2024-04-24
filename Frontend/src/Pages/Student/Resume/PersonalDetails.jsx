@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
 import { MdErrorOutline } from 'react-icons/md'
 import { toast } from 'react-toastify'
+import { CgSpinner } from "react-icons/cg";
+
 
 
 const PersonalDetails = () => {
@@ -21,8 +23,10 @@ const PersonalDetails = () => {
 
 
     const submit = async (data) => {
+         setLoader(true)
         // console.log(data)
         const error = await dispatch(updateStudent(student._id, data))
+         setLoader(false)
         error ? toast.error(error.data.message)
         : toast.success("Profile updated")
         navigate("/student/resume")
@@ -31,6 +35,9 @@ const PersonalDetails = () => {
     const backHandler = () => {
         navigate(-1)
     }
+
+        const [loader, setLoader] = useState(false)
+
 
     return (
         < div className='w-full h-screen fixed top-[0]' >
@@ -139,8 +146,8 @@ const PersonalDetails = () => {
                     <Button
                         type='submit'
                         bgColor='bg-[#1F2937]'
-                        className='w-1/2 font-semibold m-auto'
-                    >Update</Button>
+                        className='w-1/2 font-semibold m-auto flex justify-center'
+                    >{loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :"Update"}</Button>
                 </form>
             </div>
         </div >

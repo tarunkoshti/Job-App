@@ -10,6 +10,8 @@ import { toast } from 'react-toastify'
 import { MdErrorOutline } from 'react-icons/md'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { CgSpinner } from "react-icons/cg";
+
 
 const AddTrainingAndCourses = ({ edit = false }) => {
 
@@ -24,13 +26,16 @@ const AddTrainingAndCourses = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
-    if (currlength <= 500) {
+        setLoader(true)
+      if (currlength <= 500) {
       if (edit) {
         const error = await dispatch(editTrainingCourse(id, student._id, data))
+         setLoader(false)
         error ? toast.error(error.data.message)
           : toast.success("Training/Course updated")
       } else {
         const error = await dispatch(addTrainingCourse(student._id, data))
+         setLoader(false)
         error ? toast.error(error.data.message)
           : toast.success("Training/Course added")
       }
@@ -63,6 +68,9 @@ const AddTrainingAndCourses = ({ edit = false }) => {
   }, [watch]);
 
   const course = student?.resume?.courses.find(item => item.id === id)
+
+      const [loader, setLoader] = useState(false)
+
 
   return (
     < div className='w-full h-screen fixed top-[0]' >
@@ -223,8 +231,8 @@ const AddTrainingAndCourses = ({ edit = false }) => {
           <Button
             type='submit'
             bgColor='bg-[#1F2937]'
-            className='w-1/2 font-semibold m-auto'
-          >Save</Button>
+            className='w-1/2 font-semibold m-auto flex justify-center'
+          >{loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :"Save"}</Button>
         </form>
 
       </div>
