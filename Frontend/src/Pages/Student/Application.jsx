@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { allapplyinternship, currentUser } from '../../store/Actions/userActions'
-import { allapplyjob } from '../../store/Actions/userActions'
 import { Link } from 'react-router-dom'
 import { MdOutlineLibraryBooks } from "react-icons/md";
+import { FaCircle } from "react-icons/fa";
 const Application = () => {
 
   const dispatch = useDispatch()
@@ -34,80 +33,84 @@ const Application = () => {
 
   // const applications = [...appliedinternships, ...appliedjobs];
   return (
-        <>
-                {/* Internship - Application */}
-                <div className=' mx-2 md:mx-20 rounded-lg overflow-x-auto border-2 border-zinc-300 mt-16'>
-                  <h1 className='text-3xl text-center font-semibold py-10 '>Internship Application</h1>
-                  <div className='shadow-md'>
-                    <table className='w-full table-fixed'>
-                      <thead>
-                        <tr className='bg-gray-100 font-semibold border-b-2 border-zinc-500 text-sm'>
-                          <th className='w-1/6 md:w-1/5 py-4 text-sm'>Company</th>
-                          <th className='w-1/6 md:w-1/5 text-sm'>Profile</th>
-                          <th className='w-1/6 md:w-1/5 text-sm'>Type</th>
-                          <th className='w-1/6 md:w-1/5 text-sm'>Applicants</th>
-                          <th className='w-1/6 md:w-1/5 text-sm'>Review</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {internshipId && internshipId.map((studentItem, index) => (
-                          <tr key={index} className='border-b border-zinc-300'>
-                            {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
-                              <React.Fragment key={internIndex}>
-                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-10 py-3 md:py-3'>{intern.company}</td>
-                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-18 py-3 text-center'>{intern.profile}</td>
-                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-22 py-3 text-center'>{intern.internshiptype}</td>
-                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-16 lg:pl-24 py-3'>{intern.students.length}</td>
-                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-16 lg:pl-24 py-3'>
-                                  <Link to={`/student/internship/read/${studentItem}`} className='block text-center'><span><MdOutlineLibraryBooks /></span></Link>
-                                </td>
-                              </React.Fragment>
-                            ))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+    <>
+      {/* Internship - Application */}
+      <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg'>
+        <h1 className='text-3xl  font-medium py-10 max-md:text-xl flex items-center gap-2'> <FaCircle size={10}/> Internship Application</h1>
+        <div className='rounded-xl overflow-hidden border-l border-r overflow-x-auto'
+        style={{scrollbarWidth: 'none'}}>
+          <table className='w-full table-fixed overflow-auto'>
+            <thead>
+              <tr className='bg-gray-100 font-semibold border-b-2 border-zinc-500 text-base max-md:text-sm'>
+                <th className='w-[300px] max-md:w-[200px] text-left py-4 pl-5 font-medium'>Company</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Profile</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Type</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Applicants</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Review</th>
+              </tr>
+            </thead>
+            <tbody>
+              {internshipId && internshipId.map((studentItem, index) => (
+                <tr key={index} className='border-b border-zinc-300 max-md:text-sm'>
+                  {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
+                    <React.Fragment key={internIndex}>
+                      <td className='w-[300px] max-md:w-[200px] py-3 pl-5'>{intern.company}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3'>{intern.profile}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3'>{intern.internshiptype}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3'>{intern.students.length}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3'>
+                        <Link to={`/student/internship/read/${studentItem}`} className='block'><span><MdOutlineLibraryBooks /></span></Link>
+                      </td>
+                    </React.Fragment>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-                  {/* Job - Application */}
-                
-                </div>
-                <div className=' mx-2 md:mx-20 rounded-lg overflow-x-auto border-2 border-zinc-300 mt-16'>
-                  <h1 className='text-3xl text-center font-semibold py-10 '>Job Application</h1>
-                  <div className='shadow-md'>
-                    <table className='w-full table-fixed'>
-                      <thead>
-                        <tr className='bg-gray-100 font-semibold border-b-2 border-zinc-500 text-sm'>
-                          <th className='w-1/6 md:w-1/5 py-4 text-sm'>Company</th>
-                          <th className='w-1/6 md:w-1/5 text-sm'>Profile</th>
-                          <th className='w-1/6 md:w-1/5 text-sm'>Type</th>
-                          <th className='w-1/6 md:w-1/5 text-sm'>Applicants</th>
-                          <th className='w-1/6 md:w-1/5 text-sm'>Review</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {jobId && jobId.map((studentItem, index) => (
-                          <tr key={index} className='border-b border-zinc-300'>
-                            {jobs?.filter(job => job._id === studentItem).map((job, Index) => (
-                              <React.Fragment key={Index}>
-                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-10 py-3 md:py-3'>{job.company}</td>
-                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-18 py-3 text-center'>{job.profile}</td>
-                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-22 py-3 text-center'>{job.jobtype}</td>
-                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-16 lg:pl-24 py-3'>{job.students.length}</td>
-                                <td className='w-1/5 md:w-1/6 pl-4 md:pl-16 lg:pl-24 py-3'>
-                                  <Link to={`/student/job/read/${studentItem}`} className='block text-center'><span><MdOutlineLibraryBooks /></span></Link>
-                                </td>
-                              </React.Fragment>
-                            ))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+        {/* Job - Application */}
 
-                </div>
-              </>               
-            )
+      </div>
+
+      {/* job applications */}
+      <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg'>
+        <h1 className='text-3xl font-medium py-10 max-md:text-xl flex items-center gap-2 '> <FaCircle size={10} />Job Application</h1>
+        <div className='rounded-xl overflow-hidden border-l border-r overflow-x-auto'
+        style={{scrollbarWidth:'none'}}>
+          <table className='w-full table-fixed'>
+            <thead>
+              <tr className='bg-gray-100 font-semibold border-b-2 border-zinc-500 text-base max-md:text-sm'>
+                <th className='w-[300px] max-md:w-[200px] text-left py-4 pl-5 font-medium'>Company</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Profile</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Type</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Applicants</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Review</th>
+              </tr>
+            </thead>
+            <tbody>
+              {jobId && jobId.map((studentItem, index) => (
+                <tr key={index} className='border-b border-zinc-300 max-md:text-sm'>
+                  {jobs?.filter(job => job._id === studentItem).map((job, Index) => (
+                    <React.Fragment key={Index}>
+                      <td className='w-[300px] max-md:w-[200px] py-3 pl-5'>{job.company}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3'>{job.profile}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3'>{job.jobtype}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3'>{job.students.length}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3'>
+                        <Link to={`/student/job/read/${studentItem}`} className='block'><span><MdOutlineLibraryBooks /></span></Link>
+                      </td>
+                    </React.Fragment>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </>
+  )
 }
 
 export default Application
