@@ -10,6 +10,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MdErrorOutline } from 'react-icons/md'
 import { toast } from 'react-toastify'
+import { motion } from 'framer-motion'
+import { CgSpinner } from "react-icons/cg";
 
 
 const AddJob = ({ edit = false }) => {
@@ -26,13 +28,16 @@ const AddJob = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
+        setLoader(true)
     if (currlength <= 250) {
       if (edit) {
         const error = await dispatch(editJob(id, student._id, data))
+        setLoader(false)
         error ? toast.error(error.data.message)
           : toast.success("Job updated")
       } else {
         const error = await dispatch(addJob(student._id, data))
+        setLoader(false)
         error ? toast.error(error.data.message)
           : toast.success("Job added")
       }
@@ -66,6 +71,9 @@ const AddJob = ({ edit = false }) => {
   }, [watch]);
 
   const job = student?.resume?.jobs.find(item => item.id === id)
+
+    const [loader, setLoader] = useState(false)
+
 
   return (
     < div className='w-full h-screen overflow-scroll fixed top-[0]' >
@@ -241,8 +249,8 @@ const AddJob = ({ edit = false }) => {
           <Button
             type='submit'
             bgColor='bg-[#1F2937]'
-            className='w-1/2 font-semibold m-auto'
-          >Save</Button>
+            className='w-1/2 font-semibold m-auto flex justify-center'
+          >{loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :"Save"}</Button>
         </form>
 
       </div>

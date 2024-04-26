@@ -322,6 +322,10 @@ const router = createBrowserRouter([
               </AuthLayout>
             )
           },
+          {
+            path: "about",
+            element: <About />,
+          },
         ]
       },
       {
@@ -335,6 +339,10 @@ const router = createBrowserRouter([
                 <EmployeeHome />
               </AuthLayout>
             ),
+          },
+          {
+            path: "about",
+            element: <About />,
           },
           {
             path: "login",

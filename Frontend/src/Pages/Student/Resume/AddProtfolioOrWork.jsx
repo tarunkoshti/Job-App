@@ -8,6 +8,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { RxCross2 } from "react-icons/rx";
 import { toast } from 'react-toastify'
 import { MdErrorOutline } from 'react-icons/md'
+import { motion } from 'framer-motion'
+import { CgSpinner } from "react-icons/cg";
 
 const AddProtfolioOrWork = ({ edit = false }) => {
 
@@ -20,16 +22,19 @@ const AddProtfolioOrWork = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
+        setLoader(true)
     // console.log(data)
     let i = 0;
     for (const key in data) {
       if (data[key] !== "") {
         if (edit) {
           const error = await dispatch(editWorkSample(id, student._id, data))
+          setLoader(true)
           error ? toast.error(error.data.message)
             : toast.success("Work sample updated")
         } else {
           const error = await dispatch(addWorkSample(student._id, data))
+          setLoader(true)
           error ? toast.error(error.data.message)
             : toast.success("Work sample added")
         }
@@ -50,6 +55,8 @@ const AddProtfolioOrWork = ({ edit = false }) => {
   }
 
   const worksample = student?.resume?.worksamples.find(item => item.id === id)
+
+    const [loader, setLoader] = useState(false)
 
   return (
     < div className='w-full h-screen fixed top-[0]' >
@@ -207,8 +214,8 @@ const AddProtfolioOrWork = ({ edit = false }) => {
           <Button
             type='submit'
             bgColor='bg-[#1F2937]'
-            className='w-1/2 font-semibold m-auto'
-          >Save</Button>
+            className='w-1/2 font-semibold m-auto flex justify-center'
+          >{loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :"Save"}</Button>
         </form>
 
       </div>

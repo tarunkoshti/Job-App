@@ -256,7 +256,7 @@ const CreateInternship = () => {
                                         label="Stipend Amount"
                                         placeholder="'e.g. 10000'"
                                         type="number"
-                                        {...register("stipend", {
+                                        {...register("stipend.amount", {
                                             required: {
                                                 value: true,
                                                 message: "Stipend Amount is required"
@@ -389,14 +389,14 @@ const CreateInternship = () => {
 
 
                                 {/* Applicants */}
-                                {/* <div className="w-full md:max-w-lg mt-1">
+                                <div className="w-full md:max-w-lg mt-1">
                                     <Input
                                         label="Applicants"
                                         placeholder="e.g. 1250"
                                         type="text"
                                         {...register("applicants")}
                                     />
-                                </div> */}
+                                </div>
 
                                 {/* Assessments */}
                                 <div className="w-full md:max-w-lg mt-1">

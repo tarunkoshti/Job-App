@@ -10,7 +10,8 @@ import { FaPlus } from "react-icons/fa6";
 import Select from '../../../Components/Select'
 import { MdErrorOutline } from 'react-icons/md'
 import { toast } from 'react-toastify'
-
+import { motion } from 'framer-motion'
+import { CgSpinner } from "react-icons/cg";
 
 
 const AddEducation = ({ edit = false }) => {
@@ -27,12 +28,15 @@ const AddEducation = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
+        setLoader(true)
     if (edit) {
       const error = await dispatch(editEducation(id, student._id, data))
+        setLoader(false)
       error ? toast.error(error.data.message)
         : toast.success("Education updated")
     } else {
       const error = await dispatch(addEducation(student._id, data))
+        setLoader(false)
       error ? toast.error(error.data.message)
         : toast.success("Education added")
     }
@@ -52,6 +56,9 @@ const AddEducation = ({ edit = false }) => {
 
   const edu = student?.resume?.education.find(item => item.id === id)
   // console.log(edu?.eduType)
+
+   const [loader, setLoader] = useState(false)
+
 
   return (
     < div className='w-full h-screen fixed top-[0]' >
@@ -195,8 +202,10 @@ const AddEducation = ({ edit = false }) => {
             <Button
               type='submit'
               bgColor='bg-[#1F2937]'
-              className='w-1/2 font-semibold m-auto'
-            >Save</Button>
+              className='w-1/2 font-semibold m-auto  flex justify-center'
+            >
+            {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :           "Save"}
+           </Button>
           </form>
         }
 
@@ -277,8 +286,8 @@ const AddEducation = ({ edit = false }) => {
             <Button
               type='submit'
               bgColor='bg-[#1F2937]'
-              className='w-1/2 font-semibold m-auto'
-            >Save</Button>
+              className='w-1/2 font-semibold m-auto flex justify-center'
+            > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :           "Save"}</Button>
           </form>
         }
         {
@@ -350,8 +359,8 @@ const AddEducation = ({ edit = false }) => {
             <Button
               type='submit'
               bgColor='bg-[#1F2937]'
-              className='w-1/2 font-semibold m-auto'
-            >Save</Button>
+              className='w-1/2 font-semibold m-auto flex justify-center'
+            > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :           "Save"}</Button>
           </form>
         }
         {
@@ -442,8 +451,8 @@ const AddEducation = ({ edit = false }) => {
             <Button
               type='submit'
               bgColor='bg-[#1F2937]'
-              className='w-1/2 font-semibold m-auto'
-            >Save</Button>
+              className='w-1/2 font-semibold m-auto flex justify-center'
+            > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :           "Save"}</Button>
           </form>
         }
         {
@@ -535,8 +544,8 @@ const AddEducation = ({ edit = false }) => {
             <Button
               type='submit'
               bgColor='bg-[#1F2937]'
-              className='w-1/2 font-semibold m-auto'
-            >Save</Button>
+              className='w-1/2 font-semibold m-auto flex justify-center'
+            > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :           "Save"}</Button>
           </form>
         }
 
