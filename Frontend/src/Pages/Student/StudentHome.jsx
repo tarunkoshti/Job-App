@@ -182,7 +182,7 @@ const StudentHome = () => {
                 );
               })}
             </select></div>
-          <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+          <div id='job' className='h-3/5 w-full flex items-center gap-4 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
             {optionData === "Remote" ? (
               jobs && jobs.filter((job) => job.jobtype === "Remote").map((job, index) => (
                 <JobCard key={index} index={index} job={job} />
@@ -229,7 +229,7 @@ const StudentHome = () => {
                 );
               })}
             </select></div>
-          <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+          <div id='job' className='h-3/5 w-full flex items-center gap-4 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
 
             {data === "Remote" ? (
               internships && internships.filter((internship) => internship.internshiptype === "Remote").map((internship, index) => (
