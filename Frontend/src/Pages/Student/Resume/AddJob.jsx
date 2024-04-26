@@ -28,7 +28,7 @@ const AddJob = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
-        setLoader(true)
+    setLoader(true)
     if (currlength <= 250) {
       if (edit) {
         const error = await dispatch(editJob(id, student._id, data))
@@ -72,7 +72,7 @@ const AddJob = ({ edit = false }) => {
 
   const job = student?.resume?.jobs.find(item => item.id === id)
 
-    const [loader, setLoader] = useState(false)
+  const [loader, setLoader] = useState(false)
 
 
   return (
@@ -157,6 +157,7 @@ const AddJob = ({ edit = false }) => {
 
             <div>
               <Input
+                style='relative'
                 defaultValue={edit ? (job?.startDate || '') : ''}
                 type="text"
                 label="Start date"
@@ -181,6 +182,7 @@ const AddJob = ({ edit = false }) => {
 
             <div>
               <Input
+                style='relative'
                 defaultValue={edit ? (job?.endDate || '') : ''}
                 type="text"
                 label="End date"
@@ -250,7 +252,7 @@ const AddJob = ({ edit = false }) => {
             type='submit'
             bgColor='bg-[#1F2937]'
             className='w-1/2 font-semibold m-auto flex justify-center'
-          >{loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :"Save"}</Button>
+          >{loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) : "Save"}</Button>
         </form>
 
       </div>

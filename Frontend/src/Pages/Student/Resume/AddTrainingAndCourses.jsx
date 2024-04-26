@@ -138,6 +138,7 @@ const AddTrainingAndCourses = ({ edit = false }) => {
 
             <div>
               <Input
+                style='relative'
                 defaultValue={edit ? (course?.startDate || '') : ''}
                 type="text"
                 label="Start date"
@@ -162,6 +163,7 @@ const AddTrainingAndCourses = ({ edit = false }) => {
 
             <div>
               <Input
+                style='relative'
                 defaultValue={edit ? (course?.endDate || '') : ''}
                 type="text"
                 label="End date"

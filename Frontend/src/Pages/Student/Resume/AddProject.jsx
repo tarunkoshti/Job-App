@@ -99,6 +99,7 @@ const AddProject = ({ edit = false }) => {
 
             <div>
               <Input
+                style='relative'
                 defaultValue={edit ? (project?.startDate || '') : ''}
                 type="text"
                 label="Start date"
@@ -123,6 +124,7 @@ const AddProject = ({ edit = false }) => {
 
             <div>
               <Input
+                style='relative'
                 defaultValue={edit ? (project?.endDate || '') : ''}
                 type="text"
                 label="End date"

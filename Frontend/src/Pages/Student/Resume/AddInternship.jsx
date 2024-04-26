@@ -31,7 +31,7 @@ const AddInternship = ({ edit = false }) => {
         if (currlength <= 250) {
             if (edit) {
                 const error = await dispatch(editInternship(id, student._id, data))
-                 setLoader(false)
+                setLoader(false)
 
                 error ? toast.error(error.data.message)
                     : toast.success("Internship updated")
@@ -140,6 +140,7 @@ const AddInternship = ({ edit = false }) => {
 
                         <div>
                             <Input
+                                style='relative'
                                 defaultValue={edit ? (internship?.startDate || '') : ''}
                                 type="text"
                                 label="Start date"
@@ -165,6 +166,7 @@ const AddInternship = ({ edit = false }) => {
                         <div className='relative'>
 
                             <Input
+                                style='relative'
                                 defaultValue={edit ? (internship?.endDate || '') : ''}
                                 type="text"
                                 label="End date"
@@ -232,7 +234,7 @@ const AddInternship = ({ edit = false }) => {
                         type='submit'
                         bgColor='bg-[#1F2937]'
                         className='w-1/2 font-semibold m-auto flex justify-center'
-                    > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :       "Save"}</Button>
+                    > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) : "Save"}</Button>
                 </form>
 
             </div>
