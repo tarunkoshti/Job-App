@@ -80,9 +80,9 @@ const Resume = () => {
         <div className=''>
             {student && (
                 <div className='w-full'>
-                    <h1 className="text-center text-4xl font-semibold mt-6">Resume</h1>
+                    <h1 className="text-center text-3xl font-medium mt-6">Resume</h1>
 
-                    <div className='w-[65%] m-auto mt-6'>
+                    <div className='px-10 lg:w-[65%] m-auto mt-6'>
                         <div className='w-full py-3 rounded-lg border border-orange-300 flex justify-center items-center gap-2'>
                             <MdErrorOutline className='text-orange-300' />
                             <span>Whenever you apply to an internship or fresher job, this is the resume that the employer will see. Always make sure it is up to date.</span>
@@ -92,7 +92,7 @@ const Resume = () => {
                             <div className='personalDetail border-b py-5 flex justify-between'>
 
                                 <div>
-                                    <h6 className='capitalize font-semibold text-3xl flex items-center gap-2'>
+                                    <h6 className='capitalize font-medium text-3xl flex items-center gap-2'>
                                         <span>{student.firstname} {student.lastname}</span>
                                         <Link
                                             to='/student/resume/edit/personal_details' className='mt-1.5'><HiPencil size={30}
@@ -100,9 +100,9 @@ const Resume = () => {
                                         </Link>
                                     </h6>
 
-                                    <p className='font-normal text-base'>{student.email}</p>
-                                    <p className='font-normal text-base'>{student.contact}</p>
-                                    <p className='font-normal text-base capitalize'>{student.city}</p>
+                                    <p className='font-normal text-base text-gray-700'>{student.email}</p>
+                                    <p className='font-normal text-base text-gray-700'>{student.contact}</p>
+                                    <p className='font-normal text-base capitalize text-gray-700'>{student.city}</p>
                                 </div>
 
                                 <div >
@@ -115,21 +115,21 @@ const Resume = () => {
                             </div>
 
                             <div className='education border-b py-5 flex items-start'>
-                                <h2 className='uppercase font-semibold text-sm w-1/4'>education</h2>
+                                <h2 className='uppercase font-semibold tracking-wider text-sm w-1/4 pr-10'>education</h2>
                                 <div className='w-3/4'>
                                     <ul className=''>
                                         {resume.education.map((item) => (
                                             <li key={item.id}
                                                 className='mb-2 flex justify-between items-start'>
                                                 {item?.college && (
-                                                    <div>
-                                                        {item?.branch && <p className='font-semibold'>{item?.degree}, <span>({item?.branch})</span></p>}
+                                                    <div className='pr-10'>
+                                                        {item?.branch && <p className='font-semibold tracking-wider'>{item?.degree}, <span>({item?.branch})</span></p>}
                                                         {item?.stream && item.eduType === "diploma" && (
-                                                            <p className='font-semibold'>Diploma, ({item?.stream})</p>
+                                                            <p className='font-semibold tracking-wider'>Diploma, ({item?.stream})</p>
                                                         )
                                                         }
                                                         {item?.stream && item.eduType === "phd" && (
-                                                            <p className='font-semibold'>PHD, ({item?.stream})</p>
+                                                            <p className='font-semibold tracking-wider'>PHD, ({item?.stream})</p>
                                                         )
                                                         }
                                                         <p>{item?.college}</p>
@@ -137,10 +137,10 @@ const Resume = () => {
                                                     </div>
                                                 )}
                                                 {item?.school && (
-                                                    <div>
+                                                    <div className='pr-10'>
                                                         {item?.stream ?
-                                                            (<p className='font-semibold'>Higher Secondary, ({item?.board})</p>)
-                                                            : (<p className='font-semibold'>High Secondary, ({item?.board})</p>)}
+                                                            (<p className='font-semibold tracking-wider'>Higher Secondary, ({item?.board})</p>)
+                                                            : (<p className='font-semibold tracking-wider'>High Secondary, ({item?.board})</p>)}
                                                         <p>{item?.school}</p>
                                                         <p>{item?.completionYear
                                                         }</p>
@@ -167,7 +167,7 @@ const Resume = () => {
                             </div>
 
                             <div className='work border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>WORK EXPERIENCE</h2>
+                                <h2 className='font-semibold tracking-wider uppercase text-sm w-1/4 pr-10'>WORK EXPERIENCE</h2>
                                 <div className='w-3/4'>
                                     <ul className=''>
                                         {
@@ -175,8 +175,8 @@ const Resume = () => {
                                                 <li key={item.id}
                                                     className='mb-2 flex justify-between items-start'>
 
-                                                    <div>
-                                                        <p className='font-semibold'>{item?.designation}<span>, ({item?.profile})</span></p>
+                                                    <div className='pr-10'>
+                                                        <p className='font-semibold tracking-wider'>{item?.designation}<span>, ({item?.profile})</span></p>
                                                         <p>{item.organization}, <span>{item.Location}</span></p>
                                                         <p className='flex gap-2'><span className='font-medium'>Job</span> <span>{item.startDate}</span>- <span>{item.endDate}</span></p>
                                                         <div>
@@ -209,8 +209,8 @@ const Resume = () => {
                                                 <li key={item.id}
                                                     className='mb-2 flex justify-between items-start'>
 
-                                                    <div>
-                                                        <p className='font-semibold'>{item?.profile}</p>
+                                                    <div className='pr-10'>
+                                                        <p className='font-semibold tracking-wider'>{item?.profile}</p>
                                                         <p>{item.organization}, <span>{item.Location}</span></p>
                                                         <p className='flex gap-2'><span className='font-medium'>Internship</span> <span>{item.startDate}</span>- <span>{item.endDate}</span></p>
                                                         <div>
@@ -255,13 +255,13 @@ const Resume = () => {
                             </div>
 
                             <div className='responsibility border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>POSITIONS OF RESPONSIBILITY</h2>
+                                <h2 className='font-semibold tracking-wider uppercase text-sm w-1/4 pr-10'>POSITIONS OF RESPONSIBILITY</h2>
                                 <div className='w-3/4'>
                                     <ul className=''>
                                         {resume.responsibilities.map((item) => (
                                             <li key={item.id}
                                                 className='mb-2 flex justify-between items-start'>
-                                                <div>
+                                                <div className='pr-10'>
                                                     <ul>
                                                         {item.description.split('\n').map((point, index) => (
                                                             <li key={index}>
@@ -294,14 +294,14 @@ const Resume = () => {
                             </div>
 
                             <div className='training&course border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>TRAININGS/ COURSES</h2>
+                                <h2 className='font-semibold tracking-wider uppercase text-sm w-1/4 pr-10'>TRAININGS/ COURSES</h2>
                                 <div className='w-3/4'>
                                     <ul className=''>
                                         {resume.courses.map((item) => (
                                             <li key={item.id}
                                                 className='mb-2 flex justify-between items-start'>
-                                                <div>
-                                                    <p className='font-semibold'>{item.training}</p>
+                                                <div className='pr-10'>
+                                                    <p className='font-semibold tracking-wider'>{item.training}</p>
                                                     <p>{item.organization}, <span>{item.Location}</span></p>
                                                     {item.startDate && item.endDate &&
                                                         <p>{item.startDate} - {item.endDate}</p>
@@ -329,15 +329,15 @@ const Resume = () => {
                             </div>
 
                             <div className='project border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>ACADEMICS/ <br /> PERSONAL PROJECTS</h2>
+                                <h2 className='font-semibold tracking-wider uppercase text-sm w-1/4 pr-10'>PERSONAL PROJECTS</h2>
                                 <div className='w-3/4'>
 
                                     <ul className=''>
                                         {resume.projects.map((item) => (
                                             <li key={item.id}
                                                 className='mb-2 flex justify-between items-start'>
-                                                <div>
-                                                    <p className='font-semibold'>{item.title}</p>
+                                                <div className='pr-10'>
+                                                    <p className='font-semibold tracking-wider'>{item.title}</p>
                                                     {item.startDate && item.endDate &&
                                                         <p>{item.startDate} - {item.endDate}</p>
                                                     }
@@ -373,14 +373,14 @@ const Resume = () => {
                             </div>
 
                             <div className='skills border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>SKILLS</h2>
+                                <h2 className='font-semibold tracking-wider uppercase text-sm w-1/4 pr-10'>SKILLS</h2>
                                 <div className='w-3/4'>
                                     <ul className='flex w-full flex-wrap justify-between'>
                                         {resume.skills.map((item) => (
                                             <li key={item.id}
-                                                className='w-[34%] mb-2 flex justify-between items-start'>
-                                                <div>
-                                                    <p className='font-semibold'>{item.skill}</p>
+                                                className='w-[200px] mb-2 flex justify-between items-start'>
+                                                <div className='w-full'>
+                                                    <p className='font-medium tracking-wide'>{item.skill}</p>
                                                     <p>{item.level}</p>
                                                 </div>
                                                 <div className='flex gap-5'>
@@ -404,7 +404,7 @@ const Resume = () => {
                             </div>
 
                             <div className='portfolio border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>PORTFOLIO/ <br /> WORK SAMPLES</h2>
+                                <h2 className='font-semibold tracking-wider uppercase text-sm w-1/4 pr-10'>PORTFOLIO/ <br /> WORK SAMPLES</h2>
                                 <div className='w-3/4'>
 
                                     <ul className=''>
@@ -413,7 +413,7 @@ const Resume = () => {
                                             item.value && <li key={item.id}
                                                 className='mb-2 flex justify-between items-start'>
 
-                                                <div className='flex items-center gap-2'>
+                                                <div className='flex items-center gap-2 tracking-wide'>
                                                     {
                                                         item.key === "blogLink" && (
                                                             <FaBlog className=' hover:bg-gray-200 rounded-full p-1.5'
@@ -473,8 +473,7 @@ const Resume = () => {
                             </div>
 
                             <div className='accomplishment border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>ACCOMPLISHMENTS/ <br />
-                                    ADDITIONAL DETAILS</h2>
+                                <h2 className='font-semibold tracking-wider uppercase text-sm w-1/4 pr-10 '>ACCOMPLISHMENTS</h2>
                                 <div className='w-3/4'>
                                     <ul className=''>
                                         {resume.accomplishments.map((item) => (
