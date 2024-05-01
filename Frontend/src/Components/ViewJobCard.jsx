@@ -3,21 +3,22 @@ import { Link } from 'react-router-dom';
 import { CiCalendarDate } from "react-icons/ci";
 import { IoLocationSharp } from "react-icons/io5";
 
-const JobCard = ({ index, job }) => {
-
-    const colors = ["bg-[#D8E8D4]", "bg-[#FFE0CD]",];
+const ViewJobCard = ({ index, job }) => {
+ const colors = ["bg-[#D8E8D4]", "bg-[#FFE0CD]",];
 
     return (
 
         <>
-        <Link to={`/student/job/read/${job._id}`}>
+        <Link to={`/student/jobs/readjob/${job._id}`}>
                         
-        <div key={job._id}  className={`m-2 w-80 mb-5 p-2  border-zinc-300 border-2 shrink-0 rounded-xl pb-16 ${colors[index % colors.length]}`}>
+        {/* <div  className='  bg-white  rounded-xl '> */}
+
+            <div key={job._id} className={`m-2 w-[320px] mb-5 p-2  border-zinc-600 border shrink-0 rounded-lg pb-16 ${colors[index % colors.length]}`}>
 
                 <div className='flex items-center justify-between gap-2 mt-2'>
                     <div className='flex items-center gap-2 py-1 px-2 w-1/2 bg-white text-white ml-4 mt-5 rounded-xl'>
                         <span className='text-black text-lg'><CiCalendarDate /></span>
-                        <h3 className='text-black font-medium'>{job.startdate}</h3>
+                        <h3 className='text-black font-medium text-sm'>{job.startdate}</h3>
                     </div>
                     <div className='flex items-center  gap-2 mr-6 mt-5 py-2 px-4  rounded-full bg-white cursor-pointer'>
                         <span className='text-black text-lg'><IoLocationSharp /></span>
@@ -57,9 +58,10 @@ const JobCard = ({ index, job }) => {
                     </div>
                 </div>
             </div>
+        {/* </div> */}
         </Link>
         </>
     )
 }
 
-export default JobCard
+export default ViewJobCard
