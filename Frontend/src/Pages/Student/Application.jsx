@@ -57,9 +57,9 @@ const Application = () => {
                       <td className='w-[300px] max-md:w-[200px] py-3 pl-5'>{intern.company}</td>
                       <td className='w-[300px] max-md:w-[200px] py-3'>{intern.profile}</td>
                       <td className='w-[300px] max-md:w-[200px] py-3'>{intern.internshiptype}</td>
-                      <td className='w-[300px] max-md:w-[200px] py-3'>{intern.students.length}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3'>{intern.students?.length}</td>
                       <td className='w-[300px] max-md:w-[200px] py-3'>
-                        <Link to={`/student/internship/read/${studentItem}`} className='block'><span><MdOutlineLibraryBooks /></span></Link>
+                        <Link to={`/student/internships/read/${studentItem}`} className='block'><span><MdOutlineLibraryBooks /></span></Link>
                       </td>
                     </React.Fragment>
                   ))}
