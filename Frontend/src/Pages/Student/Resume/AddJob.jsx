@@ -133,7 +133,7 @@ const AddJob = ({ edit = false }) => {
           </div>
 
           <div>
-            <Input
+            <Input 
               defaultValue={edit ? (job?.Location || '') : ''}
               label="Location"
               placeholder="e.g. Mumbai"

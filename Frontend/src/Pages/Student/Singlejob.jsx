@@ -65,11 +65,11 @@ const Singlejob = () => {
 
         job && <div className="w-full flex flex-col items-center">
             <h1 className="text-center text-4xl font-semibold mt-6">{job.profile} Job</h1>
-            <div className="w-full sm:w-3/4 mt-16 border-2 border-zinc-200 py-2 rounded-lg">
+            <div className="w-full sm:w-3/4 mt-16 border-2 border-zinc-400 py-2 rounded-lg">
 
-                <div class="border-b-2 border-zinc-200">
+                <div class="border-b-2 border-zinc-400">
                     <div className='flex justify-between' >
-                        <div class="flex items-center   w-fit gap-2 px-4 py-1 bg-[#1F2937] text-white rounded-md ml-10 mt-4">
+                        <div class="flex items-center w-fit gap-2 px-4 py-1 bg-[#1F2937] text-white rounded-md ml-10 mt-4">
                             <FaArrowTrendUp size={14} />
                             <h6 class="text-xs">Actively hiring</h6>
                         </div>
@@ -154,14 +154,14 @@ const Singlejob = () => {
 
 
                 {/* <!-- description --> */}
-                < div class="ml-10 mt-5" >
+                < div class="ml-10 mt-5 whitespace-pre-line break-words" >
                     <div>
                         <h1 class="font-semibold">About the job</h1>
-                        <h3 class="ml-2">{job.description}</h3>
+                        <h3 class="ml-2 whitespace-pre-line break-words">{job.description}</h3>
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2 whitespace-pre-line break-words">
                         <h1>Key responsibilities :</h1>
-                        <p class="ml-3 mt-2">{job.responsibilities}
+                        <p class="ml-3 mt-2 whitespace-pre-line break-words">{job.responsibilities}
                             {/* <p>1. Conduct demo classes as per the PlanetSpark content and methodology</p>
                             <p>2. Ensure an amazing demo experience for the child and parent</p>
                             <p>3. Conduct regular classes (post enrolment) using an in-house curriculum</p>
@@ -169,9 +169,9 @@ const Singlejob = () => {
                             <p>5. Adhere to the schedule for the demo as well as regular classes</p> */}
                         </p>
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-4 whitespace-pre-line break-words">
                         <h1>Qualifications:</h1>
-                        <p class="ml-3 mt-2">{job.qualifications}
+                        <p class="ml-3 mt-2 whitespace-pre-line break-words">{job.qualifications}
                             {/* <p>1. Solid understanding of JavaScript, HTML, CSS, and related web technologies</p>
                             <p>2. Experience working with the MERN (MongoDB, Express.js, React.js, Node.js) stack</p>
                             <p>3. Familiarity with front-end frameworks such as React or Angular</p>
@@ -180,9 +180,9 @@ const Singlejob = () => {
                             <p>6. Excellent communication and collaboration skills</p> */}
                         </p>
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-4 whitespace-pre-line break-words">
                         <h1>Compensation and working conditions:</h1>
-                        <p class="ml-3 mt-2">{job.workconditions}
+                        <p class="ml-3 mt-2 whitespace-pre-line break-words">{job.workconditions}
                             {/* <p>1. Salary: 2-4 LPA (based on experience and skills)</p>
                             <p>2. Commitment: 8 hours per day, Monday to Saturday</p>
                             <p>3. Probation period: 4 months</p> */}
@@ -222,9 +222,9 @@ const Singlejob = () => {
                 </div >
 
                 {/* <!-- Preferences --> */}
-                < div class="ml-10 mt-5" >
+                < div class="ml-10 mt-5 whitespace-pre-line break-words" >
                     <h1 class="font-semibold text-lg">Preferences :</h1>
-                    <h3 class="ml-4 mt-1">{job.preferences}</h3>
+                    <h3 class="ml-4 mt-1 whitespace-pre-line break-words">{job.preferences}</h3>
                 </div >
 
                 {/* <!-- Perks --> */}
@@ -238,15 +238,15 @@ const Singlejob = () => {
                 </div >
 
                 {/* <!-- Assessments --> */}
-                < div class="ml-10 mt-5" >
+                < div class="ml-10 mt-5 whitespace-pre-line break-words" >
                     <h1 class="font-semibold text-lg">Assessments :</h1>
-                    <h3 class="ml-4 mt-1">{job.assements}</h3>
+                    <h3 class="ml-4 mt-1 whitespace-pre-line break-words">{job.assements}</h3>
                 </div >
 
                 {/* <!-- companyDetail --> */}
-                < div class="ml-10 mt-5" >
+                < div class="ml-10 mt-5 whitespace-pre-line break-words" >
                     <h1 class="font-semibold text-lg">About {job.company}</h1>
-                    <h3 class="ml-4 mt-1 w-full px-4">At {job.companyDetail}
+                    <h3 class="ml-4 mt-1 w-full px-4 whitespace-pre-line break-words">At {job.companyDetail}
                         {/* , we're not just another digital agency, we're your dedicated allies in the dynamic world of marketing, community management, and website development. Our mission is simple - to provide our clients, ranging from small influencers and startups to industry-leading enterprises, with an unparalleled ease-of-work experience. */}
                     </h3>
                 </div >

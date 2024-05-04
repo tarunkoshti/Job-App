@@ -516,7 +516,7 @@ const AddEducation = ({ edit = false }) => {
                 {errors.lastYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.lastYear.message}</span></p>}
               </div>
 
-            </div>
+            </div> 
 
             <div>
               <Input

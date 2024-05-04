@@ -7,10 +7,11 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { asyncCreateInternship } from '../../store/Actions/internshipActions'
 import { MdErrorOutline } from "react-icons/md";
+import DatePicker from "react-datepicker";
 
 const CreateInternship = () => {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm()
+    const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [i, setI] = useState(null)
@@ -19,19 +20,41 @@ const CreateInternship = () => {
         await dispatch(asyncCreateInternship(data))
         navigate("/employee")
     }
+
     useEffect(() => {
         const internshiptype = watch((value, { name }) => {
             if (name == "internshiptype") {
-                let str = value.internshiptype
-             
-                    setI(str)
-                
-                console.log(str)
+                value.internshiptype == "Remote" ? setValue("location", "Remote")
+          : setValue("location", "")
+            }
+            if (name == "companyDetail") {
+                let str = value.companyDetail.trim("/n")
+                setCurrlength(str.length)
+            }
+            if (name == "workconditions") {
+                let str = value.workconditions.trim("/n")
+                setCurrlength(str.length)
+            }
+            if (name == "qualifications") {
+                let str = value.qualifications.trim("/n")
+                setCurrlength(str.length)
+            }
+            if (name == "description") {
+                let str = value.description.trim("/n")
+                setCurrlength(str.length)
+            }
+             if (name == "assessments") {
+                let str = value.assessments.trim("/n")
+                setCurrlength(str.length)
+            }
+            if (name == "responsibility") {
+                let str = value.responsibility.trim("/n")
+                setCurrlength(str.length)
             }
         });
-        internshiptype
+        
 
-    }, [watch,i]);
+    }, [watch, i]);
 
     return (
 
@@ -76,40 +99,40 @@ const CreateInternship = () => {
                                 </div>
 
                                 {/* Internship-type-div */}
-                                <div className="w-full md:max-w-lg mt-5">
-                                    <label className="block mb-2">Internship Type:</label>
-                                    <div className="flex items-center">
-                                        <div className="flex items-center">
-                                            <input
-                                                id="inOffice"
-                                                type="radio"
-                                                value="In office"
-                                                {...register("internshiptype", {
-                                                    required: {
-                                                        value: true,
-                                                        message: "internshiptype is required"
-                                                    },
-                                                })}
-                                            />
-                                            <label htmlFor="inOffice" className="ml-2 mr-4">In office</label>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <input
-                                                id="remote"
-                                                type="radio"
-                                                value="Remote"
-                                                {...register("internshiptype", {
-                                                    required: {
-                                                        value: true,
-                                                        message: "internshiptype is required"
-                                                    },
-                                                })}
-                                            />
-                                            <label htmlFor="remote" className="ml-2">Remote</label>
-                                        </div>
-                                    </div>
+                                <div className="w-full md:max-w-lg mt-3">
+                                    <Select
+                                        options={["In office", "Remote"]}
+                                        label="Internship Type"
+                                        className="mb-4"
+                                        {...register("internshiptype", {
+                                            required: {
+                                                value: true,
+                                                message: "internshiptype is required"
+                                            },
+                                        })}
+                                    />
                                     {errors.internshiptype && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.internshiptype.message}</span></p>}
                                 </div>
+
+                                 {/* Location */}
+                                
+                                    <div className="w-full md:max-w-lg mt-1">
+                                        <Input
+                                            label="Location"
+                                            placeholder="e.g. Indore"
+                                            type="text"
+                                            {...register("location", {
+                                                required: { value: true, message: "Location is required" },
+                                            })}
+                                        />
+                                        {errors.location && (
+                                            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                                                <MdErrorOutline />
+                                                <span>{errors.location.message}</span>
+                                            </p>
+                                        )}
+                                    </div>
+                                
 
 
                                 {/* Working-type-div */}
@@ -203,7 +226,7 @@ const CreateInternship = () => {
                                 </div>
 
                                 {/* From */}
-                                <div className="w-full md:max-w-lg mt-3">
+                                {/* <div className="w-full md:max-w-lg mt-3">
                                     <label htmlFor="fromDate" className="block mb-2">From:</label>
                                     <input
                                         id="fromDate"
@@ -211,11 +234,34 @@ const CreateInternship = () => {
                                         {...register("from")}
                                         className="border border-gray-300 px-3 py-2 rounded-lg w-full"
                                     />
+                                </div> */}
+
+                                <div className='w-full md:max-w-lg mt-3'>
+                                <Input
+                                    type="text"
+                                    label="From"
+                                    placeholder="e.g. 01/01/2024"
+                                    {...register("from", {
+                                    required: {
+                                        value: true,
+                                        message: "required"
+                                    }
+                                    })}
+                                >
+                                    <DatePicker
+                                    className='w-full outline-none px-3 py-2 bg-red-500 rounded-lg opacity-0'
+                                    onChange={(date) => {
+                                        const formattedDate = date.toLocaleDateString('en-GB'); // Format: dd/MM/yyyy
+                                        setValue("from", formattedDate);
+                                    }}
+                                    />
+                                </Input>
+                                {errors.from && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.from.message}</span></p>}
                                 </div>
 
                                 {/* To */}
 
-                                <div className="w-full md:max-w-lg mt-3">
+                                {/* <div className="w-full md:max-w-lg mt-3">
                                     <label htmlFor="toDate" className="block mb-2">To:</label>
                                     <input
                                         id="toDate"
@@ -223,6 +269,29 @@ const CreateInternship = () => {
                                         {...register("to")}
                                         className="border border-gray-300 px-3 py-2 rounded-lg w-full"
                                     />
+                                </div> */}
+
+                                <div className='w-full md:max-w-lg mt-3'>
+                                <Input
+                                    type="text"
+                                    label="To"
+                                    placeholder="e.g. 01/06/2024"
+                                    {...register("to", {
+                                    required: {
+                                        value: true,
+                                        message: "required"
+                                    }
+                                    })}
+                                >
+                                    <DatePicker
+                                    className='w-full outline-none px-3 py-2 bg-red-500 rounded-lg opacity-0'
+                                    onChange={(date) => {
+                                        const formattedDate = date.toLocaleDateString('en-GB'); // Format: dd/MM/yyyy
+                                        setValue("to", formattedDate);
+                                    }}
+                                    />
+                                </Input>
+                                {errors.to && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.to.message}</span></p>}
                                 </div>
 
                                 {/* Responsibility */}
@@ -235,11 +304,18 @@ const CreateInternship = () => {
                                             required: {
                                                 value: true,
                                                 message: "Responsibility is required"
-                                            }
+                                            },
+                                            validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
                                         })}
                                         className="border border-gray-300 px-3 py-2 rounded-lg w-full h-[110px] resize-none"
                                     />
-                                    {errors.Responsibility && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.Responsibility.message}</span></p>}
+                                    {errors.responsibility && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.responsibility.message}</span></p>}
                                 </div>
 
 
@@ -365,27 +441,6 @@ const CreateInternship = () => {
                                     {errors.company && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.company.message}</span></p>}
                                 </div>
 
-                                {/* Location */}
-                                {i == "Remote" ? (
-                                    <div />
-                                ) : (
-                                    <div className="w-full md:max-w-lg mt-1">
-                                        <Input
-                                            label="Location"
-                                            placeholder="e.g. Indore"
-                                            type="text"
-                                            {...register("location", {
-                                                required: { value: true, message: "Location is required" },
-                                            })}
-                                        />
-                                        {errors.location && (
-                                            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                                                <MdErrorOutline />
-                                                <span>{errors.location.message}</span>
-                                            </p>
-                                        )}
-                                    </div>
-                                )}
 
 
                                 {/* Applicants */}
@@ -406,8 +461,21 @@ const CreateInternship = () => {
                                         name="assessments"
                                         className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
                                         placeholder="Type your question here...."
-                                        {...register("assessments")}
+                                        {...register("assessments", {
+                                            required: {
+                                                value: true,
+                                                message: "Assessments is required"
+                                            },
+                                            validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
+                                        })}
                                     />
+                                    {errors.assessments && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.assessments.message}</span></p>}
                                 </div>
 
                                 {/* Description */}
@@ -418,8 +486,21 @@ const CreateInternship = () => {
                                         name="description"
                                         className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Ensure an amazing demo experience for the child and parent..."
-                                        {...register("description")}
+                                        {...register("description", {
+                                            required: {
+                                                value: true,
+                                                message: "Description is required"
+                                            },
+                                            validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
+                                        })}
                                     />
+                                    {errors.description && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.description.message}</span></p>}
                                 </div>
 
 
@@ -435,7 +516,14 @@ const CreateInternship = () => {
                                             required: {
                                                 value: true,
                                                 message: "Qualifications is required"
-                                            }
+                                            },
+                                            validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
                                         })}
                                     />
                                     {errors.qualifications && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.qualifications.message}</span></p>}
@@ -450,9 +538,21 @@ const CreateInternship = () => {
                                         name="workconditions"
                                         className="w-full border rounded-lg px-3 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Salary: 2-4 LPA"
-                                        {...register("workconditions")}
+                                        {...register("workconditions", {
+                                            required: {
+                                                value: true,
+                                                message: "work conditions is required"
+                                            },
+                                             validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
+                                        })}
                                     />
-                                   
+                                    {errors.workconditions && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.workconditions.message}</span></p>}          
                                 </div>
 
 
@@ -468,7 +568,14 @@ const CreateInternship = () => {
                                             required: {
                                                 value: true,
                                                 message: "companyDetail is required"
-                                            }
+                                            },
+                                             validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
                                         })}
                                     />
                                     {errors.companyDetail && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.companyDetail.message}</span></p>}

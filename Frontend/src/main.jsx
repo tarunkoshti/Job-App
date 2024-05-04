@@ -99,7 +99,29 @@ const router = createBrowserRouter([
                 <AllInternship />
               </AuthLayout>
             ),
+            children: [
+          {
+            path: "readinterbship/:id",
+            element: (
+              <AuthLayout authentication={true}>
+                <Singleinternship />
+              </AuthLayout>
+            ),
+
           },
+          
+            ]
+          },
+          {
+            path: "internships/read/:id",
+            element: (
+              <AuthLayout authentication={true}>
+                <Singleinternship />
+              </AuthLayout>
+            ),
+
+          },
+        
           {
             path: "jobs",
             element: (
@@ -107,6 +129,18 @@ const router = createBrowserRouter([
                 <AllJob />
               </AuthLayout>
             ),
+            children:[
+              {
+            path: "readjob/:id",
+            element: (
+              <AuthLayout authentication={true}>
+                <Singlejob />
+              </AuthLayout>
+            ),
+
+          },
+              
+            ]
           },
           {
             path: "job/read/:id",
@@ -117,15 +151,24 @@ const router = createBrowserRouter([
             ),
 
           },
-          {
-            path: "internship/read/:id",
-            element: (
-              <AuthLayout authentication={true}>
-                <Singleinternship />
-              </AuthLayout>
-            ),
+          // {
+          //   path: "job/read/:id",
+          //   element: (
+          //     <AuthLayout authentication={true}>
+          //       <Singlejob />
+          //     </AuthLayout>
+          //   ),
 
-          },
+          // },
+          // {
+          //   path: "internship/read/:id",
+          //   element: (
+          //     <AuthLayout authentication={true}>
+          //       <Singleinternship />
+          //     </AuthLayout>
+          //   ),
+
+          // },
           {
             path: "application",
             element: (
