@@ -17,3 +17,7 @@
 .snap-mandatory{
     
 }
+
+.scroll::-webkit-scrollbar{
+    display: none;
+}
