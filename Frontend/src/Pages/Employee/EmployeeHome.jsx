@@ -33,29 +33,30 @@ const EmployeeHome = () => {
               <div className="w-full bg-white font-sans">
                 <div className="flex flex-col items-center md:gap-6 px-4 md:px-0 pb-8">
                   <div className="flex flex-col items-center mt-10 md:mt-24">
-                    <h1 className="text-center text-[#1F2937] text-4xl md:text-6xl font-semibold leading-relaxed md:pl-12 ">
-                      Find the best <span className='text-[#1E3A8A]'>Candidates</span> for <br /> your Company
+                    <h1 className="text-center text-[#1F2937] text-4xl md:text-6xl font-medium leading-relaxed md:pl-12 capitalize tracking-normal ">
+                      Find the best <span className='text-[#2507B3]'>Candidates</span> for <br /> your Company
                     </h1>
-                    <p className="pl-4 md:pl-10 mt-8 text-[#1F2937] text-base md:text-lg text-center tracking-wide">
+                    <p className="pl-4 md:pl-10 mt-6 text-[#1F2937] text-base md:text-lg text-center tracking-wide">
                       Get more sales and maximize the conversion rates. Discover the most productive channels.
                     </p>
                     <p className='mt-2 text-center'>Discover the optimal match for your Company and get the best results together</p>
-                    <Link to=""><button className='p-4 px-10 py-3 mt-10 bg-[#1f2937] text-white font-semibold rounded-lg'>Get Started</button></Link>
+                    <Link to=""><button className='p-4 px-10 py-3 mt-10 bg-[#2507B3] text-white font-semibold rounded-lg'>Get Started</button></Link>
                   </div>
                 </div>
 
                 <div className='border-t-2 border-b-2 border-zinc-200 h-auto rounded-lg mx-4 md:mx-10 my-10 px-4 md:px-10 py-10 text-[1F2937]'>
                   <div className='h-auto rounded-lg'>
-                    <h1 className="text-center text-[#1F2937] text-4xl md:text-5xl font-semibold md:pl-12 py-6 tracking-wide leading-relaxed">
+                    <h1 className="text-center text-[#1F2937] text-4xl md:text-5xl font-medium md:pl-12 py-6 tracking-normal leading-relaxed capitalize">
                       Leverage Global World-class <br /> talented people
                     </h1>
                     <p className="pl-4 md:pl-10 text-[#1F2937] leading-normal mt-2 text-base md:text-lg text-center tracking-wide">
                       Discover the optimal match for your startup and get the best results together
                     </p>
                   </div>
-                  <div className='h-auto rounded-lg flex flex-col md:flex-row gap-8 md:gap-20 overflow-hidden px-4 md:px-20 py-8'>
 
-                     <div className='bg-white border-2 h-[280px] md:h-auto md:max-w-[340px] rounded-lg hover:bg-[#1F2937] hover:text-white duration-500 flex flex-col justify-between'>
+                  {/* <div className='h-auto rounded-lg flex flex-col md:flex-row gap-8 md:gap-20 overflow-hidden px-4 md:px-20 py-8'>
+
+                     <div className='bg-white border-2 h-[280px] md:h-auto md:max-w-[340px] rounded-lg hover:bg-[#070db3] hover:text-white duration-500 flex flex-col justify-between'>
                     <div className='py-8 px-6 md:py-10 md:px-10'>
                       <div className='w-full flex justify-center'>
                         <span className='text-3xl md:text-4xl'><BsStars /></span>
@@ -67,7 +68,7 @@ const EmployeeHome = () => {
                     </div>
                     </div>
 
-                     <div className='bg-white border-2 h-[280px] md:h-auto md:max-w-[340px] rounded-lg hover:bg-[#1F2937] hover:text-white duration-500 flex flex-col justify-between'>
+                     <div className='bg-white border-2 h-[280px] md:h-auto md:max-w-[340px] rounded-lg hover:bg-[#2507B3] hover:text-white duration-500 flex flex-col justify-between'>
                     <div className='py-8 px-6 md:py-10 md:px-10'>
                       <div className='w-full flex justify-center'>
                         <span className='text-3xl md:text-4xl'><BsStars /></span>
@@ -79,7 +80,7 @@ const EmployeeHome = () => {
                     </div>
                     </div>
 
-                   <div className='bg-white border-2 h-[280px] md:h-auto md:max-w-[340px] rounded-lg hover:bg-[#1F2937] hover:text-white duration-500 flex flex-col justify-between'>
+                   <div className='bg-white border-2 h-[280px] md:h-auto md:max-w-[340px] rounded-lg hover:bg-[#2507B3] hover:text-white duration-500 flex flex-col justify-between'>
                     <div className='py-8 px-6 md:py-10 md:px-10'>
                       <div className='w-full flex justify-center'>
                         <span className='text-3xl md:text-4xl'><BsStars /></span>
@@ -91,15 +92,17 @@ const EmployeeHome = () => {
                     </div>
                     </div>
 
-                  </div>
+                  </div> */}
+
+
                 </div>
 
                 <div className='text-center mx-4 md:mx-10 rounded-lg py-20'>
-                  <h1 className="text-center text-[#1F2937] text-4xl md:text-5xl font-semibold leading-relaxed md:pl-12 ">Start looking for the Best Talent </h1>
+                  <h1 className="text-center text-[#1F2937] text-4xl md:text-5xl font-medium leading-relaxed md:pl-12 capitalize">Start looking for the Best Talent </h1>
                   <p className="pl-4 md:pl-10 py-4 text-[#1F2937] leading-normal mt-2 text-base md:text-lg text-center tracking-wide">
                     Get more sales and maximize the conversion rates. Discover the most productive channels.
                   </p>
-                  <Link to=""><button className='p-4 py-3 px-10 mt-8 bg-[#1f2937] text-white font-semibold rounded-lg'>Get Started</button></Link>
+                  <Link to=""><button className='p-4 py-3 px-10 mt-8 bg-[#2507B3] text-white font-semibold rounded-lg'>Get Started</button></Link>
                 </div>
               </div>
             </>

@@ -25,41 +25,41 @@ const About = () => {
         </div>
 
         <div className='mt-10 md:mt-28 flex flex-col items-center'>
-          <h1 className='text-center text-2xl md:text-4xl py-5 font-medium'>What we do</h1>
-          <h3 className='text-center text-lg md:text-xl w-full md:w-1/2 tracking-wider'>Wherever you are on your career journey, Glassdoor makes it easier for workers and companies to find the perfect match.</h3>
+          <h1 className='text-center text-xl md:text-3xl py-5 font-medium'>What we do</h1>
+          <h3 className='text-center text-md md:text-lg w-full md:w-1/2 tracking-wide'>Wherever you are on your career journey, Glassdoor makes it easier for workers and companies to find the perfect match.</h3>
         </div>
 
         <div className='flex flex-col md:flex-row items-center justify-center gap-6 md:gap-28 mt-8 md:mt-16 px-10'>
           <div className='p-6 md:p-12 rounded-xl hover:shadow-2xl border-2 border-zinc-500 hover:text-black duration-500 cursor-pointer'>
-            <h1 className='font-medium py-2 text-xl md:text-3xl'>For job seekers</h1>
-            <p className='w-full md:w-56 tracking-wider text-md md:text-lg ml-4'>We simplify your search, so you can apply for jobs with confidence. Filter millions of jobs and ratings, talk to professionals, and get smart on salary—then apply with ease.</p>
+            <h1 className='font-medium py-2 text-lg md:text-2xl'>For job seekers</h1>
+            <p className='w-full md:w-56 tracking-wide text-md md:text-lg ml-4'>We simplify your search, so you can apply for jobs with confidence. Filter millions of jobs and ratings, talk to professionals, and get smart on salary—then apply with ease.</p>
           </div>
           <div className='p-6 md:p-12 rounded-xl hover:shadow-2xl border-2 border-zinc-500 hover:text-black duration-500 cursor-pointer'>
-            <h1 className='font-medium py-2 text-xl md:text-3xl'>For employees</h1>
+            <h1 className='font-medium py-2 text-lg md:text-2xl'>For employees</h1>
             <p className='w-full md:w-56 tracking-wider text-md md:text-lg ml-4'>We amplify your voice, so you can enhance your workplace experience. Leave reviews, search and post salaries, and join candid conversations about life at work.</p>
           </div>
           <div className='p-6 md:p-12 rounded-xl hover:shadow-2xl border-2 border-zinc-500 hover:text-black duration-500 cursor-pointer'>
-            <h1 className='font-medium py-2 text-xl md:text-3xl'>For employers</h1>
+            <h1 className='font-medium py-2 text-lg md:text-2xl'>For employers</h1>
             <p className='w-full md:w-56 tracking-wider text-md md:text-lg ml-4'>We give you a place to shape and share your story, so you can find and keep the best talent. Post jobs, respond to reviews, and gain insights to shape your messaging.</p>
           </div>
         </div>
 
         <div className='mt-10 md:mt-28 flex flex-col items-center'>
-          <h1 className='text-center text-2xl md:text-4xl py-5 font-semibold'>Hirer by the numbers</h1>
-          <h3 className='text-center text-lg md:text-xl w-full md:w-1/2 tracking-wider'>Since 2024, Hirer has been a proud champion of transparency in the workplace. Today, our mission guides us in serving a global community of millions.</h3>
+          <h1 className='text-center text-2xl md:text-4xl py-5 font-medium capitalize'>Hirer by the numbers</h1>
+          <h3 className='text-center text-md md:text-lg w-full md:w-1/2 tracking-wide'>Since 2024, Hirer has been a proud champion of transparency in the workplace. Today, our mission guides us in serving a global community of millions.</h3>
         </div>
 
         <div className='flex flex-col md:flex-row items-center justify-center gap-6 md:gap-32 mt-8 md:mt-16'>
           <div className='flex flex-col gap-3'>
-            <h1 className='text-3xl md:text-8xl text-center font-medium'>55 <span className='text-xl md:text-6xl font-medium'>M+</span></h1>
+            <h1 className='text-3xl md:text-7xl text-center font-medium'>55 <span className='text-xl md:text-6xl font-medium'>M+</span></h1>
             <h3 className='text-lg md:text-xl font-semibold text-center'>unique monthly visitors</h3>
           </div>
           <div className='flex flex-col gap-3'>
-            <h1 className='text-3xl md:text-8xl text-center font-medium'>180 <span className='text-xl md:text-6xl font-medium'>M+</span></h1>
+            <h1 className='text-3xl md:text-7xl text-center font-medium'>180 <span className='text-xl md:text-6xl font-medium'>M+</span></h1>
             <h3 className='text-lg md:text-xl font-semibold text-center'>reviews, salaries & <br /> insights</h3>
           </div>
           <div className='flex flex-col gap-3'>
-            <h1 className='text-3xl md:text-8xl text-center font-medium'>2.5 <span className='text-xl md:text-6xl font-medium'>M+</span></h1>
+            <h1 className='text-3xl md:text-7xl text-center font-medium'>2.5 <span className='text-xl md:text-6xl font-medium'>M+</span></h1>
             <h3 className='text-lg md:text-xl font-semibold text-center'>employer profiles</h3>
           </div>
         </div>

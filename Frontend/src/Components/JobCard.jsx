@@ -12,7 +12,7 @@ const JobCard = ({ index, job }) => {
         <>
         <Link to={`/student/job/read/${job._id}`}>
                         
-        <div key={job._id}  className={`m-2 w-80 mb-5 p-2  border-zinc-300 border-2 shrink-0 rounded-xl pb-16 ${colors[index % colors.length]}`}>
+        <div key={job._id}  className={`m-2 w-80 mb-5 p-2 shadow-xl shrink-0 rounded-xl pb-16 ${colors[index % colors.length]}`}>
 
                 <div className='flex items-center justify-between gap-2 mt-2'>
                     <div className='flex items-center gap-2 py-1 px-2 w-1/2 bg-white text-white ml-4 mt-5 rounded-xl'>

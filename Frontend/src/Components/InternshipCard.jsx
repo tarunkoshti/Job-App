@@ -12,7 +12,7 @@ const InternshipCard = ({ index, internship }) => {
         <>
            <Link to={`/student/internships/read/${internship._id}`}>
                             
-             <div key={internship._id} className={`m-2 w-80 mb-5 p-2  border-zinc-300 border-2 shrink-0 rounded-xl pb-16 ${colors[index % colors.length]}`}>
+             <div key={internship._id} className={`m-2 w-80 mb-5 p-2 shadow-lg shrink-0 rounded-xl pb-16 ${colors[index % colors.length]}`}>
 
                
                     <div className='flex items-center justify-between gap-2 mt-2'>
