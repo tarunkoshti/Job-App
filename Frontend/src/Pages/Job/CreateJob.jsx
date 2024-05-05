@@ -27,10 +27,10 @@ const CreateJob = () => {
                 value.jobtype == "Remote" ? setValue("location", "Remote")
           : setValue("location", "")
             }
-             if (name == "companyDetail") {
-                let str = value.companyDetail.trim("/n")
-                setCurrlength(str.length)
-            }
+            //  if (name == "companyDetail") {
+            //     let str = value.companyDetail.trim("/n")
+            //     setCurrlength(str.length)
+            // }
              if (name == "workconditions") {
                 let str = value.workconditions.trim("/n")
                 setCurrlength(str.length)
@@ -575,13 +575,13 @@ const CreateJob = () => {
                                                 value: true,
                                                 message: "Company Detail is required"
                                             },
-                                             validate: {
-                                                bulletPoints: value => {
-                                                    const bulletPoints = value.split('\n');
-                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
-                                                    || "Each point must start with a number followed by a dot.";
-                                                },
-                                                }
+                                            //  validate: {
+                                            //     bulletPoints: value => {
+                                            //         const bulletPoints = value.split('\n');
+                                            //         return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                            //         || "Each point must start with a number followed by a dot.";
+                                            //     },
+                                            //     }
                                         })}
                                     />
                                     {errors.companyDetail && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.companyDetail.message}</span></p>}

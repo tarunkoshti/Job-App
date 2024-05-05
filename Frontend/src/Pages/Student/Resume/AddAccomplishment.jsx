@@ -66,23 +66,22 @@ const AddAccomplishment = ({ edit = false }) => {
   return (
     < div className='w-full h-screen fixed top-[0]' >
       <div className='w-full h-screen overlay bg-black opacity-50'></div>
-      <div className='w-full h-[100px
-      ]: max-w-lg rounded-xl border bg-gray-50 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
+      <div className='scroll w-full max-sm:h-full h-[90%] max-w-xl overflow-y-auto sm:rounded-lg border bg-gray-50 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
         <RxCross2 onClick={backHandler} size={25} className='absolute right-5 top-5 cursor-pointer' />
         <form
           onSubmit={handleSubmit(submit)}
-          className='w-full p-10 flex flex-col gap-5'>
+          className='w-full p-5 sm:p-10 flex flex-col gap-5'>
           <h1 className='text-center text-xl font-semibold'>Accomplishments</h1>
 
 
           <label htmlFor="des" className='flex flex-col gap-1'>
             {/* <span>Description</span> */}
-            <p className='text-sm mb-1 font-semibold text-gray-700'>Add your accomplishments such as rewards, recognitions, test scores, certifications, etc. here. You may also add information such as seminars/workshops you have attended or any interests/hobbies you have pursued.</p>
+            <p className='text-sm mb-1 font- text-gray-500'>Add your accomplishments such as rewards, recognitions, test scores, certifications, etc. here. You may also add information such as seminars/workshops you have attended or any interests/hobbies you have pursued.</p>
             {errors.description && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.description.message}</span></p>}
             <textarea
               defaultValue={edit ? (accomplishment?.description || '') : ''}
               name="description"
-              className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
+              className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[200px] resize-none text-sm'
               id='des'
               type="description"
               placeholder={`#Keep it in points\n1. Secured 1st rank among 500 entries in national level story writing compitition organised by Carrer Race.\n2.`}

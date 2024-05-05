@@ -110,153 +110,202 @@ const StudentHome = () => {
 
         {/* Company-scorllbar */}
 
-        <div className='h-[30vh] md:h-[40vh] w-full mt-10 md:mt-16 border-t-2  overflow-hidden'>
-          <div className='h-[20vh] w-full'>
-            <h3 className='pt-10 md:pt-12 text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10'>Trusted by the Best Companies</h3>
+        <div className='w-full  bg-gray-100 py-20 overflow-hidden my-16'>
+          <div className=' pb-10'>
+            <h3 className='text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10'>Trusted by the Best Companies</h3>
           </div>
 
-          <div id='scroller' className='h-[7vh] md:h-[12vh] w-full px-10 flex items-center gap-6 md:gap-10 whitespace-nowrap overflow-x-auto snap-mandatory'>
+          <div className='flex'>
+            <div id='scroller' className='w-fit gap-10 px-10 flex whitespace-nowrap '>
 
-            {/* Add your company logos here with appropriate styling */}
+              {/* Add your company logos here with appropriate styling */}
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:w-40 bg-[url(https://1000logos.net/wp-content/uploads/2021/10/Meta-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:w-40 bg-[url(https://1000logos.net/wp-content/uploads/2021/10/Meta-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/Paytm/Paytm-Logo.wine.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/Paytm/Paytm-Logo.wine.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2023/06/Airtel-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2023/06/Airtel-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://car-logos.b-cdn.net/wp-content/uploads/2023/04/ceat-logo-present-scaled.webp)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://car-logos.b-cdn.net/wp-content/uploads/2023/04/ceat-logo-present-scaled.webp)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/08/Xiaomi-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/08/Xiaomi-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2022/08/Zara-Logo-1980s.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2022/08/Zara-Logo-1980s.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1200px-Tata_Consultancy_Services_Logo.svg.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1200px-Tata_Consultancy_Services_Logo.svg.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/09/Nestle-Symbol.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/09/Nestle-Symbol.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2022/07/HCL-Technologies-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2022/07/HCL-Technologies-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/e/e4/Adani_2012_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/e/e4/Adani_2012_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/07/IndiGo-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/07/IndiGo-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/05/Sony-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/05/Sony-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2022/01/Unilever-Symbol.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2022/01/Unilever-Symbol.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/PhonePe/PhonePe-Logo.wine.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/PhonePe/PhonePe-Logo.wine.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/2560px-SAP_2011_logo.svg.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/2560px-SAP_2011_logo.svg.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/1/15/Deloitte_Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/1/15/Deloitte_Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/Capgemini/Capgemini-Logo.wine.png'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/Capgemini/Capgemini-Logo.wine.png'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Collabera_logo.png/1200px-Collabera_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Collabera_logo.png/1200px-Collabera_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-            <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
 
+            </div>
+
+            <div id='scroller' className='w-fit gap-10 px-10 flex whitespace-nowrap '>
+
+              {/* Add your company logos here with appropriate styling */}
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:w-40 bg-[url(https://1000logos.net/wp-content/uploads/2021/10/Meta-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/Paytm/Paytm-Logo.wine.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2023/06/Airtel-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://car-logos.b-cdn.net/wp-content/uploads/2023/04/ceat-logo-present-scaled.webp)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/08/Xiaomi-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2022/08/Zara-Logo-1980s.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1200px-Tata_Consultancy_Services_Logo.svg.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/09/Nestle-Symbol.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2022/07/HCL-Technologies-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/e/e4/Adani_2012_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/07/IndiGo-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/05/Sony-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2022/01/Unilever-Symbol.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/PhonePe/PhonePe-Logo.wine.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/2560px-SAP_2011_logo.svg.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/1/15/Deloitte_Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/Capgemini/Capgemini-Logo.wine.png'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Collabera_logo.png/1200px-Collabera_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+
+
+            </div>
           </div>
         </div>
 
         {/* <JobCard /> */}
-          <section>
-        <div className=' w-full overflow-hidden'>
+        <section>
+          <div className=' w-full overflow-hidden'>
 
-          <div className='py-3 mb-8'>
-            <h1 className='text-2xl sm:text-3xl md:text-4xl text-center font-medium px-10'>Explore all Job Opportunity</h1>
-          </div>
-          <div className='flex items-center justify-center'>
-            <h1 className='px-2 bg-pink-100 py-1 rounded-lg font-semibold'>Apply filter </h1>
-            <select className='py-1 bg-blue-100 rounded-lg px-3 mx-4' onChange={onOptionChangeJobHandler}>
-              <option>Please choose one option</option>
-              {JobOptions.map((option, index) => {
-                return (
-                  <option key={index}>
-                    {option}
-                  </option>
-                );
-              })}
-            </select></div>
-          <div id='job' className='h-3/5 w-full flex items-center gap-6 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
-            {optionData === "Remote" ? (
-              jobs && jobs.filter((job) => job.jobtype === "Remote").map((job, index) => (
-                <JobCard key={index} index={index} job={job} />
-              ))
-            ) : optionData == "In office" ? (
-              jobs && jobs.filter((job) => job.jobtype === "In office").map((job, index) => (
-                <JobCard key={index} index={index} job={job} />
-              ))
-            ) : optionData == "Full-time" ? (
-              jobs && jobs.filter((job) => job.workingtype === "Full-time").map((job, index) => (
-                <JobCard key={index} index={index} job={job} />
-              ))) : optionData == "Part-time" ? (
-                jobs && jobs.filter((job) => job.workingtype === "Part-time").map((job, index) => (
+            <div className='py-3 mb-8'>
+              <h1 className='text-2xl sm:text-3xl md:text-4xl text-center font-medium px-10'>Explore all Job Opportunity</h1>
+            </div>
+            <div className='flex items-center justify-center'>
+              <h1 className='px-2 bg-pink-100 py-1 rounded-lg font-semibold'>Apply filter </h1>
+              <select className='py-1 bg-blue-100 rounded-lg px-3 mx-4' onChange={onOptionChangeJobHandler}>
+                <option>Please choose one option</option>
+                {JobOptions.map((option, index) => {
+                  return (
+                    <option key={index}>
+                      {option}
+                    </option>
+                  );
+                })}
+              </select></div>
+            <div id='job' className='h-3/5 w-full flex items-center gap-6 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+              {optionData === "Remote" ? (
+                jobs && jobs.filter((job) => job.jobtype === "Remote").map((job, index) => (
                   <JobCard key={index} index={index} job={job} />
-                ))) : (
+                ))
+              ) : optionData == "In office" ? (
+                jobs && jobs.filter((job) => job.jobtype === "In office").map((job, index) => (
+                  <JobCard key={index} index={index} job={job} />
+                ))
+              ) : optionData == "Full-time" ? (
+                jobs && jobs.filter((job) => job.workingtype === "Full-time").map((job, index) => (
+                  <JobCard key={index} index={index} job={job} />
+                ))) : optionData == "Part-time" ? (
+                  jobs && jobs.filter((job) => job.workingtype === "Part-time").map((job, index) => (
+                    <JobCard key={index} index={index} job={job} />
+                  ))) : (
 
-              jobs &&
-              (jobs.map((job, index) => (
-                <JobCard key={index} index={index} job={job} />
-              )))
+                jobs &&
+                (jobs.map((job, index) => (
+                  <JobCard key={index} index={index} job={job} />
+                )))
 
-            )}
+              )}
+            </div>
+
           </div>
-
-        </div>
         </section>
 
         {/* Internship-Card */}
-            <section>
-        <div className=' w-full overflow-hidden'>
+        <section>
+          <div className=' w-full overflow-hidden'>
 
-          <div className='py-3 mb-8'>
-            <h1 className='text-2xl sm:text-3xl md:text-4xl text-center font-medium'>Explore all Internship Opportunity</h1>
-          </div>
-          <div className='flex items-center justify-center'>
-            <h1 className='px-2 bg-pink-100 py-1 rounded-lg font-semibold'>Apply filter </h1>
-            <select className='py-1 bg-blue-100 rounded-lg px-3 mx-4' onChange={onOptionChangeHandler}>
-              <option>Please choose one option</option>
-              {options.map((option, index) => {
-                return (
-                  <option key={index}>
-                    {option}
-                  </option>
-                );
-              })}
-            </select></div>
-          <div id='job' className='h-3/5 w-full flex items-center gap-6 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
+            <div className='py-3 mb-8'>
+              <h1 className='text-2xl sm:text-3xl md:text-4xl text-center font-medium'>Explore all Internship Opportunity</h1>
+            </div>
+            <div className='flex items-center justify-center'>
+              <h1 className='px-2 bg-pink-100 py-1 rounded-lg font-semibold'>Apply filter </h1>
+              <select className='py-1 bg-blue-100 rounded-lg px-3 mx-4' onChange={onOptionChangeHandler}>
+                <option>Please choose one option</option>
+                {options.map((option, index) => {
+                  return (
+                    <option key={index}>
+                      {option}
+                    </option>
+                  );
+                })}
+              </select></div>
+            <div id='job' className='h-3/5 w-full flex items-center gap-6 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
 
-            {data === "Remote" ? (
-              internships && internships.filter((internship) => internship.internshiptype === "Remote").map((internship, index) => (
-                <InternshipCard key={index} index={index} internship={internship} />
-              ))
-            ) : data == "In office" ? (
-              internships && internships.filter((internship) => internship.internshiptype === "In office").map((internship, index) => (
-                <InternshipCard key={index} index={index} internship={internship} />
-              ))
-            ) : data == "Full-time" ? (
-              internships && internships.filter((internship) => internship.workingtype === "Full-time").map((internship, index) => (
-                <InternshipCard key={index} index={index} internship={internship} />
-              ))) : data == "Part-time" ? (
-                internships && internships.filter((internship) => internship.workingtype === "Part-time").map((internship, index) => (
+              {data === "Remote" ? (
+                internships && internships.filter((internship) => internship.internshiptype === "Remote").map((internship, index) => (
                   <InternshipCard key={index} index={index} internship={internship} />
-                ))) : (
+                ))
+              ) : data == "In office" ? (
+                internships && internships.filter((internship) => internship.internshiptype === "In office").map((internship, index) => (
+                  <InternshipCard key={index} index={index} internship={internship} />
+                ))
+              ) : data == "Full-time" ? (
+                internships && internships.filter((internship) => internship.workingtype === "Full-time").map((internship, index) => (
+                  <InternshipCard key={index} index={index} internship={internship} />
+                ))) : data == "Part-time" ? (
+                  internships && internships.filter((internship) => internship.workingtype === "Part-time").map((internship, index) => (
+                    <InternshipCard key={index} index={index} internship={internship} />
+                  ))) : (
 
-              internships &&
-              (internships.map((intern, index) => (
-                <InternshipCard key={index} index={index} internship={intern} />
-              )))
+                internships &&
+                (internships.map((intern, index) => (
+                  <InternshipCard key={index} index={index} internship={intern} />
+                )))
 
-            )}
+              )}
+
+            </div>
 
           </div>
-
-        </div>
         </section>
 
       </div>

@@ -66,12 +66,11 @@ const AddResponsibility = ({ edit = false }) => {
   return (
     < div className='w-full h-screen fixed top-[0]' >
       <div className='w-full h-screen overlay bg-black opacity-50'></div>
-      <div className='w-full h-[100px
-      ]: max-w-lg rounded-xl border bg-gray-50 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
+      <div className='scroll w-full max-sm:h-full h-[90%] max-w-xl overflow-y-auto sm:rounded-lg  border bg-gray-50 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
         <RxCross2 onClick={backHandler} size={25} className='absolute right-5 top-5 cursor-pointer' />
         <form
           onSubmit={handleSubmit(submit)}
-          className='w-full p-10 flex flex-col gap-5'>
+          className='w-full p-5 sm:p-10 flex flex-col gap-5'>
           <h1 className='text-center text-xl font-semibold'>Position of responsibility</h1>
 
 
@@ -82,7 +81,7 @@ const AddResponsibility = ({ edit = false }) => {
             <textarea
               defaultValue={edit ? (responsibility?.description || '') : ''}
               name="description"
-              className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
+              className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[150px] resize-none text-sm'
               id='des'
               type="description"
               placeholder={`#Keep it in points\n1. Led a team of 5 volunteers to plan and conduct activities for literary event in college fest.\n2.`}

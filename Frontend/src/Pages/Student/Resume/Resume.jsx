@@ -77,22 +77,22 @@ const Resume = () => {
     console.log(updatedResume)
 
     return (
-        <div className=''>
+        <div className='text-gray-700'>
             {student && (
                 <div className='w-full'>
-                    <h1 className="text-center text-4xl font-semibold mt-6">Resume</h1>
+                    <h1 className="text-center text-3xl font-medium mt-6">Resume</h1>
 
-                    <div className='w-[65%] m-auto mt-6'>
-                        <div className='w-full py-3 rounded-lg border border-orange-300 flex justify-center items-center gap-2'>
-                            <MdErrorOutline className='text-orange-300' />
-                            <span>Whenever you apply to an internship or fresher job, this is the resume that the employer will see. Always make sure it is up to date.</span>
+                    <div className='sm:px-10 lg:w-[65%] m-auto mt-6'>
+                        <div className='w-[90%] m-auto sm:w-full py-3  px-5 rounded-lg border border-orange-300 flex gap-2 text-[#976612] bg-[#FFFAEB] text-center'>
+                            {/* <MdErrorOutline size={30}/> */}
+                            <span>Note : Whenever you apply to an internship or fresher job, this is the resume that the employer will see. Always make sure it is up to date.</span>
                         </div>
 
-                        <div className='w-full border rounded-lg mt-5 p-10'>
-                            <div className='personalDetail border-b py-5 flex justify-between'>
+                        <div className='w-full sm:border rounded-lg mt-5 sm:p-10 px-5'>
+                            <div className='personalDetail border-b py-5 flex justify-between max-sm:flex-col-reverse'>
 
                                 <div>
-                                    <h6 className='capitalize font-semibold text-3xl flex items-center gap-2'>
+                                    <h6 className='capitalize font-medium text-2xl sm:text-3xl flex items-center gap-2'>
                                         <span>{student.firstname} {student.lastname}</span>
                                         <Link
                                             to='/student/resume/edit/personal_details' className='mt-1.5'><HiPencil size={30}
@@ -100,9 +100,9 @@ const Resume = () => {
                                         </Link>
                                     </h6>
 
-                                    <p className='font-normal text-base'>{student.email}</p>
-                                    <p className='font-normal text-base'>{student.contact}</p>
-                                    <p className='font-normal text-base capitalize'>{student.city}</p>
+                                    <p className='font-normal text-base text-gray-500'>{student.email}</p>
+                                    <p className='font-normal text-base text-gray-500'>{student.contact}</p>
+                                    <p className='font-normal text-base capitalize text-gray-500'>{student.city}</p>
                                 </div>
 
                                 <div >
@@ -114,44 +114,44 @@ const Resume = () => {
                                 </div>
                             </div>
 
-                            <div className='education border-b py-5 flex items-start'>
-                                <h2 className='uppercase font-semibold text-sm w-1/4'>education</h2>
-                                <div className='w-3/4'>
+                            <div className='education capitalize border-b py-5 md:flex items-start'>
+                                <h2 className='uppercase font-medium tracking-wider text-sm md:w-1/4 md:pr-10 max-md:mb-2 w-fit max-md:border-b-2 border-black text-gray-500'>education</h2>
+                                <div className='md:w-3/4'>
                                     <ul className=''>
                                         {resume.education.map((item) => (
                                             <li key={item.id}
-                                                className='mb-2 flex justify-between items-start'>
+                                                className='mb-2 flex justify-between items-start max-sm:flex-col'>
                                                 {item?.college && (
-                                                    <div>
-                                                        {item?.branch && <p className='font-semibold'>{item?.degree}, <span>({item?.branch})</span></p>}
+                                                    <div className='pr-10'>
+                                                        {item?.branch && <p className='font-medium'>{item?.degree}, <span>({item?.branch})</span></p>}
                                                         {item?.stream && item.eduType === "diploma" && (
-                                                            <p className='font-semibold'>Diploma, ({item?.stream})</p>
+                                                            <p className='font-medium '>Diploma, ({item?.stream})</p>
                                                         )
                                                         }
                                                         {item?.stream && item.eduType === "phd" && (
-                                                            <p className='font-semibold'>PHD, ({item?.stream})</p>
+                                                            <p className='font-medium '>PHD, ({item?.stream})</p>
                                                         )
                                                         }
-                                                        <p>{item?.college}</p>
-                                                        <p>{item?.startYear} - {item?.lastYear}</p>
+                                                        <p className='text-gray-500'>{item?.college}</p>
+                                                        <p className='text-gray-500 text-sm'>{item?.startYear} - {item?.lastYear}</p>
                                                     </div>
                                                 )}
                                                 {item?.school && (
-                                                    <div>
+                                                    <div className='pr-10'>
                                                         {item?.stream ?
-                                                            (<p className='font-semibold'>Higher Secondary, ({item?.board})</p>)
-                                                            : (<p className='font-semibold'>High Secondary, ({item?.board})</p>)}
-                                                        <p>{item?.school}</p>
-                                                        <p>{item?.completionYear
+                                                            (<p className='font-medium '>Higher Secondary, ({item?.board})</p>)
+                                                            : (<p className='font-medium '>High Secondary, ({item?.board})</p>)}
+                                                        <p className='text-gray-500'>{item?.school}</p>
+                                                        <p className='text-gray-500 text-sm'>{item?.completionYear
                                                         }</p>
                                                     </div>
                                                 )}
-                                                <div className='flex gap-5'>
+                                                <div className='flex gap-5 max-sm:mt-2'>
                                                     <Link to={`/student/resume/edit/education/${item.id}`}><HiPencil
-                                                        className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                         size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteEduHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                    <MdDelete onClick={() => deleteEduHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                         size={27} />
                                                 </div>
                                             </li>
@@ -166,37 +166,39 @@ const Resume = () => {
                                 </div>
                             </div>
 
-                            <div className='work border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>WORK EXPERIENCE</h2>
-                                <div className='w-3/4'>
+                            <div className='work border-b py-5 md:flex items-start'>
+                                <h2 className='font-medium tracking-wider uppercase text-sm md:w-1/4 md:pr-10 max-md:mb-2 w-fit max-md:border-b-2 border-black text-gray-500'>WORK EXPERIENCE</h2>
+                                <div className='md:w-3/4'>
                                     <ul className=''>
                                         {
                                             resume.jobs.map((item) => (
                                                 <li key={item.id}
-                                                    className='mb-2 flex justify-between items-start'>
+                                                    className='mb-2 flex justify-between items-start max-sm:flex-col'>
 
-                                                    <div>
-                                                        <p className='font-semibold'>{item?.designation}<span>, ({item?.profile})</span></p>
-                                                        <p>{item.organization}, <span>{item.Location}</span></p>
-                                                        <p className='flex gap-2'><span className='font-medium'>Job</span> <span>{item.startDate}</span>- <span>{item.endDate}</span></p>
-                                                        <div>
+                                                    <div className='pr-10'>
+                                                        <p className='font-medium capitalize'>{item?.designation}<span>, ({item?.profile})</span></p>
+                                                        <p className='text-gray-500 capitalize'>{item.organization}, <span>{item.Location}</span></p>
+                                                        <p className='flex gap-2 text-gray-500 capitalize'><span className='font-medium text-black capitalize'>Job</span></p>
+                                                        <p className='text-gray-500 text-sm'><span>{item.startDate}</span>- <span>{item.endDate}</span></p>
+                                                        <div className='text-gray-500'>
                                                             <ul>
                                                                 {item.description.split('\n').map((point, index) => (
-                                                                    <li key={index}>
+                                                                    <li key={index}
+                                                                        className='flex gap-2'>
                                                                         <span>&#8226;</span> {/* Bullet point character */}
-                                                                        <span className="ml-2">{point.trim().replace(/^\d+\./, '')}</span>
+                                                                        <span className="">{point.trim().replace(/^\d+\./, '')}</span>
                                                                     </li>
                                                                 ))}
                                                             </ul>
                                                         </div>
                                                     </div>
 
-                                                    <div className='flex gap-5'>
+                                                    <div className='flex gap-5 max-sm:mt-2'>
                                                         <Link to={`/student/resume/edit/job/${item.id}`}>
-                                                            <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                            <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                                 size={27} />
                                                         </Link>
-                                                        <MdDelete onClick={() => deleteJobHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        <MdDelete onClick={() => deleteJobHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                             size={27} />
                                                     </div>
                                                 </li>
@@ -207,13 +209,14 @@ const Resume = () => {
                                         {
                                             resume.internships.map((item) => (
                                                 <li key={item.id}
-                                                    className='mb-2 flex justify-between items-start'>
+                                                    className='mb-2 flex justify-between items-start max-sm:flex-col'>
 
-                                                    <div>
-                                                        <p className='font-semibold'>{item?.profile}</p>
-                                                        <p>{item.organization}, <span>{item.Location}</span></p>
-                                                        <p className='flex gap-2'><span className='font-medium'>Internship</span> <span>{item.startDate}</span>- <span>{item.endDate}</span></p>
-                                                        <div>
+                                                    <div className='pr-10'>
+                                                        <p className='font-medium capitalize'>{item?.profile}</p>
+                                                        <p className='text-gray-500 capitalize'>{item.organization}, <span>{item.Location}</span></p>
+                                                        <p className='flex gap-2 text-gray-500 capitalize'><span className='font-medium text-black'>Internship</span></p>
+                                                        <p className='text-gray-500 text-sm capitalize'><span>{item.startDate}</span>- <span>{item.endDate}</span></p>
+                                                        <div className='text-gray-500'>
                                                             <ul>
                                                                 {item.description.split('\n').map((point, index) => (
                                                                     <li key={index}>
@@ -225,12 +228,12 @@ const Resume = () => {
                                                         </div>
                                                     </div>
 
-                                                    <div className='flex gap-5'>
+                                                    <div className='flex gap-5 max-sm:mt-2'>
                                                         <Link to={`/student/resume/edit/internship/${item.id}`}>
-                                                            <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                            <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                                 size={27} />
                                                         </Link>
-                                                        <MdDelete onClick={() => deleteInternHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        <MdDelete onClick={() => deleteInternHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                             size={27} />
                                                     </div>
                                                 </li>
@@ -254,14 +257,14 @@ const Resume = () => {
                                 </div>
                             </div>
 
-                            <div className='responsibility border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>POSITIONS OF RESPONSIBILITY</h2>
-                                <div className='w-3/4'>
+                            <div className='responsibility border-b py-5 md:flex items-start'>
+                                <h2 className='font-medium tracking-wider uppercase text-sm md:w-1/4 md:pr-10 max-md:mb-2 w-fit max-md:border-b-2 border-black text-gray-500'>POSITIONS OF RESPONSIBILITY</h2>
+                                <div className='md:w-3/4'>
                                     <ul className=''>
                                         {resume.responsibilities.map((item) => (
                                             <li key={item.id}
-                                                className='mb-2 flex justify-between items-start'>
-                                                <div>
+                                                className='mb-2 flex justify-between items-start max-sm:flex-col'>
+                                                <div className='pr-10 text-gray-500'>
                                                     <ul>
                                                         {item.description.split('\n').map((point, index) => (
                                                             <li key={index}>
@@ -271,12 +274,12 @@ const Resume = () => {
                                                         ))}
                                                     </ul>
                                                 </div>
-                                                <div className='flex gap-5'>
+                                                <div className='flex gap-5 max-sm:mt-2'>
                                                     <Link to={`/student/resume/edit/responsibility/${item.id}`}>
-                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                             size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleterespoHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                    <MdDelete onClick={() => deleterespoHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                         size={27} />
                                                 </div>
                                             </li>
@@ -293,27 +296,27 @@ const Resume = () => {
                                 </div>
                             </div>
 
-                            <div className='training&course border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>TRAININGS/ COURSES</h2>
-                                <div className='w-3/4'>
+                            <div className='training&course capitalize border-b py-5 md:flex items-start'>
+                                <h2 className='font-medium tracking-wider uppercase text-sm md:w-1/4 md:pr-10 max-md:mb-2 w-fit max-md:border-b-2 border-black text-gray-500'>TRAININGS/ COURSES</h2>
+                                <div className='md:w-3/4'>
                                     <ul className=''>
                                         {resume.courses.map((item) => (
                                             <li key={item.id}
-                                                className='mb-2 flex justify-between items-start'>
-                                                <div>
-                                                    <p className='font-semibold'>{item.training}</p>
-                                                    <p>{item.organization}, <span>{item.Location}</span></p>
+                                                className='mb-2 flex justify-between items-start max-sm:flex-col'>
+                                                <div className='pr-10'>
+                                                    <p className='font-medium '>{item.training}</p>
+                                                    <p className='text-gray-500'>{item.organization}, <span>{item.Location}</span></p>
                                                     {item.startDate && item.endDate &&
-                                                        <p>{item.startDate} - {item.endDate}</p>
+                                                        <p className='text-gray-500 text-sm'>{item.startDate} - {item.endDate}</p>
                                                     }
-                                                    <p>{item.description}</p>
+                                                    <p className='text-gray-500'>{item.description}</p>
                                                 </div>
-                                                <div className='flex gap-5'>
+                                                <div className='flex gap-5 max-sm:mt-2'>
                                                     <Link to={`/student/resume/edit/training_courses/${item.id}`}>
-                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                             size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deletecourseHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                    <MdDelete onClick={() => deletecourseHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                         size={27} />
                                                 </div>
                                             </li>
@@ -328,35 +331,36 @@ const Resume = () => {
                                 </div>
                             </div>
 
-                            <div className='project border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>ACADEMICS/ <br /> PERSONAL PROJECTS</h2>
-                                <div className='w-3/4'>
+                            <div className='project border-b py-5 md:flex items-start'>
+                                <h2 className='font-medium tracking-wider uppercase text-sm md:w-1/4 md:pr-10 max-md:mb-2 w-fit max-md:border-b-2 border-black text-gray-500'>PERSONAL PROJECTS</h2>
+                                <div className='md:w-3/4'>
 
                                     <ul className=''>
                                         {resume.projects.map((item) => (
                                             <li key={item.id}
-                                                className='mb-2 flex justify-between items-start'>
-                                                <div>
-                                                    <p className='font-semibold'>{item.title}</p>
+                                                className='mb-2 flex justify-between items-start max-sm:flex-col'>
+                                                <div className='pr-10'>
+                                                    <p className='font-medium capitalize'>{item.title}</p>
                                                     {item.startDate && item.endDate &&
-                                                        <p>{item.startDate} - {item.endDate}</p>
+                                                        <p className='text-gray-500 text-sm'>{item.startDate} - {item.endDate}</p>
                                                     }
-                                                    <div>
+                                                    <div className='text-gray-500'>
                                                         <ul>
                                                             {item.description.split('\n').map((point, index) => (
-                                                                <li key={index}>
+                                                                <li key={index} 
+                                                                className='flex gap-2'>
                                                                     <span>&#8226;</span> {/* Bullet point character */}
-                                                                    <span className="ml-2">{point.trim().replace(/^\d+\./, '')}</span>
+                                                                    <span className="">{point.trim().replace(/^\d+\./, '')}</span>
                                                                 </li>
                                                             ))}
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <div className='flex gap-5'>
+                                                <div className='flex gap-5 max-sm:mt-2'>
                                                     <Link to={`/student/resume/edit/project/${item.id}`}>
-                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5' size={27} />
+                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200' size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteprojectHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                    <MdDelete onClick={() => deleteprojectHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                         size={27} />
                                                 </div>
                                             </li>
@@ -372,15 +376,15 @@ const Resume = () => {
                                 </div>
                             </div>
 
-                            <div className='skills border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>SKILLS</h2>
-                                <div className='w-3/4'>
+                            <div className='skills capitalize border-b py-5 md:flex items-start'>
+                                <h2 className='font-medium tracking-wider uppercase text-sm md:w-1/4 md:pr-10 max-md:mb-2 w-fit max-md:border-b-2 border-black text-gray-500'>SKILLS</h2>
+                                <div className='md:w-3/4'>
                                     <ul className='flex w-full flex-wrap justify-between'>
                                         {resume.skills.map((item) => (
                                             <li key={item.id}
-                                                className='w-[34%] mb-2 flex justify-between items-start'>
-                                                <div>
-                                                    <p className='font-semibold'>{item.skill}</p>
+                                                className='w-[200px] max-md:w-full mb-2 flex justify-between items-start'>
+                                                <div className='w-full'>
+                                                    <p className='font-medium'>{item.skill}</p>
                                                     <p>{item.level}</p>
                                                 </div>
                                                 <div className='flex gap-5'>
@@ -403,9 +407,9 @@ const Resume = () => {
                                 </div>
                             </div>
 
-                            <div className='portfolio border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>PORTFOLIO/ <br /> WORK SAMPLES</h2>
-                                <div className='w-3/4'>
+                            <div className='portfolio capitalize border-b py-5 md:flex items-start'>
+                                <h2 className='font-medium tracking-wider uppercase text-sm md:w-1/4 md:pr-10 max-md:mb-2 w-fit max-md:border-b-2 border-black text-gray-500'>PORTFOLIO/ WORK SAMPLES</h2>
+                                <div className='md:w-3/4'>
 
                                     <ul className=''>
                                         {resume.worksamples.map((item) => (
@@ -444,7 +448,7 @@ const Resume = () => {
                                                                 size={30} />
                                                         )
                                                     }
-                                                    <Link to={item.value} className='hover:text-blue-600 capitalize'>{item.key.replace("Link", "")}</Link>
+                                                    <Link to={item.value} className='hover:text-blue-600 capitalize font-medium'>{item.key.replace("Link", "")}</Link>
                                                 </div>
 
                                                 <div className='flex gap-5'>
@@ -472,30 +476,30 @@ const Resume = () => {
                                 </div>
                             </div>
 
-                            <div className='accomplishment border-b py-5 flex items-start'>
-                                <h2 className='font-semibold uppercase text-sm w-1/4'>ACCOMPLISHMENTS/ <br />
-                                    ADDITIONAL DETAILS</h2>
-                                <div className='w-3/4'>
+                            <div className='accomplishment border-b py-5 md:flex items-start'>
+                                <h2 className='font-medium tracking-wider uppercase text-sm md:w-1/4 md:pr-10 max-md:mb-2 w-fit max-md:border-b-2 border-black text-gray-500'>ACCOMPLISHMENTS</h2>
+                                <div className='md:w-3/4'>
                                     <ul className=''>
                                         {resume.accomplishments.map((item) => (
                                             <li key={item.id}
-                                                className='mb-2 flex justify-between items-start'>
-                                                <div>
+                                                className='mb-2 flex justify-between items-start max-sm:flex-col'>
+                                                <div className='text-gray-500'>
                                                     <ul>
                                                         {item.description.split('\n').map((point, index) => (
-                                                            <li key={index}>
+                                                            <li key={index}
+                                                                className='flex gap-2'>
                                                                 <span>&#8226;</span> {/* Bullet point character */}
-                                                                <span className="ml-2">{point.trim().replace(/^\d+\./, '')}</span>
+                                                                <span className="">{point.trim().replace(/^\d+\./, '')}</span>
                                                             </li>
                                                         ))}
                                                     </ul>
                                                 </div>
-                                                <div className='flex gap-5'>
+                                                <div className='flex gap-5 max-sm:mt-2'>
                                                     <Link to={`/student/resume/edit/accomplishment/${item.id}`}>
-                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                             size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteaccomplishmentHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                    <MdDelete onClick={() => deleteaccomplishmentHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                         size={27} />
                                                 </div>
                                             </li>
