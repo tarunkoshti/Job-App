@@ -17,61 +17,9 @@ const Bookmark = () => {
 
 
   return (
-    // <>
-
-    //   {/* Internship - BookMark */}
-
-    //   <div className='flex items-center justify-center py-2 pt-10'>
-    //     <h1 className='text-3xl font-semibold'>All Bookmark Internships</h1>
-    //   </div>
-    //   <div id='job' className='h-3/5 w-full flex items-center gap-10 py-6 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory px-10'>
-
-    //     <ul className='flex items-center px-10 py-4  gap-10 whitespace-nowrap'>
-    //     {internshipId && internshipId.map((studentItem, index) => (
-
-    //       <>
-    //         {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
-
-    //           <InternshipCard internship={intern} />
-
-    //         ))}
-    //       </>
-    //     ))}
-
-    //   </ul>
-
-    //   </div>
-
-    //   {/* Jobs - BookMark */}
-
-    //   <div className='flex items-center justify-center py-2 '>
-    //     <h1 className='text-3xl font-semibold'>All Bookmark Jobs</h1>
-    //   </div>
-    //   <div id='job' className='h-3/5 w-full flex items-center gap-10 py-6 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory px-10'>
-
-    //     <ul className='flex items-center px-10 py-4 gap-10 whitespace-nowrap'>
-    //     {jobId && jobId.map((studentItem, index) => (
-
-    //         <>
-    //           {jobs?.filter(job => job._id === studentItem).map((job, internIndex) => (
-
-    //             <JobCard job={job} />
-
-
-    //           ))}
-    //         </>
-    //       ))}
-
-
-    //   </ul>
-
-    //   </div>
-
-    //   </>
-
     <>
       {/* Internship - BookMark */}
-      
+
       <div className='w-[100%] px-5 md:w-[90%] md:mx-auto'>
         <h1 className='text-3xl  font-medium py-10 max-md:text-xl flex items-center gap-2'> <FaCircle size={10} />Bookmark Internship</h1>
         <div id='job' className='w-full flex items-center gap-10 whitespace-nowrap overflow-x-auto snap-mandatory '>

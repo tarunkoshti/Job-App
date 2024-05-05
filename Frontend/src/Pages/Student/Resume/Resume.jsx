@@ -77,7 +77,7 @@ const Resume = () => {
     console.log(updatedResume)
 
     return (
-        <div className=''>
+        <div className='text-gray-700'>
             {student && (
                 <div className='w-full'>
                     <h1 className="text-center text-3xl font-medium mt-6">Resume</h1>

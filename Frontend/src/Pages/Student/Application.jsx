@@ -15,12 +15,7 @@ const Application = () => {
   // console.log(internships)
   const jobs = useSelector((state) => state.jobReducer.jobData)
   // console.log(jobs)
-  // console.log(internship)
 
-
-  // const  internship = internships?.filter(internship => internship._id === )
-
-  // console.log(internship)
 
   // useEffect(() => {
   //   dispatch(allapplyinternship(student._id))
@@ -31,11 +26,10 @@ const Application = () => {
 
   // }, [dispatch])
 
-  // const applications = [...appliedinternships, ...appliedjobs];
   return (
     <>
       {/* Internship - Application */}
-      <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg'>
+      <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg text-gray-700'>
         <h1 className='text-3xl  font-medium py-10 max-md:text-xl flex items-center gap-2'> <FaCircle size={10}/> Internship Application</h1>
         <div className='rounded-xl overflow-hidden border-l border-r overflow-x-auto'
         style={{scrollbarWidth: 'none'}}>
@@ -74,7 +68,7 @@ const Application = () => {
       </div>
 
       {/* job applications */}
-      <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg'>
+      <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg text-gray-700'>
         <h1 className='text-3xl font-medium py-10 max-md:text-xl flex items-center gap-2 '> <FaCircle size={10} />Job Application</h1>
         <div className='rounded-xl overflow-hidden border-l border-r overflow-x-auto'
         style={{scrollbarWidth:'none'}}>
