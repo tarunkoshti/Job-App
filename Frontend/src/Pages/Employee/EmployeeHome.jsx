@@ -38,11 +38,11 @@ const EmployeeHome = () => {
               Find the best <span className="text-[#2507B3]">Candidates</span>{" "}
               for <br /> your Company
             </h1>
-            <p className="pl-4 md:pl-10 mt-4 text-[#1F2937] text-base md:text-lg text-center tracking-wide">
+            <p className="pl-4 md:pl-10 mt-4 text-gray-600 text-base md:text-lg text-center tracking-wide">
               Get more sales and maximize the conversion rates. Discover the
               most productive channels.
             </p>
-            <p className="mt-1 text-center tracking-wide">
+            <p className="mt-1 text-center tracking-wide text-gray-600">
               Discover the optimal match for your Company and get the best
               results together
             </p>
