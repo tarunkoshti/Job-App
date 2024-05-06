@@ -116,7 +116,7 @@ const StudentHome = () => {
           </div>
 
           <div className='flex'>
-            <div id='scroller' className='w-fit gap-10 px-10 flex whitespace-nowrap '>
+            <div id='scroller' className='w-fit gap-16 px-10 flex whitespace-nowrap '>
 
               {/* Add your company logos here with appropriate styling */}
 
@@ -154,7 +154,7 @@ const StudentHome = () => {
 
               <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/1/15/Deloitte_Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/Capgemini/Capgemini-Logo.wine.png'></div>
+               <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
               <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Collabera_logo.png/1200px-Collabera_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
@@ -163,7 +163,7 @@ const StudentHome = () => {
 
             </div>
 
-            <div id='scroller' className='w-fit gap-10 px-10 flex whitespace-nowrap '>
+            <div id='scroller' className='w-fit gap-16 px-10 flex whitespace-nowrap '>
 
               {/* Add your company logos here with appropriate styling */}
 
@@ -201,9 +201,9 @@ const StudentHome = () => {
 
               <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/1/15/Deloitte_Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/Capgemini/Capgemini-Logo.wine.png'></div>
+              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
-              <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Collabera_logo.png/1200px-Collabera_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
+              <div className='h-[5vh] md:h-[7vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Collabera_logo.png/1200px-Collabera_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
               <div className='h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md'></div>
 
