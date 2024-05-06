@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { MdOutlineLibraryBooks } from "react-icons/md";
+import { FiExternalLink } from "react-icons/fi";
 import { FaCircle } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 const Application = () => {
 
   const dispatch = useDispatch()
@@ -30,17 +30,18 @@ const Application = () => {
     <>
       {/* Internship - Application */}
       <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg text-gray-700'>
-        <h1 className='text-3xl  font-medium py-10 max-md:text-xl flex items-center gap-2'> <FaCircle size={10}/> Internship Application</h1>
+        <h1 className='text-3xl  font-medium py-10 max-md:text-xl flex items-center gap-2'> <FaCircle size={10} /> Internship Applications</h1>
         <div className='rounded-xl overflow-hidden border-l border-r overflow-x-auto'
-        style={{scrollbarWidth: 'none'}}>
+          style={{ scrollbarWidth: 'none' }}>
           <table className='w-full table-fixed overflow-auto'>
             <thead>
-              <tr className='bg-gray-100 font-semibold border-b-2 border-zinc-500 text-base max-md:text-sm'>
-                <th className='w-[300px] max-md:w-[200px] text-left py-4 pl-5 font-medium'>Company</th>
-                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Profile</th>
-                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Type</th>
-                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Applicants</th>
-                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Review</th>
+              <tr className='bg-gray-100 font-semibold  text-base max-md:text-sm'>
+                <th className='w-[300px] max-md:w-[200px] text-left py-4 pl-5 font-medium tracking-wide'>Company</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Profile</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Type</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Applicants</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Applied on</th>
+                {/* <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Review</th> */}
               </tr>
             </thead>
             <tbody>
@@ -48,13 +49,14 @@ const Application = () => {
                 <tr key={index} className='border-b border-zinc-300 max-md:text-sm'>
                   {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
                     <React.Fragment key={internIndex}>
-                      <td className='w-[300px] max-md:w-[200px] py-3 pl-5'>{intern.company}</td>
-                      <td className='w-[300px] max-md:w-[200px] py-3'>{intern.profile}</td>
-                      <td className='w-[300px] max-md:w-[200px] py-3'>{intern.internshiptype}</td>
-                      <td className='w-[300px] max-md:w-[200px] py-3'>{intern.students?.length}</td>
-                      <td className='w-[300px] max-md:w-[200px] py-3'>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize pl-5'>{intern.company}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize flex items-center gap-5'>{intern.profile} <Link to={`/student/internships/read/${studentItem}`} ><FiExternalLink size={13} color='blue' cursor='pointer' /></Link></td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize'>{intern.internshiptype}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize text-sm'>{intern.students?.length}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize text-sm'>{intern.createdAt.split('T')[0]}</td>
+                      {/* <td className='w-[300px] max-md:w-[200px] py-3 capitalize'>
                         <Link to={`/student/internships/read/${studentItem}`} className='block'><span><MdOutlineLibraryBooks /></span></Link>
-                      </td>
+                      </td> */}
                     </React.Fragment>
                   ))}
                 </tr>
@@ -69,17 +71,18 @@ const Application = () => {
 
       {/* job applications */}
       <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg text-gray-700'>
-        <h1 className='text-3xl font-medium py-10 max-md:text-xl flex items-center gap-2 '> <FaCircle size={10} />Job Application</h1>
+        <h1 className='text-3xl font-medium py-10 max-md:text-xl flex items-center gap-2 '> <FaCircle size={10} />Job Applications</h1>
         <div className='rounded-xl overflow-hidden border-l border-r overflow-x-auto'
-        style={{scrollbarWidth:'none'}}>
+          style={{ scrollbarWidth: 'none' }}>
           <table className='w-full table-fixed'>
             <thead>
-              <tr className='bg-gray-100 font-semibold border-b-2 border-zinc-500 text-base max-md:text-sm'>
-                <th className='w-[300px] max-md:w-[200px] text-left py-4 pl-5 font-medium'>Company</th>
-                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Profile</th>
-                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Type</th>
-                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Applicants</th>
-                <th className='w-[300px] max-md:w-[200px] text-left font-medium'>Review</th>
+              <tr className='bg-gray-100 font-semibold text-base max-md:text-sm'>
+                <th className='w-[300px] max-md:w-[200px] text-left py-4 pl-5 font-medium tracking-wide'>Company</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Profile</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Type</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Applicants</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Applied on</th>
+                {/* <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Review</th> */}
               </tr>
             </thead>
             <tbody>
@@ -87,13 +90,15 @@ const Application = () => {
                 <tr key={index} className='border-b border-zinc-300 max-md:text-sm'>
                   {jobs?.filter(job => job._id === studentItem).map((job, Index) => (
                     <React.Fragment key={Index}>
-                      <td className='w-[300px] max-md:w-[200px] py-3 pl-5'>{job.company}</td>
-                      <td className='w-[300px] max-md:w-[200px] py-3'>{job.profile}</td>
-                      <td className='w-[300px] max-md:w-[200px] py-3'>{job.jobtype}</td>
-                      <td className='w-[300px] max-md:w-[200px] py-3'>{job.students.length}</td>
-                      <td className='w-[300px] max-md:w-[200px] py-3'>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize pl-5'>{job.company}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize flex items-center gap-5'>{job.profile} <Link to={`/student/job/read/${studentItem}`} >
+                        <FiExternalLink size={13} color='blue' cursor='pointer' /></Link></td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize'>{job.jobtype}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize text-sm'>{job.students.length}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize text-sm'>{job.createdAt.split('T')[0]}</td>
+                      {/* <td className='w-[300px] max-md:w-[200px] py-3 capitalize'>
                         <Link to={`/student/job/read/${studentItem}`} className='block'><span><MdOutlineLibraryBooks /></span></Link>
-                      </td>
+                      </td> */}
                     </React.Fragment>
                   ))}
                 </tr>
