@@ -32,7 +32,7 @@ const EmployeeHome = () => {
   return (
     <>
       <div className="w-full bg-white font-sans">
-        <div className="flex flex-col items-center md:gap-6 px-4 md:px-0 relative">
+        <div className="flex flex-col items-center md:gap-6 px-4 md:px-0">
           <div className="flex flex-col items-center mt-10 md:mt-24">
             <h1 className="text-center text-[#1F2937] text-4xl md:text-6xl font-medium leading-relaxed md:pl-12 capitalize tracking-normal ">
               Find the best <span className="text-[#2507B3]">Candidates</span>{" "}
