@@ -219,7 +219,7 @@ const StudentHome = () => {
             <div className='py-3 mb-8'>
               <h1 className='text-2xl sm:text-3xl md:text-4xl text-center font-medium px-10'>Explore all Job Opportunity</h1>
             </div>
-            <div className='flex items-center justify-center'>
+            {/* <div className='flex items-center justify-center'>
               <h1 className='px-2 bg-pink-100 py-1 rounded-lg font-semibold'>Apply filter </h1>
               <select className='py-1 bg-blue-100 rounded-lg px-3 mx-4' onChange={onOptionChangeJobHandler}>
                 <option>Please choose one option</option>
@@ -230,7 +230,7 @@ const StudentHome = () => {
                     </option>
                   );
                 })}
-              </select></div>
+              </select></div> */}
             <div id='job' className='h-3/5 w-full flex items-center gap-6 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
               {optionData === "Remote" ? (
                 jobs && jobs.filter((job) => job.jobtype === "Remote").map((job, index) => (
@@ -266,7 +266,7 @@ const StudentHome = () => {
             <div className='py-3 mb-8'>
               <h1 className='text-2xl sm:text-3xl md:text-4xl text-center font-medium'>Explore all Internship Opportunity</h1>
             </div>
-            <div className='flex items-center justify-center'>
+            {/* <div className='flex items-center justify-center'>
               <h1 className='px-2 bg-pink-100 py-1 rounded-lg font-semibold'>Apply filter </h1>
               <select className='py-1 bg-blue-100 rounded-lg px-3 mx-4' onChange={onOptionChangeHandler}>
                 <option>Please choose one option</option>
@@ -277,7 +277,7 @@ const StudentHome = () => {
                     </option>
                   );
                 })}
-              </select></div>
+              </select></div> */}
             <div id='job' className='h-3/5 w-full flex items-center gap-6 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  py-4 px-10'>
 
               {data === "Remote" ? (

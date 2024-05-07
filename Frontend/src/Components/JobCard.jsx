@@ -5,7 +5,7 @@ import { IoLocationSharp } from "react-icons/io5";
 
 const JobCard = ({ index, job }) => {
 
-    const colors = ["bg-[#D8E8D4]", "bg-[#FFE0CD]",];
+    const colors = [];
 
     return (
 

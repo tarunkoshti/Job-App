@@ -137,7 +137,7 @@ const Header = () => {
                 {/* leftItem */}
                 <div className='w-[200px]'>
                     <NavLink to={authStatus ? (isStudentAuth ? "/student" : "/employee") : ""}>
-                        < img className='max-sm:h-6 h-10' src="Job Seeking2.png" alt="./logo.jpg" />
+                        < img className='max-sm:h-6 h-10' src="Job_Seeking2-removebg-preview.png" alt="./logo.jpg" />
                     </NavLink>
                 </div>
 

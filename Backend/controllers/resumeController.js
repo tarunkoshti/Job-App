@@ -15,6 +15,7 @@ exports.resume = catchAsyncErrors(async function (req, res, next) {
         avatar: student.avatar,
         city: student.city,
         contact: student.contact,
+        id: req.params.studentid
     }
     
     const { resume } = await Student.findById(req.params.studentid).exec();

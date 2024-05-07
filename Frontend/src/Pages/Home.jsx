@@ -54,7 +54,7 @@ const Home = () => {
           <div className='flex flex-wrap gap-4'>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-wider">Welcome To
             </h1>
-            < img className='h-10 sm:h-12 md:h-14' src="Job Seeking2.png" alt="./logo.jpg" />
+            < img className='h-10 sm:h-12 md:h-14' src="Job_Seeking2-removebg-preview.png" alt="./logo.jpg" />
           </div>
           <span className='text-3xl md:text-4xl block mt-3 tracking-wide'>Your Gateway to Career Opportunities!</span>
 

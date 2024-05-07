@@ -1,16 +1,23 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useLocation } from 'react-router-dom'
 import { MdOutlineLibraryBooks } from "react-icons/md";
 import { FaCircle } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 import Button from '../../Components/Button';
+import { setStudentResume } from '../../store/Actions/resumeActions';
 
 const EmployeeApplication = () => {
   const internshipId = useSelector((state) => state.employeeReducer.employeeData?.employe.internships)
   const jobId = useSelector((state) => state.employeeReducer.employeeData?.employe?.jobs)
   const internships = useSelector((state) => state.internshipReducer?.internshipData)
   const jobs = useSelector((state) => state.jobReducer?.jobData);
+
+  const dispatch = useDispatch()
+  const location = useLocation()
+  useEffect(() => {
+    dispatch(setStudentResume())
+  }, [location])
 
   return (
     <>

@@ -6,7 +6,8 @@ import { IoLocationSharp } from "react-icons/io5";
 
 const InternshipCard = ({ index, internship }) => {
 
-    const colors = ["bg-[#D8E8D4]", "bg-[#FFE0CD]",];
+    const colors = [];
+    // const colors = ["bg-[#D8E8D4]", "bg-[#FFE0CD]",];
 
     return (
         <>
