@@ -73,32 +73,32 @@ const Home = () => {
 
       <div className='w-full py-10 sm:py-16 bg-gray-100  flex px-10'>
         <div className='w-full h-full flex flex-wrap justify-center gap-10 sm:gap-20'>
-          <div className='one w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
+          <div className='one hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
             <div className='top text-4xl'>01</div>
             <div className='bottom'>
               <h1 className='font-semibold'>Register Account</h1>
-              <p className='text-sm'>Create a personalized account to access all platform exclusive features.</p>
+              <p className='text-sm text-gray-700'>Create a personalized account to access all platform exclusive features.</p>
             </div>
           </div>
-          <div className='two w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
+          <div className='two hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
             <div className='top text-4xl'>02</div>
             <div className='bottom'>
               <h1 className='font-semibold'>Search For Job</h1>
-              <p className='text-sm'>Explore diverse job listings and find the perfect match for your skills.</p>
+              <p className='text-sm text-gray-700'>Explore diverse job listings and find the perfect match for your skills.</p>
             </div>
           </div>
-          <div className='three w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
+          <div className='three hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
             <div className='top text-4xl'>03</div>
             <div className='bottom'>
               <h1 className='font-semibold'>Create Resume</h1>
-              <p className='text-sm'>Craft a professional resume to showcase your qualifications and experience.</p>
+              <p className='text-sm text-gray-700'>Craft a professional resume to showcase your qualifications and experience.</p>
             </div>
           </div>
-          <div className='four w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
+          <div className='four hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
             <div className='top text-4xl'>04</div>
             <div className='bottom'>
               <h1 className='font-semibold'>Apply For Job</h1>
-              <p className='text-sm'>Submit applications easily and track your job search progress effectively.</p>
+              <p className='text-sm text-gray-700'>Submit applications easily and track your job search progress effectively.</p>
             </div>
           </div>
         </div>
