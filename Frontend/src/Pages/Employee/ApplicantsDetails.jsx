@@ -1,42 +1,52 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
-import { getStudentResume, setStudentResume } from '../../store/Actions/resumeActions'
-import { PDFDownloadLink } from '@react-pdf/renderer'
-import MyDocument from '../ResumeDocument/MyDocument'
-import { RiDownload2Line } from 'react-icons/ri'
-import Button from '../../Components/Button'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Link,
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
+import {
+  getStudentResume,
+  setStudentResume,
+} from "../../store/Actions/resumeActions";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import MyDocument from "../ResumeDocument/MyDocument";
+import { RiDownload2Line } from "react-icons/ri";
+import Button from "../../Components/Button";
 import { RxCross2 } from "react-icons/rx";
-import { FaCircle } from 'react-icons/fa'
-import { FiExternalLink } from 'react-icons/fi'
-
+import { FaCircle } from "react-icons/fa";
+import { FiExternalLink } from "react-icons/fi";
 
 const ApplicantsDetails = () => {
-
   const style = {
-    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04)'
-  }
+    boxShadow:
+      "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04)",
+  };
 
-  const navigate = useNavigate()
-  const { id } = useParams()
+  const navigate = useNavigate();
+  const { id } = useParams();
   // console.log(id)
-  const internships = useSelector((state) => state.internshipReducer.internshipData);
+  const internships = useSelector(
+    (state) => state.internshipReducer.internshipData
+  );
   // console.log(internships)
-  const internship = internships?.find(internship => internship._id == id);
+  const internship = internships?.find((internship) => internship._id == id);
   // console.log(internship)
 
   const jobs = useSelector((state) => state.jobReducer.jobData);
   // console.log(jobs)
-  const job = jobs?.find(job => job._id == id);
+  const job = jobs?.find((job) => job._id == id);
   // console.log(job)
 
-  const students = (internship && internship?.students) || (job && job?.students)
+  const students =
+    (internship && internship?.students) || (job && job?.students);
   // console.log(students)
 
-  const resumes = useSelector((state) => state.resumeReducer?.resumeData)
+  const resumes = useSelector((state) => state.resumeReducer?.resumeData);
 
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   // const handleDownload = (studentId) => {
@@ -46,10 +56,10 @@ const ApplicantsDetails = () => {
   //   setShowConfirmation(true);
   // };
 
-  const [updatedResume, setupdatedResume] = useState(null)
+  const [updatedResume, setupdatedResume] = useState(null);
 
   const handleDownload = (studentId) => {
-    setupdatedResume(resumes.find((resume) => resume.details.id === studentId))
+    setupdatedResume(resumes.find((resume) => resume.details.id === studentId));
     setShowConfirmation(true);
   };
 
@@ -59,113 +69,66 @@ const ApplicantsDetails = () => {
   // }
 
   useEffect(() => {
-    students.map((studentId) => (
-      dispatch(getStudentResume(studentId))
-    ))
+    students.map((studentId) => dispatch(getStudentResume(studentId)));
 
     // return () => {
     //   dispatch(setStudentResume())
     // }
-  }, [])
+  }, []);
 
   // const updatedResume = useSelector((state) => state.resumeReducer?.resumeData?.updatedResume)
   // console.log(updatedResume)
 
-
   return (
-    // <>
-    //   <div className='h-fitcontent w-screen p-16 relative'>
-    //     <div className='flex py-4 bg-gray-200 rounded-lg px-10 mx-16 font-semibold'>
-    //       <h1 className='w-1/4'>First Name</h1>
-    //       <h1 className='w-1/4'>Last Name</h1>
-    //       <h1 className='w-1/4'>Email</h1>
-    //       <h1 className='w-1/4'>Applicant Resume</h1>
-    //     </div>
-    //     <ul>
-    //       {internship && internship?.students.map((studentId) => (
-    //         <div>
-    //           <div className='py-3 px-12 bg-gray-100 rounded-lg flex gap-32 mx-16'>
-    //             <h1 className='w-1/4'>{studentId}</h1>
-    //             <h1 className='w-1/4'></h1>
-    //             <h1 className='w-1/4'></h1>
-    //             <div >
-    //               <RiDownload2Line onClick={() => handleDownload(studentId)} size={25} />
-    //             </div>
-    //           </div>
-    //         </div>
-    //       ))
-    //       }
-    //     </ul>
-    //   </div>
-    //   {/* Confirmation dialog */}
-    //   {showConfirmation && (
-    //     <div style={style} className={`mx-auto w-full max-w-xs bg-white rounded-xl p-5 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]`}>
-    //       <div className=''>
-    //         <p className='text-center leading-tight mt-5'>Are you sure you want to download this student's resume?</p>
-    //         <div className='flex mt-5 justify-center gap-10'>
-
-    //           <PDFDownloadLink document={<MyDocument updatedResume={updatedResume} />} fileName='resume'>
-    //             <Button
-    //               type='submit'
-    //               bgColor='bg-[#1F2937]'
-    //               className='px-5 font-semibold'
-    //             >Download</Button>
-    //           </PDFDownloadLink>
-
-    //         </div>
-    //       </div>
-
-    //       <Button
-    //         type='submit'
-    //         bgColor=''
-    //         textColor='#1F2937'
-    //         className='px-5 font-semibold absolute right-0 top-0'
-    //         onClick={setReume}
-    //       ><RxCross2 size={20}/></Button>
-
-    //     </div>
-    //     // <div>
-    //     //   <p>Are you sure you want to download this student's resume?</p>
-    //     //   <PDFDownloadLink document={<MyDocument updatedResume={updatedResume} />} fileName='resume'
-    //     //   >
-    //     //     <button>Yes</button>
-    //     //   </PDFDownloadLink>
-    //     //   <button onClick={setReume}>No</button>
-    //     // </div>
-    //   )}
-    // </>
     <>
-      <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg text-gray-700'>
-        <h1 className='text-3xl  font-medium py-10 max-md:text-xl flex items-center gap-2'> <FaCircle size={10} />Candidates</h1>
-        <div className='rounded-xl overflow-hidden border-l border-r overflow-x-auto'
-          style={{ scrollbarWidth: 'none' }}>
-          <table className='w-full table-fixed overflow-auto'>
+      <div className="w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg text-gray-700">
+        <h1 className="text-3xl  font-medium py-10 max-md:text-xl flex items-center justify-center gap-2">
+          Candidates
+        </h1>
+        <div
+          className="rounded-xl overflow-hidden border-l border-r overflow-x-auto"
+          style={{ scrollbarWidth: "none" }}
+        >
+          <table className="w-full table-fixed overflow-auto">
             {/* Table head */}
             <thead>
-              <tr className='bg-gray-100 font-semibold  text-base max-md:text-sm'>
-                <th className='w-[300px] max-md:w-[200px] text-left py-4 pl-5 font-medium tracking-wide'>Name</th>
-                {/* <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Lastname</th> */}
-                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Email</th>
-                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Resume</th>
-                {/* <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Created At</th> */}
-                {/* <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Review Application</th> */}
-                {/* <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>View Applicants</th> */}
+              <tr className="bg-gray-100 font-semibold  text-base max-md:text-sm">
+                <th className="w-[300px] max-md:w-[200px] text-left py-4 pl-5 font-medium tracking-wide">
+                  Name
+                </th>
+                <th className="w-[300px] max-md:w-[200px] text-left font-medium tracking-wide">
+                  Email
+                </th>
+                <th className="w-[300px] max-md:w-[200px] text-left font-medium tracking-wide">
+                  Resume
+                </th>
               </tr>
             </thead>
             {/* Table body */}
             <tbody>
-              {
-                resumes && resumes.map((item, index) => (
-                  <tr key={index} className='border-b border-zinc-300 max-md:text-sm'>
-                    <td className='w-[300px] max-md:w-[200px] py-3 capitalize pl-5'>{item?.details?.firstname} {item?.details?.lastname}</td>
+              {resumes &&
+                resumes.map((item, index) => (
+                  <tr
+                    key={index}
+                    className="border-b border-zinc-300 max-md:text-sm"
+                  >
+                    <td className="w-[300px] max-md:w-[200px] py-3 capitalize pl-5">
+                      {item?.details?.firstname} {item?.details?.lastname}
+                    </td>
                     {/* <td className='w-[300px] max-md:w-[200px] py-3 capitalize'>{item?.details?.lastname}</td> */}
-                    <td className='w-[300px] max-md:w-[200px] py-3 '>{item?.details?.email}</td>
-                    <td className='w-[300px] max-md:w-[200px] py-3 capitalize'>
-                      <RiDownload2Line className='cursor-pointer' onClick={() => handleDownload(item?.details?.id)} size={20} color='blue' />
+                    <td className="w-[300px] max-md:w-[200px] py-3 ">
+                      {item?.details?.email}
+                    </td>
+                    <td className="w-[300px] max-md:w-[200px] py-3 capitalize">
+                      <RiDownload2Line
+                        className="cursor-pointer"
+                        onClick={() => handleDownload(item?.details?.id)}
+                        size={20}
+                        color="blue"
+                      />
                     </td>
                   </tr>
-                ))
-              }
+                ))}
             </tbody>
           </table>
         </div>
@@ -173,41 +136,51 @@ const ApplicantsDetails = () => {
 
       {/* Confirmation dialog */}
       {showConfirmation && (
-        <div className='w-full h-screen fixed top-[0]'>
-          <div className='w-full h-screen overlay bg-black opacity-50'></div>
-          <div style={style} className={`mx-auto w-full max-w-xs bg-white rounded-lg p-5 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]`}>
-            <div className=''>
-              <p className='text-center leading-tight mt-5'>Are you sure want to download this student's resume?</p>
-              <div className='flex mt-5 justify-center gap-10'>
-
+        <div className="w-full h-screen fixed top-[0]">
+          <div className="w-full h-screen overlay bg-black opacity-50"></div>
+          <div
+            style={style}
+            className={`mx-auto w-full max-w-xs bg-white rounded-lg p-5 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]`}
+          >
+            <div className="">
+              <p className="text-center leading-tight mt-5">
+                Are you sure want to download this student's resume?
+              </p>
+              <div className="flex mt-5 justify-center gap-10">
                 {updatedResume && (
-                  <PDFDownloadLink document={<MyDocument updatedResume={updatedResume} />} fileName='resume'>
+                  <PDFDownloadLink
+                    document={<MyDocument updatedResume={updatedResume} />}
+                    fileName="resume"
+                  >
                     <Button
-                      type='submit'
-                      bgColor='bg-[#2507B3]'
-                      className='px-5 font-semibold'
-                    >Download</Button>
+                      type="submit"
+                      bgColor="bg-[#2507B3]"
+                      className="px-5 font-semibold"
+                    >
+                      Download
+                    </Button>
                   </PDFDownloadLink>
                 )}
               </div>
             </div>
 
             <Button
-              type='submit'
-              bgColor=''
-              textColor='#1F2937'
-              className='px-5 font-semibold absolute right-0 top-0'
+              type="submit"
+              bgColor=""
+              textColor="#1F2937"
+              className="px-5 font-semibold absolute right-0 top-0"
               onClick={() => setShowConfirmation(false)}
-            ><RxCross2 size={20} /></Button>
+            >
+              <RxCross2 size={20} />
+            </Button>
           </div>
         </div>
-
       )}
     </>
-  )
-}
+  );
+};
 
-export default ApplicantsDetails
+export default ApplicantsDetails;
 
 // < tbody >
 // { internshipId && internshipId.map((studentItem, index) => (

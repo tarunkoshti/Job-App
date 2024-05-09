@@ -23,7 +23,6 @@ const jobModel = new mongoose.Schema({
     openings: Number,
     description: String,
     preferences: String,
-    salary: Number,
     package: String,
     perks: {
         type: [String], // Change perks to an array of strings
