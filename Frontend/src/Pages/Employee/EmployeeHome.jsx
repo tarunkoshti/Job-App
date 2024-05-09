@@ -1,110 +1,168 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { BsStars } from "react-icons/bs";
-import { useSelector,useDispatch } from 'react-redux';
-import { fetchJobs } from '../../store/Actions/jobActions';
-import { fetchInternships } from '../../store/Actions/internshipActions';
-const EmployeeHome = () => {
+import { useSelector, useDispatch } from "react-redux";
+import { fetchJobs } from "../../store/Actions/jobActions";
+import { fetchInternships } from "../../store/Actions/internshipActions";
+import { LuArrowDown } from "react-icons/lu";
+import { MdOutlineDone } from "react-icons/md";
 
+const EmployeeHome = () => {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobReducer.jobData);
-  const internships = useSelector((state) => state.internshipReducer.internshipData)
-  const students = useSelector((state)=> state.userReducer.userData)
+  const internships = useSelector(
+    (state) => state.internshipReducer.internshipData
+  );
+  const students = useSelector((state) => state.userReducer.userData);
   useEffect(() => {
-   
     try {
       dispatch(fetchJobs());
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchInternships());
   }, [dispatch]);
-   
 
-  useEffect(()=>{
-    dispatch
-  },[dispatch])
+  useEffect(() => {
+    dispatch;
+  }, [dispatch]);
   return (
-    
-            <>
-              <div className="w-full bg-white font-sans">
-                <div className="flex flex-col items-center md:gap-6 px-4 md:px-0 pb-8">
-                  <div className="flex flex-col items-center mt-10 md:mt-24">
-                    <h1 className="text-center text-[#1F2937] text-4xl md:text-6xl font-semibold leading-relaxed md:pl-12 ">
-                      Find the best <span className='text-[#1E3A8A]'>Candidates</span> for <br /> your Company
-                    </h1>
-                    <p className="pl-4 md:pl-10 mt-8 text-[#1F2937] text-base md:text-lg text-center tracking-wide">
-                      Get more sales and maximize the conversion rates. Discover the most productive channels.
-                    </p>
-                    <p className='mt-2 text-center'>Discover the optimal match for your Company and get the best results together</p>
-                    <Link to=""><button className='p-4 px-10 py-3 mt-10 bg-[#1f2937] text-white font-semibold rounded-lg'>Get Started</button></Link>
-                  </div>
-                </div>
+    <>
+      <div className="w-full bg-white font-sans">
+        <div className="flex flex-col items-center md:gap-6 px-4 md:px-0">
+          <div className="flex flex-col items-center mt-10 md:mt-24">
+            <h1 className="text-center text-[#1F2937] text-4xl md:text-6xl font-medium leading-relaxed md:pl-12 capitalize tracking-normal ">
+              Find the best <span className="text-[#2507B3]">Candidates</span>{" "}
+              for <br /> your Company
+            </h1>
+            <p className="pl-4 md:pl-10 mt-4 text-gray-600 text-base md:text-lg text-center tracking-wide">
+              Get more sales and maximize the conversion rates. Discover the
+              most productive channels.
+            </p>
+            <p className="mt-1 text-center tracking-wide text-gray-600">
+              Discover the optimal match for your Company and get the best
+              results together
+            </p>
+            <Link to="">
+              <button className="p-4 px-10 py-3 mt-24 mb-10 bg-[#2507B3] text-white font-semibold rounded-lg">
+                Get Started
+              </button>
+            </Link>
+          </div>
+          <div className="animate-bounce bg-[#2507B3] rounded-full mt-10">
+            <LuArrowDown className="text-white p-5 size-16" />
+          </div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-8 md:px-12 lg:px-20 py-8 sm:py-12 mt-8 sm:mt-12">
+          <div class="text-center mb-8 py-5">
+            <h1 className="text-center text-[#1F2937] text-3xl md:text-5xl font-medium leading-relaxed md:pl-12 capitalize tracking-normal">
+              Leverage Global World-Class
+              <span className="text-[#2507B3] leading-snug">
+                <br />
+                Talented
+              </span>{" "}
+              People
+            </h1>
+          </div>
 
-                <div className='border-t-2 border-b-2 border-zinc-200 h-auto rounded-lg mx-4 md:mx-10 my-10 px-4 md:px-10 py-10 text-[1F2937]'>
-                  <div className='h-auto rounded-lg'>
-                    <h1 className="text-center text-[#1F2937] text-4xl md:text-5xl font-semibold md:pl-12 py-6 tracking-wide leading-relaxed">
-                      Leverage Global World-class <br /> talented people
-                    </h1>
-                    <p className="pl-4 md:pl-10 text-[#1F2937] leading-normal mt-2 text-base md:text-lg text-center tracking-wide">
-                      Discover the optimal match for your startup and get the best results together
-                    </p>
-                  </div>
-                  <div className='h-auto rounded-lg flex flex-col md:flex-row gap-8 md:gap-20 overflow-hidden px-4 md:px-20 py-8'>
-
-                     <div className='bg-white border-2 h-[280px] md:h-auto md:max-w-[340px] rounded-lg hover:bg-[#1F2937] hover:text-white duration-500 flex flex-col justify-between'>
-                    <div className='py-8 px-6 md:py-10 md:px-10'>
-                      <div className='w-full flex justify-center'>
-                        <span className='text-3xl md:text-4xl'><BsStars /></span>
-                      </div>
-                      <div className='text-center mt-4'>
-                        <h3 className='font-semibold text-xl md:text-2xl'>80% Faster Hiring</h3>
-                        <p className='mt-2 text-sm md:text-base'>No more back and forth to find the right qualified candidates</p>
-                      </div>
-                    </div>
-                    </div>
-
-                     <div className='bg-white border-2 h-[280px] md:h-auto md:max-w-[340px] rounded-lg hover:bg-[#1F2937] hover:text-white duration-500 flex flex-col justify-between'>
-                    <div className='py-8 px-6 md:py-10 md:px-10'>
-                      <div className='w-full flex justify-center'>
-                        <span className='text-3xl md:text-4xl'><BsStars /></span>
-                      </div>
-                      <div className='text-center mt-4'>
-                        <h3 className='font-semibold text-xl md:text-2xl'>Decrease Spendings</h3>
-                        <p className='mt-2 text-sm md:text-base'>Find the right candidates and pay cheaper than market price</p>
-                      </div>
-                    </div>
-                    </div>
-
-                   <div className='bg-white border-2 h-[280px] md:h-auto md:max-w-[340px] rounded-lg hover:bg-[#1F2937] hover:text-white duration-500 flex flex-col justify-between'>
-                    <div className='py-8 px-6 md:py-10 md:px-10'>
-                      <div className='w-full flex justify-center'>
-                        <span className='text-3xl md:text-4xl'><BsStars /></span>
-                      </div>
-                      <div className='text-center mt-4'>
-                        <h3 className='font-semibold text-xl md:text-2xl'>Top 0.1% Candidates</h3>
-                        <p className='mt-2 text-sm md:text-base'>Find the right candidates and pay cheaper than market price</p>
-                      </div>
-                    </div>
-                    </div>
-
-                  </div>
-                </div>
-
-                <div className='text-center mx-4 md:mx-10 rounded-lg py-20'>
-                  <h1 className="text-center text-[#1F2937] text-4xl md:text-5xl font-semibold leading-relaxed md:pl-12 ">Start looking for the Best Talent </h1>
-                  <p className="pl-4 md:pl-10 py-4 text-[#1F2937] leading-normal mt-2 text-base md:text-lg text-center tracking-wide">
-                    Get more sales and maximize the conversion rates. Discover the most productive channels.
-                  </p>
-                  <Link to=""><button className='p-4 py-3 px-10 mt-8 bg-[#1f2937] text-white font-semibold rounded-lg'>Get Started</button></Link>
-                </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 px-4 sm:px-8 md:px-12 lg:px-16 mt-8 sm:mt-10">
+            <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl cursor-pointer">
+              <div class="flex items-center mb-4">
+                <h1 class="text-xl font-medium text-[#2507B3]">01.</h1>
+                <h1 class="text-xl font-medium capitalize ml-2">
+                  80% Fast hiring
+                </h1>
               </div>
-            </>
+              <p class="text-base capitalize tracking-wider">
+                "Experience an 80% reduction in hiring time with our streamlined
+                process. Say goodbye to endless back-and-forth and discover
+                qualified candidates swiftly, ensuring your team is up and
+                running in no time."
+              </p>
+            </div>
 
-  )
-}
+            <div class="bg-white shadow-lg rounded-lg p-8 sm:col-start-1 sm:row-start-2 hover:shadow-2xl cursor-pointer">
+              <div class="flex items-center mb-4">
+                <h1 class="text-xl font-medium text-[#2507B3]">02.</h1>
+                <h1 class="text-xl font-medium capitalize ml-2">
+                  Decrease Spendings
+                </h1>
+              </div>
+              <p class="text-base capitalize tracking-wider">
+                "Cut recruitment costs by securing top candidates below market
+                rates. Our innovative approach ensures the right fit for your
+                team while saving significantly. Say goodbye to overspending
+                with tailored, budget-friendly solutions."
+              </p>
+            </div>
 
-export default EmployeeHome
+            <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl cursor-pointer">
+              <div class="flex items-center mb-4">
+                <h1 class="text-xl font-medium text-[#2507B3]">03.</h1>
+                <h1 class="text-xl font-medium capitalize ml-2">
+                  Top 0.1% Candidates
+                </h1>
+              </div>
+              <p class="text-base capitalize tracking-wide">
+                To secure top 0.1% talent at lower-than-market rates, leverage
+                non-monetary incentives such as remote work, flexible hours, and
+                growth opportunities while highlighting your company's culture
+                and potential.
+              </p>
+            </div>
+
+            <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl cursor-pointer">
+              <div class="flex items-center mb-4">
+                <h1 class="text-xl font-medium text-[#2507B3]">04.</h1>
+                <h1 class="text-xl font-medium capitalize ml-2">
+                  Effortless Integration
+                </h1>
+              </div>
+              <p class="text-base capitalize tracking-wide">
+                Streamline onboarding and integration with our seamless process.
+                Ensure new hires smoothly transition into your team, maximizing
+                productivity from day one. Say hello to hassle-free integration
+                and goodbye to wasted time.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="w-full flex flex-col items-center">
+          <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/2 xl:w-1/2 flex items-center justify-center">
+            <div class="w-full flex flex-col items-center leading-normal py-7 border-b-2 border-gray-400">
+              <h1 class="text-4xl font-medium text-center">
+                The All-in-one Hiring Platform
+              </h1>
+              <p class="text-center tracking-wide mt-4">
+                Get more sales and maximize conversion rates. <br />
+                Discover the most productive channels.
+              </p>
+              <button class="px-5 py-2 bg-[#2507B3] text-white mt-8 rounded-md">
+                Learn More
+              </button>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center justify-between px-5 sm:px-10 w-full sm:w-2/3 md:w-1/2 lg:w-1/2 xl:w-1/2 py-5">
+            <div class="flex items-center gap-2 mb-4 sm:mb-0">
+              <span class="py-1 px-1 bg-[#2507B3] rounded-full text-white">
+                <MdOutlineDone size={16} />
+              </span>
+              <h1 class="font-medium text-[#2507B3]">Web Application</h1>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="py-1 px-1 bg-[#2507B3] rounded-full text-white">
+                <MdOutlineDone size={16} />
+              </span>
+              <h1 class="font-medium text-[#2507B3]">Mobile Friendly</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default EmployeeHome;

@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchInternships } from '../store/Actions/internshipActions';
-import { fetchJobs } from '../store/Actions/jobActions';
-import InternshipCard from '../Components/InternshipCard';
-import JobCard from '../Components/JobCard';
-import Button from '../Components/Button'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchInternships } from "../store/Actions/internshipActions";
+import { fetchJobs } from "../store/Actions/jobActions";
+import InternshipCard from "../Components/InternshipCard";
+import JobCard from "../Components/JobCard";
+import Button from "../Components/Button";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { MdArrowOutward } from "react-icons/md";
 import { LuArrowDown } from "react-icons/lu";
-import LoadingPage from '../Components/Loading/LoadingPage';
+import LoadingPage from "../Components/Loading/LoadingPage";
 
 const Home = () => {
-
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobReducer.jobData);
-  const internships = useSelector((state) => state.internshipReducer.internshipData)
+  const internships = useSelector(
+    (state) => state.internshipReducer.internshipData
+  );
 
   useEffect(() => {
-
     try {
       dispatch(fetchJobs());
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }, [dispatch]);
 
@@ -29,16 +29,16 @@ const Home = () => {
     dispatch(fetchInternships());
   }, [dispatch]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Loading state
-  const [loader, setLoader] = useState(true)
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     if (fetchInternships !== null && fetchJobs !== null) {
-      setLoader(false)
+      setLoader(false);
     }
-  })
+  });
 
   // if (loader) {
   //   return (
@@ -59,26 +59,37 @@ const Home = () => {
   }
 
   return (
-
     <div className="w-full ">
       <div className=" w-full h-screen flex justify-center px-10">
         <div className="pt-10 md:pt-20 md:flex flex-col items-center">
-          <div className='flex flex-wrap gap-4'>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-wider">Welcome To
+          <div className="flex flex-wrap gap-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-wider">
+              Welcome To
             </h1>
             < img className='h-10 sm:h-12 md:h-14' src="Job_Seeking2-removebg-preview.png" alt="./logo.jpg" />
           </div>
-          <span className='text-3xl md:text-4xl block mt-3 tracking-wide'>Your Gateway to Career Opportunities!</span>
+          <span className="text-3xl md:text-4xl block mt-3 tracking-wide">
+            Your Gateway to Career Opportunities!
+          </span>
 
-          <p className="text-gray-500 mt-10 text-base md:text-lg md:text-center tracking-wider">Discover endless opportunities and unlock your career Potential and explore <br /> endless possibilities with  <span className="font-semibold">Hirer- An amazing job search platform.</span></p>
+          <p className="text-gray-500 mt-10 text-base md:text-lg md:text-center tracking-wider">
+            Discover endless opportunities and unlock your career Potential and
+            explore <br /> endless possibilities with{" "}
+            <span className="font-semibold">
+              Hirer- An amazing job search platform.
+            </span>
+          </p>
 
-          <Button className='mt-10 md:mt-20 flex items-center gap-2 py-3'
-            onClick={() => navigate('/student/signup')}>
+          <Button
+            className="mt-10 md:mt-20 flex items-center gap-2 py-3"
+            onClick={() => navigate("/student/signup")}
+          >
             Get Started Now
             <MdArrowOutward />
           </Button>
 
-          <div class="animate-bounce bg-[#2507B3] rounded-full absolute bottom-5"><LuArrowDown className='text-white p-5 size-16' />
+          <div class="animate-bounce bg-[#2507B3] rounded-full absolute bottom-5">
+            <LuArrowDown className="text-white p-5 size-16" />
           </div>
         </div>
       </div>
@@ -116,15 +127,109 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="w-full py-10 sm:py-20 px-10 border-b-2 border-zinc-300 ">
-        <h1 className="sm:text-center text-3xl md:text-5xl leading-tight ">Trusted <span className=" font-bold text-[#2507B3]">1000+</span> company find best job seekers</h1>
-        <div className="w-full flex flex-wrap items-center sm:justify-evenly max-sm:gap-3 mt-10">
-          <img className="w-[110px] h-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/1024px-Logo_of_YouTube_%282015-2017%29.svg.png" alt="" />
-          <img className="w-[110px] h-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Slack_Technologies_Logo.svg/2560px-Slack_Technologies_Logo.svg.png" alt="" />
-          <img className="w-[110px] h-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="" />
-          <img className="w-[110px] h-auto mb-4" src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png" alt="" />
-          <img className="w-[110px] h-auto mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pinterest_Logo.svg/1200px-Pinterest_Logo.svg.png" alt="" />
-          <img className="w-[110px] h-auto mb-4" src="https://www.pngall.com/wp-content/uploads/13/Figma-Logo-PNG-Photos.png" alt="" />
+      {/* scroller animation */}
+      <div className="w-full  bg-gray-100 py-16 overflow-hidden ">
+        <div className=" pb-10 my-5">
+          <h3 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10">
+            Trusted <span className=" font-semibold text-[#2507B3]">1000+</span>{" "}
+            company find best job seekers
+          </h3>
+        </div>
+
+        <div className="flex">
+          <div
+            id="scroller"
+            className="w-fit gap-16 px-10 flex whitespace-nowrap "
+          >
+            {/* Add your company logos here with appropriate styling */}
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:w-40 bg-[url(https://1000logos.net/wp-content/uploads/2021/10/Meta-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/Paytm/Paytm-Logo.wine.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2023/06/Airtel-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://car-logos.b-cdn.net/wp-content/uploads/2023/04/ceat-logo-present-scaled.webp)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/08/Xiaomi-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2022/08/Zara-Logo-1980s.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1200px-Tata_Consultancy_Services_Logo.svg.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/09/Nestle-Symbol.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2022/07/HCL-Technologies-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/e/e4/Adani_2012_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/07/IndiGo-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/05/Sony-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2022/01/Unilever-Symbol.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/PhonePe/PhonePe-Logo.wine.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/2560px-SAP_2011_logo.svg.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/1/15/Deloitte_Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Collabera_logo.png/1200px-Collabera_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+          </div>
+
+          <div
+            id="scroller"
+            className="w-fit gap-16 px-10 flex whitespace-nowrap "
+          >
+            {/* Add your company logos here with appropriate styling */}
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:w-40 bg-[url(https://1000logos.net/wp-content/uploads/2021/10/Meta-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/Paytm/Paytm-Logo.wine.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2023/06/Airtel-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://car-logos.b-cdn.net/wp-content/uploads/2023/04/ceat-logo-present-scaled.webp)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/08/Xiaomi-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2022/08/Zara-Logo-1980s.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1200px-Tata_Consultancy_Services_Logo.svg.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/09/Nestle-Symbol.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2022/07/HCL-Technologies-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/e/e4/Adani_2012_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/07/IndiGo-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://1000logos.net/wp-content/uploads/2021/05/Sony-logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2022/01/Unilever-Symbol.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://download.logo.wine/logo/PhonePe/PhonePe-Logo.wine.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/2560px-SAP_2011_logo.svg.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/1/15/Deloitte_Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/04/Amazon-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[6vh] w-32 md:48 bg-[url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Collabera_logo.png/1200px-Collabera_logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+
+            <div className="h-[5vh] md:h-[8vh] w-32 md:48 bg-[url(https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png)] bg-center bg-cover bg-no-repeat shrink-0 rounded-md"></div>
+          </div>
         </div>
       </div>
 
@@ -143,14 +248,14 @@ const Home = () => {
             )))
           }
         </div>
-
       </div>
 
       {/* Explore Job */}
-      <div className=' w-full overflow-hidden '>
-
-        <div className='py-14 sm:py-20 px-10'>
-          <h1 className='text-4xl sm:text-center font-medium'>Explore all Job Opportunity</h1>
+      <div className=" w-full overflow-hidden ">
+        <div className="py-14 sm:py-20 px-10">
+          <h1 className="text-4xl sm:text-center font-medium">
+            Explore all Job Opportunity
+          </h1>
         </div>
 
         <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory  px-10 bg-gray-50 py-10'>
@@ -161,12 +266,9 @@ const Home = () => {
             )))
           }
         </div>
-
       </div>
-
     </div>
+  );
+};
 
-  )
-}
-
-export default Home
+export default Home;

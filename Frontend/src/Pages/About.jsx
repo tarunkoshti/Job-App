@@ -8,12 +8,16 @@ const About = () => {
       <div className=''>
 
         {/* About-div */}
-        <div className='py-5 px-4 md:pl-16 md:mt-10 md:ml-5'>
-          <h1 className='text-3xl md:text-5xl border-b-2 w-fit leading-tight border-black font-semibold font-sans'>About Hirer</h1>
+        <div className="py-5 px-4 md:pl-16 md:mt-10 md:ml-5">
+          <h1 className="text-3xl md:text-5xl border-b-2 w-fit leading-tight border-black font-semibold font-sans">
+            About Hirer
+          </h1>
         </div>
 
-        <div className='py-2 px-4 md:pl-16 md:ml-6'>
-          <h3 className='text-2xl md:text-3xl font-medium text-[#2507B3]'>Let’s get to work</h3>
+        <div className="py-2 px-4 md:pl-16 md:ml-6">
+          <h3 className="text-2xl md:text-3xl font-medium text-[#2507B3]">
+            Let’s get to work
+          </h3>
         </div>
 
         <div className='px-4 md:pl-16 md:ml-6 text-gray-700 flex flex-col gap-1.5'>
@@ -47,21 +51,41 @@ const About = () => {
           <h3 className='text-center text-lg md:text-xl w-full md:w-1/2 tracking-wider text-gray-700'>Since 2024, Hirer has been a proud champion of transparency in the workplace. Today, our mission guides us in serving a global community of millions.</h3>
         </div>
 
-        <div className='flex flex-col md:flex-row items-center justify-center gap-6 md:gap-32 mt-8 md:mt-16'>
-          <div className='flex flex-col gap-3'>
-            <h1 className='text-3xl md:text-8xl text-center font-medium'>55 <span className='text-xl md:text-6xl font-medium'>M+</span></h1>
-            <h3 className='text-lg md:text-xl font-semibold text-center'>unique monthly visitors</h3>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-32 mt-8 md:mt-16">
+          <div className="flex flex-col gap-3">
+            <h1 className="text-3xl md:text-7xl text-center font-medium text-[#2507B3]">
+              55{" "}
+              <span className="text-xl md:text-6xl font-medium text-[#2507B3]">
+                M+
+              </span>
+            </h1>
+            <h3 className="text-lg md:text-xl font-medium text-center">
+              unique monthly visitors
+            </h3>
           </div>
-          <div className='flex flex-col gap-3'>
-            <h1 className='text-3xl md:text-8xl text-center font-medium'>180 <span className='text-xl md:text-6xl font-medium'>M+</span></h1>
-            <h3 className='text-lg md:text-xl font-semibold text-center'>reviews, salaries & <br /> insights</h3>
+          <div className="flex flex-col gap-3">
+            <h1 className="text-3xl md:text-7xl text-center font-medium text-[#2507B3]">
+              180{" "}
+              <span className="text-xl md:text-6xl font-medium text-[#2507B3]">
+                M+
+              </span>
+            </h1>
+            <h3 className="text-lg md:text-xl font-medium text-center">
+              reviews, salaries & <br /> insights
+            </h3>
           </div>
-          <div className='flex flex-col gap-3'>
-            <h1 className='text-3xl md:text-8xl text-center font-medium'>2.5 <span className='text-xl md:text-6xl font-medium'>M+</span></h1>
-            <h3 className='text-lg md:text-xl font-semibold text-center'>employer profiles</h3>
+          <div className="flex flex-col gap-3">
+            <h1 className="text-3xl md:text-7xl text-center font-medium text-[#2507B3]">
+              2.5{" "}
+              <span className="text-xl md:text-6xl font-medium text-[#2507B3]">
+                M+
+              </span>
+            </h1>
+            <h3 className="text-lg md:text-xl font-medium text-center">
+              employer profiles
+            </h3>
           </div>
         </div>
-
       </div>
     </>
   );

@@ -36,7 +36,7 @@ const AllInternship = () => {
           {/* main-div */}
           <div className='w-full  flex items-center justify-center gap-10'>
             {/* ViewInternshipCard - full width on smaller screens */}
-            <div id='job' className='w-full h-screen sm:w-full md:w-[400px]  flex flex-col items-center justify-start gap-5 overflow-y-auto snap-mandatory border-zinc-400 border-2 rounded-lg'>
+            <div id='job' className='w-full h-screen sm:w-full md:w-[400px]  flex flex-col items-center justify-start gap-5 overflow-y-auto snap-mandatory border-zinc-200 border-2 rounded-lg'>
               <div className='flex flex-col items-center py-10 pb-5'>
                 {internships &&
                   internships.map((internship, index) => (
@@ -46,7 +46,7 @@ const AllInternship = () => {
             </div>
 
             {/* Outlet hidden on small screens */}
-            <div id='job' className='hidden md:block w-1/2 h-screen overflow-y-auto overflow-x-hidden snap-mandatory border-2 border-zinc-400  rounded-lg'>
+            <div id='job' className='hidden md:block w-1/2 h-screen overflow-y-auto overflow-x-hidden snap-mandatory border-2 border-zinc-200  rounded-lg'>
               <div className=' shrink-0 py-10'>
                 <Outlet />
               </div>
