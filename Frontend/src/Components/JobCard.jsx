@@ -79,7 +79,7 @@ const JobCard = ({ index, job, color }) => {
               <h3 className="">{job.location}</h3>
             </div>
             <div className="flex items-center gap-2 mt-2">
-              <BsCalendarDate />
+              <FaMoneyBill />
               <h3 className="">₹ {calculateAnnualSalary(job.salary)} /month</h3>
             </div>
 
