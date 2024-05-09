@@ -27,6 +27,12 @@
     display: none;
 }
 
+/* #job{
+    scrollbar-color: #007 #dadada;
+    scrollbar-width:thin;
+} */
+
+
 * {
     font-family: 'gilroy';
 }

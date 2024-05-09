@@ -46,6 +46,18 @@ const Home = () => {
   //   )
   // }
 
+  function generateRandomColor() {
+    // Generate random values for red, green, and blue components
+    const red = Math.floor(Math.random() * 256); // Random value between 0 and 255
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+
+    // Construct the color code in hexadecimal format
+    const colorCode = `#${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
+
+    return colorCode;
+  }
+
   return (
 
     <div className="w-full ">
@@ -117,17 +129,17 @@ const Home = () => {
       </div>
 
       {/* Explore Internships */}
-      <div className=' w-full overflow-hidden'>
+      <div className='w-full overflow-hidden'>
 
         <div className='py-14 sm:py-20 px-10'>
           <h1 className='text-4xl sm:text-center font-medium'>Explore all Internship Opportunity</h1>
         </div>
 
-        <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  px-10'>
+        <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-x px-10 bg-gray-50 py-10 '>
           {
             internships &&
             (internships.map((internship, index) => (
-              <InternshipCard key={index} index={index} internship={internship} />
+              <InternshipCard key={index} index={index} internship={internship} color={generateRandomColor()} />
             )))
           }
         </div>
@@ -141,11 +153,11 @@ const Home = () => {
           <h1 className='text-4xl sm:text-center font-medium'>Explore all Job Opportunity</h1>
         </div>
 
-        <div id='job' className='h-3/5 w-full flex items-center gap-10 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-mandatory  px-10'>
+        <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory  px-10 bg-gray-50 py-10'>
           {
             jobs &&
             (jobs.map((job, index) => (
-              <JobCard key={index} index={index} job={job} />
+              <JobCard key={index} index={index} job={job} color={generateRandomColor()} />
             )))
           }
         </div>
