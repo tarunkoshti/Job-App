@@ -187,7 +187,11 @@ const Home = () => {
         </div>
       </div>
 
-      <div className='w-full py-10 sm:py-16 bg-gray-50  flex px-10'>
+      <div className='w-full sm:py-16 bg-gray-50 px-10 py-16'>
+        <h3 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10 pb-16">
+          <span className=" font-semibold text-[#2507B3]"></span>{" "}
+          Follow these steps
+        </h3>
         <div className='w-full h-full flex flex-wrap justify-center gap-10 sm:gap-20'>
           <div className='one hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
             <div className='top text-4xl'>01</div>
@@ -222,8 +226,8 @@ const Home = () => {
 
       {/* scroller animation */}
       <div className="w-full  bg-gray-50 py-16 overflow-hidden ">
-        <div className=" pb-10 my-5">
-          <h3 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10">
+        <div className="">
+          <h3 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10 pb-16">
             Trusted <span className=" font-semibold text-[#2507B3]">1000+</span>{" "}
             company find best job seekers
           </h3>

@@ -17,9 +17,9 @@ const InternshipCard = ({ index, internship, color }) => {
   const date1 = new Date(internship?.createdAt);
   const date2 = new Date(); // Current date
 
-    // Calculate the difference in milliseconds
-    const differenceInMilliseconds = date2 - date1;
-    // console.log(differenceInMilliseconds)
+  // Calculate the difference in milliseconds
+  const differenceInMilliseconds = date2 - date1;
+  // console.log(differenceInMilliseconds)
 
   // Convert milliseconds to days
   const differenceInDays = Math.floor(
@@ -33,9 +33,8 @@ const InternshipCard = ({ index, internship, color }) => {
       <Link to={`/student/internships/read/${internship._id}`}>
         <div
           key={internship._id}
-          className={`m-2 w-80 mb-5 p-4 shrink-0 rounded-xl bg-white text-black border hover:border-[#2507B3] ${
-            colors[index % colors.length]
-          }`}
+          className={`m-2 w-80 mb-5 p-4 shrink-0 rounded-xl bg-white text-black border hover:border-[#2507B3] ${colors[index % colors.length]
+            }`}
         >
           <div className="flex items-center justify-between ">
             <div className="flex items-center gap-2 py-1 px-3 border rounded-md">
@@ -80,11 +79,11 @@ const InternshipCard = ({ index, internship, color }) => {
               <h3 className="">{internship.location}</h3>
             </div>
             <div className="flex items-center gap-2 mt-2">
-              <BsCalendarDate />
+              <FaMoneyBill />
               <h3 className="">₹ {internship.stipend.amount} /month</h3>
             </div>
             <div className="flex items-center gap-2 mt-2">
-              <FaMoneyBill />
+              <BsCalendarDate />
               <h3 className="">{internship.duration} months</h3>
             </div>
             <div className="flex items-center gap-2 mt-2">
