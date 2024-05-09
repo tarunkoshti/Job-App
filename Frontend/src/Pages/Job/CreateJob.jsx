@@ -7,9 +7,13 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { asyncCreateJob } from '../../store/Actions/jobActions'
 import { MdErrorOutline } from "react-icons/md";
+import DatePicker from "react-datepicker";
+
+
+
 const CreateJob = () => {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm()
+    const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [i, setI] = useState(null)
@@ -20,13 +24,35 @@ const CreateJob = () => {
     useEffect(() => {
         const jobtype = watch((value, { name }) => {
             if (name == "jobtype") {
-                let str = value.jobtype
-                setI(str)
-
-                console.log(str)
+                value.jobtype == "Remote" ? setValue("location", "Remote")
+          : setValue("location", "")
+            }
+            //  if (name == "companyDetail") {
+            //     let str = value.companyDetail.trim("/n")
+            //     setCurrlength(str.length)
+            // }
+             if (name == "workconditions") {
+                let str = value.workconditions.trim("/n")
+                setCurrlength(str.length)
+            }
+             if (name == "responsibilities") {
+                let str = value.responsibilities.trim("/n")
+                setCurrlength(str.length)
+            }
+             if (name == "description") {
+                let str = value.description.trim("/n")
+                setCurrlength(str.length)
+            }
+             if (name == "preferences") {
+                let str = value.preferences.trim("/n")
+                setCurrlength(str.length)
+            }
+             if (name == "assements") {
+                let str = value.assements.trim("/n")
+                setCurrlength(str.length)
             }
         });
-        jobtype
+        
 
     }, [watch, i]);
     return (
@@ -87,6 +113,26 @@ const CreateJob = () => {
                                     />
                                     {errors.jobtype && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.jobtype.message}</span></p>}
                                 </div>
+
+                                {/* Location */}
+                                
+                                    <div className="w-full md:max-w-lg mt-1">
+                                        <Input
+                                            label="Location"
+                                            placeholder="e.g. Indore"
+                                            type="text"
+                                            {...register("location", {
+                                                required: { value: true, message: "Location is required" },
+                                            })}
+
+                                        />
+                                        {errors.location && (
+                                            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
+                                                <MdErrorOutline />
+                                                <span>{errors.location.message}</span>
+                                            </p>
+                                        )}
+                                    </div>
 
                                 {/* Working-type-div */}
 
@@ -176,14 +222,40 @@ const CreateJob = () => {
                                 </div>
 
                                 {/* Start date */}
-                                <div className="w-full md:max-w-lg mt-3">
+                                {/* <div className="w-full md:max-w-lg mt-3">
                                     <Input
                                         label="Start Date"
                                         placeholder="e.g. 01-06-2024"
                                         type="text"
                                         {...register("startdate")}
                                     />
+                                </div> */}
+
+                                <div className='w-full md:max-w-lg mt-3'>
+                                <Input
+                                    type="text"
+                                    label="Start date"
+                                    placeholder="e.g. 08/08/2024"
+                                    {...register("startdate", {
+                                    required: {
+                                        value: true,
+                                        message: "required"
+                                    }
+                                    })}
+                                >
+                                    <DatePicker
+                                    className='w-full outline-none px-3 py-2 bg-red-500 rounded-lg opacity-0'
+                                    onChange={(date) => {
+                                        const formattedDate = date.toLocaleDateString('en-GB'); // Format: dd/MM/yyyy
+                                        setValue("startdate", formattedDate);
+                                    }}
+                                    />
+                                </Input>
+                                {errors.startdate && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.startdate.message}</span></p>}
                                 </div>
+
+
+
                             </div>
                         </div>
                         {/* Section-2-div */}
@@ -317,49 +389,42 @@ const CreateJob = () => {
                                     />
                                 </div>
 
-                                {/* Location */}
-                                {i == "Remote" ? (
-                                    <div />
-                                ) : (
-                                    <div className="w-full md:max-w-lg mt-1">
-                                        <Input
-                                            label="Location"
-                                            placeholder="e.g. Indore"
-                                            type="text"
-                                            {...register("location", {
-                                                required: { value: true, message: "Location is required" },
-                                            })}
-                                        />
-                                        {errors.location && (
-                                            <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                                                <MdErrorOutline />
-                                                <span>{errors.location.message}</span>
-                                            </p>
-                                        )}
-                                    </div>
-                                )}
+                                
 
                                 {/* Applicants */}
-                                {/* <div className="w-full md:max-w-lg mt-3">
+                                <div className="w-full md:max-w-lg mt-3">
                                     <Input
                                         label="Applicants"
                                         placeholder="e.g. 1250"
                                         type="text"
                                         {...register("applicants")}
                                     />
-                                </div> */}
+                                </div>
 
                                 {/* Assessments */}
                                 <div className="w-full md:max-w-lg mt-4">
-                                    <label htmlFor="assessments" className="block text-md ">Assessments</label>
+                                    <label htmlFor="assements" className="block text-md ">Assessments</label>
                                     <textarea
-                                        id="assessments"
-                                        name="assessments"
+                                        id="assements"
+                                        name="assements"
                                         rows="4"
                                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                         placeholder="Type your question here......"
-                                        {...register("assessments")}
+                                        {...register("assements", {
+                                            required: {
+                                                value: true,
+                                                message: "Assements is required"
+                                            },
+                                            validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
+                                        })}
                                     />
+                                    {errors.assements && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.assements.message}</span></p>}
                                 </div>
 
                                 {/*  preferences */}
@@ -371,8 +436,22 @@ const CreateJob = () => {
                                         rows="4"
                                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                         placeholder="e.g. I want to work for a Good company....."
-                                        {...register("preferences")}
+                                        {...register("preferences", {
+                                            required: {
+                                                value: true,
+                                                message: "Preferences is required"
+                                            },
+                                            validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
+                                        })}
                                     />
+                                    {errors.preferences && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.preferences.message}</span></p>}
+                                    
                                 </div>
 
                                 {/* Description */}
@@ -389,6 +468,13 @@ const CreateJob = () => {
                                                 value: true,
                                                 message: "Description is required"
                                             },
+                                            validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
                                         })}
                                     />
                                     {errors.description && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.description.message}</span></p>}
@@ -408,6 +494,13 @@ const CreateJob = () => {
                                                 value: true,
                                                 message: "responsibilities is required"
                                             },
+                                            validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
                                         })}
                                     />
                                     {errors.responsibilities && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.responsibilities.message}</span></p>}
@@ -422,8 +515,22 @@ const CreateJob = () => {
                                         rows="4"
                                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Solid understanding of JavaScript, HTML, CSS, and related web technologies..."
-                                        {...register("qualifications")}
+                                        {...register("qualifications",{
+                                          required: {
+                                                value: true,
+                                                message: "Qualifications is required"
+                                            },
+                                             validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
+                                        })}
+                                        
                                     />
+                                    { errors.qualifications && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.qualifications.message}</span></p>}
                                 </div>
 
                                 {/* Work conditions */}
@@ -435,8 +542,22 @@ const CreateJob = () => {
                                         rows="4"
                                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-md border-gray-300 rounded-lg px-2 py-2 h-[110px] resize-none"
                                         placeholder="e.g. Salary: 2-4 LPA"
-                                        {...register("workconditions")}
+                                        {...register("workconditions",{
+                                          required: {
+                                                value: true,
+                                                message: "Working Condition is required"
+                                            },
+                                             validate: {
+                                                bulletPoints: value => {
+                                                    const bulletPoints = value.split('\n');
+                                                    return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                                    || "Each point must start with a number followed by a dot.";
+                                                },
+                                                }
+                                        })}
+                                        
                                     />
+                                    { errors.workconditions && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.workconditions.message}</span></p>}
                                 </div>
 
 
@@ -454,6 +575,13 @@ const CreateJob = () => {
                                                 value: true,
                                                 message: "Company Detail is required"
                                             },
+                                            //  validate: {
+                                            //     bulletPoints: value => {
+                                            //         const bulletPoints = value.split('\n');
+                                            //         return bulletPoints.every(point => /^\s*\d+\.\s*/.test(point.trim()))
+                                            //         || "Each point must start with a number followed by a dot.";
+                                            //     },
+                                            //     }
                                         })}
                                     />
                                     {errors.companyDetail && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.companyDetail.message}</span></p>}

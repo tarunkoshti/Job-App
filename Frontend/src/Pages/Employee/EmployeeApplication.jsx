@@ -1,89 +1,122 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useLocation } from 'react-router-dom'
 import { MdOutlineLibraryBooks } from "react-icons/md";
+import { FaCircle } from 'react-icons/fa';
+import { FiExternalLink } from 'react-icons/fi';
+import Button from '../../Components/Button';
+import { setStudentResume } from '../../store/Actions/resumeActions';
 
 const EmployeeApplication = () => {
   const internshipId = useSelector((state) => state.employeeReducer.employeeData?.employe.internships)
-  // console.log(internshipId)
   const jobId = useSelector((state) => state.employeeReducer.employeeData?.employe?.jobs)
-  // console.log(jobId)
-
-
   const internships = useSelector((state) => state.internshipReducer?.internshipData)
-  // console.log(internships)
-
   const jobs = useSelector((state) => state.jobReducer?.jobData);
-  // console.log(jobs)
+
+  const dispatch = useDispatch()
+  const location = useLocation()
+  useEffect(() => {
+    dispatch(setStudentResume())
+  }, [location])
 
   return (
-    <div>
-      <div className='bg-gray-100 mx-20 rounded-lg'>
-        <h1 className='text-3xl text-center font-semibold py-4'>Internship Application</h1>
-        <div className='flex bg-gray-300 gap-32 px-10 py-2 whitespace-nowrap rounded-lg my-4 font-semibold'>
-          <h1 className='w-1/6'>COMPANY</h1>
-          <h1 className='w-1/6'>PROFILE</h1>
-          <h1 className='w-1/6'> TYPE</h1>
-          <h1 className='w-1/6'>NUMBER OF APPLICANTS</h1>
-          <h1 className='w-1/6'>REVIEW APPLICATION</h1>
-          <h1 className='w-1/6'>View Applicants</h1>
-        </div>
-        <ul>
-          {internshipId && internshipId.map((studentItem, index) => (
-
-            <div key={index}>
-              {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
-                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-32 ' key={internIndex}>
-                  <h1 className='w-1/6'>{intern.company}</h1>
-                  <h1 className='w-1/6'>{intern.profile}</h1>
-                  <h1 className='w-1/6 '>{intern.internshiptype}</h1>
-                  <h1 className='w-1/6'>{intern?.students.length}</h1>
-
-                  <Link className='w-1/6' to={`/student/internship/singleintership/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
-
-                  <Link className='w-1/6' to={`/employee/application/applicants/${studentItem}`}><button className='px-8 py-2 bg-gray-400 rounded-lg'>View</button></Link>
-                </div>
+    <>
+      {/* Internship Application */}
+      <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg text-gray-700'>
+        <h1 className='text-3xl  font-medium py-10 max-md:text-xl flex items-center gap-2'> <FaCircle size={10} /> Internship Application</h1>
+        <div className='rounded-xl overflow-hidden border-l border-r overflow-x-auto'
+          style={{ scrollbarWidth: 'none' }}>
+          <table className='w-full table-fixed overflow-auto'>
+            {/* Table head */}
+            <thead>
+              <tr className='bg-gray-100 font-semibold  text-base max-md:text-sm'>
+                <th className='w-[300px] max-md:w-[200px] text-left py-4 pl-5 font-medium tracking-wide'>Company</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Profile</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Type</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Applicants</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Created At</th>
+                {/* <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Review Application</th> */}
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>View Applicants</th>
+              </tr>
+            </thead>
+            {/* Table body */}
+            <tbody>
+              {internshipId && internshipId.map((studentItem, index) => (
+                <tr key={index} className='border-b border-zinc-300 max-md:text-sm'>
+                  {internships?.filter(internship => internship._id === studentItem).map((intern, internIndex) => (
+                    <>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize pl-5'>{intern.company}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize flex items-center gap-5'>{intern.profile} <Link to={`/student/internships/read/${studentItem}`} ><FiExternalLink size={13} color='blue' cursor='pointer' /></Link></td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize'>{intern.internshiptype}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize text-sm'>{intern?.students?.length}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize text-sm'>{intern?.createdAt.split('T')[0]}</td>
+                      {/* <td className='py-2 px-4 pl-16'>
+                        <Link to={`/student/internship/singleintership/${studentItem}`}><MdOutlineLibraryBooks /></Link>
+                      </td> */}
+                      <td className=''>
+                        <Link to={`/employee/application/applicants/${studentItem}`}
+                          className='px-3 py-1.5 bg-[#2507B3] rounded-md text-white text-sm'>
+                          view
+                        </Link>
+                      </td>
+                    </>
+                  ))}
+                </tr>
               ))}
-            </div>
-          ))}
-
-        </ul>
-      </div>
-      <div className='bg-gray-100 mx-20 rounded-lg my-10'>
-        <h1 className='text-3xl text-center font-semibold py-4'>JOB APPLICATION</h1>
-        <div className='flex bg-gray-300 gap-32 whitespace-nowrap px-10 py-2 rounded-lg my-4 font-semibold'>
-          <h1 className='w-1/6'>PROFILE</h1>
-          <h1 className='w-1/6'>COMPANY</h1>
-          <h1 className='w-1/6'> TYPE</h1>
-          <h1 className='w-1/6'>NUMBER OF APPLICANTS</h1>
-          <h1 className='w-1/6'>REVIEW APPLICATION</h1>
-          <h1 className='w-1/6'>View Applicants</h1>
+            </tbody>
+          </table>
         </div>
-        <ul>
-          {jobId && jobId.map((studentItem, index) => (
-
-            <div key={index}>
-              {jobs?.filter(job => job._id === studentItem).map((job, Index) => (
-                <div className='px-10 py-3 bg-gray-300 my-2 flex gap-56' key={Index}>
-                  <h1 className='w-1/5'>{job.company}</h1>
-                  <h1 className='w-1/5'>{job.profile}</h1>
-                  <h1 className='w-1/5'>{job.jobtype}</h1>
-                  <h1 className='w-1/5'>{job?.students.length}</h1>
-
-                  <Link className='w-1/5' to={`/student/job/read/${studentItem}`}> <span ><MdOutlineLibraryBooks /></span></Link>
-                </div>
-              ))}
-            </div>
-          ))}
-
-        </ul>
-
-
-
-
       </div>
-    </div>
+
+      {/* Job Application */}
+      <div className='w-[100%] px-5 md:w-[90%] md:mx-auto rounded-lg text-gray-700'>
+        <h1 className='text-3xl font-medium py-10 max-md:text-xl flex items-center gap-2 '> <FaCircle size={10} />Job Applications</h1>
+        <div className='rounded-xl overflow-hidden border-l border-r overflow-x-auto'
+          style={{ scrollbarWidth: 'none' }}>
+          <table className='w-full table-fixed'>
+            {/* Table header */}
+            <thead className='bg-gray-300'>
+              <tr className='bg-gray-100 font-semibold text-base max-md:text-sm'>
+                <th className='w-[300px] max-md:w-[200px] text-left py-4 pl-5 font-medium tracking-wide'>Profile</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Company</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Type</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Applicants</th>
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>Created At</th>
+                {/* <th className='py-2 px-4'>Review Application</th> */}
+                <th className='w-[300px] max-md:w-[200px] text-left font-medium tracking-wide'>View Applicants</th>
+              </tr>
+            </thead>
+            {/* Table body */}
+            <tbody>
+              {jobId && jobId.map((studentItem, index) => (
+                <tr key={index} className='border-b border-zinc-300 max-md:text-sm'>
+                  {jobs?.filter(job => job._id === studentItem).map((job, Index) => (
+                    <>
+                      <td className='w-[300px] max-md:w-[200px] py-3 pl-5 capitalize'>{job.company}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize flex items-center gap-5'>{job.profile} <Link to={`/student/job/read/${studentItem}`}><FiExternalLink size={13} color='blue' cursor='pointer' /></Link></td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize'>{job.jobtype}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize text-sm'>{job?.students.length}</td>
+                      <td className='w-[300px] max-md:w-[200px] py-3 capitalize text-sm'>{job.createdAt.split('T')[0]}</td>
+                      {/* <td className='py-2 px-4 pl-20'>
+                        <Link to={`/student/job/read/${studentItem}`}><MdOutlineLibraryBooks /></Link>
+                      </td> */}
+                      <td className=''>
+                        <Link to={`/employee/application/applicants/${studentItem}`}
+                          className='px-3 py-1.5 bg-[#2507B3] rounded-md text-white text-sm'>
+                          view
+                        </Link>
+                      </td>
+                    </>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
   )
 }
 
 export default EmployeeApplication
+

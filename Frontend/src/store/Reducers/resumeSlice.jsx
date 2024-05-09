@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    resumeData: null,
+    resumeData: [],
 };
 
 const resumeSlice = createSlice({
@@ -9,7 +9,14 @@ const resumeSlice = createSlice({
     initialState,
     reducers: {
         setResume: (state, action) => {
-            state.resumeData = action.payload
+            if(action.payload === null){
+                state.resumeData = []
+            }
+            else if (!state.resumeData.some(obj => obj.details.id === action.payload.details.id)) {
+                state.resumeData.push(action.payload)
+            }
+            
+            
         }
     }
 })

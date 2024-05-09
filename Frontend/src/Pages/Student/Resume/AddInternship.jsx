@@ -10,6 +10,8 @@ import { MdErrorOutline } from 'react-icons/md'
 import { toast } from 'react-toastify'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { motion } from 'framer-motion'
+import { CgSpinner } from "react-icons/cg";
 
 
 const AddInternship = ({ edit = false }) => {
@@ -25,13 +27,18 @@ const AddInternship = ({ edit = false }) => {
     const navigate = useNavigate()
 
     const submit = async (data) => {
+        setLoader(true)
         if (currlength <= 250) {
             if (edit) {
                 const error = await dispatch(editInternship(id, student._id, data))
+                setLoader(false)
+
                 error ? toast.error(error.data.message)
                     : toast.success("Internship updated")
             } else {
                 const error = await dispatch(addInternship(student._id, data))
+                setLoader(false)
+
                 error ? toast.error(error.data.message)
                     : toast.success("Internship added")
             }
@@ -65,15 +72,16 @@ const AddInternship = ({ edit = false }) => {
 
     const internship = student?.resume?.internships.find(item => item.id === id)
 
+    const [loader, setLoader] = useState(false)
+
     return (
-        < div className='w-full h-screen absolute top-[0]' >
-            <div className='w-full h-[213%] overlay bg-black opacity-50'></div>
-            <div className='w-full h-[100px
-      ]: max-w-lg rounded-xl border bg-gray-50 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
+        < div className='w-full h-screen fixed top-[0]' >
+            <div className='w-full h-screen  overlay bg-black opacity-50'></div>
+            <div className='scroll w-full max-sm:h-full h-[90%] overflow-y-auto max-w-xl sm:rounded-lg border bg-gray-50 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
                 <RxCross2 onClick={backHandler} size={25} className='absolute right-5 top-5 cursor-pointer' />
                 <form
                     onSubmit={handleSubmit(submit)}
-                    className='w-full p-10 flex flex-col gap-5'>
+                    className='w-full p-5 sm:p-10 flex flex-col gap-5'>
                     <h1 className='text-center text-xl font-semibold'>Internship details</h1>
 
                     <div>
@@ -123,14 +131,15 @@ const AddInternship = ({ edit = false }) => {
                                 {...register("workType", {
                                 })}
                             />
-                            <span>Is work from home</span>
+                            <span className='font-medium'>Is work from home</span>
                         </label>
                     </div>
 
                     <div className='w-full flex gap-2'>
 
-                        <div>
+                        <div className='w-1/2'>
                             <Input
+                                style='relative'
                                 defaultValue={edit ? (internship?.startDate || '') : ''}
                                 type="text"
                                 label="Start date"
@@ -153,9 +162,10 @@ const AddInternship = ({ edit = false }) => {
                             {errors.startDate && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.startDate.message}</span></p>}
                         </div>
 
-                        <div className='relative'>
+                        <div className='w-1/2'>
 
                             <Input
+                                style='relative'
                                 defaultValue={edit ? (internship?.endDate || '') : ''}
                                 type="text"
                                 label="End date"
@@ -184,7 +194,7 @@ const AddInternship = ({ edit = false }) => {
                                     {...register("currentWorking", {
                                     })}
                                 />
-                                <span>Currently working here</span>
+                                <span className='font-medium'>Currently working</span>
                             </label>
                         </div>
                     </div>
@@ -195,7 +205,7 @@ const AddInternship = ({ edit = false }) => {
                         <textarea
                             defaultValue={edit ? (internship?.description || '') : ''}
                             name="description"
-                            className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[100px] resize-none text-sm'
+                            className='px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full h-[150px] resize-none text-sm'
                             id='des'
                             type="description"
                             placeholder={`Short description of work done(max 250 char)\n#Mention key job responsibilities, measurable impact or results you helped deliver, any awards you won during this time.\n#Keep it to 2-3 points`}
@@ -222,8 +232,8 @@ const AddInternship = ({ edit = false }) => {
                     <Button
                         type='submit'
                         bgColor='bg-[#1F2937]'
-                        className='w-1/2 font-semibold m-auto'
-                    >Save</Button>
+                        className='w-1/2 font-semibold m-auto flex justify-center'
+                    > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) : "Save"}</Button>
                 </form>
 
             </div>

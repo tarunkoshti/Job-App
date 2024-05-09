@@ -7,13 +7,13 @@ export const getStudentResume = (id) => async (dispatch, getState) => {
         const { data } = await axios.get(`/api/resume/${id}`)
         const { updatedResume } = data
         console.log(data)
-        dispatch(setResume({ updatedResume }))
+        dispatch(setResume( updatedResume ))
     } catch (error) {
         console.log(error)
     }
 }
 
-export const setStudentResume = (id) => async (dispatch, getState) => {
+export const setStudentResume = () => async (dispatch, getState) => {
     try {
         // const { data } = await axios.get(`/api/resume/${id}`)
         // const { updatedResume } = data

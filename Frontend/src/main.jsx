@@ -39,6 +39,8 @@ import AddProtfolioOrWork from './Pages/Student/Resume/AddProtfolioOrWork.jsx'
 import AddAccomplishment from './Pages/Student/Resume/AddAccomplishment.jsx'
 import { Flip, Slide, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import About from './Pages/About.jsx'
+import Notfound from './Pages/Notfound.jsx'
 
 const router = createBrowserRouter([
   {
@@ -53,9 +55,14 @@ const router = createBrowserRouter([
       </>
     ),
     children: [
+      
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/student",
@@ -92,7 +99,29 @@ const router = createBrowserRouter([
                 <AllInternship />
               </AuthLayout>
             ),
+            children: [
+          {
+            path: "readinterbship/:id",
+            element: (
+              <AuthLayout authentication={true}>
+                <Singleinternship />
+              </AuthLayout>
+            ),
+
           },
+          
+            ]
+          },
+          {
+            path: "internships/read/:id",
+            element: (
+              <AuthLayout authentication={true}>
+                <Singleinternship />
+              </AuthLayout>
+            ),
+
+          },
+        
           {
             path: "jobs",
             element: (
@@ -100,6 +129,18 @@ const router = createBrowserRouter([
                 <AllJob />
               </AuthLayout>
             ),
+            children:[
+              {
+            path: "readjob/:id",
+            element: (
+              <AuthLayout authentication={true}>
+                <Singlejob />
+              </AuthLayout>
+            ),
+
+          },
+              
+            ]
           },
           {
             path: "job/read/:id",
@@ -110,15 +151,24 @@ const router = createBrowserRouter([
             ),
 
           },
-          {
-            path: "internship/read/:id",
-            element: (
-              <AuthLayout authentication={true}>
-                <Singleinternship />
-              </AuthLayout>
-            ),
+          // {
+          //   path: "job/read/:id",
+          //   element: (
+          //     <AuthLayout authentication={true}>
+          //       <Singlejob />
+          //     </AuthLayout>
+          //   ),
 
-          },
+          // },
+          // {
+          //   path: "internship/read/:id",
+          //   element: (
+          //     <AuthLayout authentication={true}>
+          //       <Singleinternship />
+          //     </AuthLayout>
+          //   ),
+
+          // },
           {
             path: "application",
             element: (
@@ -315,6 +365,10 @@ const router = createBrowserRouter([
               </AuthLayout>
             )
           },
+          {
+            path: "about",
+            element: <About />,
+          },
         ]
       },
       {
@@ -328,6 +382,10 @@ const router = createBrowserRouter([
                 <EmployeeHome />
               </AuthLayout>
             ),
+          },
+          {
+            path: "about",
+            element: <About />,
           },
           {
             path: "login",
@@ -414,7 +472,12 @@ const router = createBrowserRouter([
         )
       },
     ]
-  }
+  },
+
+     {
+        path: "*",
+        element: <Notfound/>
+      },
 ])
 
 

@@ -10,7 +10,8 @@ import { FaPlus } from "react-icons/fa6";
 import Select from '../../../Components/Select'
 import { MdErrorOutline } from 'react-icons/md'
 import { toast } from 'react-toastify'
-
+import { motion } from 'framer-motion'
+import { CgSpinner } from "react-icons/cg";
 
 
 const AddEducation = ({ edit = false }) => {
@@ -27,12 +28,15 @@ const AddEducation = ({ edit = false }) => {
   const navigate = useNavigate()
 
   const submit = async (data) => {
+        setLoader(true)
     if (edit) {
       const error = await dispatch(editEducation(id, student._id, data))
+        setLoader(false)
       error ? toast.error(error.data.message)
         : toast.success("Education updated")
     } else {
       const error = await dispatch(addEducation(student._id, data))
+        setLoader(false)
       error ? toast.error(error.data.message)
         : toast.success("Education added")
     }
@@ -53,11 +57,13 @@ const AddEducation = ({ edit = false }) => {
   const edu = student?.resume?.education.find(item => item.id === id)
   // console.log(edu?.eduType)
 
+   const [loader, setLoader] = useState(false)
+
+
   return (
-    < div className='w-full h-screen absolute top-[0]' >
-      <div className='w-full h-[213%] overlay bg-black opacity-50'></div>
-      <div className='w-full h-[100px
-      ]: max-w-lg rounded-xl border bg-gray-50 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
+    < div className='w-full h-screen fixed top-[0]' >
+      <div className='w-full h-screen overlay bg-black opacity-50'></div>
+      <div className='scroll w-full max-sm:h-full h-[90%] overflow-y-auto max-w-xl sm:rounded-lg  border bg-gray-50 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]'>
         <RxCross2 onClick={backHandler} size={25} className='absolute right-5 top-5 cursor-pointer' />
         {
           !edit && first === "true" && <div className='p-10 flex flex-col gap-5'>
@@ -103,8 +109,8 @@ const AddEducation = ({ edit = false }) => {
         {
           ((edu && (edu.eduType === "graduation")) || first === "one") && <form
             onSubmit={handleSubmit(submit)}
-            className='w-full p-10 flex flex-col gap-5'>
-            <h1 className='text-center text-xl font-semibold'>Graduation details/ Post graduation details</h1>
+            className='w-full p-5 sm:p-10 flex flex-col gap-5'>
+            <h1 className='w-[90%] text-center text-xl font-semibold'>Graduation details</h1>
 
             <Input
               defaultValue="graduation"
@@ -127,7 +133,7 @@ const AddEducation = ({ edit = false }) => {
             </div>
             <div className='w-full flex gap-2'>
 
-              <div>
+              <div className='w-1/2'>
                 <Select
                   defaultValue={edit ? (edu?.startYear || '') : ''}
                   label="Start year"
@@ -143,7 +149,7 @@ const AddEducation = ({ edit = false }) => {
                 {errors.startYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.startYear.message}</span></p>}
               </div>
 
-              <div>
+              <div className='w-1/2'>
                 <Select
                   defaultValue={edit ? (edu?.lastYear || '') : ''}
                   label="End year"
@@ -195,16 +201,18 @@ const AddEducation = ({ edit = false }) => {
             <Button
               type='submit'
               bgColor='bg-[#1F2937]'
-              className='w-1/2 font-semibold m-auto'
-            >Save</Button>
+              className='w-1/2 font-semibold m-auto  flex justify-center'
+            >
+            {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :           "Save"}
+           </Button>
           </form>
         }
 
         {
           ((edu && (edu.eduType === "seniorSecondary")) || first === "two") && <form
             onSubmit={handleSubmit(submit)}
-            className='w-full p-10 flex flex-col gap-5'>
-            <h1 className='text-center text-xl font-semibold'>Senior Secondary or Equivalent (XII) details</h1>
+            className='w-full p-5 sm:p-10 flex flex-col gap-5'>
+            <h1 className='text-center text-xl font-semibold'>XII details</h1>
 
             <Input
               defaultValue="seniorSecondary"
@@ -277,15 +285,15 @@ const AddEducation = ({ edit = false }) => {
             <Button
               type='submit'
               bgColor='bg-[#1F2937]'
-              className='w-1/2 font-semibold m-auto'
-            >Save</Button>
+              className='w-1/2 font-semibold m-auto flex justify-center'
+            > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :           "Save"}</Button>
           </form>
         }
         {
           ((edu && (edu.eduType === "secondary")) || first === "three") && <form
             onSubmit={handleSubmit(submit)}
-            className='w-full p-10 flex flex-col gap-5'>
-            <h1 className='text-center text-xl font-semibold'>Secondary (X) details</h1>
+            className='w-full p-5 sm:p-10 flex flex-col gap-5'>
+            <h1 className='text-center text-xl font-semibold'>X details</h1>
 
             <Input
               defaultValue="secondary"
@@ -350,14 +358,14 @@ const AddEducation = ({ edit = false }) => {
             <Button
               type='submit'
               bgColor='bg-[#1F2937]'
-              className='w-1/2 font-semibold m-auto'
-            >Save</Button>
+              className='w-1/2 font-semibold m-auto flex justify-center'
+            > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :           "Save"}</Button>
           </form>
         }
         {
           ((edu && (edu.eduType === "diploma")) || first === "four") && <form
             onSubmit={handleSubmit(submit)}
-            className='w-full p-10 flex flex-col gap-5'>
+            className='w-full p-5 sm:p-10 flex flex-col gap-5'>
             <h1 className='text-center text-xl font-semibold'>Diploma details</h1>
 
             <Input
@@ -383,7 +391,7 @@ const AddEducation = ({ edit = false }) => {
 
             <div className='w-full flex gap-2'>
 
-              <div>
+              <div className='w-1/2'>
                 <Select
                   defaultValue={edit ? (edu?.startYear || '') : ''}
                   label="Start year"
@@ -399,7 +407,7 @@ const AddEducation = ({ edit = false }) => {
                 {errors.startYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.startYear.message}</span></p>}
               </div>
 
-              <div>
+              <div className='w-1/2'>
                 <Select
                   defaultValue={edit ? (edu?.lastYear || '') : ''}
                   label="End year"
@@ -442,14 +450,14 @@ const AddEducation = ({ edit = false }) => {
             <Button
               type='submit'
               bgColor='bg-[#1F2937]'
-              className='w-1/2 font-semibold m-auto'
-            >Save</Button>
+              className='w-1/2 font-semibold m-auto flex justify-center'
+            > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :           "Save"}</Button>
           </form>
         }
         {
           ((edu && (edu.eduType === "phd")) || first === "five") && <form
             onSubmit={handleSubmit(submit)}
-            className='w-full p-10 flex flex-col gap-5'>
+            className='w-full p-5 sm:p-10 flex flex-col gap-5'>
             <h1 className='text-center text-xl font-semibold'> PhD details</h1>
 
             <Input
@@ -475,7 +483,7 @@ const AddEducation = ({ edit = false }) => {
 
             <div className='w-full flex gap-2'>
 
-              <div>
+              <div className='w-1/2'>
                 <Select
                   defaultValue={edit ? (edu?.startYear || '') : ''}
                   label="Start year"
@@ -491,7 +499,7 @@ const AddEducation = ({ edit = false }) => {
                 {errors.startYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.startYear.message}</span></p>}
               </div>
 
-              <div>
+              <div className='w-1/2'>
                 <Select
                   defaultValue={edit ? (edu?.lastYear || '') : ''}
                   label="End year"
@@ -507,7 +515,7 @@ const AddEducation = ({ edit = false }) => {
                 {errors.lastYear && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><MdErrorOutline /> <span>{errors.lastYear.message}</span></p>}
               </div>
 
-            </div>
+            </div> 
 
             <div>
               <Input
@@ -535,8 +543,8 @@ const AddEducation = ({ edit = false }) => {
             <Button
               type='submit'
               bgColor='bg-[#1F2937]'
-              className='w-1/2 font-semibold m-auto'
-            >Save</Button>
+              className='w-1/2 font-semibold m-auto flex justify-center'
+            > {loader ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-white text-center" />) :           "Save"}</Button>
           </form>
         }
 

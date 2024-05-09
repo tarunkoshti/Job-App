@@ -15,6 +15,7 @@ exports.studentinfo = catchAsyncErrors(async function (req, res, next) {
         avatar: student.avatar,
         city: student.city,
         contact: student.contact,
+        id: req.params.studentid
     }
     res.json({
         details

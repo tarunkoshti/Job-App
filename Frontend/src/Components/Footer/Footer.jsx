@@ -5,73 +5,67 @@ import { FaLinkedinIn } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
 import { FaYoutube } from "react-icons/fa";
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
 
-    const { isAuth: isStudentAuth } = useSelector((state) => state.userReducer)
-    const { isAuth: isEmployeeAuth } = useSelector((state) => state.employeeReducer)
-    const authStatus = isStudentAuth || isEmployeeAuth
+  const { isAuth: isStudentAuth } = useSelector((state) => state.userReducer)
+  const { isAuth: isEmployeeAuth } = useSelector((state) => state.employeeReducer)
+  const authStatus = isStudentAuth || isEmployeeAuth
 
-    return (
+  return (
+    <div className="py-10 md:py-16 mt-10 bg-[#000000] text-white px-10 md:px-20 lg:px-32">
+      <div className="sm:flex justify-between w-full ">
+        <div className='mb-10'>
+          <Link to={authStatus ? (isStudentAuth ? "/student" : "/employee") : ""}>
+            < img className='h-10 w-fit bg-white px-3 py-2 rounded-sm' src="Job_Seeking2-removebg-preview.png" alt="./logo.jpg" />
+          </Link>
+        </div>
+        <div className="sm:flex inline-flex justify-between flex-wrap gap-10 md:gap-16 lg:gap-32 text-gray-200 text-sm">
+          <div className="flex flex-col gap-1">
+            <h6 className="font-semibold text-lg text-white mb-1">Company</h6>
+            <h6 className="cursor-pointer" >About us</h6>
+            <h6 className="cursor-pointer" >Blog</h6>
+            <h6 className="cursor-pointer" >Career advice</h6>
+            <h6 className="cursor-pointer" >Career explorer</h6>
+          </div>
+          <div className="flex flex-col gap-1">
+            <h6 className="font-semibold text-lg text-white mb-1">Support</h6>
+            <h6 className="cursor-pointer" >FAQ</h6>
+            <h6 className="cursor-pointer" >Contact us</h6>
+            <h6 className="cursor-pointer" >Privacy Policy</h6>
+            <h6 className="cursor-pointer" >Terms & Conditions</h6>
+          </div>
 
-        <div className="py-8 mt-10 bg-zinc-100">
-            <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-8 lg:px-32">
-                <img className="w-24 md:w-32" src="logo1.jpg" alt="Footer" />
-                <div className="flex items-center gap-5 mt-4 md:mt-0">
-                    <FaInstagram className="text-2xl md:text-3xl" />
-                    <FaFacebook className="text-2xl md:text-3xl" />
-                    <FaLinkedinIn className="text-2xl md:text-3xl" />
-                    <RiTwitterXFill className="text-2xl md:text-3xl" />
-                    <FaYoutube className="text-2xl md:text-3xl" />
-                </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-32 px-4 md:px-8 lg:px-32 py-10">
-                <div className="flex flex-col gap-2">
-                    <h6 className="font-semibold text-lg">Company</h6>
-                    <br />
-                    <h6>About Us</h6>
-                    <h6>Careers</h6>
-                    <h6>Contact Us</h6>
-                    <h6>Blog</h6>
-                </div>
-                <div className="flex flex-col gap-3">
-                    <h6 className="font-semibold text-lg">Resource</h6>
-                    <br />
-                    <h6>Help Center</h6>
-                    <h6>How It Works</h6>
-                    <h6>Business</h6>
-                    <h6>Pages</h6>
-                </div>
-                <div className="flex flex-col gap-3">
-                    <h6 className="font-semibold text-lg">Projects</h6>
-                    <br />
-                    <h6>Design & Multimedia</h6>
-                    <h6>IT & Programming</h6>
-                    <h6>Sales & Marketing</h6>
-                    <h6>Writing & Translating</h6>
-                </div>
-                <div className="flex flex-col gap-3">
-                    <h6 className="font-semibold text-lg">Freelancer</h6>
-                    <br />
-                    <h6>Design</h6>
-                    <h6>Marketing</h6>
-                    <h6>Engineering</h6>
-                    <h6>Animator</h6>
-                </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row items-center justify-center md:justify-around font-semibold  md:px-32 lg:px-0 py-4 md:py-8">
-                <h6 className="mb-2 md:mb-0">Job Seekers 2024</h6>
-                <h6 className="mb-2 md:mb-0">Terms & Conditions</h6>
-                <h6 className="mb-2 md:mb-0">Privacy Policy</h6>
-                <h6 className="mb-2 md:mb-0">Accessibility Statement</h6>
-            </div>
-
+          <div className="flex flex-col gap-1">
+            <h6 className="font-semibold text-lg text-white mb-1">Others</h6>
+            <h6 className="cursor-pointer" >Hirer events</h6>
+            <h6 className="cursor-pointer" >Work at hirer</h6>
+            <h6 className="cursor-pointer" >Browse jobs</h6>
+            <h6 className="cursor-pointer" >Browse internships</h6>
+            {/* <h6 className="cursor-pointer" >Browse companies</h6> */}
+          </div>
         </div>
 
+      </div>
 
-
-    )
+      <div className='sm:flex justify-between mt-10 items-end'>
+        <div>
+          <h1 className='font-semibold text-lg mb-2'>Follow Us</h1>
+          <div className="flex gap-6">
+            <FaInstagram className="text-xl md:text-2xl cursor-pointer" />
+            <FaFacebook className="text-xl md:text-2xl cursor-pointer" />
+            <FaLinkedinIn className="text-xl md:text-2xl cursor-pointer" />
+            <RiTwitterXFill className="text-xl md:text-2xl cursor-pointer" />
+            <FaYoutube className="text-xl md:text-2xl cursor-pointer" />
+          </div>
+        </div>
+        <div className=''>
+          <h6 className="text-sm text-center mt-10"><span className="cursor-pointer">©️ Copyright 2024 Hirer</span></h6>
+        </div>
+      </div>
+    </div>
+  );
 
 }
 
