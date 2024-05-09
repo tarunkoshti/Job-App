@@ -8,14 +8,15 @@ import Button from "../Components/Button";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { MdArrowOutward } from "react-icons/md";
 import { LuArrowDown } from "react-icons/lu";
+import { IoMdSearch } from "react-icons/io";
+import { IoLocationSharp } from "react-icons/io5";
 import LoadingPage from "../Components/Loading/LoadingPage";
 
 const Home = () => {
+
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobReducer.jobData);
-  const internships = useSelector(
-    (state) => state.internshipReducer.internshipData
-  );
+  const internships = useSelector((state) => state.internshipReducer.internshipData);
 
   useEffect(() => {
     try {
@@ -28,6 +29,98 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchInternships());
   }, [dispatch]);
+
+  const [internshipTitleInput, setInternshipTitleInput] = useState("")
+  const [internshipLocationInput, setinternshipLocationInput] = useState("")
+  const [jobTitleInput, setJobTitleInput] = useState("")
+  const [jobLocationInput, setJobLocationInput] = useState("")
+  const [filterredInternships, setFilteredInternships] = useState([])
+  const [filterredJobs, setFilteredJobs] = useState([])
+
+
+  useEffect(() => {
+    if (internships && !internshipTitleInput && !internshipLocationInput) {
+      // console.log("hello")
+      setFilteredInternships(internships);
+    }
+
+  }, [internships, internshipTitleInput, internshipLocationInput]);
+
+  useEffect(() => {
+    if (jobs && !jobTitleInput && !jobLocationInput) {
+      // console.log("hey")
+      setFilteredJobs(jobs);
+    }
+  }, [jobs, jobTitleInput, jobLocationInput]);
+
+  // const titleHandleChange = (value) => {
+  //   setInternshipTitleInput(value);
+  //   console.log(internshipTitleInput)
+  //   // without search button filter
+  //   // if (value === "") {
+  //   //   setFilteredInternships(internships);
+  //   // } else {
+  //   //   const filtered = internships.filter((internship) => {
+  //   //     return (
+  //   //       (internship.profile && internship.profile.toLowerCase().startsWith(value.toLowerCase()))
+  //   //     );
+  //   //   });
+  //   //   setFilteredInternships(filtered);
+  //   // }
+  // };
+
+  // const locationHandleChange = (value) => {
+  //   setinternshipLocationInput(value);
+  //   console.log(internshipLocationInput)
+  //   // if (value === "") {
+  //   //   setFilteredInternships(internships);
+  //   // } else {
+  //   //   const filtered = internships.filter((internship) => {
+  //   //     return (
+  //   //       (internship.location && internship.location.toLowerCase().startsWith(value.toLowerCase()))
+  //   //     );
+  //   //   });
+  //   //   setFilteredInternships(filtered);
+  //   // }
+  // };
+
+  const handleInternshipSearch = () => {
+    // console.log(internshipLocationInput, internshipTitleInput)
+    if (internshipTitleInput === "" && internshipLocationInput === "") {
+      setFilteredInternships(internships);
+      console.log(internships)
+    }
+    else {
+      const filtered = internships.filter((internship) => {
+        return (
+          (internship.location && internship.location.toLowerCase().startsWith(internshipLocationInput.toLowerCase()))
+          &&
+          (internship.profile && internship.profile.toLowerCase().startsWith(internshipTitleInput.toLowerCase()))
+        );
+      });
+      setFilteredInternships(filtered);
+      // console.log(filtered)
+    }
+  }
+
+  const handleJobSearch = () => {
+    // console.log(jobLocationInput, jobTitleInput)
+    if (jobTitleInput === "" && jobLocationInput === "") {
+      setFilteredJobs(jobs);
+      console.log(jobs)
+    }
+    else {
+      const filtered = jobs.filter((job) => {
+        return (
+          (job.location && job.location.toLowerCase().startsWith(jobLocationInput.toLowerCase()))
+          &&
+          (job.profile && job.profile.toLowerCase().startsWith(jobTitleInput.toLowerCase()))
+        );
+      });
+      setFilteredJobs(filtered);
+      // console.log(filtered)
+    }
+  }
 
   const navigate = useNavigate();
 
@@ -94,7 +187,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className='w-full py-10 sm:py-16 bg-gray-100  flex px-10'>
+      <div className='w-full py-10 sm:py-16 bg-gray-50  flex px-10'>
         <div className='w-full h-full flex flex-wrap justify-center gap-10 sm:gap-20'>
           <div className='one hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
             <div className='top text-4xl'>01</div>
@@ -128,7 +221,7 @@ const Home = () => {
       </div>
 
       {/* scroller animation */}
-      <div className="w-full  bg-gray-100 py-16 overflow-hidden ">
+      <div className="w-full  bg-gray-50 py-16 overflow-hidden ">
         <div className=" pb-10 my-5">
           <h3 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10">
             Trusted <span className=" font-semibold text-[#2507B3]">1000+</span>{" "}
@@ -240,16 +333,49 @@ const Home = () => {
           <h1 className='text-4xl sm:text-center font-medium'>Explore all Internship Opportunity</h1>
         </div>
 
-        <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-x px-10 bg-gray-50 py-10 '>
-          {
-            internships &&
-            (internships.map((internship, index) => (
-              <InternshipCard key={index} index={index} internship={internship} color={generateRandomColor()} />
-            )))
-          }
+        <div className="bg-gray-50 px-10 py-10">
+          {/* search bar */}
+          <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/3 rounded-full m-auto overflow-hidden mb-10">
+
+            <div className="w-full flex items-center gap-2 pl-5 h-10">
+              <div><IoMdSearch size={20} className="text-gray-500" /></div>
+              <input
+                type="text"
+                placeholder="Internship title"
+                className="w-full bg-transparent h-full outline-none"
+                value={internshipTitleInput}
+                onChange={(e) => setInternshipTitleInput(e.target.value)}
+              />
+            </div>
+            <div className="w-full flex items-center gap-2 pl-5 h-10">
+              <div><IoLocationSharp className="text-gray-500" /></div>
+              <input
+                type="text"
+                placeholder="City or remote"
+                className="w-full h-full outline-none"
+                value={internshipLocationInput}
+                onChange={(e) => setinternshipLocationInput(e.target.value)}
+              />
+            </div>
+            <div className="h-10">
+              <button
+                type="submit"
+                className="w-full h-full outline-none bg-[#2507B3] text-white text-sm px-3"
+                onClick={handleInternshipSearch}>
+                Search
+              </button>
+            </div>
+          </div>
+          <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-x '>
+            {
+              filterredInternships &&
+              (filterredInternships.map((internship, index) => (
+                <InternshipCard key={index} index={index} internship={internship} color={generateRandomColor()} />
+              )))
+            }
+          </div>
         </div>
       </div>
-
       {/* Explore Job */}
       <div className=" w-full overflow-hidden ">
         <div className="py-14 sm:py-20 px-10">
@@ -258,13 +384,47 @@ const Home = () => {
           </h1>
         </div>
 
-        <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory  px-10 bg-gray-50 py-10'>
-          {
-            jobs &&
-            (jobs.map((job, index) => (
-              <JobCard key={index} index={index} job={job} color={generateRandomColor()} />
-            )))
-          }
+        <div className="bg-gray-50 px-10 py-10">
+          {/* search bar */}
+          <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/3 rounded-full m-auto overflow-hidden mb-10">
+
+            <div className="w-full flex items-center gap-2 pl-5 h-10">
+              <div><IoMdSearch size={20} className="text-gray-500" /></div>
+              <input
+                type="text"
+                placeholder="Job title"
+                className="w-full bg-transparent h-full outline-none"
+                value={jobTitleInput}
+                onChange={(e) => setJobTitleInput(e.target.value)}
+              />
+            </div>
+            <div className="w-full flex items-center gap-2 pl-5 h-10">
+              <div><IoLocationSharp className="text-gray-500" /></div>
+              <input
+                type="text"
+                placeholder="City or remote"
+                className="w-full h-full outline-none"
+                value={jobLocationInput}
+                onChange={(e) => setJobLocationInput(e.target.value)}
+              />
+            </div>
+            <div className="h-10">
+              <button
+                type="submit"
+                className="w-full h-full outline-none bg-[#2507B3] text-white text-sm px-3"
+                onClick={handleJobSearch}>
+                Search
+              </button>
+            </div>
+          </div>
+          <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory'>
+            {
+              filterredJobs &&
+              (filterredJobs.map((job, index) => (
+                <JobCard key={index} index={index} job={job} color={generateRandomColor()} />
+              )))
+            }
+          </div>
         </div>
       </div>
     </div>
