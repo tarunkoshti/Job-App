@@ -8,10 +8,14 @@ const { resume, addeducation, editeducation, deleteeducation,
     addproject, editproject, deleteproject,
     addskill, editskill, deleteskill,
     addacc, editacc, deleteacc,
-    addwork, editwork, deletework
+    addwork, editwork, deletework,
+    studentinfo
 } = require("../controllers/resumeController");
 const { isAuthenticated } = require("../middlewares/auth");
 
+
+//GET /
+router.get("/student/:studentid",  studentinfo)
 //GET /
 router.get("/:studentid", isAuthenticated, resume)
 

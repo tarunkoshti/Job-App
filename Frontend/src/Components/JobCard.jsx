@@ -16,9 +16,9 @@ const JobCard = ({ index, job, color }) => {
   const date1 = new Date(job?.createdAt);
   const date2 = new Date(); // Current date
 
-  // Calculate the difference in milliseconds
-  const differenceInMilliseconds = date2 - date1;
-  console.log(differenceInMilliseconds);
+    // Calculate the difference in milliseconds
+    const differenceInMilliseconds = date2 - date1;
+    // console.log(differenceInMilliseconds)
 
   // Convert milliseconds to days
   const differenceInDays = Math.floor(
