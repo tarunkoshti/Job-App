@@ -63,8 +63,8 @@ const EmployeeApplication = () => {
             </thead>
             {/* Table body */}
             <tbody>
-              {internshipId &&
-                internshipId.map((studentItem, index) => (
+              {internshipId ?
+                (internshipId.map((studentItem, index) => (
                   <tr
                     key={index}
                     className="border-b border-zinc-300 max-md:text-sm"
@@ -108,7 +108,8 @@ const EmployeeApplication = () => {
                         </>
                       ))}
                   </tr>
-                )).reverse() }
+                )).reverse()) :
+                ((<div className='text-gray-700 text-lg font-medium'>No record </div>))}
             </tbody>
           </table>
         </div>
@@ -150,8 +151,8 @@ const EmployeeApplication = () => {
             </thead>
             {/* Table body */}
             <tbody>
-              {jobId &&
-                jobId.map((studentItem, index) => (
+              {jobId ?
+                (jobId.map((studentItem, index) => (
                   <tr
                     key={index}
                     className="border-b border-zinc-300 max-md:text-sm"
@@ -196,7 +197,8 @@ const EmployeeApplication = () => {
                         </>
                       ))}
                   </tr>
-                )).reverse() }
+                )).reverse()) :
+                ((<div className='text-gray-700 text-lg font-medium'>No record </div>))}
             </tbody>
           </table>
         </div>

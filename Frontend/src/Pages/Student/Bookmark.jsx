@@ -58,8 +58,8 @@ const Bookmark = () => {
           className="w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory  px-10 bg-gray-50 py-5"
         >
           <ul className="flex items-center gap-10 whitespace-nowrap">
-            {internshipId &&
-              internshipId.map((studentItem, index) => (
+            {internshipId ?
+              (internshipId.map((studentItem, index) => (
                 <React.Fragment key={index}>
                   {internships
                     ?.filter((internship) => internship._id === studentItem)
@@ -72,7 +72,8 @@ const Bookmark = () => {
                       />
                     ))}
                 </React.Fragment>
-              )).reverse() }
+              )).reverse()) :
+              ((<div className='text-gray-700 text-lg font-medium'>No record </div>))}
           </ul>
         </div>
       </div>
@@ -90,8 +91,8 @@ const Bookmark = () => {
           className="w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory  px-10 bg-gray-50 py-5"
         >
           <ul className="flex items-center gap-10 whitespace-nowrap">
-            {jobId &&
-              jobId.map((studentItem, index) => (
+            {jobId ?
+              (jobId.map((studentItem, index) => (
                 <React.Fragment key={index}>
                   {jobs
                     ?.filter((job) => job._id === studentItem)
@@ -104,7 +105,8 @@ const Bookmark = () => {
                       />
                     ))}
                 </React.Fragment>
-              )).reverse() }
+              )).reverse()) :
+            ((<div className='text-gray-700 text-lg font-medium'>No record </div>))}
           </ul>
         </div>
       </div>
