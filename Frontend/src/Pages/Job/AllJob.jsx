@@ -73,19 +73,24 @@ const AllJob = () => {
     return colorCode;
   }
 
+  const style = {
+    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04)'
+  }
+
   return (
     <>
 
 <div className="py-10">
         {/* search bar */}
-        <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/2 rounded-full m-auto overflow-hidden">
+        <div className="flex items-center bg-white hover-border text-black w-1/2 rounded-full m-auto overflow-hidden"
+        style={style}>
 
           <div className="w-full flex items-center gap-2 pl-5 h-12">
             <div><IoMdSearch size={20} className="text-gray-500" /></div>
             <input
               type="text"
               placeholder="Job title"
-              className="w-full bg-transparent h-full outline-none"
+              className="w-full bg-transparent h-full outline-none text-gray-700 font-medium"
               value={jobTitleInput}
               onChange={(e) => setJobTitleInput(e.target.value)}
             />
@@ -95,7 +100,7 @@ const AllJob = () => {
             <input
               type="text"
               placeholder="City or remote"
-              className="w-full h-full outline-none"
+              className="w-full h-full outline-none text-gray-700 font-medium"
               value={jobLocationInput}
               onChange={(e) => setJobLocationInput(e.target.value)}
             />
