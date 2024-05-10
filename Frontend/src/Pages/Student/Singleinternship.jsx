@@ -83,9 +83,9 @@ const Singleinternship = () => {
 
     return (
 
-        internship && <div className="w-full flex flex-col items-center text-gray-700">
+        internship && <div className="w-full flex flex-col items-center text-gray-700 px-10">
             <h1 className="text-center text-2xl sm:text-3xl p-10 font-medium capitalize">{internship.profile} internship</h1>
-            <div className="w-full sm:w-3/4 sm:border py-2 rounded-lg">
+            <div className="w-full sm:border py-2 rounded-lg">
 
                 <div className="flex flex-col gap-4 px-10 py-5">
                     <div className='flex justify-between'>
