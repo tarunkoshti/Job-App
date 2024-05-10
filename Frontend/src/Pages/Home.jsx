@@ -152,7 +152,7 @@ const Home = () => {
   }
   return (
     <div className="w-full ">
-      <div className=" w-full h-screen flex justify-center px-10">
+      <div className=" w-full flex justify-center px-10 pb-10 lg:pb-40">
         <div className="pt-10 md:pt-20 md:flex flex-col items-center">
           <div className="flex flex-wrap gap-4">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-wider">
@@ -183,7 +183,7 @@ const Home = () => {
           {/* <div class="animate-bounce bg-[#2507B3] rounded-full absolute bottom-5">
               <LuArrowDown className="text-white p-5 size-16" />
             </div> */}
-          <div className="animate-bounce rounded-full absolute bottom-5 h-14 w-14">
+          <div className="hidden lg:block animate-bounce rounded-full absolute bottom-5 h-14 w-14">
             <img src="Job_Seeking_logo-removebg-preview1.png" alt="" />
           </div>
         </div>
