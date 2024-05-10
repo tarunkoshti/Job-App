@@ -46,7 +46,8 @@ const Singleinternship = () => {
         await dispatch(disbookmarkinternship(id));
     }
 
-
+    const employee = useSelector((state)=> state.employeeReducer)
+    console.log(employee)
     const appliedInternship = student?.internships?.find((internid) => internid == id)
 
     const applyHandler = async () => {
@@ -94,11 +95,14 @@ const Singleinternship = () => {
                             <h6 className="text-xs">Actively hiring</h6>
                         </div>
                         <div className=''>
-                            <button>
+                            
+                        {!employee&&<button>
                                 {bookmarkedInternship ? <IoBookmark onClick={disbookmarkHandler} size={30}
                                     className='hover:bg-gray-200 rounded-full p-1.5' /> : <CiBookmark onClick={bookmarkHandler} size={30}
                                         className='hover:bg-gray-200 rounded-full p-1.5' />}
-                            </button ></div >
+                            </button >
+}</div >
+
 
                     </div>
 
@@ -245,7 +249,7 @@ const Singleinternship = () => {
                 </div >
 
                 <div className="flex justify-center items-center mt-8 py-8">
-                    <button onClick={applyHandler} className="px-8 py-2 bg-[#2507B3] text-white font-semibold rounded-lg">Apply Now</button>
+                    {!employee&&<button onClick={applyHandler} className="px-8 py-2 bg-[#2507B3] text-white font-semibold rounded-lg">Apply Now</button>}
                 </div>
             </div>
         </div>
