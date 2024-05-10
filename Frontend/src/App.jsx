@@ -48,7 +48,7 @@ const App = () => {
 
   if (loader) {
     return (
-      <LoadingPage />
+      <LoadingPage loader={loader} />
     )
   }
 

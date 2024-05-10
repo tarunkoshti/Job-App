@@ -6,9 +6,9 @@ import InternshipCard from '../../Components/InternshipCard';
 import { fetchInternships } from '../../store/Actions/internshipActions';
 import Button from '../../Components/Button';
 import { MdArrowOutward } from 'react-icons/md';
-
-
-
+import { IoMdSearch } from "react-icons/io";
+import { IoLocationSharp } from "react-icons/io5";
+import LoadingPage from '../../Components/Loading/LoadingPage';
 
 const StudentHome = () => {
 
@@ -16,9 +16,7 @@ const StudentHome = () => {
   const jobs = useSelector((state) => state.jobReducer.jobData);
   const internships = useSelector((state) => state.internshipReducer.internshipData)
 
-
   useEffect(() => {
-
     try {
       dispatch(fetchJobs());
     } catch (error) {
@@ -30,42 +28,65 @@ const StudentHome = () => {
     dispatch(fetchInternships());
   }, [dispatch]);
 
+  // const [internshipTitleInput, setInternshipTitleInput] = useState("")
+  // const [internshipLocationInput, setinternshipLocationInput] = useState("")
+  // const [jobTitleInput, setJobTitleInput] = useState("")
+  // const [jobLocationInput, setJobLocationInput] = useState("")
+  // const [filterredInternships, setFilteredInternships] = useState([])
+  // const [filterredJobs, setFilteredJobs] = useState([])
 
-  // filter functionality
+  // useEffect(() => {
+  //   if (internships && !internshipTitleInput && !internshipLocationInput) {
+  //     // console.log("hello")
+  //     setFilteredInternships(internships);
+  //   }
 
-  const [data, setData] = useState(undefined);
+  // }, [internships, internshipTitleInput, internshipLocationInput]);
 
-  const options = [
-    "Remote",
-    "In office",
-    "Part-time",
-    "Full-time",
+  // useEffect(() => {
+  //   if (jobs && !jobTitleInput && !jobLocationInput) {
+  //     // console.log("hey")
+  //     setFilteredJobs(jobs);
+  //   }
+  // }, [jobs, jobTitleInput, jobLocationInput]);
 
-  ];
-  const onOptionChangeHandler = (event) => {
-    setData(event.target.value);
-    console.log(
-      "User Selected Value - ",
-      event.target.value
-    );
-  };
+  // const handleInternshipSearch = () => {
+  //   // console.log(internshipLocationInput, internshipTitleInput)
+  //   if (internshipTitleInput === "" && internshipLocationInput === "") {
+  //     setFilteredInternships(internships);
+  //     console.log(internships)
+  //   }
+  //   else {
+  //     const filtered = internships.filter((internship) => {
+  //       return (
+  //         (internship.location && internship.location.toLowerCase().startsWith(internshipLocationInput.toLowerCase()))
+  //         &&
+  //         (internship.profile && internship.profile.toLowerCase().startsWith(internshipTitleInput.toLowerCase()))
+  //       );
+  //     });
+  //     setFilteredInternships(filtered);
+  //     // console.log(filtered)
+  //   }
+  // }
 
-  const [optionData, setOptionData] = useState(undefined);
-
-  const JobOptions = [
-    "Remote",
-    "In office",
-    "Part-time",
-    "Full-time",
-
-  ];
-  const onOptionChangeJobHandler = (event) => {
-    setOptionData(event.target.value);
-    console.log(
-      "User Selected Value - ",
-      event.target.value
-    );
-  };
+  // const handleJobSearch = () => {
+  //   // console.log(jobLocationInput, jobTitleInput)
+  //   if (jobTitleInput === "" && jobLocationInput === "") {
+  //     setFilteredJobs(jobs);
+  //     console.log(jobs)
+  //   }
+  //   else {
+  //     const filtered = jobs.filter((job) => {
+  //       return (
+  //         (job.location && job.location.toLowerCase().startsWith(jobLocationInput.toLowerCase()))
+  //         &&
+  //         (job.profile && job.profile.toLowerCase().startsWith(jobTitleInput.toLowerCase()))
+  //       );
+  //     });
+  //     setFilteredJobs(filtered);
+  //     // console.log(filtered)
+  //   }
+  // }
 
   function generateRandomColor() {
     // Generate random values for red, green, and blue components
@@ -81,6 +102,20 @@ const StudentHome = () => {
     return colorCode;
   }
 
+  // Loading state
+  // const [loader, setLoader] = useState(true);
+
+  // useEffect(() => {
+  //   if (internships !== null && jobs !== null) {
+  //     setLoader(false);
+  //   }
+  // });
+
+  // if (loader) {
+  //   return (
+  //     <LoadingPage loader={loader} />
+  //   )
+  // }
   return (
     <>
       <div className="w-full py-2">
@@ -135,7 +170,7 @@ const StudentHome = () => {
 
         {/* Company-scorllbar */}
 
-        <div className="w-full  bg-gray-100 py-20 overflow-hidden my-16">
+        <div className="w-full bg-gray-50 py-20 overflow-hidden mt-14">
           <div className=" pb-10">
             <h3 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10">
               Trusted by the Best Companies
@@ -239,126 +274,62 @@ const StudentHome = () => {
           </div>
         </div>
 
-        {/* <JobCard /> */}
-        <section>
-          <div className=" w-full overflow-hidden">
-            <div className="py-3 mb-8">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl text-center font-medium px-10">
-                Explore all Job Opportunity
-              </h1>
-            </div>
-           
-            <div
-              id="job"
-              className="w-full flex items-center gap-5 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-x px-10 bg-gray-50 py-10"
-            >
-              {optionData === "Remote"
-                ? jobs &&
-                  jobs
-                    .filter((job) => job.jobtype === "Remote")
-                    .map((job, index) => (
-                      <JobCard key={index} index={index} job={job} />
-                    ))
-                : optionData == "In office"
-                ? jobs &&
-                  jobs
-                    .filter((job) => job.jobtype === "In office")
-                    .map((job, index) => (
-                      <JobCard key={index} index={index} job={job} />
-                    ))
-                : optionData == "Full-time"
-                ? jobs &&
-                  jobs
-                    .filter((job) => job.workingtype === "Full-time")
-                    .map((job, index) => (
-                      <JobCard key={index} index={index} job={job} />
-                    ))
-                : optionData == "Part-time"
-                ? jobs &&
-                  jobs
-                    .filter((job) => job.workingtype === "Part-time")
-                    .map((job, index) => (
-                      <JobCard key={index} index={index} job={job} />
-                    ))
-                : jobs &&
-                  jobs.map((job, index) => (
-                    <JobCard
-                      key={index}
-                      index={index}
-                      job={job}
-                      color={generateRandomColor()}
-                    />
-                  ))}
-            </div>
-          </div>
-        </section>
-
         {/* Internship-Card */}
         <section>
           <div className=" w-full overflow-hidden">
-            <div className="py-3 mb-8">
+            <div className="py-14">
               <h1 className="text-2xl sm:text-3xl md:text-4xl text-center font-medium">
                 Explore all Internship Opportunity
               </h1>
             </div>
-           
-            <div
-              id="job"
-              className="w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory  px-10 bg-gray-50 py-10"
-            >
-              {data === "Remote"
-                ? internships &&
-                  internships
-                    .filter(
-                      (internship) => internship.internshiptype === "Remote"
-                    )
-                    .map((internship, index) => (
-                      <InternshipCard
-                        key={index}
-                        index={index}
-                        internship={internship}
-                      />
-                    ))
-                : data == "In office"
-                ? internships &&
-                  internships
-                    .filter(
-                      (internship) => internship.internshiptype === "In office"
-                    )
-                    .map((internship, index) => (
-                      <InternshipCard
-                        key={index}
-                        index={index}
-                        internship={internship}
-                      />
-                    ))
-                : data == "Full-time"
-                ? internships &&
-                  internships
-                    .filter(
-                      (internship) => internship.workingtype === "Full-time"
-                    )
-                    .map((internship, index) => (
-                      <InternshipCard
-                        key={index}
-                        index={index}
-                        internship={internship}
-                      />
-                    ))
-                : data == "Part-time"
-                ? internships &&
-                  internships
-                    .filter(
-                      (internship) => internship.workingtype === "Part-time"
-                    )
-                    .map((internship, index) => (
-                      <InternshipCard
-                        key={index}
-                        index={index}
-                        internship={internship}
-                      />
-                    ))
-                : internships &&
+
+            <div className="bg-gray-50 px-10 py-10">
+              {/* search bar */}
+              {/* <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/3 rounded-full m-auto overflow-hidden mb-10">
+
+                <div className="w-full flex items-center gap-2 pl-5 h-10">
+                  <div><IoMdSearch size={20} className="text-gray-500" /></div>
+                  <input
+                    type="text"
+                    placeholder="Internship title"
+                    className="w-full bg-transparent h-full outline-none"
+                    value={internshipTitleInput}
+                    onChange={(e) => setInternshipTitleInput(e.target.value)}
+                  />
+                </div>
+                <div className="w-full flex items-center gap-2 pl-5 h-10">
+                  <div><IoLocationSharp className="text-gray-500" /></div>
+                  <input
+                    type="text"
+                    placeholder="City or remote"
+                    className="w-full h-full outline-none"
+                    value={internshipLocationInput}
+                    onChange={(e) => setinternshipLocationInput(e.target.value)}
+                  />
+                </div>
+                <div className="h-10">
+                  <button
+                    type="submit"
+                    className="w-full h-full outline-none bg-[#2507B3] text-white text-sm px-3"
+                    onClick={handleInternshipSearch}>
+                    Search
+                  </button>
+                </div>
+              </div> */}
+              <div
+                id="job"
+                className="w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory  px-10 bg-gray-50 "
+              >
+                {/* {filterredInternships &&
+                  filterredInternships.map((intern, index) => (
+                    <InternshipCard
+                      key={index}
+                      index={index}
+                      internship={intern}
+                      color={generateRandomColor()}
+                    />
+                  ))} */}
+                {internships &&
                   internships.map((intern, index) => (
                     <InternshipCard
                       key={index}
@@ -366,10 +337,81 @@ const StudentHome = () => {
                       internship={intern}
                       color={generateRandomColor()}
                     />
-                  ))}
+                  )).reverse() }
+              </div>
             </div>
           </div>
         </section>
+
+        {/* <JobCard /> */}
+        <section>
+          <div className=" w-full overflow-hidden">
+            <div className="py-14">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl text-center font-medium px-10">
+                Explore all Job Opportunity
+              </h1>
+            </div>
+
+            <div className="bg-gray-50 px-10 py-10">
+              {/* search bar */}
+              {/* <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/3 rounded-full m-auto overflow-hidden mb-10">
+
+                <div className="w-full flex items-center gap-2 pl-5 h-10">
+                  <div><IoMdSearch size={20} className="text-gray-500" /></div>
+                  <input
+                    type="text"
+                    placeholder="Job title"
+                    className="w-full bg-transparent h-full outline-none"
+                    value={jobTitleInput}
+                    onChange={(e) => setJobTitleInput(e.target.value)}
+                  />
+                </div>
+                <div className="w-full flex items-center gap-2 pl-5 h-10">
+                  <div><IoLocationSharp className="text-gray-500" /></div>
+                  <input
+                    type="text"
+                    placeholder="City or remote"
+                    className="w-full h-full outline-none"
+                    value={jobLocationInput}
+                    onChange={(e) => setJobLocationInput(e.target.value)}
+                  />
+                </div>
+                <div className="h-10">
+                  <button
+                    type="submit"
+                    className="w-full h-full outline-none bg-[#2507B3] text-white text-sm px-3"
+                    onClick={handleJobSearch}>
+                    Search
+                  </button>
+                </div>
+              </div> */}
+              <div
+                id="job"
+                className="w-full flex items-center gap-5 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-x px-10 bg-gray-50 "
+              >
+                {/* {filterredJobs &&
+                  filterredJobs.map((job, index) => (
+                    <JobCard
+                      key={index}
+                      index={index}
+                      job={job}
+                      color={generateRandomColor()}
+                    />
+                  ))} */}
+                {jobs &&
+                  jobs.map((job, index) => (
+                    <JobCard
+                      key={index}
+                      index={index}
+                      job={job}
+                      color={generateRandomColor()}
+                    />
+                  )).reverse() }
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
     </>
   );

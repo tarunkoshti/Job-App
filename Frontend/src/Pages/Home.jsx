@@ -30,28 +30,28 @@ const Home = () => {
     dispatch(fetchInternships());
   }, [dispatch]);
 
-  const [internshipTitleInput, setInternshipTitleInput] = useState("")
-  const [internshipLocationInput, setinternshipLocationInput] = useState("")
-  const [jobTitleInput, setJobTitleInput] = useState("")
-  const [jobLocationInput, setJobLocationInput] = useState("")
-  const [filterredInternships, setFilteredInternships] = useState([])
-  const [filterredJobs, setFilteredJobs] = useState([])
+  // const [internshipTitleInput, setInternshipTitleInput] = useState("")
+  // const [internshipLocationInput, setinternshipLocationInput] = useState("")
+  // const [jobTitleInput, setJobTitleInput] = useState("")
+  // const [jobLocationInput, setJobLocationInput] = useState("")
+  // const [filterredInternships, setFilteredInternships] = useState([])
+  // const [filterredJobs, setFilteredJobs] = useState([])
 
 
-  useEffect(() => {
-    if (internships && !internshipTitleInput && !internshipLocationInput) {
-      // console.log("hello")
-      setFilteredInternships(internships);
-    }
+  // useEffect(() => {
+  //   if (internships && !internshipTitleInput && !internshipLocationInput) {
+  //     // console.log("hello")
+  //     setFilteredInternships(internships);
+  //   }
 
-  }, [internships, internshipTitleInput, internshipLocationInput]);
+  // }, [internships, internshipTitleInput, internshipLocationInput]);
 
-  useEffect(() => {
-    if (jobs && !jobTitleInput && !jobLocationInput) {
-      // console.log("hey")
-      setFilteredJobs(jobs);
-    }
-  }, [jobs, jobTitleInput, jobLocationInput]);
+  // useEffect(() => {
+  //   if (jobs && !jobTitleInput && !jobLocationInput) {
+  //     // console.log("hey")
+  //     setFilteredJobs(jobs);
+  //   }
+  // }, [jobs, jobTitleInput, jobLocationInput]);
 
   // const titleHandleChange = (value) => {
   //   setInternshipTitleInput(value);
@@ -84,60 +84,45 @@ const Home = () => {
   //   // }
   // };
 
-  const handleInternshipSearch = () => {
-    // console.log(internshipLocationInput, internshipTitleInput)
-    if (internshipTitleInput === "" && internshipLocationInput === "") {
-      setFilteredInternships(internships);
-      console.log(internships)
-    }
-    else {
-      const filtered = internships.filter((internship) => {
-        return (
-          (internship.location && internship.location.toLowerCase().startsWith(internshipLocationInput.toLowerCase()))
-          &&
-          (internship.profile && internship.profile.toLowerCase().startsWith(internshipTitleInput.toLowerCase()))
-        );
-      });
-      setFilteredInternships(filtered);
-      // console.log(filtered)
-    }
-  }
+  // const handleInternshipSearch = () => {
+  //   // console.log(internshipLocationInput, internshipTitleInput)
+  //   if (internshipTitleInput === "" && internshipLocationInput === "") {
+  //     setFilteredInternships(internships);
+  //     console.log(internships)
+  //   }
+  //   else {
+  //     const filtered = internships.filter((internship) => {
+  //       return (
+  //         (internship.location && internship.location.toLowerCase().startsWith(internshipLocationInput.toLowerCase()))
+  //         &&
+  //         (internship.profile && internship.profile.toLowerCase().startsWith(internshipTitleInput.toLowerCase()))
+  //       );
+  //     });
+  //     setFilteredInternships(filtered);
+  //     // console.log(filtered)
+  //   }
+  // }
 
-  const handleJobSearch = () => {
-    // console.log(jobLocationInput, jobTitleInput)
-    if (jobTitleInput === "" && jobLocationInput === "") {
-      setFilteredJobs(jobs);
-      console.log(jobs)
-    }
-    else {
-      const filtered = jobs.filter((job) => {
-        return (
-          (job.location && job.location.toLowerCase().startsWith(jobLocationInput.toLowerCase()))
-          &&
-          (job.profile && job.profile.toLowerCase().startsWith(jobTitleInput.toLowerCase()))
-        );
-      });
-      setFilteredJobs(filtered);
-      // console.log(filtered)
-    }
-  }
+  // const handleJobSearch = () => {
+  //   // console.log(jobLocationInput, jobTitleInput)
+  //   if (jobTitleInput === "" && jobLocationInput === "") {
+  //     setFilteredJobs(jobs);
+  //     console.log(jobs)
+  //   }
+  //   else {
+  //     const filtered = jobs.filter((job) => {
+  //       return (
+  //         (job.location && job.location.toLowerCase().startsWith(jobLocationInput.toLowerCase()))
+  //         &&
+  //         (job.profile && job.profile.toLowerCase().startsWith(jobTitleInput.toLowerCase()))
+  //       );
+  //     });
+  //     setFilteredJobs(filtered);
+  //     // console.log(filtered)
+  //   }
+  // }
 
   const navigate = useNavigate();
-
-  // Loading state
-  const [loader, setLoader] = useState(true);
-
-  useEffect(() => {
-    if (fetchInternships !== null && fetchJobs !== null) {
-      setLoader(false);
-    }
-  });
-
-  // if (loader) {
-  //   return (
-  //     <LoadingPage />
-  //   )
-  // }
 
   function generateRandomColor() {
     // Generate random values for red, green, and blue components
@@ -151,6 +136,20 @@ const Home = () => {
     return colorCode;
   }
 
+  // Loading state
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    if (internships !== null && jobs !== null) {
+      setLoader(false);
+    }
+  });
+
+  if (loader) {
+    return (
+      <LoadingPage loader={loader} />
+    )
+  }
   return (
     <div className="w-full ">
       <div className=" w-full h-screen flex justify-center px-10">
@@ -181,13 +180,20 @@ const Home = () => {
             <MdArrowOutward />
           </Button>
 
-          <div class="animate-bounce bg-[#2507B3] rounded-full absolute bottom-5">
-            <LuArrowDown className="text-white p-5 size-16" />
+          {/* <div class="animate-bounce bg-[#2507B3] rounded-full absolute bottom-5">
+              <LuArrowDown className="text-white p-5 size-16" />
+            </div> */}
+          <div className="animate-bounce rounded-full absolute bottom-5 h-14 w-14">
+            <img src="Job_Seeking_logo-removebg-preview1.png" alt="" />
           </div>
         </div>
       </div>
 
-      <div className='w-full py-10 sm:py-16 bg-gray-50  flex px-10'>
+      <div className='w-full sm:py-16 bg-gray-50 px-10 py-16'>
+        <h3 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10 pb-16">
+          <span className=" font-semibold text-[#2507B3]"></span>{" "}
+          Follow these steps
+        </h3>
         <div className='w-full h-full flex flex-wrap justify-center gap-10 sm:gap-20'>
           <div className='one hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
             <div className='top text-4xl'>01</div>
@@ -222,8 +228,8 @@ const Home = () => {
 
       {/* scroller animation */}
       <div className="w-full  bg-gray-50 py-16 overflow-hidden ">
-        <div className=" pb-10 my-5">
-          <h3 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10">
+        <div className="">
+          <h3 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10 pb-16">
             Trusted <span className=" font-semibold text-[#2507B3]">1000+</span>{" "}
             company find best job seekers
           </h3>
@@ -335,7 +341,7 @@ const Home = () => {
 
         <div className="bg-gray-50 px-10 py-10">
           {/* search bar */}
-          <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/3 rounded-full m-auto overflow-hidden mb-10">
+          {/* <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/3 rounded-full m-auto overflow-hidden mb-10">
 
             <div className="w-full flex items-center gap-2 pl-5 h-10">
               <div><IoMdSearch size={20} className="text-gray-500" /></div>
@@ -365,13 +371,19 @@ const Home = () => {
                 Search
               </button>
             </div>
-          </div>
+          </div> */}
           <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-x '>
-            {
+            {/* {
               filterredInternships &&
               (filterredInternships.map((internship, index) => (
                 <InternshipCard key={index} index={index} internship={internship} color={generateRandomColor()} />
               )))
+            } */}
+            {
+              internships &&
+              (internships.map((internship, index) => (
+                <InternshipCard key={index} index={index} internship={internship} color={generateRandomColor()} />
+              ))).reverse()
             }
           </div>
         </div>
@@ -386,7 +398,7 @@ const Home = () => {
 
         <div className="bg-gray-50 px-10 py-10">
           {/* search bar */}
-          <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/3 rounded-full m-auto overflow-hidden mb-10">
+          {/* <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/3 rounded-full m-auto overflow-hidden mb-10">
 
             <div className="w-full flex items-center gap-2 pl-5 h-10">
               <div><IoMdSearch size={20} className="text-gray-500" /></div>
@@ -416,13 +428,19 @@ const Home = () => {
                 Search
               </button>
             </div>
-          </div>
+          </div> */}
           <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory'>
-            {
+            {/* {
               filterredJobs &&
               (filterredJobs.map((job, index) => (
                 <JobCard key={index} index={index} job={job} color={generateRandomColor()} />
               )))
+            } */}
+            {
+              jobs &&
+              (jobs.map((job, index) => (
+                <JobCard key={index} index={index} job={job} color={generateRandomColor()} />
+              ))).reverse()
             }
           </div>
         </div>

@@ -64,8 +64,8 @@ const Application = () => {
               </tr>
             </thead>
             <tbody>
-              {internshipId &&
-                internshipId.map((studentItem, index) => (
+              {internshipId ?
+                (internshipId.map((studentItem, index) => (
                   <tr
                     key={index}
                     className="border-b border-zinc-300 max-md:text-sm"
@@ -104,7 +104,8 @@ const Application = () => {
                         </React.Fragment>
                       ))}
                   </tr>
-                ))}
+                )).reverse()) :
+                ((<div className='text-gray-700 text-lg font-medium'>No record </div>)) }
             </tbody>
           </table>
         </div>
@@ -143,8 +144,8 @@ const Application = () => {
               </tr>
             </thead>
             <tbody>
-              {jobId &&
-                jobId.map((studentItem, index) => (
+              {jobId ?
+                (jobId.map((studentItem, index) => (
                   <tr
                     key={index}
                     className="border-b border-zinc-300 max-md:text-sm"
@@ -181,7 +182,8 @@ const Application = () => {
                         </React.Fragment>
                       ))}
                   </tr>
-                ))}
+                )).reverse()) : 
+              ((<div className='text-gray-700 text-lg font-medium'>No record </div>))}
             </tbody>
           </table>
         </div>

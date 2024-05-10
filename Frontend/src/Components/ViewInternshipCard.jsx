@@ -19,7 +19,7 @@ const ViewInternshipCard = ({ index, internship, color }) => {
 
   // Calculate the difference in milliseconds
   const differenceInMilliseconds = date2 - date1;
-  console.log(differenceInMilliseconds);
+  // console.log(differenceInMilliseconds);
 
   // Convert milliseconds to days
   const differenceInDays = Math.floor(
@@ -33,7 +33,7 @@ const ViewInternshipCard = ({ index, internship, color }) => {
       <Link to={`/student/internships/readinterbship/${internship._id}`}>
         <div
           key={internship._id}
-          className={`m-2 w-80 mb-5 p-4 shrink-0 rounded-xl bg-white text-black border hover:border-[#2507B3] ${
+          className={`m-2 w-80 mb-5 p-4 shrink-0 rounded-xl bg-white text-black border hover:border-[#2507B3]  ${
             colors[index % colors.length]
           }`}
         >
