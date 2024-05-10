@@ -55,16 +55,16 @@ const CreateJob = () => {
   }, [watch, i]);
   return (
     <>
-      <div className="w-full flex flex-col items-center py-5 gap-5 bg-zinc-100">
-        <h1 className="text-2xl font-semibold">Post Job</h1>
-        <div className="mt-2  w-full md:w-1/2 py-10 px-8 border-2 border-zinc-200 rounded-xl">
+      <div className="w-full  flex flex-col items-center py-5 sm:px-5 gap-5 bg-gray-50">
+        <h1 className="text-2xl font-medium py-5">Post Job</h1>
+        <div className="mt-2 w-full sm:w-full  py-5 px-10   border-zinc-200 rounded-xl">
           <form onSubmit={handleSubmit(create)} className="">
             {/* Section-1-div */}
             <div className=" p-3 rounded-lg">
-              <h1 className="px-5 py-3 font-semibold">Job Details</h1>
-              <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
+              <h1 className="px-5 py-3 text-lg font-medium">Job Details</h1>
+              <div className="w-full border-2 rounded-lg px-5  flex flex-col items-center py-8  border-zinc-200 ">
                 {/* title-div */}
-                <div className="w-full md:max-w-lg mt-1">
+                <div className="w-full md:max-w-4xl text-md mt-1">
                   <Input
                     label="Job Title"
                     placeholder="e.g. Software Engineer Trainee"
@@ -84,7 +84,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Skills-div */}
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <Input
                     label="Skills required"
                     placeholder="e.g. Java"
@@ -104,7 +104,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Job-type-div */}
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <Select
                     options={["In office", "Remote", "Hybrid"]}
                     label="Job Type"
@@ -125,7 +125,7 @@ const CreateJob = () => {
 
                 {/* Location */}
 
-                <div className="w-full md:max-w-lg mt-1">
+                <div className="w-full md:max-w-4xl mt-1">
                   <Input
                     label="Location"
                     placeholder="e.g. Indore"
@@ -147,7 +147,7 @@ const CreateJob = () => {
 
                 {/* Working-type-div */}
 
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <label className="block text-md">Working Type</label>
                   <div className="mt-2 flex ml-5">
                     <div className="mr-4 flex items-center">
@@ -202,7 +202,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Starting */}
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <label className="block text-md">Start</label>
                   <div className="mt-2 flex">
                     <div className="mr-4 flex items-center ml-5">
@@ -241,7 +241,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Openings */}
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <Input
                     label="Number of Opening"
                     placeholder="e.g. 5"
@@ -262,7 +262,7 @@ const CreateJob = () => {
 
                 {/* Start date */}
 
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <Input
                     style="relative"
                     type="text"
@@ -296,7 +296,7 @@ const CreateJob = () => {
               <h1 className="px-5 py-2 font-semibold">Salary & perks</h1>
               <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
                 {/* Salary  */}
-                {/* <div className="w-full md:max-w-lg mt-3">
+                {/* <div className="w-full md:max-w-4xl mt-3">
                   <Input
                     label="Salary Amount (CTC)"
                     placeholder="e.g. 10000"
@@ -306,7 +306,7 @@ const CreateJob = () => {
                 </div> */}
 
                 {/*Annual Salary  */}
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <Input
                     label="Annual Amount (CTC)"
                     placeholder="e.g. 3,50000 /- Year"
@@ -326,7 +326,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Perks */}
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <label className="block mb-2">Perks:</label>
                   <div className="flex flex-col ml-4">
                     <div className="flex items-center">
@@ -412,7 +412,7 @@ const CreateJob = () => {
               </h1>
               <div className="w-full mt-2  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
                 {/* Company */}
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <Input
                     label="Company Name"
                     placeholder="e.g. Google"
@@ -432,7 +432,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Experience */}
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <Input
                     label="Experience"
                     placeholder="e.g. 0-2 Years"
@@ -442,7 +442,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Applicants */}
-                <div className="w-full md:max-w-lg mt-3">
+                <div className="w-full md:max-w-4xl mt-3">
                   <Input
                     label="Applicants"
                     placeholder="e.g. 1250"
@@ -452,7 +452,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Assessments */}
-                <div className="w-full md:max-w-lg mt-4">
+                <div className="w-full md:max-w-4xl mt-3">
                   <label htmlFor="assements" className="block text-md ">
                     Assessments
                   </label>
@@ -488,7 +488,7 @@ const CreateJob = () => {
                 </div>
 
                 {/*  preferences */}
-                <div className="w-full md:max-w-lg mt-4">
+                <div className="w-full md:max-w-4xl mt-3">
                   <label htmlFor="preferences" className="block text-md">
                     Preferences
                   </label>
@@ -525,7 +525,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Description */}
-                <div className="w-full md:max-w-lg mt-4">
+                <div className="w-full md:max-w-4xl mt-3">
                   <label htmlFor="description" className="block text-md ">
                     Description
                   </label>
@@ -562,7 +562,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* responsibilities */}
-                <div className="w-full md:max-w-lg mt-4">
+                <div className="w-full md:max-w-4xl mt-3">
                   <label htmlFor="responsibilities" className="block text-md">
                     Responsibilities
                   </label>
@@ -599,7 +599,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Qualifications */}
-                <div className="w-full md:max-w-lg mt-4">
+                <div className="w-full md:max-w-4xl mt-3">
                   <label htmlFor="qualifications" className="block text-md ">
                     Qualifications
                   </label>
@@ -636,7 +636,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Work conditions */}
-                <div className="w-full md:max-w-lg mt-4">
+                <div className="w-full md:max-w-4xl mt-3">
                   <label htmlFor="workconditions" className="block text-md ">
                     Work Conditions
                   </label>
@@ -673,7 +673,7 @@ const CreateJob = () => {
                 </div>
 
                 {/* Company Detail */}
-                <div className="w-full md:max-w-lg mt-4">
+                <div className="w-full md:max-w-4xl mt-3">
                   <label htmlFor="companyDetail" className="block text-md">
                     Company Detail
                   </label>
@@ -706,7 +706,7 @@ const CreateJob = () => {
               </h1>
               <div className="w-full  flex flex-col items-center py-8 border-2 border-zinc-200 rounded-lg">
                 {/* Contact */}
-                <div className="w-full md:max-w-lg mt-1">
+                <div className="w-full md:max-w-4xl text-md mt-1">
                   <Input
                     label="Contact Number"
                     placeholder="e.g. +91 Enter Mobile Number...."
