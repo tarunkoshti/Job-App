@@ -183,7 +183,7 @@ const Home = () => {
           {/* <div class="animate-bounce bg-[#2507B3] rounded-full absolute bottom-5">
               <LuArrowDown className="text-white p-5 size-16" />
             </div> */}
-          <div className="hidden lg:block animate-bounce rounded-full absolute bottom-5 h-14 w-14">
+          <div className="hidden lg:block animate-bounce rounded-full absolute bottom-20 h-14 w-14">
             <img src="Job_Seeking_logo-removebg-preview1.png" alt="" />
           </div>
         </div>

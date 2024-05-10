@@ -44,13 +44,13 @@ const EmployeeHome = () => {
             most productive channels. Discover the optimal match for your Company and get the best
             results together
           </h4>
-          <Button
-            className="mt-10 md:mt-20 flex items-center gap-2 py-3"
-            onClick={() => navigate("/student/signup")}
-          >
-            Get Started Now
-            <MdArrowOutward />
-          </Button>
+          <Link to={`/employee/jobs`}>
+            <Button
+              className="mt-10 md:mt-20 flex items-center gap-2 py-3"
+            >
+              Get Started Now
+              <MdArrowOutward />
+            </Button></Link>
         </div>
         
         <div class="container mx-auto px-4 sm:px-8 md:px-12 lg:px-20 py-8 sm:py-12 mt-8 sm:mt-12">
