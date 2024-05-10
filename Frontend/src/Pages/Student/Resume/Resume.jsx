@@ -11,6 +11,9 @@ import { getStudentResume } from '../../../store/Actions/resumeActions';
 import { RiDownload2Line } from "react-icons/ri";
 import { MdErrorOutline } from "react-icons/md";
 import { toast } from 'react-toastify';
+import LoadingPage from '../../../Components/Loading/LoadingPage';
+import LoadingReumePage from '../../../Components/Loading/LoadingReumePage';
+import { CgSpinner } from 'react-icons/cg';
 
 const Resume = () => {
 
@@ -21,50 +24,126 @@ const Resume = () => {
     const resume = useSelector((state) => state.userReducer.userData?.student?.resume)
     // console.log(resume)
 
+    const [deleteLoading, setDeleteLoading] = useState({
+        itemId: null,
+        condition: false
+    });
 
     const deleteEduHandler = async (id) => {
+        setDeleteLoading({
+            itemId: id,
+            condition: true
+        });
         const error = await dispatch(deleteEducation(id, student._id))
-        console.log(error)
+        setDeleteLoading({
+            itemId: id,
+            condition: false
+        });
+        // console.log(error)
         error ? toast.error(error.data.message)
             : toast.success("Education deleted")
     }
     const deleteJobHandler = async (id) => {
+        setDeleteLoading({
+            itemId: id,
+            condition: true
+        });
         const error = await dispatch(deleteJob(id, student._id))
+        setDeleteLoading({
+            itemId: id,
+            condition: false
+        });
         error ? toast.error(error.data.message)
             : toast.success("Job deleted")
     }
     const deleteInternHandler = async (id) => {
+        setDeleteLoading({
+            itemId: id,
+            condition: true
+        });
         const error = await dispatch(deleteInternship(id, student._id))
+        setDeleteLoading({
+            itemId: id,
+            condition: false
+        });
         error ? toast.error(error.data.message)
             : toast.success("Internship deleted")
     }
     const deleterespoHandler = async (id) => {
+        setDeleteLoading({
+            itemId: id,
+            condition: true
+        });
         const error = await dispatch(deleteResponsibility(id, student._id))
+        setDeleteLoading({
+            itemId: id,
+            condition: false
+        });
         error ? toast.error(error.data.message)
             : toast.success("Responsibility deleted")
     }
     const deletecourseHandler = async (id) => {
+        setDeleteLoading({
+            itemId: id,
+            condition: true
+        });
         const error = await dispatch(deleteTrainingCourse(id, student._id))
+        setDeleteLoading({
+            itemId: id,
+            condition: false
+        });
         error ? toast.error(error.data.message)
             : toast.success("Course deleted")
     }
     const deleteprojectHandler = async (id) => {
+        setDeleteLoading({
+            itemId: id,
+            condition: true
+        });
         const error = await dispatch(deleteProject(id, student._id))
+        setDeleteLoading({
+            itemId: id,
+            condition: false
+        });
         error ? toast.error(error.data.message)
             : toast.success("Project deleted")
     }
     const deleteskillHandler = async (id) => {
+        setDeleteLoading({
+            itemId: id,
+            condition: true
+        });
         const error = await dispatch(deleteSkill(id, student._id))
+        setDeleteLoading({
+            itemId: id,
+            condition: false
+        });
         error ? toast.error(error.data.message)
             : toast.success("Skill deleted")
     }
     const deleteportfolioHandler = async (id) => {
+        setDeleteLoading({
+            itemId: id,
+            condition: true
+        });
         const error = await dispatch(deleteWorkSample(id, student._id))
+        setDeleteLoading({
+            itemId: id,
+            condition: false
+        });
         error ? toast.error(error.data.message)
             : toast.success("Work Sample deleted")
     }
     const deleteaccomplishmentHandler = async (id) => {
+        setDeleteLoading({
+            itemId: id,
+            condition: true
+        });
         const error = await dispatch(deleteAccomplishment(id, student._id))
+        setDeleteLoading({
+            itemId: id,
+            condition: false
+        });
         error ? toast.error(error.data.message)
             : toast.success("Accomplishment deleted")
     }
@@ -75,6 +154,21 @@ const Resume = () => {
 
     const updatedResume = useSelector((state) => state.resumeReducer?.resumeData?.updatedResume)
     console.log(updatedResume)
+
+    // Loading state
+    const [resumeLoader, setResumeLoader] = useState(true);
+
+    useEffect(() => {
+        if (resume !== null) {
+            setResumeLoader(false);
+        }
+    });
+
+    if (resumeLoader) {
+        return (
+            <LoadingReumePage loader={resumeLoader} />
+        )
+    }
 
     return (
         <div className='text-gray-700'>
@@ -151,8 +245,9 @@ const Resume = () => {
                                                         className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                         size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteEduHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
-                                                        size={27} />
+                                                    {(deleteLoading.condition && deleteLoading.itemId === item.id) ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-black text-center" />) : (<MdDelete onClick={() => deleteEduHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
+                                                        size={27} />)}
+                                                    
                                                 </div>
                                             </li>
                                         ))}
@@ -198,8 +293,9 @@ const Resume = () => {
                                                             <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                                 size={27} />
                                                         </Link>
-                                                        <MdDelete onClick={() => deleteJobHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
-                                                            size={27} />
+                                                        {(deleteLoading.condition && deleteLoading.itemId === item.id) ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-black text-center" />) : (<MdDelete onClick={() => deleteJobHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
+                                                            size={27} />)}
+                                                        
                                                     </div>
                                                 </li>
                                             ))
@@ -233,8 +329,9 @@ const Resume = () => {
                                                             <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                                 size={27} />
                                                         </Link>
-                                                        <MdDelete onClick={() => deleteInternHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
-                                                            size={27} />
+                                                        {(deleteLoading.condition && deleteLoading.itemId === item.id) ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-black text-center" />) : (<MdDelete onClick={() => deleteInternHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
+                                                            size={27} />)}
+                                                        
                                                     </div>
                                                 </li>
                                             ))
@@ -279,8 +376,9 @@ const Resume = () => {
                                                         <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                             size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleterespoHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
-                                                        size={27} />
+                                                    {(deleteLoading.condition && deleteLoading.itemId === item.id) ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-black text-center" />) : (<MdDelete onClick={() => deleterespoHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
+                                                        size={27} />)}
+                                                    
                                                 </div>
                                             </li>
                                         ))
@@ -316,8 +414,8 @@ const Resume = () => {
                                                         <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                             size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deletecourseHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
-                                                        size={27} />
+                                                    {(deleteLoading.condition && deleteLoading.itemId === item.id) ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-black text-center" />) : (<MdDelete onClick={() => deletecourseHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
+                                                        size={27} />)}
                                                 </div>
                                             </li>
                                         ))}
@@ -347,8 +445,8 @@ const Resume = () => {
                                                     <div className='text-gray-500'>
                                                         <ul>
                                                             {item.description.split('\n').map((point, index) => (
-                                                                <li key={index} 
-                                                                className='flex gap-2'>
+                                                                <li key={index}
+                                                                    className='flex gap-2'>
                                                                     <span>&#8226;</span> {/* Bullet point character */}
                                                                     <span className="">{point.trim().replace(/^\d+\./, '')}</span>
                                                                 </li>
@@ -360,8 +458,8 @@ const Resume = () => {
                                                     <Link to={`/student/resume/edit/project/${item.id}`}>
                                                         <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200' size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteprojectHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
-                                                        size={27} />
+                                                    {(deleteLoading.condition && deleteLoading.itemId === item.id) ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-black text-center" />) : (<MdDelete onClick={() => deleteprojectHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
+                                                        size={27} />)}
                                                 </div>
                                             </li>
                                         ))}
@@ -392,8 +490,9 @@ const Resume = () => {
                                                         <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
                                                             size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteskillHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
-                                                        size={27} />
+                                                    {(deleteLoading.condition && deleteLoading.itemId === item.id) ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-black text-center" />) : (<MdDelete onClick={() => deleteskillHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        size={27} />)}
+
                                                 </div>
                                             </li>
                                         ))}
@@ -456,8 +555,8 @@ const Resume = () => {
                                                         <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
                                                             size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteportfolioHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
-                                                        size={27} />
+                                                    {(deleteLoading.condition && deleteLoading.itemId === item.id) ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-black text-center" />) : (<MdDelete onClick={() => deleteportfolioHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5'
+                                                        size={27} />)}
                                                 </div>
                                             </li>
 
@@ -499,8 +598,8 @@ const Resume = () => {
                                                         <HiPencil className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
                                                             size={27} />
                                                     </Link>
-                                                    <MdDelete onClick={() => deleteaccomplishmentHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
-                                                        size={27} />
+                                                    {(deleteLoading.condition && deleteLoading.itemId === item.id) ? (<CgSpinner class="animate-spin h-5 w-5 mr-3 text-black text-center" />) : (<MdDelete onClick={() => deleteaccomplishmentHandler(item.id)} className='cursor-pointer hover:bg-gray-200 rounded-full p-1.5 max-sm:bg-gray-200'
+                                                        size={27} />)}
                                                 </div>
                                             </li>
                                         ))
