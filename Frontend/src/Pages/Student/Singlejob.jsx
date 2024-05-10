@@ -45,7 +45,7 @@ const Singlejob = () => {
   };
 
   const appliedJob = student?.jobs?.find((jobid) => jobid == id);
-
+  const employee = useSelector((state)=> state.employeeReducer)
   const applyHandler = async () => {
     if (!appliedJob) {
       const error = await dispatch(applyjob(id));
@@ -83,11 +83,11 @@ const Singlejob = () => {
 
   return (
     job && (
-      <div className="w-full flex flex-col items-center text-gray-700">
+      <div className="w-full flex flex-col items-center text-gray-700 px-10">
         <h1 className="text-center text-2xl sm:text-3xl p-10 font-medium capitalize">
           {job.profile} Job
         </h1>
-        <div className="w-full sm:w-3/4 sm:border py-2 rounded-lg">
+        <div className="w-full sm:border py-2 rounded-lg">
           <div className="flex flex-col gap-4 px-10 py-5">
             <div className="flex justify-between">
               <div className="flex items-center w-fit gap-2 px-4 py-1 border rounded-md text-gray-500 font-medium">
@@ -95,7 +95,7 @@ const Singlejob = () => {
                 <h6 className="text-xs">Actively hiring</h6>
               </div>
               <div className="">
-                <button>
+               {!employee&& <button>
                   {bookmarkedJob ? (
                     <IoBookmark
                       onClick={disbookmarkHandler}
@@ -109,7 +109,7 @@ const Singlejob = () => {
                       className="hover:bg-gray-200 rounded-full p-1.5"
                     />
                   )}
-                </button>
+                </button>}
               </div>
             </div>
 
@@ -319,12 +319,12 @@ const Singlejob = () => {
           </div>
 
           <div className="flex justify-center items-center mt-8 py-8">
-            <button
+           {!employee&& <button
               onClick={applyHandler}
               class="px-8 py-2 bg-[#2507B3] text-white font-semibold rounded-lg"
             >
               Apply Now
-            </button>
+            </button>}
           </div>
         </div>
       </div>

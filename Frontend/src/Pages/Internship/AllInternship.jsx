@@ -88,31 +88,31 @@ const AllInternship = () => {
   return (
     <>
       {/* search bar */}
-      <div className='py-10'>
-        <div className="flex items-center bg-white hover-border text-black w-1/2 rounded-full m-auto overflow-hidden"
+      <div className='py-10 max-md:px-5'>
+        <div className="flex items-center bg-white hover-border text-black  md:w-1/2 rounded-full m-auto overflow-hidden"
           style={style}>
 
-          <div className="w-full flex items-center gap-2 pl-5 h-12">
+          <div className="w-full flex items-center gap-2 pl-5 h-10 sm:h-12">
             <div><IoMdSearch size={20} className="text-gray-500" /></div>
             <input
               type="text"
               placeholder="Internship title"
-              className="w-full bg-transparent h-full outline-none text-gray-700 font-medium"
+              className="w-full bg-transparent max-sm:text-sm  h-full outline-none text-gray-700 font-medium"
               value={internshipTitleInput}
               onChange={(e) => setInternshipTitleInput(e.target.value)}
             />
           </div>
-          <div className="w-full flex items-center gap-2 pl-5 h-12">
+          <div className="w-full flex items-center gap-2 pl-5 h-10 sm:h-12">
             <div><IoLocationSharp className="text-gray-500" /></div>
             <input
               type="text"
               placeholder="City or remote"
-              className="w-full h-full outline-none text-gray-700 font-medium"
+              className="w-full h-full outline-none max-sm:text-sm text-gray-700 font-medium"
               value={internshipLocationInput}
               onChange={(e) => setinternshipLocationInput(e.target.value)}
             />
           </div>
-          <div className="h-12">
+          <div className="h-10 sm:h-12">
             <button
               type="submit"
               className="w-full h-full rounded-tr-full rounded-br-full outline-none bg-[#2507B3] text-white text-sm px-5"
@@ -124,22 +124,29 @@ const AllInternship = () => {
       </div>
 
       {/* main-div */}
-      <div className="w-full flex items-center justify-center gap-10">
+      <div className="w-full flex items-center justify-center gap-10 sm:px-10">
         {/* ViewInternshipCard - full width on smaller screens */}
         <div
           id="job"
-          className="w-full h-screen sm:w-full md:w-[400px]  flex flex-col items-center justify-start gap-5 overflow-y-auto snap-mandatory border-zinc-200 border rounded-lg"
+          className="w-full h-screen sm:w-full md:w-[400px]  flex flex-col items-center justify-start gap-5 overflow-y-auto snap-mandatory  sm:border rounded-lg"
         >
           {loader ? (<div className="flex flex-col items-center py-10 pb-5"><LoadingCard /></div>) :
             (<div className="flex flex-col items-center py-10 pb-5">
               {filterredInternships.length != "0" ?
                 (filterredInternships.map((internship, index) => (
-                  <ViewInternshipCard
-                    key={index}
-                    index={index}
-                    internship={internship}
-                    color={generateRandomColor()}
-                  />
+                  <>
+                    <div className='hidden lg:block'>
+                      <ViewInternshipCard
+                        key={index}
+                        index={index}
+                        internship={internship}
+                        color={generateRandomColor()}
+                      />
+                    </div>
+                    <div className='block lg:hidden'>
+                      <InternshipCard key={index} index={index} internship={internship} color={generateRandomColor()} />
+                    </div>
+                  </>
                 ))).reverse() :
                 (<div className='text-gray-700 text-lg font-medium'>No match found</div>)}
             </div>)
@@ -149,7 +156,7 @@ const AllInternship = () => {
         {/* Outlet hidden on small screens */}
         <div
           id="job"
-          className="hidden md:block w-1/2 h-screen overflow-y-auto overflow-x-hidden snap-mandatory border rounded-lg"
+          className="hidden lg:block w-1/2 h-screen overflow-y-auto overflow-x-hidden snap-mandatory border rounded-lg"
         >
           <div className=" shrink-0 py-10">
             <Outlet />
