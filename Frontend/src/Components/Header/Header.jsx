@@ -246,6 +246,16 @@ const Header = () => {
                                         setIsProfileOpen(false),
                                         setDropdown(false))}
                                     to="/student" className='hover:text-blue-600'>Home</Link>
+                                <Link
+                                    onClick={() => (
+                                        setIsProfileOpen(false),
+                                        setDropdown(false))}
+                                    to="/student/jobs" className='hover:text-blue-600'>Jobs</Link>
+                                <Link
+                                    onClick={() => (
+                                        setIsProfileOpen(false),
+                                        setDropdown(false))}
+                                    to="/student/internships" className='hover:text-blue-600'>Internships</Link>
                                 <Link onClick={() => (
                                     setIsProfileOpen(false),
                                     setDropdown(false))} to="/student/application" className='hover:text-blue-600'>My Application</Link>
@@ -255,9 +265,14 @@ const Header = () => {
                                 <Link onClick={() => (
                                     setIsProfileOpen(false),
                                     setDropdown(false))} to="/student/resume" className='hover:text-blue-600'>Edit Resume</Link>
-                                <Link onClick={() => (
+                                {/* <Link onClick={() => (
                                     setIsProfileOpen(false),
-                                    setDropdown(false))} to="/student/edit/preference" className='hover:text-blue-600'>Edit Preferences</Link>
+                                    setDropdown(false))} to="/student/edit/preference" className='hover:text-blue-600'>Edit Preferences</Link> */}
+                                <Link
+                                    onClick={() => (
+                                        setIsProfileOpen(false),
+                                        setDropdown(false))}
+                                    to="/student/about" className='hover:text-blue-600'>About</Link>
                             </div>
                                 : <div className='w-full flex flex-col gap-3'>
                                     <Link onClick={() => (
@@ -265,7 +280,16 @@ const Header = () => {
                                         setDropdown(false))} to="/employee" className='hover:text-blue-600'>Home</Link>
                                     <Link onClick={() => (
                                         setIsProfileOpen(false),
+                                        setDropdown(false))} to="/employee/jobs" className='hover:text-blue-600'>Create Job</Link>
+                                    <Link onClick={() => (
+                                        setIsProfileOpen(false),
+                                        setDropdown(false))} to="/employee/internships" className='hover:text-blue-600'>Create Internship</Link>
+                                    <Link onClick={() => (
+                                        setIsProfileOpen(false),
                                         setDropdown(false))} to="/employee/application" className='hover:text-blue-600'>My Application</Link>
+                                    <Link onClick={() => (
+                                        setIsProfileOpen(false),
+                                        setDropdown(false))} to="/employee/about" className='hover:text-blue-600'>About</Link>
                                 </div>}
 
                             <div className='w-full'>
@@ -284,7 +308,7 @@ const Header = () => {
                                                 <div className='w-screen h-screen fixed top-0 left-0 z-10'></div>
                                                 <CgSpinner class="animate-spin h-5 w-5 text-gray-500 text-center m-auto" />
                                             </>
-                                            : <Link onClick={LogoutHandler} className='hover:text-blue-600'>Logout</Link>
+                                                : <Link onClick={LogoutHandler} className='hover:text-blue-600'>Logout</Link>
                                         }
                                     </div>
                                 )}
