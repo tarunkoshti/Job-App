@@ -66,7 +66,7 @@ const AllJob = () => {
         {/* Outlet hidden on small screens */}
         <div
           id="job"
-          className="hidden md:block w-1/2 h-screen  overflow-y-auto overflow-x-hidden snap-mandatory border-2 border-zinc-200 rounded-xl "
+          className="hidden md:block w-1/2 h-screen  overflow-y-auto overflow-x-hidden snap-mandatory border border-gray-200 rounded-xl "
         >
           <div className=" shrink-0 py-10">
             <Outlet />
