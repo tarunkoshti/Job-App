@@ -383,7 +383,7 @@ const Home = () => {
               internships &&
               (internships.map((internship, index) => (
                 <InternshipCard key={index} index={index} internship={internship} color={generateRandomColor()} />
-              )))
+              ))).reverse()
             }
           </div>
         </div>
@@ -440,7 +440,7 @@ const Home = () => {
               jobs &&
               (jobs.map((job, index) => (
                 <JobCard key={index} index={index} job={job} color={generateRandomColor()} />
-              )))
+              ))).reverse()
             }
           </div>
         </div>

@@ -108,7 +108,7 @@ const EmployeeApplication = () => {
                         </>
                       ))}
                   </tr>
-                ))}
+                )).reverse() }
             </tbody>
           </table>
         </div>
@@ -196,7 +196,7 @@ const EmployeeApplication = () => {
                         </>
                       ))}
                   </tr>
-                ))}
+                )).reverse() }
             </tbody>
           </table>
         </div>

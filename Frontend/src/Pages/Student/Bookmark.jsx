@@ -72,7 +72,7 @@ const Bookmark = () => {
                       />
                     ))}
                 </React.Fragment>
-              ))}
+              )).reverse() }
           </ul>
         </div>
       </div>
@@ -104,7 +104,7 @@ const Bookmark = () => {
                       />
                     ))}
                 </React.Fragment>
-              ))}
+              )).reverse() }
           </ul>
         </div>
       </div>

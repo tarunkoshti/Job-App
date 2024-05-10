@@ -104,7 +104,7 @@ const Application = () => {
                         </React.Fragment>
                       ))}
                   </tr>
-                ))}
+                )).reverse() }
             </tbody>
           </table>
         </div>
@@ -181,7 +181,7 @@ const Application = () => {
                         </React.Fragment>
                       ))}
                   </tr>
-                ))}
+                )).reverse()}
             </tbody>
           </table>
         </div>

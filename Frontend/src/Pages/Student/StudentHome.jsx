@@ -337,7 +337,7 @@ const StudentHome = () => {
                       internship={intern}
                       color={generateRandomColor()}
                     />
-                  ))}
+                  )).reverse() }
               </div>
             </div>
           </div>
@@ -406,7 +406,7 @@ const StudentHome = () => {
                       job={job}
                       color={generateRandomColor()}
                     />
-                  ))}
+                  )).reverse() }
               </div>
             </div>
           </div>

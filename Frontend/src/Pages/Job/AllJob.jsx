@@ -5,6 +5,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { fetchJobs } from "../../store/Actions/jobActions";
 import { IoMdSearch } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
+import LoadingCard from "../../Components/Loading/LoadingCard";
 
 const AllJob = () => {
   const dispatch = useDispatch();
@@ -50,15 +51,6 @@ const AllJob = () => {
 
   const navigate = useNavigate();
 
-  // Loading state
-  const [loader, setLoader] = useState(true);
-
-  useEffect(() => {
-    if (fetchJobs !== null) {
-      setLoader(false);
-    }
-  });
-
   function generateRandomColor() {
     // Generate random values for red, green, and blue components
     const red = Math.floor(Math.random() * 256); // Random value between 0 and 255
@@ -77,13 +69,21 @@ const AllJob = () => {
     boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04)'
   }
 
+  // Loading state
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    if (jobs !== null) {
+      setLoader(false);
+    }
+  });
+
   return (
     <>
-
-<div className="py-10">
+      <div className="py-10">
         {/* search bar */}
         <div className="flex items-center bg-white hover-border text-black w-1/2 rounded-full m-auto overflow-hidden"
-        style={style}>
+          style={style}>
 
           <div className="w-full flex items-center gap-2 pl-5 h-12">
             <div><IoMdSearch size={20} className="text-gray-500" /></div>
@@ -114,7 +114,7 @@ const AllJob = () => {
             </button>
           </div>
         </div>
-</div>
+      </div>
 
       {/* main-div */}
       <div className="w-full  flex items-center justify-center gap-10">
@@ -123,23 +123,26 @@ const AllJob = () => {
           id="job"
           className="w-full h-screen md:w-[400px] sm:w-full  flex flex-col items-center justify-start gap-5 overflow-y-auto snap-mandatory border rounded-xl"
         >
-          <div className="flex flex-col items-center py-10 pb-5">
-            {filterredJobs &&
-              filterredJobs.map((job, index) => (
-                <ViewJobCard
-                  key={index}
-                  index={index}
-                  job={job}
-                  color={generateRandomColor()}
-                />
-              ))}
-          </div>
+          {loader ? (<div className="flex flex-col items-center py-10 pb-5"><LoadingCard /></div>) :
+            (<div className="flex flex-col items-center py-10 pb-5">
+              {filterredJobs.length != "0" ?
+                (filterredJobs.map((job, index) => (
+                  <ViewJobCard
+                    key={index}
+                    index={index}
+                    job={job}
+                    color={generateRandomColor()}
+                  />
+                ))).reverse() : 
+                (<div className='text-gray-700 text-lg font-medium'>No match found</div>) }
+            </div>)
+          }
         </div>
 
         {/* Outlet hidden on small screens */}
         <div
           id="job"
-          className="hidden md:block w-1/2 h-screen  overflow-y-auto overflow-x-hidden snap-mandatory border-2 border-zinc-200 rounded-xl "
+          className="hidden md:block w-1/2 h-screen  overflow-y-auto overflow-x-hidden snap-mandatory border rounded-xl "
         >
           <div className=" shrink-0 py-10">
             <Outlet />
