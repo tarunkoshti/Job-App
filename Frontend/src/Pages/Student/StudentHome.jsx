@@ -9,6 +9,7 @@ import { MdArrowOutward } from 'react-icons/md';
 import { IoMdSearch } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import LoadingPage from '../../Components/Loading/LoadingPage';
+import { Link } from 'react-router-dom';
 
 const StudentHome = () => {
 
@@ -129,13 +130,13 @@ const StudentHome = () => {
             companion! We've curated a platform that connects talented
             individuals with existing opportunities.
           </h4>
-          <Button
-            className="mt-10 md:mt-20 flex items-center gap-2 py-3"
-            onClick={() => navigate("/student/signup")}
-          >
-            Get Started Now
-            <MdArrowOutward />
-          </Button>
+          <Link to={`/student/jobs`}>
+            <Button
+              className="mt-10 md:mt-20 flex items-center gap-2 py-3"
+            >
+              Get Started Now
+              <MdArrowOutward />
+            </Button></Link>
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-24 mt-16 md:mt-20 px-10 ">

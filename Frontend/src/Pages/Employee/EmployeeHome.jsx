@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchJobs } from "../../store/Actions/jobActions";
 import { fetchInternships } from "../../store/Actions/internshipActions";
 import { LuArrowDown } from "react-icons/lu";
-import { MdOutlineDone } from "react-icons/md";
+import { MdArrowOutward, MdOutlineDone } from "react-icons/md";
+import Button from "../../Components/Button";
 
 const EmployeeHome = () => {
   const dispatch = useDispatch();
@@ -31,31 +32,27 @@ const EmployeeHome = () => {
   }, [dispatch]);
   return (
     <>
-      <div className="w-full bg-white font-sans">
-        <div className="flex flex-col items-center md:gap-6 px-4 md:px-0">
-          <div className="flex flex-col items-center mt-10 md:mt-24">
-            <h1 className="text-center text-[#1F2937] text-4xl md:text-6xl font-medium leading-relaxed md:pl-12 capitalize tracking-normal ">
-              Find the best <span className="text-[#2507B3]">Candidates</span>{" "}
-              for <br /> your Company
-            </h1>
-            <p className="pl-4 md:pl-10 mt-4 text-gray-600 text-base md:text-lg text-center tracking-wide">
-              Get more sales and maximize the conversion rates. Discover the
-              most productive channels.
-            </p>
-            <p className="mt-1 text-center tracking-wide text-gray-600">
-              Discover the optimal match for your Company and get the best
-              results together
-            </p>
-            <Link to="">
-              <button className="p-4 px-10 py-3 mt-24 mb-10 bg-[#2507B3] text-white font-semibold rounded-lg">
-                Get Started
-              </button>
-            </Link>
-          </div>
-          <div className="animate-bounce bg-[#2507B3] rounded-full mt-10">
-            <LuArrowDown className="text-white p-5 size-16" />
-          </div>
+      <div className="w-full py-2">
+        <div className="w-full mt-14 px-4 md:px-10 flex flex-col items-center justify-center">
+          <h1 className="w-full lg:w-[70%] text-4xl sm:5xl md:text-6xl sm:text-center font-medium tracking-wide leading-22">
+            Find the best <span className="text-[#2507B3]">Candidates</span>{" "}
+            <br />
+            for your Company
+          </h1>
+          <h4 className="text-gray-500 mt-12 text-base md:text-lg lg:text-center tracking-wider lg:w-[60%]">
+            Get more sales and maximize the conversion rates. Discover the
+            most productive channels. Discover the optimal match for your Company and get the best
+            results together
+          </h4>
+          <Link to={`/employee/jobs`}>
+            <Button
+              className="mt-10 md:mt-20 flex items-center gap-2 py-3"
+            >
+              Get Started Now
+              <MdArrowOutward />
+            </Button></Link>
         </div>
+        
         <div class="container mx-auto px-4 sm:px-8 md:px-12 lg:px-20 py-8 sm:py-12 mt-8 sm:mt-12">
           <div class="text-center mb-8 py-5">
             <h1 className="text-center text-[#1F2937] text-3xl md:text-5xl font-medium leading-relaxed md:pl-12 capitalize tracking-normal">
