@@ -124,21 +124,6 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  // Loading state
-  const [loader, setLoader] = useState(true);
-
-  useEffect(() => {
-    if (fetchInternships !== null && fetchJobs !== null) {
-      setLoader(false);
-    }
-  });
-
-  // if (loader) {
-  //   return (
-  //     <LoadingPage />
-  //   )
-  // }
-
   function generateRandomColor() {
     // Generate random values for red, green, and blue components
     const red = Math.floor(Math.random() * 256); // Random value between 0 and 255
@@ -151,6 +136,20 @@ const Home = () => {
     return colorCode;
   }
 
+  // Loading state
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    if (internships !== null && jobs !== null) {
+      setLoader(false);
+    }
+  });
+
+  if (loader) {
+    return (
+      <LoadingPage loader={loader} />
+    )
+  }
   return (
     <div className="w-full ">
       <div className=" w-full h-screen flex justify-center px-10">
@@ -181,8 +180,11 @@ const Home = () => {
             <MdArrowOutward />
           </Button>
 
-          <div class="animate-bounce bg-[#2507B3] rounded-full absolute bottom-5">
-            <LuArrowDown className="text-white p-5 size-16" />
+          {/* <div class="animate-bounce bg-[#2507B3] rounded-full absolute bottom-5">
+              <LuArrowDown className="text-white p-5 size-16" />
+            </div> */}
+          <div className="animate-bounce rounded-full absolute bottom-5 h-14 w-14">
+            <img src="Job_Seeking_logo-removebg-preview1.png" alt="" />
           </div>
         </div>
       </div>

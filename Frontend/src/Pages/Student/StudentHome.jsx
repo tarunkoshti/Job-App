@@ -8,6 +8,7 @@ import Button from '../../Components/Button';
 import { MdArrowOutward } from 'react-icons/md';
 import { IoMdSearch } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
+import LoadingPage from '../../Components/Loading/LoadingPage';
 
 const StudentHome = () => {
 
@@ -101,6 +102,20 @@ const StudentHome = () => {
     return colorCode;
   }
 
+  // Loading state
+  // const [loader, setLoader] = useState(true);
+
+  // useEffect(() => {
+  //   if (internships !== null && jobs !== null) {
+  //     setLoader(false);
+  //   }
+  // });
+
+  // if (loader) {
+  //   return (
+  //     <LoadingPage loader={loader} />
+  //   )
+  // }
   return (
     <>
       <div className="w-full py-2">
