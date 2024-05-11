@@ -21,14 +21,14 @@ const Home = () => {
 
   useEffect(() => {
     try {
-      // dispatch(fetchJobs());
+      dispatch(fetchJobs());
     } catch (error) {
       console.log(error);
     }
   }, [dispatch]);
 
   useEffect(() => {
-    // dispatch(fetchInternships());
+    dispatch(fetchInternships());
   }, [dispatch]);
 
   // const [internshipTitleInput, setInternshipTitleInput] = useState("")
@@ -139,7 +139,7 @@ const Home = () => {
   }
 
   // Loading state
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     if (internships !== null && jobs !== null) {
