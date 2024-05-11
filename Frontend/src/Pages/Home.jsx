@@ -13,10 +13,11 @@ import { IoLocationSharp } from "react-icons/io5";
 import LoadingPage from "../Components/Loading/LoadingPage";
 
 const Home = () => {
-
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobReducer.jobData);
-  const internships = useSelector((state) => state.internshipReducer.internshipData);
+  const internships = useSelector(
+    (state) => state.internshipReducer.internshipData
+  );
 
   useEffect(() => {
     try {
@@ -36,7 +37,6 @@ const Home = () => {
   // const [jobLocationInput, setJobLocationInput] = useState("")
   // const [filterredInternships, setFilteredInternships] = useState([])
   // const [filterredJobs, setFilteredJobs] = useState([])
-
 
   // useEffect(() => {
   //   if (internships && !internshipTitleInput && !internshipLocationInput) {
@@ -131,7 +131,9 @@ const Home = () => {
     const blue = Math.floor(Math.random() * 256);
 
     // Construct the color code in hexadecimal format
-    const colorCode = `#${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
+    const colorCode = `#${red.toString(16)}${green.toString(16)}${blue.toString(
+      16
+    )}`;
 
     return colorCode;
   }
@@ -146,9 +148,7 @@ const Home = () => {
   });
 
   if (loader) {
-    return (
-      <LoadingPage loader={loader} />
-    )
+    return <LoadingPage loader={loader} />;
   }
   return (
     <div className="w-full ">
@@ -158,7 +158,11 @@ const Home = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-wider">
               Welcome To
             </h1>
-            < img className='h-10 sm:h-12 md:h-14' src="Job_Seeking2-removebg-preview.png" alt="./logo.jpg" />
+            <img
+              className="h-10 sm:h-12 md:h-14"
+              src="Job_Seeking2-removebg-preview.png"
+              alt="./logo.jpg"
+            />
           </div>
           <span className="text-3xl md:text-4xl block mt-3 tracking-wide">
             Your Gateway to Career Opportunities!
@@ -189,38 +193,50 @@ const Home = () => {
         </div>
       </div>
 
-      <div className='w-full sm:py-16 bg-gray-50 px-10 py-16'>
+      <div className="w-full sm:py-16 bg-gray-50 px-10 py-16">
         <h3 className="text-center text-2xl sm:text-3xl md:text-4xl font-medium px-10 pb-16">
-          <span className=" font-semibold text-[#2507B3]"></span>{" "}
-          Follow these steps
+          <span className=" font-semibold text-[#2507B3]"></span> Follow these
+          steps
         </h3>
-        <div className='w-full h-full flex flex-wrap justify-center gap-10 sm:gap-20'>
-          <div className='one hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
-            <div className='top text-4xl'>01</div>
-            <div className='bottom'>
-              <h1 className='font-semibold'>Register Account</h1>
-              <p className='text-sm text-gray-700'>Create a personalized account to access all platform exclusive features.</p>
+        <div className="w-full h-full flex flex-wrap justify-center gap-10 sm:gap-20">
+          <div className="one hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md ">
+            <div className="top text-4xl">01</div>
+            <div className="bottom">
+              <h1 className="font-semibold">Register Account</h1>
+              <p className="text-sm text-gray-700">
+                Create a personalized account to access all platform exclusive
+                features.
+              </p>
             </div>
           </div>
-          <div className='two hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
-            <div className='top text-4xl'>02</div>
-            <div className='bottom'>
-              <h1 className='font-semibold'>Search For Job</h1>
-              <p className='text-sm text-gray-700'>Explore diverse job listings and find the perfect match for your skills.</p>
+          <div className="two hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md ">
+            <div className="top text-4xl">02</div>
+            <div className="bottom">
+              <h1 className="font-semibold">Search For Job</h1>
+              <p className="text-sm text-gray-700">
+                Explore diverse job listings and find the perfect match for your
+                skills.
+              </p>
             </div>
           </div>
-          <div className='three hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
-            <div className='top text-4xl'>03</div>
-            <div className='bottom'>
-              <h1 className='font-semibold'>Create Resume</h1>
-              <p className='text-sm text-gray-700'>Craft a professional resume to showcase your qualifications and experience.</p>
+          <div className="three hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md ">
+            <div className="top text-4xl">03</div>
+            <div className="bottom">
+              <h1 className="font-semibold">Create Resume</h1>
+              <p className="text-sm text-gray-700">
+                Craft a professional resume to showcase your qualifications and
+                experience.
+              </p>
             </div>
           </div>
-          <div className='four hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md '>
-            <div className='top text-4xl'>04</div>
-            <div className='bottom'>
-              <h1 className='font-semibold'>Apply For Job</h1>
-              <p className='text-sm text-gray-700'>Submit applications easily and track your job search progress effectively.</p>
+          <div className="four hover:shadow-2xl hover:text-black duration-500 cursor-pointer w-full sm:w-56 bg-white p-4 rounded-lg shadow-md ">
+            <div className="top text-4xl">04</div>
+            <div className="bottom">
+              <h1 className="font-semibold">Apply For Job</h1>
+              <p className="text-sm text-gray-700">
+                Submit applications easily and track your job search progress
+                effectively.
+              </p>
             </div>
           </div>
         </div>
@@ -333,10 +349,11 @@ const Home = () => {
       </div>
 
       {/* Explore Internships */}
-      <div className='w-full overflow-hidden'>
-
-        <div className='py-14 sm:py-20 px-10'>
-          <h1 className='text-4xl sm:text-center font-medium'>Explore all Internship Opportunity</h1>
+      <div className="w-full overflow-hidden">
+        <div className="py-14 sm:py-20 px-10">
+          <h1 className="text-4xl sm:text-center font-medium">
+            Explore all Internship Opportunity
+          </h1>
         </div>
 
         <div className="bg-gray-50 px-10 py-10">
@@ -372,19 +389,27 @@ const Home = () => {
               </button>
             </div>
           </div> */}
-          <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-x '>
+          <div
+            id="job"
+            className="w-full flex items-center gap-5 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-x "
+          >
             {/* {
               filterredInternships &&
               (filterredInternships.map((internship, index) => (
                 <InternshipCard key={index} index={index} internship={internship} color={generateRandomColor()} />
               )))
             } */}
-            {
-              internships &&
-              (internships.map((internship, index) => (
-                <InternshipCard key={index} index={index} internship={internship} color={generateRandomColor()} />
-              ))).reverse()
-            }
+            {internships &&
+              internships
+                .map((internship, index) => (
+                  <InternshipCard
+                    key={index}
+                    index={index}
+                    internship={internship}
+                    color={generateRandomColor()}
+                  />
+                ))
+                .reverse()}
           </div>
         </div>
       </div>
@@ -429,19 +454,27 @@ const Home = () => {
               </button>
             </div>
           </div> */}
-          <div id='job' className='w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory'>
+          <div
+            id="job"
+            className="w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory"
+          >
             {/* {
               filterredJobs &&
               (filterredJobs.map((job, index) => (
                 <JobCard key={index} index={index} job={job} color={generateRandomColor()} />
               )))
             } */}
-            {
-              jobs &&
-              (jobs.map((job, index) => (
-                <JobCard key={index} index={index} job={job} color={generateRandomColor()} />
-              ))).reverse()
-            }
+            {jobs &&
+              jobs
+                .map((job, index) => (
+                  <JobCard
+                    key={index}
+                    index={index}
+                    job={job}
+                    color={generateRandomColor()}
+                  />
+                ))
+                .reverse()}
           </div>
         </div>
       </div>

@@ -37,15 +37,6 @@ const Bookmark = () => {
   return (
     <>
       {/* Internship - BookMark */}
-
-      {/* <div className="w-full px-5 md:w-[90%] md:mx-auto">
-        <h1 className="text-3xl  font-medium py-10 max-md:text-xl flex items-center justify-center gap-2">
-          Bookmark Internship
-        </h1>
-        <div
-          id="job"
-          className="w-full flex items-center gap-10 whitespace-nowrap overflow-x-auto snap-mandatory bg-gray-50 py-5"
-        > */}
       <div className=" w-full overflow-hidden">
         <div className="py-3 mt-5">
           <h1 className="text-2xl sm:text-3xl md:text-4xl text-center font-medium ">

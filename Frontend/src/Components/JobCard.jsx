@@ -16,18 +16,18 @@ const JobCard = ({ index, job, color }) => {
   const date1 = new Date(job?.createdAt);
   const date2 = new Date(); // Current date
 
-    // Calculate the difference in milliseconds
-    const differenceInMilliseconds = date2 - date1;
-    // console.log(differenceInMilliseconds)
+  // Calculate the difference in milliseconds
+  const differenceInMilliseconds = date2 - date1;
+  // console.log(differenceInMilliseconds)
 
   // Convert milliseconds to days
   const differenceInDays = Math.floor(
     differenceInMilliseconds / (1000 * 60 * 60 * 24)
   );
-   const calculateAnnualSalary = (monthlySalary) => {
-     let salary = Math.floor(job.package / 12)
-     return salary;
-   };
+  const calculateAnnualSalary = (monthlySalary) => {
+    let salary = Math.floor(job.package / 12);
+    return salary;
+  };
 
   // console.log(`Difference in days: ${differenceInDays}`);
 

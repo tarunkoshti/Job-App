@@ -286,37 +286,6 @@ const StudentHome = () => {
 
             <div className="bg-gray-50 px-10 py-10">
               {/* search bar */}
-              {/* <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/3 rounded-full m-auto overflow-hidden mb-10">
-
-                <div className="w-full flex items-center gap-2 pl-5 h-10">
-                  <div><IoMdSearch size={20} className="text-gray-500" /></div>
-                  <input
-                    type="text"
-                    placeholder="Internship title"
-                    className="w-full bg-transparent h-full outline-none"
-                    value={internshipTitleInput}
-                    onChange={(e) => setInternshipTitleInput(e.target.value)}
-                  />
-                </div>
-                <div className="w-full flex items-center gap-2 pl-5 h-10">
-                  <div><IoLocationSharp className="text-gray-500" /></div>
-                  <input
-                    type="text"
-                    placeholder="City or remote"
-                    className="w-full h-full outline-none"
-                    value={internshipLocationInput}
-                    onChange={(e) => setinternshipLocationInput(e.target.value)}
-                  />
-                </div>
-                <div className="h-10">
-                  <button
-                    type="submit"
-                    className="w-full h-full outline-none bg-[#2507B3] text-white text-sm px-3"
-                    onClick={handleInternshipSearch}>
-                    Search
-                  </button>
-                </div>
-              </div> */}
               <div
                 id="job"
                 className="w-full flex items-center gap-5 whitespace-nowrap  overflow-y-hidden overflow-x-scroll snap-mandatory  px-10 bg-gray-50 "
@@ -355,37 +324,6 @@ const StudentHome = () => {
 
             <div className="bg-gray-50 px-10 py-10">
               {/* search bar */}
-              {/* <div className="flex items-center bg-white shadow-lg  hover-border text-black w-1/3 rounded-full m-auto overflow-hidden mb-10">
-
-                <div className="w-full flex items-center gap-2 pl-5 h-10">
-                  <div><IoMdSearch size={20} className="text-gray-500" /></div>
-                  <input
-                    type="text"
-                    placeholder="Job title"
-                    className="w-full bg-transparent h-full outline-none"
-                    value={jobTitleInput}
-                    onChange={(e) => setJobTitleInput(e.target.value)}
-                  />
-                </div>
-                <div className="w-full flex items-center gap-2 pl-5 h-10">
-                  <div><IoLocationSharp className="text-gray-500" /></div>
-                  <input
-                    type="text"
-                    placeholder="City or remote"
-                    className="w-full h-full outline-none"
-                    value={jobLocationInput}
-                    onChange={(e) => setJobLocationInput(e.target.value)}
-                  />
-                </div>
-                <div className="h-10">
-                  <button
-                    type="submit"
-                    className="w-full h-full outline-none bg-[#2507B3] text-white text-sm px-3"
-                    onClick={handleJobSearch}>
-                    Search
-                  </button>
-                </div>
-              </div> */}
               <div
                 id="job"
                 className="w-full flex items-center gap-5 whitespace-nowrap overflow-y-hidden overflow-x-scroll snap-x px-10 bg-gray-50 "

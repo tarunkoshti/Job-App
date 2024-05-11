@@ -63,53 +63,59 @@ const EmployeeApplication = () => {
             </thead>
             {/* Table body */}
             <tbody>
-              {internshipId ?
-                (internshipId.map((studentItem, index) => (
-                  <tr
-                    key={index}
-                    className="border-b border-zinc-300 max-md:text-sm"
-                  >
-                    {internships
-                      ?.filter((internship) => internship._id === studentItem)
-                      .map((intern, internIndex) => (
-                        <>
-                          <td className="w-[300px] max-md:w-[200px] py-3 capitalize pl-5">
-                            {intern.company}
-                          </td>
-                          <td className="w-[300px] max-md:w-[200px] py-3 capitalize flex items-center gap-5">
-                            {intern.profile}{" "}
-                            <Link
-                              to={`/student/internships/read/${studentItem}`}
-                            >
-                              <FiExternalLink
-                                size={13}
-                                color="blue"
-                                cursor="pointer"
-                              />
-                            </Link>
-                          </td>
-                          <td className="w-[300px] max-md:w-[200px] py-3 capitalize">
-                            {intern.internshiptype}
-                          </td>
-                          <td className="w-[300px] max-md:w-[200px] py-3 capitalize text-sm">
-                            {intern?.students?.length}
-                          </td>
-                          <td className="w-[300px] max-md:w-[200px] py-3 capitalize text-sm">
-                            {intern?.createdAt.split("T")[0]}
-                          </td>
-                          <td className="">
-                            <Link
-                              to={`/employee/application/applicants/${studentItem}`}
-                              className="px-3 py-1.5 bg-[#2507B3] rounded-md text-white text-sm"
-                            >
-                              view
-                            </Link>
-                          </td>
-                        </>
-                      ))}
-                  </tr>
-                )).reverse()) :
-                ((<div className='text-gray-700 text-lg font-medium'>No record </div>))}
+              {internshipId ? (
+                internshipId
+                  .map((studentItem, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-zinc-300 max-md:text-sm"
+                    >
+                      {internships
+                        ?.filter((internship) => internship._id === studentItem)
+                        .map((intern, internIndex) => (
+                          <>
+                            <td className="w-[300px] max-md:w-[200px] py-3 capitalize pl-5">
+                              {intern.company}
+                            </td>
+                            <td className="w-[300px] max-md:w-[200px] py-3 capitalize flex items-center gap-5">
+                              {intern.profile}{" "}
+                              <Link
+                                to={`/student/internships/read/${studentItem}`}
+                              >
+                                <FiExternalLink
+                                  size={13}
+                                  color="blue"
+                                  cursor="pointer"
+                                />
+                              </Link>
+                            </td>
+                            <td className="w-[300px] max-md:w-[200px] py-3 capitalize">
+                              {intern.internshiptype}
+                            </td>
+                            <td className="w-[300px] max-md:w-[200px] py-3 capitalize text-sm">
+                              {intern?.students?.length}
+                            </td>
+                            <td className="w-[300px] max-md:w-[200px] py-3 capitalize text-sm">
+                              {intern?.createdAt.split("T")[0]}
+                            </td>
+                            <td className="">
+                              <Link
+                                to={`/employee/application/applicants/${studentItem}`}
+                                className="px-3 py-1.5 bg-[#2507B3] rounded-md text-white text-sm"
+                              >
+                                view
+                              </Link>
+                            </td>
+                          </>
+                        ))}
+                    </tr>
+                  ))
+                  .reverse()
+              ) : (
+                <div className="text-gray-700 text-lg font-medium">
+                  No record{" "}
+                </div>
+              )}
             </tbody>
           </table>
         </div>
@@ -151,54 +157,60 @@ const EmployeeApplication = () => {
             </thead>
             {/* Table body */}
             <tbody>
-              {jobId ?
-                (jobId.map((studentItem, index) => (
-                  <tr
-                    key={index}
-                    className="border-b border-zinc-300 max-md:text-sm"
-                  >
-                    {jobs
-                      ?.filter((job) => job._id === studentItem)
-                      .map((job, Index) => (
-                        <>
-                          <td className="w-[300px] max-md:w-[200px] py-3 pl-5 capitalize">
-                            {job.company}
-                          </td>
-                          <td className="w-[300px] max-md:w-[200px] py-3 capitalize flex items-center gap-5">
-                            {job.profile}{" "}
-                            <Link to={`/student/job/read/${studentItem}`}>
-                              <FiExternalLink
-                                size={13}
-                                color="blue"
-                                cursor="pointer"
-                              />
-                            </Link>
-                          </td>
-                          <td className="w-[300px] max-md:w-[200px] py-3 capitalize">
-                            {job.jobtype}
-                          </td>
-                          <td className="w-[300px] max-md:w-[200px] py-3 capitalize text-sm">
-                            {job?.students.length}
-                          </td>
-                          <td className="w-[300px] max-md:w-[200px] py-3 capitalize text-sm">
-                            {job.createdAt.split("T")[0]}
-                          </td>
-                          {/* <td className='py-2 px-4 pl-20'>
+              {jobId ? (
+                jobId
+                  .map((studentItem, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-zinc-300 max-md:text-sm"
+                    >
+                      {jobs
+                        ?.filter((job) => job._id === studentItem)
+                        .map((job, Index) => (
+                          <>
+                            <td className="w-[300px] max-md:w-[200px] py-3 pl-5 capitalize">
+                              {job.company}
+                            </td>
+                            <td className="w-[300px] max-md:w-[200px] py-3 capitalize flex items-center gap-5">
+                              {job.profile}{" "}
+                              <Link to={`/student/job/read/${studentItem}`}>
+                                <FiExternalLink
+                                  size={13}
+                                  color="blue"
+                                  cursor="pointer"
+                                />
+                              </Link>
+                            </td>
+                            <td className="w-[300px] max-md:w-[200px] py-3 capitalize">
+                              {job.jobtype}
+                            </td>
+                            <td className="w-[300px] max-md:w-[200px] py-3 capitalize text-sm">
+                              {job?.students.length}
+                            </td>
+                            <td className="w-[300px] max-md:w-[200px] py-3 capitalize text-sm">
+                              {job.createdAt.split("T")[0]}
+                            </td>
+                            {/* <td className='py-2 px-4 pl-20'>
                         <Link to={`/student/job/read/${studentItem}`}><MdOutlineLibraryBooks /></Link>
                       </td> */}
-                          <td className="">
-                            <Link
-                              to={`/employee/application/applicants/${studentItem}`}
-                              className="px-3 py-1.5 bg-[#2507B3] rounded-md text-white text-sm"
-                            >
-                              view
-                            </Link>
-                          </td>
-                        </>
-                      ))}
-                  </tr>
-                )).reverse()) :
-                ((<div className='text-gray-700 text-lg font-medium'>No record </div>))}
+                            <td className="">
+                              <Link
+                                to={`/employee/application/applicants/${studentItem}`}
+                                className="px-3 py-1.5 bg-[#2507B3] rounded-md text-white text-sm"
+                              >
+                                view
+                              </Link>
+                            </td>
+                          </>
+                        ))}
+                    </tr>
+                  ))
+                  .reverse()
+              ) : (
+                <div className="text-gray-700 text-lg font-medium">
+                  No record{" "}
+                </div>
+              )}
             </tbody>
           </table>
         </div>
