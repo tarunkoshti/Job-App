@@ -152,8 +152,8 @@ const Resume = () => {
         dispatch(getStudentResume(student._id))
     }, [dispatch])
 
-    const updatedResume = useSelector((state) => state.resumeReducer?.resumeData?.updatedResume)
-    console.log(updatedResume)
+    const [updatedResume] = useSelector((state) => state.resumeReducer?.resumeData);
+    // console.log(updatedResume)
 
     // Loading state
     const [resumeLoader, setResumeLoader] = useState(true);
