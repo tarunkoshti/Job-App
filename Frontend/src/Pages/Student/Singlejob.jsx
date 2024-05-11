@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { jobDetail } from "../../store/Actions/jobActions";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { IoLocationSharp } from "react-icons/io5";
@@ -10,9 +9,6 @@ import { IoBagCheck } from "react-icons/io5";
 import { IoMdPeople } from "react-icons/io";
 import { RxCountdownTimer } from "react-icons/rx";
 import { SiOnlyoffice } from "react-icons/si";
-import { IoCalendarNumber } from "react-icons/io5";
-import { MdMessage } from "react-icons/md";
-import { RiContactsFill } from "react-icons/ri";
 import {
   applyjob,
   bookmarkjob,

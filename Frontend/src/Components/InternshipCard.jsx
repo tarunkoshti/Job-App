@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CiCalendarDate } from "react-icons/ci";
 import { IoLocationSharp } from "react-icons/io5";
 import { RxCountdownTimer } from "react-icons/rx";
 import { FaMoneyBill } from "react-icons/fa";

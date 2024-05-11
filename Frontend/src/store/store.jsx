@@ -6,13 +6,13 @@ import jobReducer from "./Reducers/jobSlice";
 import resumeReducer from "./Reducers/resumeSlice";
 
 const store = configureStore({
-    reducer: {
-        userReducer,
-        employeeReducer,
-        internshipReducer,
-        jobReducer,
-        resumeReducer
-    }
+  reducer: {
+    userReducer,
+    employeeReducer,
+    internshipReducer,
+    jobReducer,
+    resumeReducer,
+  },
 });
 
 export default store;

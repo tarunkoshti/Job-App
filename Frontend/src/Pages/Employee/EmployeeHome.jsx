@@ -40,19 +40,18 @@ const EmployeeHome = () => {
             for your Company
           </h1>
           <h4 className="text-gray-500 mt-12 text-base md:text-lg lg:text-center tracking-wider lg:w-[60%]">
-            Get more sales and maximize the conversion rates. Discover the
-            most productive channels. Discover the optimal match for your Company and get the best
-            results together
+            Get more sales and maximize the conversion rates. Discover the most
+            productive channels. Discover the optimal match for your Company and
+            get the best results together
           </h4>
           <Link to={`/employee/jobs`}>
-            <Button
-              className="mt-10 md:mt-20 flex items-center gap-2 py-3"
-            >
+            <Button className="mt-10 md:mt-20 flex items-center gap-2 py-3">
               Get Started Now
               <MdArrowOutward />
-            </Button></Link>
+            </Button>
+          </Link>
         </div>
-        
+
         <div class="container mx-auto px-4 sm:px-8 md:px-12 lg:px-20 py-8 sm:py-12 mt-8 sm:mt-12">
           <div class="text-center mb-8 py-5">
             <h1 className="text-center text-[#1F2937] text-3xl md:text-5xl font-medium leading-relaxed md:pl-12 capitalize tracking-normal">

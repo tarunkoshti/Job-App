@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { internshipDetail } from '../../store/Actions/internshipActions';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { IoLocationSharp } from "react-icons/io5";
@@ -9,11 +8,7 @@ import { FaMoneyBill } from "react-icons/fa";
 import { IoBagCheck } from "react-icons/io5";
 import { IoMdPeople } from "react-icons/io";
 import { RxCountdownTimer } from "react-icons/rx";
-import { FaBookmark } from "react-icons/fa";
 import { SiOnlyoffice } from "react-icons/si";
-import { IoCalendarNumber } from "react-icons/io5";
-import { MdMessage } from "react-icons/md";
-import { RiContactsFill } from "react-icons/ri";
 import { applyinternship } from '../../store/Actions/userActions';
 import { bookmarkinternship } from '../../store/Actions/userActions';
 import { disbookmarkinternship } from '../../store/Actions/userActions';

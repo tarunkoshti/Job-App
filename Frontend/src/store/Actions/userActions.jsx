@@ -4,77 +4,77 @@ import { readHisOwnInternship } from "../Reducers/internshipSlice";
 import { readHisOwnJob } from "../Reducers/jobSlice";
 import { getStudentResume } from "./resumeActions";
 export const currentUser = () => async (dispatch, getState) => {
-    try {
-        const { data: userData } = await axios.get('/api/user/student')
-        if (userData.student) {
-            dispatch(login({ userData }))
-        }
-    } catch (error) {
-        return error.response
+  try {
+    const { data: userData } = await axios.get("/api/user/student");
+    if (userData.student) {
+      dispatch(login({ userData }));
     }
-}
+  } catch (error) {
+    return error.response;
+  }
+};
 
 export const asyncSignup = (userData) => async (dispatch, getState) => {
-    try {
-        await axios.post('/api/user/student/signup', userData)
-        dispatch(currentUser())
-    } catch (error) {
-        return error.response
-    }
-}
+  try {
+    await axios.post("/api/user/student/signup", userData);
+    dispatch(currentUser());
+  } catch (error) {
+    return error.response;
+  }
+};
 
 export const asyncLogin = (userData) => async (dispatch, getState) => {
-    try {
-        await axios.post('/api/user/student/signin', userData)
-        dispatch(currentUser())
-    } catch (error) {
-        return error.response
-    }
-}
+  try {
+    await axios.post("/api/user/student/signin", userData);
+    dispatch(currentUser());
+  } catch (error) {
+    return error.response;
+  }
+};
 
 export const asyncLogout = () => async (dispatch, getState) => {
-    try {
-        await axios.get('/api/user/student/signout')
-        dispatch(logout())
-    } catch (error) {
-        return error.response
-    }
-}
+  try {
+    await axios.get("/api/user/student/signout");
+    dispatch(logout());
+  } catch (error) {
+    return error.response;
+  }
+};
 
 export const asyncSendMail = (formData) => async (dispatch, getState) => {
+  try {
+    await axios.post("/api/user/student/send-mail", formData);
+  } catch (error) {
+    return error.response;
+  }
+};
+
+export const asyncForgrtPassword =
+  (id, formData) => async (dispatch, getState) => {
     try {
-        await axios.post('/api/user/student/send-mail', formData)
+      await axios.post(`/api/user/student/forget-link/${id}`, formData);
     } catch (error) {
-
-        return error.response
-
+      return error.response;
     }
-}
-
-export const asyncForgrtPassword = (id, formData) => async (dispatch, getState) => {
+  };
+export const asyncResetPassword =
+  (id, formData) => async (dispatch, getState) => {
     try {
-        await axios.post(`/api/user/student/forget-link/${id}`, formData)
+      await axios.post(`/api/user/student/reset-password/${id}`, formData);
     } catch (error) {
-        return error.response
+      return error.response;
     }
+  };
 
-}
-export const asyncResetPassword = (id, formData) => async (dispatch, getState) => {
+export const asyncUploadProfileImageStudent =
+  (id, imageFile) => async (dispatch, getState) => {
     try {
-        await axios.post(`/api/user/student/reset-password/${id}`, formData)
+      // console.log("one");
+      await axios.post(`/api/user/student/avatar/${id}`, imageFile);
+      // console.log("two");
+      dispatch(currentUser());
     } catch (error) {
-        return error.response
-    }
-}
-
-export const asyncUploadProfileImageStudent = (id, imageFile) => async (dispatch, getState) => {
-    try {
-        // console.log("one")
-        await axios.post(`/api/user/student/avatar/${id}`, imageFile)
-        // console.log("two")
-        dispatch(currentUser())
-    } catch (error) {
-        return error.response
+      return error.response;
     }
 }
 
@@ -181,27 +181,29 @@ export const addEducation = (id, data1) => async (dispatch, getState) => {
     }
 }
 
-export const editEducation = (id, studentId, data1) => async (dispatch, getState) => {
+export const editEducation =
+  (id, studentId, data1) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/edit-edu/${id}`, data1)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
-export const deleteEducation = (id, studentId) => async (dispatch, getState) => {
+export const deleteEducation =
+  (id, studentId) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/delete-edu/${id}`)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
 export const addJob = (id, data1) => async (dispatch, getState) => {
     try {
@@ -247,27 +249,29 @@ export const addInternship = (id, data1) => async (dispatch, getState) => {
     }
 }
 
-export const editInternship = (id, studentId, data1) => async (dispatch, getState) => {
+export const editInternship =
+  (id, studentId, data1) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/edit-intern/${id}`, data1)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
-export const deleteInternship = (id, studentId) => async (dispatch, getState) => {
+export const deleteInternship =
+  (id, studentId) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/delete-intern/${id}`)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
 export const addResponsibility = (id, data1) => async (dispatch, getState) => {
     try {
@@ -280,27 +284,29 @@ export const addResponsibility = (id, data1) => async (dispatch, getState) => {
     }
 }
 
-export const editResponsibility = (id, studentId, data1) => async (dispatch, getState) => {
+export const editResponsibility =
+  (id, studentId, data1) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/edit-respo/${id}`, data1)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
-export const deleteResponsibility = (id, studentId) => async (dispatch, getState) => {
+export const deleteResponsibility =
+  (id, studentId) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/delete-respo/${id}`)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
 export const addTrainingCourse = (id, data1) => async (dispatch, getState) => {
     try {
@@ -313,27 +319,29 @@ export const addTrainingCourse = (id, data1) => async (dispatch, getState) => {
     }
 }
 
-export const editTrainingCourse = (id, studentId, data1) => async (dispatch, getState) => {
+export const editTrainingCourse =
+  (id, studentId, data1) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/edit-course/${id}`, data1)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
-export const deleteTrainingCourse = (id, studentId) => async (dispatch, getState) => {
+export const deleteTrainingCourse =
+  (id, studentId) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/delete-course/${id}`)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
 export const addProject = (id, data1) => async (dispatch, getState) => {
     try {
@@ -346,16 +354,17 @@ export const addProject = (id, data1) => async (dispatch, getState) => {
     }
 }
 
-export const editProject = (id, studentId, data1) => async (dispatch, getState) => {
+export const editProject =
+  (id, studentId, data1) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/edit-project/${id}`, data1)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
 export const deleteProject = (id, studentId) => async (dispatch, getState) => {
     try {
@@ -379,16 +388,17 @@ export const addSkill = (id, data1) => async (dispatch, getState) => {
     }
 }
 
-export const editSkill = (id, studentId, data1) => async (dispatch, getState) => {
+export const editSkill =
+  (id, studentId, data1) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/edit-skill/${id}`, data1)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
 export const deleteSkill = (id, studentId) => async (dispatch, getState) => {
     try {
@@ -412,27 +422,29 @@ export const addWorkSample = (id, data1) => async (dispatch, getState) => {
     }
 }
 
-export const editWorkSample = (id, studentId, data1) => async (dispatch, getState) => {
+export const editWorkSample =
+  (id, studentId, data1) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/edit-work/${id}`, data1)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
-export const deleteWorkSample = (id, studentId) => async (dispatch, getState) => {
+export const deleteWorkSample =
+  (id, studentId) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/delete-work/${id}`)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
 export const addAccomplishment = (id, data1) => async (dispatch, getState) => {
     try {
@@ -445,24 +457,26 @@ export const addAccomplishment = (id, data1) => async (dispatch, getState) => {
     }
 }
 
-export const editAccomplishment = (id, studentId, data1) => async (dispatch, getState) => {
+export const editAccomplishment =
+  (id, studentId, data1) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/edit-acc/${id}`, data1)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
 
-export const deleteAccomplishment = (id, studentId) => async (dispatch, getState) => {
+export const deleteAccomplishment =
+  (id, studentId) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post(`/api/resume/delete-acc/${id}`)
         // console.log(data)
         dispatch(currentUser({ data }))
         dispatch(getStudentResume(studentId))
     } catch (error) {
-        return error.response
+      return error.response;
     }
-}
+  };
