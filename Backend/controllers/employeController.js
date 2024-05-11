@@ -102,7 +102,7 @@ exports.employeupdate = catchAsyncErrors(async function (req, res, next) {
 exports.employeavatar = catchAsyncErrors(async function (req, res, next) {
 
     const employe = await Employe.findById(req.params.id).exec();
-    console.log(employe)
+    // console.log(employe)
     const file = req.files.avatar;
     const modifiedFileName = `resumebuilder-${Date.now()}${path.extname(file.name)}`
 

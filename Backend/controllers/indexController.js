@@ -134,7 +134,7 @@ exports.applyinternship = catchAsyncErrors(async function (req, res, next) {
     internship.students.push(student._id);
     await internship.save();
     
-    console.log(internship)
+    // console.log(internship)
     student.internships.push(internship._id);
     await student.save();
 
@@ -235,7 +235,7 @@ exports.disbookmarkjob = catchAsyncErrors(async function (req, res, next) {
     const job = await Job.findById(req.params.jobid).exec()
 
     student.bookmarkjob = student.bookmarkjob.filter(id => id.toString() !== req.params.jobid);
-    console.log(student.bookmarkjob)
+    // console.log(student.bookmarkjob)
 
     await student.save();
 

@@ -4,7 +4,6 @@ const Student = require("../models/studentModel");
 const ErrorHandler = require("../utils/ErrorHandler");
 const { v4: uuidv4 } = require('uuid');
 
-
 exports.studentinfo = catchAsyncErrors(async function (req, res, next) {
     const student = await Student.findById(req.params.studentid).exec();
 
@@ -36,7 +35,7 @@ exports.resume = catchAsyncErrors(async function (req, res, next) {
 
     const { resume } = await Student.findById(req.params.studentid).exec();
     const updatedResume = { ...resume, details };
-    console.log(updatedResume)
+    // console.log(updatedResume)
 
     res.json({
         message: "secure resume page", updatedResume
@@ -251,7 +250,7 @@ exports.addwork = catchAsyncErrors(async function (req, res, next) {
     const keys = Object.keys(work);
 
     keys.forEach((k) => {
-        console.log(k)
+        // console.log(k)
         if (work[k] != '' && work[k] != 'na' && work[k] != 'NA' && work[k] != 'Na') {
             work[k] = { id: uuidv4(), value: work[k], key: k }
             const indexToRemove = student.resume.worksamples.findIndex(item => item.key === k);
