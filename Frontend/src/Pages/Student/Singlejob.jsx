@@ -45,7 +45,7 @@ const Singlejob = () => {
   };
 
   const appliedJob = student?.jobs?.find((jobid) => jobid == id);
-  const employee = useSelector((state)=> state.employeeReducer)
+  const employee = useSelector((state)=> state.employeeReducer.employeeData)
   const applyHandler = async () => {
     if (!appliedJob) {
       const error = await dispatch(applyjob(id));

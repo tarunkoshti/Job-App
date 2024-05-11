@@ -46,7 +46,7 @@ const Singleinternship = () => {
         await dispatch(disbookmarkinternship(id));
     }
 
-    const employee = useSelector((state)=> state.employeeReducer)
+    const employee = useSelector((state)=> state.employeeReducer.employeeData)
     console.log(employee)
     const appliedInternship = student?.internships?.find((internid) => internid == id)
 
