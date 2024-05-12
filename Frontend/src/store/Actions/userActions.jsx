@@ -16,7 +16,7 @@ export const currentUser = () => async (dispatch, getState) => {
 
 export const asyncSignup = (userData) => async (dispatch, getState) => {
   try {
-    await axios.post("/api/user/student/signup", userData);
+    await axios.post("https://job-app-api-gamma.vercel.app/user/student/signup", userData);
     dispatch(currentUser());
   } catch (error) {
     return error.response;
@@ -25,7 +25,7 @@ export const asyncSignup = (userData) => async (dispatch, getState) => {
 
 export const asyncLogin = (userData) => async (dispatch, getState) => {
   try {
-    await axios.post("/api/user/student/signin", userData);
+    await axios.post("https://job-app-api-gamma.vercel.app/user/student/signin", userData);
     dispatch(currentUser());
   } catch (error) {
     return error.response;
