@@ -139,7 +139,7 @@ const Home = () => {
   }
 
   // Loading state
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     if (internships !== null && jobs !== null) {
