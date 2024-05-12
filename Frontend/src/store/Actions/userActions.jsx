@@ -5,7 +5,7 @@ import { readHisOwnJob } from "../Reducers/jobSlice";
 import { getStudentResume } from "./resumeActions";
 export const currentUser = () => async (dispatch, getState) => {
   try {
-    const { data: userData } = await axios.get("/api/user/student");
+    const { data: userData } = await axios.get("https://job-app-api-gamma.vercel.app/user/student");
     if (userData.student) {
       dispatch(login({ userData }));
     }
