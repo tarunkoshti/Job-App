@@ -40,6 +40,9 @@ const fileupload = require("express-fileupload")
 app.use(fileupload());
 
 // routes
+app.use((err, req, res, next) => {
+    res.status(1000).send("backend is running")
+})
 app.use("/user", require("./routes/indexRoutes"))
 app.use("/resume", require("./routes/resumeRoutes"))
 app.use("/employe", require("./routes/employeRoutes"))
