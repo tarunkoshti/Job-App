@@ -104,7 +104,7 @@ studentModel.methods.comparepassword = function(password){
 }
 
 studentModel.methods.getjwttoken = function() {
-    return jwt.sign({id: "1"}, "JWTSECRET",
+    return jwt.sign({id: this._id}, "JWTSECRET",
         {
             expiresIn: '1h'
         })
