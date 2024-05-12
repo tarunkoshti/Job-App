@@ -6,7 +6,7 @@ exports.sendtoken = (user, statuscode, res) => {
             Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
         ),
         // httpOnly: true,
-        secure: true
+        secure: false
     }
 
     res.status(statuscode).cookie("token", token, options)
