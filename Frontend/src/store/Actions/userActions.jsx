@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import { login, logout } from "../Reducers/userSlice";
 import { readHisOwnInternship } from "../Reducers/internshipSlice";
 import { readHisOwnJob } from "../Reducers/jobSlice";

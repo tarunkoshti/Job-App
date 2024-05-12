@@ -1,6 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
 import { setResume } from "../Reducers/resumeSlice";
-import axios from "../../config/axios"
 import axios from "../../config/axios"
 
 
