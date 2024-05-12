@@ -1,5 +1,7 @@
 import axios from "axios";
 import { login, logout } from "../Reducers/employeeSlice";
+import axios from "../../config/axios"
+
 
 export const currentUser = () => async (dispatch, getState) => {
     try {

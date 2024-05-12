@@ -3,9 +3,10 @@ import { login, logout } from "../Reducers/userSlice";
 import { readHisOwnInternship } from "../Reducers/internshipSlice";
 import { readHisOwnJob } from "../Reducers/jobSlice";
 import { getStudentResume } from "./resumeActions";
+import axios from "../../config/axios"
 export const currentUser = () => async (dispatch, getState) => {
   try {
-    const { data: userData } = await axios.get("https://job-app-api-gamma.vercel.app/user/student");
+    const { data: userData } = await axios.get("/api/user/student");
     if (userData.student) {
       dispatch(login({ userData }));
     }
@@ -16,7 +17,7 @@ export const currentUser = () => async (dispatch, getState) => {
 
 export const asyncSignup = (userData) => async (dispatch, getState) => {
   try {
-    await axios.post("https://job-app-api-gamma.vercel.app/user/student/signup", userData);
+    await axios.post("/api/user/student/signup", userData);
     dispatch(currentUser());
   } catch (error) {
     return error.response;
@@ -25,7 +26,7 @@ export const asyncSignup = (userData) => async (dispatch, getState) => {
 
 export const asyncLogin = (userData) => async (dispatch, getState) => {
   try {
-    await axios.post("https://job-app-api-gamma.vercel.app/user/student/signin", userData);
+    await axios.post("/api/user/student/signin", userData);
     dispatch(currentUser());
   } catch (error) {
     return error.response;

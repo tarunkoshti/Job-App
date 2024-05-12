@@ -4,6 +4,8 @@ import {
   readSingleInternship,
   createInternship,
 } from "../Reducers/internshipSlice";
+import axios from "../../config/axios"
+
 
 export const fetchInternships = () => async (dispatch, getState) => {
   try {

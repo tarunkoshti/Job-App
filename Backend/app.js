@@ -43,9 +43,9 @@ app.use(fileupload());
 app.use((err, req, res, next) => {
     res.status(1000).send("backend is running")
 })
-app.use("/user", require("./routes/indexRoutes"))
-app.use("/resume", require("./routes/resumeRoutes"))
-app.use("/employe", require("./routes/employeRoutes"))
+app.use("/api/user", require("./routes/indexRoutes"))
+app.use("/api/resume", require("./routes/resumeRoutes"))
+app.use("/api/employe", require("./routes/employeRoutes"))
 
 // error handling
 const ErrorHandler = require("./utils/ErrorHandler")

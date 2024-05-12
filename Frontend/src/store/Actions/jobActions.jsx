@@ -1,5 +1,7 @@
 import axios from "axios";
 import { readAllJob, readSingleJob, createJob } from "../Reducers/jobSlice";
+import axios from "../../config/axios"
+
 
 export const fetchJobs = () => async (dispatch, getState) => {
   try {

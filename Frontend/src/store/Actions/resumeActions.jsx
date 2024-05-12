@@ -1,5 +1,8 @@
 import axios from "axios";
 import { setResume } from "../Reducers/resumeSlice";
+import axios from "../../config/axios"
+import axios from "../../config/axios"
+
 
 export const getStudentResume = (id) => async (dispatch, getState) => {
   try {
