@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://vercel.com/tarun-koshtis-projects-551f497b/job-app',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
