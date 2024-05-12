@@ -7,7 +7,7 @@ exports.isAuthenticated = catchAsyncErrors(async (req, res, next) => {
 
     if(!token) return next(new ErrorHandler("Please login to access the resource", 401))
 
-    const {id} = jwt.verify(token, process.env.JWT_SECRET);
+    const { id } = jwt.verify(token, "JWTSECRET");
     req.id = id;
     next();
     // res.json({id, token});
