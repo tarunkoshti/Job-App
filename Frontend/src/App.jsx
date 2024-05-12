@@ -35,7 +35,7 @@ const App = () => {
   }, [studentAuth, employeeAuth, navigate]);
 
   // Loading state
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     if (studentAuth !== null || employeeAuth !== null) {
