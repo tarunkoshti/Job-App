@@ -29,7 +29,13 @@ const session = require("express-session")
 app.use(session({
     resave: true,
     saveUninitialized: true,
-    secret: process.env.EXPRESS_SESSION_SECRET
+    secret: process.env.EXPRESS_SESSION_SECRET,
+    cookie: {
+        httpOnly: false,
+        secure: true,  
+        sameSite: 'None',  
+        path: '/'
+    }
 }))
 
 const cookieparser = require("cookie-parser")
