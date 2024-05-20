@@ -30,12 +30,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     secret: process.env.EXPRESS_SESSION_SECRET,
-    cookie: {
-        httpOnly: true,
-        secure: true,  
-        sameSite: 'None',  
-        path: '/'
-    }
 }))
 
 const cookieparser = require("cookie-parser")
