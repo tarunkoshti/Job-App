@@ -54,7 +54,7 @@ exports.studentsignout = catchAsyncErrors(async function (req, res, next) {
     });
 
     res.clearCookie('connect.sid', {
-        httpOnly: false,
+        httpOnly: true,
         secure: true,
         sameSite: 'None',
         path: '/',

@@ -31,7 +31,7 @@ app.use(session({
     saveUninitialized: true,
     secret: process.env.EXPRESS_SESSION_SECRET,
     cookie: {
-        httpOnly: false,
+        httpOnly: true,
         secure: true,  
         sameSite: 'None',  
         path: '/'
