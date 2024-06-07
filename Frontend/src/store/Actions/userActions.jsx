@@ -36,8 +36,6 @@ export const asyncLogin = (userData) => async (dispatch, getState) => {
 export const asyncLogout = () => async (dispatch, getState) => {
   try {
     await axios.get("/api/user/student/signout");
-    // Clear the cookie manually on the client side
-    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure; SameSite=None";
     dispatch(logout());
   } catch (error) {
     return error.response;
