@@ -53,6 +53,8 @@ exports.studentsignout = catchAsyncErrors(async function (req, res, next) {
     });
 
     res.json({ message: "successfully signout!" })
+
+    await req.user.save()
 });
 
 exports.studentsendmail = catchAsyncErrors(async function (req, res, next) {
