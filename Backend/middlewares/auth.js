@@ -3,7 +3,8 @@ const ErrorHandler = require("../utils/ErrorHandler")
 const { catchAsyncErrors } = require("./catchAsyncErrors")
 
 exports.isAuthenticated = catchAsyncErrors(async (req, res, next) => {
-    const { token } = req.cookies;
+    // const { token } = req.cookies;
+    const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
 
     if (!token) return next(new ErrorHandler("Please login to access the resource", 401))
 

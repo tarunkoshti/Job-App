@@ -11,6 +11,7 @@ exports.sendtoken = (user, statuscode, res) => {
         path: '/', 
     }
 
-    res.status(statuscode).cookie("token", token, options)
-    .json({success: true, id: user._id, token})
+    res.status(statuscode).json({ success: true, id: user._id, token })
+    // res.status(statuscode).cookie("token", token, options)
+    // .json({success: true, id: user._id, token})
 }
