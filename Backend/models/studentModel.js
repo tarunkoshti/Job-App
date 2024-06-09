@@ -115,7 +115,7 @@ studentModel.methods.getjwttoken = async function() {
             expiresIn: '1h'
         })
 
-        this.tokens = this.tokens.contact({token:token})
+        this.tokens = this.tokens.concat({token:token})
         await this.save();
         return token;
 }
