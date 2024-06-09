@@ -44,7 +44,7 @@ exports.employesignin = catchAsyncErrors(async function (req, res, next) {
 
 exports.employesignout = catchAsyncErrors(async function (req, res, next) {
 
-    res.clearCookie("token");
+    // res.clearCookie("token");
     res.json({ message: "successfully signout!" })
 });
 

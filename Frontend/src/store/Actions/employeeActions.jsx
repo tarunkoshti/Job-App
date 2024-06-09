@@ -16,7 +16,10 @@ export const currentUser = () => async (dispatch, getState) => {
 
 export const asyncSignup = (employeeData) => async (dispatch, getState) => {
   try {
-    await axios.post("/api/employe/signup", employeeData);
+    const response = await axios.post("/api/employe/signup", employeeData);
+    const { token, id } = response.data;
+    // Store the token in local storage
+    localStorage.setItem('token', token);
     dispatch(currentUser());
   } catch (error) {
     console.log(error.message);
@@ -25,7 +28,10 @@ export const asyncSignup = (employeeData) => async (dispatch, getState) => {
 
 export const asyncLogin = (employeeData) => async (dispatch, getState) => {
     try {
-        await axios.post('/api/employe/signin', employeeData)
+      const response = await axios.post('/api/employe/signin', employeeData)
+      const { token, id } = response.data;
+      // Store the token in local storage
+      localStorage.setItem('token', token);
         dispatch(currentUser())
     } catch (error) {
         return error.response
@@ -34,6 +40,8 @@ export const asyncLogin = (employeeData) => async (dispatch, getState) => {
 export const asyncLogout = () => async (dispatch, getState) => {
   try {
     await axios.get("/api/employe/signout");
+    // Remove the token from local storage
+    localStorage.removeItem('token');
     dispatch(logout());
   } catch (error) {
     console.log(error.message);
