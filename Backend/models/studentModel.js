@@ -83,12 +83,6 @@ const studentModel = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "job"
         }
-    ],
-    tokens:[
-        {token:{
-            type: String,
-            required: true
-        }}
     ]
 
 },
@@ -109,15 +103,11 @@ studentModel.methods.comparepassword = function(password){
     return bcrypt.compareSync(password, this.password);
 }
 
-studentModel.methods.getjwttoken = async function() {
-    const token = jwt.sign({id: this._id.toString()}, process.env.JWT_SECRET,
+studentModel.methods.getjwttoken = function() {
+    return jwt.sign({id: this._id}, process.env.JWT_SECRET,
         {
             expiresIn: '1h'
         })
-
-        this.tokens = this.tokens.concat({token:token})
-        await this.save();
-        return token;
 }
 
 const Student = mongoose.model("student", studentModel);
