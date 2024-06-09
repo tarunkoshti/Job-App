@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken")
 const ErrorHandler = require("../utils/ErrorHandler")
 const { catchAsyncErrors } = require("./catchAsyncErrors")
-const Student = require("../models/studentModel");
-const Employe = require("../models/employeModel");
 
 
 exports.isAuthenticated = catchAsyncErrors(async (req, res, next) => {
