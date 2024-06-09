@@ -1,0 +1,27 @@
+{
+    "version": 2,
+    "name": "jobapp",
+    "builds": [
+        {
+            "src": "Frontend/package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "Frontend/build"
+            }
+        },
+        {
+            "src": "Backend/app.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "/Backend/app.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/Frontend/build/index.html"
+        }
+    ]
+}
