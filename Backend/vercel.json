@@ -3,14 +3,14 @@
     "name": "job-app",
     "builds": [
         {
-            "src": "Backend/app.js",
+            "src": "app.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/Backend/app.js"
+            "dest": "/app.js"
         }
     ]
 }
