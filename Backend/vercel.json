@@ -11,13 +11,6 @@
         {
             "src": "/api/(.*)",
             "dest": "/app.js"
-        },
-        {
-            "handle": "filesystem"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "../Frontend/src/index.html"
         }
     ]
 }
