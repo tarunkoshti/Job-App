@@ -7,7 +7,7 @@ const cors = require('cors')
 
 app.use(
     cors({
-        origin: "https://job-app-six-iota.vercel.app",
+        origin: "https://job-app-hirer.vercel.app",
         methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
         credentials: true,
     })
