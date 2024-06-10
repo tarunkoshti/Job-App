@@ -5,13 +5,6 @@
         {
             "src": "app.js",
             "use": "@vercel/node"
-        },
-        {
-            "src": "../Frontend/package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "../Frontend/build"
-            }
         }
     ],
     "routes": [
@@ -20,8 +13,11 @@
             "dest": "/app.js"
         },
         {
+            "handle": "filesystem"
+        },
+        {
             "src": "/(.*)",
-            "dest": "../Frontend/build/index.html"
+            "dest": "../Frontend/src/index.html"
         }
     ]
 }
