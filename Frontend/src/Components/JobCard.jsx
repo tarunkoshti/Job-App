@@ -85,7 +85,7 @@ const JobCard = ({ index, job, color }) => {
 
             <div className="flex items-center gap-2 mt-2">
               <HiMiniUsers />
-              <h3 className="">{job.applicants} applicants</h3>
+              <h3 className="">{job.students.length} applicants</h3>
             </div>
           </div>
         </div>

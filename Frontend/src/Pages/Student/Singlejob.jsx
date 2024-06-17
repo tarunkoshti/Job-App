@@ -183,7 +183,7 @@ const Singlejob = () => {
             {/* <!-- Applicants --> */}
             <div className="flex items-center gap-2 border-b pb-5">
               <IoMdPeople size={30} />
-              <h1 className="font-medium">{job.applicants} applicants</h1>
+              <h1 className="font-medium">{job.students.length} applicants</h1>
             </div>
 
             {/* <!-- description --> */}

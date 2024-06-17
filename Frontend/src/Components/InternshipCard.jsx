@@ -87,7 +87,7 @@ const InternshipCard = ({ index, internship, color }) => {
             </div>
             <div className="flex items-center gap-2 mt-2">
               <HiMiniUsers />
-              <h3 className="">{internship.applicants} applicants</h3>
+              <h3 className="">{internship.students.length} applicants</h3>
             </div>
           </div>
 
